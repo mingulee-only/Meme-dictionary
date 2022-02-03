@@ -4,7 +4,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+		
+	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+
 		<property name="driverClassName" 	value="oracle.jdbc.driver.OracleDriver"></property>
 		<property name="url" 				value="jdbc:oracle:thin:@sonof.iptime.org:8512:xe"></property>
 		<property name="username" 			value="MEME"></property>
@@ -22,5 +25,6 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="100000000"></property>
 		<property name="maxInMemorySize" value="100000000"></property>
+
 	</bean>
 </beans>
