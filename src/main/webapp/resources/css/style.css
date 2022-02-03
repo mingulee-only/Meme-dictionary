@@ -503,6 +503,7 @@ a:hover {
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
+    text-shadow:  2px 2px 2px #474747;
 }
 
 .buynow_bt {
