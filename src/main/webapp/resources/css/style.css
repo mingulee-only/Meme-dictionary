@@ -214,10 +214,21 @@ button {
 .banner_bg_main {
     width: 100%;
     float: left;
-    background-image: url(../images/banner-bg.png);
-    height: auto;
+    background-image: url(../images/tablet-search.jpg);
+/* 	background-color : blue; */
+    height: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
+    
+    max-width: 100%;
+    max-height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin:0 auto;
+    overflow: 0;
+    position: fixed;
 }
 
 
@@ -314,7 +325,7 @@ button {
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 15px;
     color: #ffffff;
     display: block;
     transition: 0.3s;
@@ -337,7 +348,7 @@ button {
         padding-top: 15px;
     }
     .sidenav a {
-        font-size: 18px;
+        font-size: 15px;
     }
 }
 
@@ -388,17 +399,19 @@ button {
 
 .main {
     flex: 1;
-    margin: 0px 30px;
+    margin: 0px 25%;
     display: inline-block;
+    width: 50%;
     order: 2;
+    
 }
-
 
 /* Bootstrap 4 text input with search icon */
 
 .has-search .form-control {
     padding-left: 2.375rem;
 }
+
 
 .has-search .form-control-feedback {
     position: absolute;
@@ -427,7 +440,7 @@ button {
 }
 
 .login_menu li {
-    float: left;
+    float: right;
     font-size: 16px;
     color: #ffffff;
     text-transform: uppercase;
@@ -485,7 +498,7 @@ a:hover {
 
 .banner_taital {
     width: 100%;
-    font-size: 60px;
+    font-size: 40px;
     color: #ffffff;
     text-align: center;
     text-transform: uppercase;

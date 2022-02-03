@@ -37,37 +37,19 @@
       <!-- owl stylesheets -->
       <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
       <link rel="stylesheet" href="./resources/css/owl.carousel.min.css">
-      <link rel="stylesoeet" href="./resources/css/owl.theme.default.min.css">
+      <link rel="stylesheet" href="./resources/css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
    </head>
    <body>
       <!-- banner bg main start -->
       <div class="banner_bg_main">
-         <!-- header top section start -->
-         <div class="container">
-            <div class="header_section_top">
-               <div class="row">
-                  <div class="col-sm-12">
-                     <div class="custom_menu">
-                        <ul>
-                           <li><a href="#">Best Sellers</a></li>
-                           <li><a href="#">Gift Ideas</a></li>
-                           <li><a href="#">New Releases</a></li>
-                           <li><a href="#">Today's Deals</a></li>
-                           <li><a href="#">Customer Service</a></li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- header top section start -->
          <!-- logo section start -->
          <div class="logo_section">
             <div class="container">
                <div class="row">
                   <div class="col-sm-12">
-                     <div class="logo"><a href="index.html"><img src="./resources/images/logo.png"></a></div>
+<!--                      <div class="logo"><a href="index.html"><img src="./resources/images/logo.png"></a></div> -->
+					<div class="logo"></div>
                   </div>
                </div>
             </div>
@@ -79,53 +61,30 @@
                <div class="containt_main">
                   <div id="mySidenav" class="sidenav">
                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                     <a href="index.html">Home</a>
-                     <a href="fashion.html">Fashion</a>
-                     <a href="electronic.html">Electronic</a>
-                     <a href="jewellery.html">Jewellery</a>
+                     <a href="index.html">유행어사전</a>
+                     <a href="fashion.html">유행어 추진/자유게시판</a>
+                     <a href="electronic.html">유행어 퀴즈</a>
+                     <a href="jewellery.html">타임라인</a>
                   </div>
-                  <span class="toggle_icon" onclick="openNav()"><img src="./resources/images/toggle-icon.png"></span>
-                  <div class="dropdown">
-                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category 
-                     </button>
-                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                     </div>
-                  </div>
-                  <div class="main">
-                     <!-- Another variation with a button -->
-                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search this blog">
-                        <div class="input-group-append">
-                           <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
-                           <i class="fa fa-search"></i>
-                           </button>
-                        </div>
-                     </div>
-                  </div>
+                  <span class="toggle_icon" onclick="openNav()"><img src="./resources/images/toggle-icon.png" style="width: 35px"></span>
+                  
+<!--                   <div class="main"> -->
+<!--                      Another variation with a button -->
+<!--                      <div class="input-group"> -->
+<!--                         <input type="text" class="form-control" placeholder="유행어를 검색하세요"> -->
+<!--                         <div class="input-group-append"> -->
+<!--                            <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 "> -->
+<!--                            <i class="fa fa-search"></i> -->
+<!--                            </button> -->
+<!--                         </div> -->
+<!--                      </div> -->
+<!--                   </div> -->
+				  <div class="main"></div>
                   <div class="header_box">
-                     <div class="lang_box ">
-                        <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
-                        <img src="./resources/images/flag-uk.png" alt="flag" class="mr-2 " title="United Kingdom"> English <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
-                        </a>
-                        <div class="dropdown-menu ">
-                           <a href="#" class="dropdown-item">
-                           <img src="./resources/images/flag-france.png" class="mr-2" alt="flag">
-                           French
-                           </a>
-                        </div>
-                     </div>
-                     <div class="login_menu">
+                     <div class="login_menu" >
                         <ul>
                            <li><a href="#">
-                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                              <span class="padding_10">Cart</span></a>
-                           </li>
-                           <li><a href="#">
-                              <i class="fa fa-user" aria-hidden="true"></i>
-                              <span class="padding_10">Cart</span></a>
+                              <i class="fa fa-user fa-2x" aria-hidden="true"></i>
                            </li>
                         </ul>
                      </div>
@@ -142,34 +101,46 @@
                      <div class="carousel-item active">
                         <div class="row">
                            <div class="col-sm-12">
-                              <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                              <div class="buynow_bt"><a href="#">Buy Now</a></div>
+                              <h1 class="banner_taital">유행어를 검색하세요</h1>
+                              
+                              <div class="main">
+			                     <div class="input-group">
+			                        <input type="text" class="form-control" width="20px" placeholder="ex) 어쩔티비">
+			                        <div class="input-group-append">
+			                           <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+			                           <i class="fa fa-search"></i>
+			                           </button>
+			                        </div>
+			                     </div>
+			                  </div>
+                              
+                              <div class="buynow_bt"><a href="#">직접 등록하러 가기</a></div>
                            </div>
                         </div>
                      </div>
-                     <div class="carousel-item">
-                        <div class="row">
-                           <div class="col-sm-12">
-                              <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                              <div class="buynow_bt"><a href="#">Buy Now</a></div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="carousel-item">
-                        <div class="row">
-                           <div class="col-sm-12">
-                              <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                              <div class="buynow_bt"><a href="#">Buy Now</a></div>
-                           </div>
-                        </div>
-                     </div>
+<!--                      <div class="carousel-item"> -->
+<!--                         <div class="row"> -->
+<!--                            <div class="col-sm-12"> -->
+<!--                               <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1> -->
+<!--                               <div class="buynow_bt"><a href="#">Buy Now</a></div> -->
+<!--                            </div> -->
+<!--                         </div> -->
+<!--                      </div> -->
+<!--                      <div class="carousel-item"> -->
+<!--                         <div class="row"> -->
+<!--                            <div class="col-sm-12"> -->
+<!--                               <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1> -->
+<!--                               <div class="buynow_bt"><a href="#">Buy Now</a></div> -->
+<!--                            </div> -->
+<!--                         </div> -->
+<!--                      </div> -->
                   </div>
-                  <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-                  <i class="fa fa-angle-left"></i>
-                  </a>
-                  <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-                  <i class="fa fa-angle-right"></i>
-                  </a>
+<!--                   <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev"> -->
+<!--                   <i class="fa fa-angle-left"></i> -->
+<!--                   </a> -->
+<!--                   <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next"> -->
+<!--                   <i class="fa fa-angle-right"></i> -->
+<!--                   </a> -->
                </div>
             </div>
          </div>
