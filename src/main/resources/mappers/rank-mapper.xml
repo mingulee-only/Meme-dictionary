@@ -2,3 +2,21 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="RankMapper">
+
+	<resultMap type="org.kh.meme.rank.domain.QuizRank" id="quizRankMap">
+		<id property="memberId" column="MEMBER_ID"/>
+		<result property="quizBestScore" column="QUIZ_BESTSCORE"/>
+		<result property="quizBestDate" column="QUIZ_BESTDATE"/>
+		<result property="quizRank" column="QUIZ_RANK"/>
+	</resultMap>
+
+	<select id="selectQuizRank" resultMap="quizRankMap">
+		SELECT MEMBER_ID, QUIZ_BESTSCORE, QUIZ_BESTDATE, 
+		DENSE_RANK() OVER(ORDER BY QUIZ_BESTSCORE DESC) QUIZ_RANK
+		FROM QUIZ_BEST
+		<![CDATA[WHERE ROWNUM < 6]]>
+	</select>
+
+</mapper>
