@@ -3,7 +3,7 @@ package org.kh.meme.rank.domain;
 import java.sql.Date;
 
 public class QuizRank {
-	private int memberId;
+	private String memberId;
 	private int quizBestScore;
 	private Date quizBestDate;
 	private int quizRank;
@@ -12,7 +12,9 @@ public class QuizRank {
 		
 	}
 	
-	public QuizRank(int memberId, int quizBestScore, Date quizBestDate, int quizRank) {
+	
+
+	public QuizRank(String memberId, int quizBestScore, Date quizBestDate, int quizRank) {
 		super();
 		this.memberId = memberId;
 		this.quizBestScore = quizBestScore;
@@ -21,44 +23,39 @@ public class QuizRank {
 	}
 
 
-	public int getMemberId() {
+
+	public String getMemberId() {
 		return memberId;
 	}
 
-
-	public void setMemberId(int memberId) {
+	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-
 
 	public int getQuizBestScore() {
 		return quizBestScore;
 	}
 
-
 	public void setQuizBestScore(int quizBestScore) {
 		this.quizBestScore = quizBestScore;
 	}
-
 
 	public Date getQuizBestDate() {
 		return quizBestDate;
 	}
 
-
 	public void setQuizBestDate(Date quizBestDate) {
 		this.quizBestDate = quizBestDate;
 	}
-
 
 	public int getQuizRank() {
 		return quizRank;
 	}
 
-
 	public void setQuizRank(int quizRank) {
 		this.quizRank = quizRank;
 	}
+
 
 
 	@Override
@@ -66,6 +63,8 @@ public class QuizRank {
 		return "QuizRank [memberId=" + memberId + ", quizBestScore=" + quizBestScore + ", quizBestDate=" + quizBestDate
 				+ ", quizRank=" + quizRank + "]";
 	}
+	
+	
 	
 	
 }
