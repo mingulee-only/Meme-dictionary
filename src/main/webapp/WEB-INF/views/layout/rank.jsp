@@ -118,7 +118,7 @@
 				<th width="100">닉네임</th>
 				<th width="100">점수</th>
 			</tr>
-<%-- 			<c:forEach> --%>
+<%-- 			<c:forEach items="${quizRankList }" var> --%>
 				<tr>
 					<td>1</td>
 					<td>IDID</td>

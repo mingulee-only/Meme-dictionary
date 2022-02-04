@@ -15,8 +15,7 @@
 	<select id="selectQuizRank" resultMap="quizRankMap">
 		SELECT MEMBER_ID, QUIZ_BESTSCORE, QUIZ_BESTDATE, 
 		DENSE_RANK() OVER(ORDER BY QUIZ_BESTSCORE DESC) QUIZ_RANK
-		FROM QUIZ_BEST
-		<![CDATA[WHERE ROWNUM < 6]]>
+		FROM QUIZ_BEST <![CDATA[WHERE ROWNUM < 6]]>
 	</select>
 
 </mapper>
