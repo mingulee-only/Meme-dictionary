@@ -7,8 +7,8 @@
 
 	<resultMap type="org.kh.meme.rank.domain.QuizRank" id="quizRankMap">
 		<id property="memberId" column="MEMBER_ID"/>
-		<result property="quizBestScore" column="QUIZ_BESTSCORE"/>
-		<result property="quizBestDate" column="QUIZ_BESTDATE"/>
+		<result property="quizBestscore" column="QUIZ_BESTSCORE"/>
+		<result property="quizBestdate" column="QUIZ_BESTDATE"/>
 		<result property="quizRank" column="QUIZ_RANK"/>
 	</resultMap>
 

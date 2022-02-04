@@ -4,24 +4,22 @@ import java.sql.Date;
 
 public class QuizRank {
 	private String memberId;
-	private int quizBestScore;
-	private Date quizBestDate;
+	private int quizBestscore;
+	private Date quizBestdate;
 	private int quizRank;
 	
 	public QuizRank() {
 		
 	}
-	
-	
 
-	public QuizRank(String memberId, int quizBestScore, Date quizBestDate, int quizRank) {
+	
+	public QuizRank(String memberId, int quizBestscore, Date quizBestdate, int quizRank) {
 		super();
 		this.memberId = memberId;
-		this.quizBestScore = quizBestScore;
-		this.quizBestDate = quizBestDate;
+		this.quizBestscore = quizBestscore;
+		this.quizBestdate = quizBestdate;
 		this.quizRank = quizRank;
 	}
-
 
 
 	public String getMemberId() {
@@ -32,20 +30,20 @@ public class QuizRank {
 		this.memberId = memberId;
 	}
 
-	public int getQuizBestScore() {
-		return quizBestScore;
+	public int getQuizBestscore() {
+		return quizBestscore;
 	}
 
-	public void setQuizBestScore(int quizBestScore) {
-		this.quizBestScore = quizBestScore;
+	public void setQuizBestscore(int quizBestscore) {
+		this.quizBestscore = quizBestscore;
 	}
 
-	public Date getQuizBestDate() {
-		return quizBestDate;
+	public Date getQuizBestdate() {
+		return quizBestdate;
 	}
 
-	public void setQuizBestDate(Date quizBestDate) {
-		this.quizBestDate = quizBestDate;
+	public void setQuizBestdate(Date quizBestdate) {
+		this.quizBestdate = quizBestdate;
 	}
 
 	public int getQuizRank() {
@@ -56,13 +54,13 @@ public class QuizRank {
 		this.quizRank = quizRank;
 	}
 
-
-
 	@Override
 	public String toString() {
-		return "QuizRank [memberId=" + memberId + ", quizBestScore=" + quizBestScore + ", quizBestDate=" + quizBestDate
+		return "QuizRank [memberId=" + memberId + ", quizBestscore=" + quizBestscore + ", quizBestdate=" + quizBestdate
 				+ ", quizRank=" + quizRank + "]";
 	}
+	
+	
 	
 	
 	
