@@ -11,11 +11,11 @@
 <!-- 		<typeAlias type="org.kh.meme.board.domain.Board" alias="Board"/> -->
 	</typeAliases>
 	<mappers>
-		<mapper resource="mappers/board-mapper.xml"/>
+<!-- 		<mapper resource="mappers/board-mapper.xml"/> -->
 		<mapper resource="mappers/member-mapper.xml"/>
-		<mapper resource="mappers/meme-mapper.xml"/>
-		<mapper resource="mappers/quiz-mapper.xml"/>
-		<mapper resource="mappers/timeline-mapper.xml"/>
-		<mapper resource="mappers/rank-mapper.xml"/>
+<!-- 		<mapper resource="mappers/meme-mapper.xml"/> -->
+<!-- 		<mapper resource="mappers/quiz-mapper.xml"/> -->
+<!-- 		<mapper resource="mappers/timeline-mapper.xml"/> -->
+<!-- 		<mapper resource="mappers/rank-mapper.xml"/> -->
 	</mappers>
 </configuration>
