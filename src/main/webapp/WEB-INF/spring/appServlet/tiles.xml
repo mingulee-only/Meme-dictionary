@@ -14,6 +14,6 @@
 	
 	<definition name=".tiles/*/*" extends="layout-tiles">
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
-		<put-attribute name="title" value="게시판" />
+		<put-attribute name="title" value="MeMe" />
 	</definition>
 </tiles-definitions>
