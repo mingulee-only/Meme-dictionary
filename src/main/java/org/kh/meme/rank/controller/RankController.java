@@ -20,6 +20,6 @@ public class RankController {
 
 	@RequestMapping(value="/rank/list.do", method = RequestMethod.GET)
 	public String ranklist() {
-		return "rank/list";
+		return "rank/newlist";
 	}
 }

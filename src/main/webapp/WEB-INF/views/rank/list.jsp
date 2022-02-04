@@ -25,18 +25,14 @@
 </head>
 <body>
 	<div class="tab">
-	  <ul class="tabnav">
-	    <li><a href="tab1">유행어랭킹</a></li>
-	    <li><a href="tab2">유행어추진랭킹</a></li>
-	    <li><a href="tab3">자유게시판랭킹</a></li>
-	    <li><a href="tab4">퀴즈랭킹</a></li>
-	  </ul>
-	  <div class="tabcontents">
-	    <div id="tabcontent1">tab1 content</div>
-	    <div id="tabcontent2">tab2 content</div>
-	    <div id="tabcontent3">tab1 content</div>
-	    <div id="tabcontent4">tab2 content</div>
-	  </div>
+	    <ul class="tabnav">
+	      <li><a href="#tab01">유행어</a></li>
+	      <li><a href="#tab02">퀴즈</a></li>
+	    </ul>
+	    <div class="tabcontent">
+	      <div id="tab01">tab1 content</div>
+	      <div id="tab02">tab2 content</div>
+	    </div>
 	</div><!--tab-->
 	<script>
 		$(function() {

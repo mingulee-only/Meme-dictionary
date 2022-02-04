@@ -22,7 +22,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="org.kh.meme" />
+	<context:component-scan base-package="org.kh.meme"/>
 	
 	
 </beans:beans>
