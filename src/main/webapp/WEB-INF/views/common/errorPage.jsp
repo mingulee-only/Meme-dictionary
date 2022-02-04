@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>에러페이지</title>
 </head>
 <body>
-	<h3>마이페이지 입니다.</h3>
+	${msg }
 </body>
 </html>

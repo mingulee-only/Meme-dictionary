@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -68,22 +67,17 @@
                   </div>
                   <span class="toggle_icon" onclick="openNav()"><img src="./resources/images/toggle-icon.png" style="width: 35px"></span>
                   
-<!--                   <div class="main"> -->
-<!--                      Another variation with a button -->
-<!--                      <div class="input-group"> -->
-<!--                         <input type="text" class="form-control" placeholder="유행어를 검색하세요"> -->
-<!--                         <div class="input-group-append"> -->
-<!--                            <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 "> -->
-<!--                            <i class="fa fa-search"></i> -->
-<!--                            </button> -->
-<!--                         </div> -->
-<!--                      </div> -->
-<!--                   </div> -->
 				  <div class="main"></div>
                   <div class="header_box">
                      <div class="login_menu" >
                         <ul>
-                           <li><a href="#">
+                           <li>
+                           		<c:if test="${empty sessionScope.loginMember }">
+                           			<a href="/login.oj">
+                           		</c:if>
+                           		<c:if test="${not empty loginMember }">
+                           			<a href="/myPage.oj">
+                                </c:if>
                               <i class="fa fa-user fa-2x" aria-hidden="true"></i>
                            </li>
                         </ul>
@@ -113,34 +107,11 @@
 			                        </div>
 			                     </div>
 			                  </div>
-                              
                               <div class="buynow_bt"><a href="#">직접 등록하러 가기</a></div>
                            </div>
                         </div>
                      </div>
-<!--                      <div class="carousel-item"> -->
-<!--                         <div class="row"> -->
-<!--                            <div class="col-sm-12"> -->
-<!--                               <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1> -->
-<!--                               <div class="buynow_bt"><a href="#">Buy Now</a></div> -->
-<!--                            </div> -->
-<!--                         </div> -->
-<!--                      </div> -->
-<!--                      <div class="carousel-item"> -->
-<!--                         <div class="row"> -->
-<!--                            <div class="col-sm-12"> -->
-<!--                               <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1> -->
-<!--                               <div class="buynow_bt"><a href="#">Buy Now</a></div> -->
-<!--                            </div> -->
-<!--                         </div> -->
-<!--                      </div> -->
                   </div>
-<!--                   <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev"> -->
-<!--                   <i class="fa fa-angle-left"></i> -->
-<!--                   </a> -->
-<!--                   <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next"> -->
-<!--                   <i class="fa fa-angle-right"></i> -->
-<!--                   </a> -->
                </div>
             </div>
          </div>
