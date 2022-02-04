@@ -58,7 +58,7 @@
 <body>
 	<div class="tabmenu">
   <ul>
-    <li id="tab1" class="btnCon"> <input type="radio" checked name="tabmenu" id="tabmenu1">
+    <li id="tab1" class="btnCon"> <input type="radio" name="tabmenu" id="tabmenu1">
       <label for="tabmenu1">유행어</label>
       <div class="tabCon">
       	<table align="center" border="1">
@@ -108,7 +108,7 @@
 			</table>
       </div>
     </li>
-    <li id="tab4" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu4">
+    <li id="tab4" class="btnCon"><input type="radio" checked name="tabmenu" id="tabmenu4">
       <label for="tabmenu4">퀴즈</label>
       <div class="tabCon">
       	<table align="center" border="1">
@@ -118,13 +118,13 @@
 				<th width="100">닉네임</th>
 				<th width="100">점수</th>
 			</tr>
-<%-- 			<c:forEach items="${quizRankList }" var> --%>
+			<c:forEach items="${quizRankList }" var="qrList">
 				<tr>
-					<td>1</td>
-					<td>IDID</td>
-					<td>20</td>
+					<td>${qrList.quizRank }</td>
+					<td>${qrList.memberId }</td>
+					<td>${qrList.quizBestscore }</td>
 				</tr>
-<%-- 			</c:forEach> --%>
+			</c:forEach>
 			
 		</table>
       </div>
