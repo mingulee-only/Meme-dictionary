@@ -4,46 +4,89 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>퀴즈</title>
+<title>Insert title here</title>
 <style>
-	html,body {width:100%;  }
-	body,div,ul,li{margin:0; padding:0;}
-	ul,li {list-style:none;}
+	*{
+	  margin:0; padding:0;
+	  font-size:15px; 
+	  line-height:1.3;
+	}
+	ul{list-style:none;}
 	
-	/*tab css*/
-	.tab{float:left; width:600px; height:290px;}
-	.tabnav{font-size:0; width:600px; border:1px solid #ddd;}
-	.tabnav li{display: inline-block;  height:46px; text-align:center; border-right:1px solid #ddd;}
-	.tabnav li a:before{content:""; position:absolute; left:0; top:0px; width:100%; height:3px; }
-	.tabnav li a.active:before{background:#7ea21e;}
-	.tabnav li a.active{border-bottom:1px solid #fff;}
-	.tabnav li a{ position:relative; display:block; background: #f8f8f8; color: #000; padding:0 30px; line-height:46px; text-decoration:none; font-size:16px;}
-	.tabnav li a:hover,
-	.tabnav li a.active{background:#fff; color:#7ea21e; }
-	.tabcontents{padding: 20px; height:244px; border:1px solid #ddd; border-top:none;}
+	.tabmenu{ 
+	  max-width:300px; 
+	  margin: 0 auto; 
+	  position:relative; 
+	}
+	.tabmenu ul li{
+	  display:  inline-block;
+	  width:25%; 
+	  float:left;  
+	  text-align:center; 
+	  background :#f9f9f9;
+	  line-height:40px;
+	}
+	.tabmenu label{
+	  display:block;
+	  width:100%; 
+	  height:40px;
+	  line-height:40px;
+	}
+	.tabmenu input{display:none;}
+	.tabCon{
+	  display:none; 
+	  text-align:left; 
+	  padding: 20px;
+	  position:absolute; 
+	  left:0; top:40px; 
+	  box-sizing: border-box; 
+	  border : 5px solid #f9f9f9;
+	  width : 100%;
+	}
+	.tabmenu input:checked ~ label{
+	  background:#ccc;
+	}
+	.tabmenu input:checked ~ .tabCon{
+	  display:block;
+	}
 </style>
 </head>
 <body>
-	<div class="tab">
-	    <ul class="tabnav">
-	      <li><a href="#tab01">유행어</a></li>
-	      <li><a href="#tab02">퀴즈</a></li>
-	    </ul>
-	    <div class="tabcontent">
-	      <div id="tab01">tab1 content</div>
-	      <div id="tab02">tab2 content</div>
-	    </div>
-	</div><!--tab-->
-	<script>
-		$(function() {
-			$('.tabcontent > div').hide();
-			$('.tabnav a').click(function() {
-				$('.tabcontent > div').hide().filter(this.hash).fadeIn();
-				$('.tabnav a').removeClass('active');
-				$(this).addClass('active');
-				return false;
-			}).filter(':eq(0)').click();
-		});
-	</script>
+	<div class="tabmenu">
+  <ul>
+    <li id="tab1" class="btnCon"> <input type="radio" checked name="tabmenu" id="tabmenu1">
+      <label for="tabmenu1">유행어</label>
+      <div class="tabCon">유행어 랭킹</div>
+    </li>
+    <li id="tab2" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu2">
+      <label for="tabmenu2">추진</label>
+      <div class="tabCon">유행어추진랭킹</div>
+    </li>    
+    <li id="tab3" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu3">
+      <label for="tabmenu3">자유</label>
+      <div class="tabCon">자유게시판랭킹</div>
+    </li>
+    <li id="tab4" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu4">
+      <label for="tabmenu4">퀴즈</label>
+      <div class="tabCon">
+      	<table align="center" border="1">
+		<!-- 번호, 제목, 작성자, 날짜, 조회수, 첨부파일 -->
+			<tr text-align="center">
+				<th width="100" >등수</th>
+				<th width="100">닉네임</th>
+				<th width="100">점수</th>
+			</tr>
+			<tr>
+				<th>1</th>
+				<th>IDID</th>
+				<th>20</th>
+			</tr>
+		</table>
+      </div>
+    </li>
+  </ul>
+</div>
+	
+
 </body>
 </html>
