@@ -61,10 +61,12 @@
                <div class="containt_main">
                   <div id="mySidenav" class="sidenav">
                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                     <a href="index.html">유행어사전</a>
-                     <a href="fashion.html">유행어 추진/자유게시판</a>
-                     <a href="electronic.html">유행어 퀴즈</a>
-                     <a href="jewellery.html">타임라인</a>
+                     <a href="/meme/list.jsp">유행어사전</a>
+                     <a href="/board/list.jsp">유행어 추진/자유게시판</a>
+                     <a href="/quiz/list.jsp">유행어 퀴즈</a>
+                     <a href="/timeline/list.jsp">타임라인</a>
+                     <a href="/rank/list.do">랭킹</a>
+                     <!-- 임시 -->
                   </div>
                   <span class="toggle_icon" onclick="openNav()"><img src="./resources/images/toggle-icon.png" style="width: 35px"></span>
                   
