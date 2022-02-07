@@ -1,1 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="QuizMapper">
+  	<resultMap type="Quiz" id="quizResultMap">
+  		<id property="quizNo" column="QUIZ_NO"/>
+  		<result property="quizType" column="QUIZ_TYPE"/>
+  		<result property="quizQuest" column="QUIZ_QUESTION"/>
+  		<result property="quizAnswer" column="QUIZ_ANSWER"/>
+  		<result property="memberId" column="MEMBER_ID"/>
+  		<result property="quizDate" column="QUIZ_DATE"/>
+  	</resultMap>
+  	
+  	<insert id="insertQuiz" parameterType="Quiz">
+  		INSERT INTO QUIZ_TBL VALUES(QUIZ_SEQ_NO.NEXTVAL, #{quizType}, #{quizQuest}, #{quizAnswer}, #{memberId}, DEFAULT)
+  	</insert>
+  </mapper>
