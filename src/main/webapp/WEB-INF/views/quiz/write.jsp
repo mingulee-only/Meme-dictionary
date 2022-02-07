@@ -28,7 +28,7 @@
 	    <textarea name="quizQuest" cols="50" rows="10" placeholder="문제를 입력 해주세요"></textarea><br><br>
 	    <input type="text" name="quizAnswer" placeholder="정답을 입력 해주세요"><br>
 	    <br>
-	    <div id="choice" style="display: none;">
+	    <div id="choice">
 	    	<input type="text" name="quiz_ch1" placeholder="보기를 입력 해주세요"><br>
 	        <input type="text" name="quiz_ch2" placeholder="보기를 입력 해주세요">
 	    </div>

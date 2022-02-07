@@ -1,6 +1,7 @@
 package org.kh.meme.quiz.service.logic;
 
 import org.kh.meme.quiz.domain.Quiz;
+import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.service.QuizService;
 import org.kh.meme.quiz.store.QuizStore;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,6 +19,12 @@ public class QuizServiceImpl implements QuizService {
 	@Override
 	public int writeQuiz(Quiz quiz) {
 		int result = qStore.insertQuiz(sqlSession, quiz);
+		return result;
+	}
+
+	@Override
+	public int writeQuizM(QuizCh quizCh) {
+		int result = qStore.insertQuizM(sqlSession, quizCh);
 		return result;
 	}
 

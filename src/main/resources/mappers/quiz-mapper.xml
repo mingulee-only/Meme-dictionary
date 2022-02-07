@@ -12,7 +12,18 @@
   		<result property="quizDate" column="QUIZ_DATE"/>
   	</resultMap>
   	
+  	<resultMap type="QuizCh" id="quizChResultMap">
+  		<id property="quizNo" column="QUIZ_NO"/>
+  		<result property="quizCh1" column="QUIZ_CH1"/>
+  		<result property="quizCh2" column="QUIZ_CH2"/>
+  		<result property="quizCh3" column="QUIZ_CH3"/>
+  		<result property="quizCh4" column="QUIZ_CH4"/>
+  	</resultMap>
+  	
   	<insert id="insertQuiz" parameterType="Quiz">
   		INSERT INTO QUIZ_TBL VALUES(QUIZ_SEQ_NO.NEXTVAL, #{quizType}, #{quizQuest}, #{quizAnswer}, #{memberId}, DEFAULT)
+  	</insert>
+  	<insert id="insertQuizM" parameterType="QuizCh">
+  		INSERT INTO QUIZ_TBL VALUES(#{quizNo}, #{quizCh1}, #{quizCh2}, #{quizCh3}, #{quizCh4})
   	</insert>
   </mapper>
