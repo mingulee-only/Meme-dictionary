@@ -25,17 +25,7 @@
 		<result property="boardLike" column="BOARD_LIKE"/>
 		<result property="boardRank" column="BOARD_FREE_RANK"/>
 	</resultMap>
-
-	<select id="selectQuizRank" resultMap="quizRankMap">
-		SELECT * 
-		FROM (
-		SELECT MEMBER_ID, QUIZ_BESTSCORE, QUIZ_BESTDATE, 
-		DENSE_RANK() OVER(ORDER BY QUIZ_BESTSCORE DESC) QUIZ_RANK
-		FROM QUIZ_BEST
-		ORDER BY QUIZ_RANK ASC
-		)
-		<![CDATA[WHERE ROWNUM <= 5]]>
-	</select>
+	
 	
 	<select id="selectBoardPushRank" resultMap="boardPushRankMap">
 		SELECT * 
@@ -60,5 +50,17 @@
 		)
 		<![CDATA[WHERE ROWNUM <= 5]]>
 	</select>
+	
 
+	<select id="selectQuizRank" resultMap="quizRankMap">
+		SELECT * 
+		FROM (
+		SELECT MEMBER_ID, QUIZ_BESTSCORE, QUIZ_BESTDATE, 
+		DENSE_RANK() OVER(ORDER BY QUIZ_BESTSCORE DESC) QUIZ_RANK
+		FROM QUIZ_BEST
+		ORDER BY QUIZ_RANK ASC
+		)
+		<![CDATA[WHERE ROWNUM <= 5]]>
+	</select>
+	
 </mapper>
