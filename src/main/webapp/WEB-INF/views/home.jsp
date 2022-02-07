@@ -99,6 +99,7 @@
                               
                               <div class="main">
 			                     <div class="input-group">
+			                     	<!-- 검색창 -->
 			                        <input type="text" class="form-control" width="20px" placeholder="ex) 어쩔티비">
 			                        <div class="input-group-append">
 			                           <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">

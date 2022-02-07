@@ -11,6 +11,7 @@
 	  margin:0; padding:0;
 	  font-size:15px; 
 	  line-height:1.3;
+	  top: 50%;
 	}
 	ul{list-style:none;}
 	
@@ -58,7 +59,7 @@
 <body>
 	<div class="tabmenu">
   <ul>
-    <li id="tab1" class="btnCon"> <input type="radio" name="tabmenu" id="tabmenu1">
+    <li id="tab1" class="btnCon"> <input type="radio" checked name="tabmenu" id="tabmenu1">
       <label for="tabmenu1">유행어</label>
       <div class="tabCon">
       	<table align="center" border="1">
@@ -118,7 +119,7 @@
 			</table>
       </div>
     </li>
-    <li id="tab4" class="btnCon"><input type="radio" checked name="tabmenu" id="tabmenu4">
+    <li id="tab4" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu4">
       <label for="tabmenu4">퀴즈</label>
       <div class="tabCon">
       	<table align="center" border="1">
