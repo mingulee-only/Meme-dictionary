@@ -42,15 +42,19 @@ public class RankController {
 	
 	@RequestMapping(value="/quiz/rank", method=RequestMethod.GET)
 	public String quizRankList(Model model) {
+		
 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
 		
 		List<QuizRank> quizRankList = rService.printQuizRank();
-		if(!quizRankList.isEmpty()) {
+		if(!quizRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty()) {
+			model.addAttribute("boardPushRankList", boardPushRankList);
+			model.addAttribute("boardFreeRankList", boardFreeRankList);
 			model.addAttribute("quizRankList", quizRankList);
 			return "layout/rank";
 		} else {
-			model.addAttribute("msg", "게시글 전체 조회 실패");
+			//일단 error 나누어서 안 적음, 필요하면 적기
+			model.addAttribute("msg", "랭킹 조회 실패");
 			return "error";
 		}
 		
