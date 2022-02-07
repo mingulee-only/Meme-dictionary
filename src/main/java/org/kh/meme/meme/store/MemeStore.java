@@ -1,5 +1,9 @@
 package org.kh.meme.meme.store;
 
-public interface MemeStore {
+import org.apache.ibatis.session.SqlSession;
+import org.kh.meme.meme.domain.Meme;
 
+public interface MemeStore {
+	public int insertMeme(SqlSession session, Meme meme);
+	
 }

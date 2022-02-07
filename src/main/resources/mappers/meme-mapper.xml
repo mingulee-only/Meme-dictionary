@@ -2,3 +2,12 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="MemeMapper">
+  	<insert id="insertMeme" parameterType="org.kh.meme.meme.domain.Meme">
+  		INSERT INTO MEME_TBL VALUES(SEQ_MEME_NO.NEXTVAL, #{memeName}, #{memeDate}, #{memeContents} , #{memberNickname}, DEFAULT, DEFAULT)
+  	</insert>
+  	
+  	<select id="selectMeme" parameterType="org.kh.meme.meme.domain.Meme">
+  		<!-- SELECT * FROM MEME_TBL WHERE MEMESTATUS='Y' -->
+  	</select>
+  </mapper>
