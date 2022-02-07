@@ -1,17 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>랭킹</title>
+
+<script type="text/javascript"">
+// 	window.onload = function(){
+// // 			alert("test!");
+// 	}
+	$(document).ready(function(){
+		$('#tabmenu1').prop('checked', true);	
+	}
+	
+	/* 전체 Checked 해제 */
+// 	$('input[name="tabmenu"]').each(function() {
+// 	    $(this).prop('checked', false);
+// 	});
+	
+	
+	
+</script>
+
 <style>
 	*{
 	  margin:0; padding:0;
 	  font-size:15px; 
 	  line-height:1.3;
-	  top: 50%;
+	  top: 20%;
 	}
 	ul{list-style:none;}
 	
@@ -59,7 +79,7 @@
 <body>
 	<div class="tabmenu">
   <ul>
-    <li id="tab1" class="btnCon"> <input type="radio" checked name="tabmenu" id="tabmenu1">
+    <li id="tab1" class="btnCon"> <input type="radio" name="tabmenu" id="tabmenu1">
       <label for="tabmenu1">유행어</label>
       <div class="tabCon">
       	<table align="center" border="1">
