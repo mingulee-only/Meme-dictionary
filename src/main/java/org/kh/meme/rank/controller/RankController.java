@@ -26,22 +26,13 @@ public class RankController {
 	@Autowired
 	private RankService rService;
 
-	@RequestMapping(value="/rank/list", method = RequestMethod.GET)
-	public String ranklist() {
-		return "layout/rank";
-	}
+//	@RequestMapping(value="/rank/list", method = RequestMethod.GET)
+//	public String ranklist() {
+//		return "layout/rank";
+//	}
 	
-	@RequestMapping(value="/board/pushRank", method = RequestMethod.GET)
-	public String boardPushRankList() {
-		return "layout/rank";
-	}
 	
-	@RequestMapping(value="/board/freeRank", method = RequestMethod.GET)
-	public String boardFreeRankList() {
-		return "layout/rank";
-	}
-	
-	@RequestMapping(value="/quiz/rank", method=RequestMethod.GET)
+	@RequestMapping(value="/rank", method=RequestMethod.GET)
 	public String quizRankList(Model model) {
 		
 		List<MemeRank> memeRankList = rService.printMemeRank();
