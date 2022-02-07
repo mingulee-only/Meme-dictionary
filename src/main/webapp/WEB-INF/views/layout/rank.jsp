@@ -64,8 +64,8 @@
       	<table align="center" border="1">
 		<!-- 번호, 제목, 작성자, 날짜, 조회수, 첨부파일 -->
 			<tr>
-				<th width="100" >등수</th>
-				<th width="200">유행어 이름</th>
+				<th width="50" >등수</th>
+				<th width="250">유행어 이름</th>
 			</tr>
 			<tr>
 				<td>1</td>
@@ -81,15 +81,17 @@
       	<table align="center" border="1">
 		<!-- 번호, 제목, 작성자, 날짜, 조회수, 첨부파일 -->
 			<tr>
-				<th width="100" >등수</th>
-				<th width="100">유행어</th>
+				<th width="50" >등수</th>
+				<th width="150">추진 유행어</th>
 				<th width="100">추천수</th>
 			</tr>
-			<tr>
-				<td>1</td>
-				<td>절레절레전래동화</td>
-				<td>1</td>
-			</tr>
+			<c:forEach items="${boardPushRankList }" var="bprList">
+				<tr>
+					<td>${bprList.boardRank }</td>
+					<td>${bprList.boardTitle }</td>
+					<td>${bprList.boardLike }</td>
+				</tr>
+			</c:forEach>
 		</table>
       
       </div>
@@ -100,15 +102,17 @@
       		<table align="center" border="1">
 			<!-- 번호, 제목, 작성자, 날짜, 조회수, 첨부파일 -->
 				<tr>
-					<th width="100" >등수</th>
-					<th width="100">글제목</th>
+					<th width="50" >등수</th>
+					<th width="150">글제목</th>
 					<th width="100">추천수</th>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>오늘 점심 머먹?</td>
-					<td>1</td>
-				</tr>
+				<c:forEach items="${boardFreeRankList }" var="bfrList">
+					<tr>
+						<td>${bfrList.boardRank }</td>
+						<td>${bfrList.boardTitle }</td>
+						<td>${bfrList.boardLike }</td>
+					</tr>
+				</c:forEach>
 			</table>
       </div>
     </li>
@@ -118,8 +122,8 @@
       	<table align="center" border="1">
 		<!-- 번호, 제목, 작성자, 날짜, 조회수, 첨부파일 -->
 			<tr>
-				<th width="100" >등수</th>
-				<th width="100">닉네임</th>
+				<th width="50" >등수</th>
+				<th width="150">닉네임</th>
 				<th width="100">점수</th>
 			</tr>
 			<c:forEach items="${quizRankList }" var="qrList">
