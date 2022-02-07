@@ -29,6 +29,16 @@ public class RankController {
 		return "layout/rank";
 	}
 	
+	@RequestMapping(value="/board/pushRank", method = RequestMethod.GET)
+	public String boardPushRankList() {
+		return "layout/rank";
+	}
+	
+	@RequestMapping(value="/board/freeRank", method = RequestMethod.GET)
+	public String boardFreeRankList() {
+		return "layout/rank";
+	}
+	
 	@RequestMapping(value="/quiz/rank", method=RequestMethod.GET)
 	public String quizRankList(Model model) {
 		

@@ -11,6 +11,20 @@
 		<result property="quizBestdate" column="QUIZ_BESTDATE"/>
 		<result property="quizRank" column="QUIZ_RANK"/>
 	</resultMap>
+	
+	<resultMap type="org.kh.meme.rank.domain.BoardRank" id="boardPushRankMap">
+		<id property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardType" column="BOARD_TYPE"/>
+		<result property="boardLike" column="BOARD_LIKE"/>
+		<result property="boardRank" column="BOARD_PUSH_RANK"/>
+	</resultMap>
+	
+	<resultMap type="org.kh.meme.rank.domain.BoardRank" id="boardFreeRankMap">
+		<id property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardType" column="BOARD_TYPE"/>
+		<result property="boardLike" column="BOARD_LIKE"/>
+		<result property="boardRank" column="BOARD_FREE_RANK"/>
+	</resultMap>
 
 	<select id="selectQuizRank" resultMap="quizRankMap">
 		SELECT * 
@@ -19,6 +33,30 @@
 		DENSE_RANK() OVER(ORDER BY QUIZ_BESTSCORE DESC) QUIZ_RANK
 		FROM QUIZ_BEST
 		ORDER BY QUIZ_RANK ASC
+		)
+		<![CDATA[WHERE ROWNUM <= 5]]>
+	</select>
+	
+	<select id="selectBoardPushRank" resultMap="boardPushRankMap">
+		SELECT * 
+		FROM (
+		SELECT BOARD_TITLE, BOARD_LIKE,
+		DENSE_RANK() OVER(ORDER BY BOARD_LIKE DESC) BOARD_PUSH_RANK
+		FROM BOARD_TBL
+		WHERE BOARD_TYPE = 'P'
+		ORDER BY BOARD_PUSH_RANK ASC
+		)
+		<![CDATA[WHERE ROWNUM <= 5]]>
+	</select>
+	
+	<select id="selectBoardFreeRank" resultMap="boardFreeRankMap">		
+		SELECT * 
+		FROM (
+		SELECT BOARD_TITLE, BOARD_LIKE,
+		DENSE_RANK() OVER(ORDER BY BOARD_LIKE DESC) BOARD_FREE_RANK
+		FROM BOARD_TBL
+		WHERE BOARD_TYPE = 'F'
+		ORDER BY BOARD_FREE_RANK ASC
 		)
 		<![CDATA[WHERE ROWNUM <= 5]]>
 	</select>
