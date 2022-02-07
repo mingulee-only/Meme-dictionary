@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.rank.domain.BoardRank;
+import org.kh.meme.rank.domain.MemeRank;
 import org.kh.meme.rank.domain.QuizRank;
 import org.kh.meme.rank.service.RankService;
 import org.kh.meme.rank.store.RankStore;
@@ -18,6 +19,13 @@ public class RankServiceImpl implements RankService{
 	
 	@Autowired
 	private SqlSession sqlSession;
+	
+
+	@Override
+	public List<MemeRank> printMemeRank() {
+		List<MemeRank> memeRankList = rStore.selectMemeRank(sqlSession);
+		return memeRankList;
+	}
 	
 	@Override
 	public List<BoardRank> printBoardPushRank() {

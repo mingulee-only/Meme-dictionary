@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.rank.domain.BoardRank;
+import org.kh.meme.rank.domain.MemeRank;
 import org.kh.meme.rank.domain.QuizRank;
 import org.kh.meme.rank.store.RankStore;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class RankStoreLogic implements RankStore{
 
+
+	@Override
+	public List<MemeRank> selectMemeRank(SqlSession sqlSession) {
+		List<MemeRank> memeRankList = sqlSession.selectList("RankMapper.selectMemeRank");
+		
+		return memeRankList;
+	}
+	
 	@Override
 	public List<BoardRank> selectBoardPushRank(SqlSession sqlSession) {
 		List<BoardRank> boardPushRankList = sqlSession.selectList("RankMapper.selectBoardPushRank");
@@ -32,7 +41,6 @@ public class RankStoreLogic implements RankStore{
 		
 		return quizRankList;
 	}
-
 
 
 }

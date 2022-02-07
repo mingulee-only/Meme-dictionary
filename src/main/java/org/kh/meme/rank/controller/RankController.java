@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.kh.meme.HomeController;
 import org.kh.meme.rank.domain.BoardRank;
+import org.kh.meme.rank.domain.MemeRank;
 import org.kh.meme.rank.domain.QuizRank;
 import org.kh.meme.rank.service.RankService;
 import org.slf4j.Logger;
@@ -43,11 +44,13 @@ public class RankController {
 	@RequestMapping(value="/quiz/rank", method=RequestMethod.GET)
 	public String quizRankList(Model model) {
 		
+		List<MemeRank> memeRankList = rService.printMemeRank();
 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
 		
 		List<QuizRank> quizRankList = rService.printQuizRank();
-		if(!quizRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty()) {
+		if(!memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
+			model.addAttribute("memeRankList", memeRankList);
 			model.addAttribute("boardPushRankList", boardPushRankList);
 			model.addAttribute("boardFreeRankList", boardFreeRankList);
 			model.addAttribute("quizRankList", quizRankList);
