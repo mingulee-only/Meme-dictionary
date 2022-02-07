@@ -67,10 +67,12 @@
 				<th width="50" >등수</th>
 				<th width="250">유행어 이름</th>
 			</tr>
-			<tr>
-				<td>1</td>
-				<td>어쩔티비</td>
-			</tr>
+			<c:forEach items="${memeRankList }" var="mList">
+				<tr>
+					<td>${mList.memeRank }</td>
+					<td>${mList.memeName }</td>
+				</tr>
+			</c:forEach>
 		</table>
       
       </div>
