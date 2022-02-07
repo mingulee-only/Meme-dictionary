@@ -24,12 +24,12 @@ public class RankController {
 	@Autowired
 	private RankService rService;
 
-	@RequestMapping(value="/rank/list.do", method = RequestMethod.GET)
+	@RequestMapping(value="/rank/list", method = RequestMethod.GET)
 	public String ranklist() {
 		return "layout/rank";
 	}
 	
-	@RequestMapping(value="/quiz/rank.do", method=RequestMethod.GET)
+	@RequestMapping(value="/quiz/rank", method=RequestMethod.GET)
 	public String quizRankList(Model model) {
 		
 		List<QuizRank> quizRankList = rService.printQuizRank();
@@ -41,7 +41,8 @@ public class RankController {
 			return "error";
 		}
 		
-		
 	}
+	
+
 	
 }
