@@ -20,7 +20,7 @@
 	#header {
 		height:20%;
 		width:100%;
-		background-color: red;
+		background-color: grey;
 	}
 	#content {
 		height : 80%;
