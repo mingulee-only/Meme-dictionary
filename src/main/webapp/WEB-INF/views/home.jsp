@@ -68,18 +68,6 @@
                      <a href="jewellery.html">타임라인</a>
                   </div>
                   <span class="toggle_icon" onclick="openNav()"><img src="./resources/images/toggle-icon.png" style="width: 35px"></span>
-                  
-<!--                   <div class="main"> -->
-<!--                      Another variation with a button -->
-<!--                      <div class="input-group"> -->
-<!--                         <input type="text" class="form-control" placeholder="유행어를 검색하세요"> -->
-<!--                         <div class="input-group-append"> -->
-<!--                            <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 "> -->
-<!--                            <i class="fa fa-search"></i> -->
-<!--                            </button> -->
-<!--                         </div> -->
-<!--                      </div> -->
-<!--                   </div> -->
 				  <div class="main"></div>
                   <div class="header_box">
                      <div class="login_menu" >
