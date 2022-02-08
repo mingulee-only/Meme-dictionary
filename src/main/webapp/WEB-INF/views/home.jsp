@@ -39,6 +39,7 @@
       <link rel="stylesheet" href="./resources/css/owl.carousel.min.css">
       <link rel="stylesheet" href="./resources/css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      
    </head>
    <body>
       <!-- banner bg main start -->
@@ -105,16 +106,17 @@
                               
                               <div class="main">
 			                     <div class="input-group">
-			                        <input type="text" class="form-control" width="20px" placeholder="ex) 어쩔티비">
+			                        <input type="text" class="form-control" id="keyword" value="" width="20px" placeholder="ex) 어쩔티비">
+			                        
 			                        <div class="input-group-append">
-			                           <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+			                           <button class="btn btn-secondary" type="button" onclick="searchMeme();" style="background-color: #f26522; border-color:#f26522 ">
 			                           <i class="fa fa-search"></i>
 			                           </button>
 			                        </div>
 			                     </div>
 			                  </div>
                               
-                              <div class="buynow_bt"><a href="#">직접 등록하러 가기</a></div>
+                              <div class="buynow_bt"><a href="/meme/registerView">직접 등록하러 가기</a></div>
                            </div>
                         </div>
                      </div>
@@ -165,6 +167,16 @@
          function closeNav() {
            document.getElementById("mySidenav").style.width = "0";
          }
+         
+         function searchMeme(){
+        	 var searchValue = document.querySelector("#keyword").value;
+        	 location.href='/meme/detail?memeName='+searchValue;
+         } 
+         
+         
+ 
+         
+         
       </script>
    </body>
 </html>

@@ -3,11 +3,28 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="MemeMapper">
+  <resultMap type="org.kh.meme.meme.domain.Meme" id="memeResultMap">
+  	<id property="memeNo" column="MEME_NO"/>
+  	<result property="memeName" column="MEME_NAME" />
+  	<result property="memeDate" column="MEME_DATE" />
+  	<result property="memeContents" column="MEME_CONTENTS" />
+  	<result property="memberNickname" column="MEMBER_NICKNAME" />
+  	<result property="memeCount" column="MEME_COUNT" />
+  	<result property="memeStatus" column="MEME_STATUS" />
+  </resultMap>
+  	<select id="selectListCount" resultType="_int">
+  		SELECT COUNT(*) FROM MEME_TBL WHERE MEME_STATUS='Y'
+  	</select>
+  	<select id="selectAllList" resultMap="memeResultMap">
+  		SELECT * FROM MEME_TBL WHERE MEME_STATUS='Y' ORDER BY MEME_NO DESC
+  	</select>
+  	<select id="selectOneByMeme" resultMap="memeResultMap">
+  		SELECT * FROM MEME_TBL WHERE MEME_NAME = #{MemeName} AND MEME_STATUS = 'Y'
+  	</select>
   	<insert id="insertMeme" parameterType="org.kh.meme.meme.domain.Meme">
   		INSERT INTO MEME_TBL VALUES(SEQ_MEME_NO.NEXTVAL, #{memeName}, #{memeDate}, #{memeContents} , #{memberNickname}, DEFAULT, DEFAULT)
   	</insert>
   	
-  	<select id="selectMeme" parameterType="org.kh.meme.meme.domain.Meme">
-  		<!-- SELECT * FROM MEME_TBL WHERE MEMESTATUS='Y' -->
-  	</select>
+  	
+ 
   </mapper>
