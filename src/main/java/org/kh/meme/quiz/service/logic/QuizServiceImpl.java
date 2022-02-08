@@ -1,5 +1,7 @@
 package org.kh.meme.quiz.service.logic;
 
+import java.util.List;
+
 import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.service.QuizService;
@@ -17,6 +19,12 @@ public class QuizServiceImpl implements QuizService {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
+	public List<Quiz> random() {
+		List<Quiz> qList = qStore.selectRandom(sqlSession);
+		return qList;
+	}
+	
+	@Override
 	public int writeQuiz(Quiz quiz) {
 		int result = qStore.insertQuiz(sqlSession, quiz);
 		return result;
@@ -27,5 +35,6 @@ public class QuizServiceImpl implements QuizService {
 		int result = qStore.insertQuizM(sqlSession, quizCh);
 		return result;
 	}
+
 
 }

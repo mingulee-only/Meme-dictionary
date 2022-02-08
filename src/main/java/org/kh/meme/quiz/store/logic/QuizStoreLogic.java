@@ -1,15 +1,23 @@
 package org.kh.meme.quiz.store.logic;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.store.QuizStore;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class QuizStoreLogic implements QuizStore {
 
+	@Override
+	public List<Quiz> selectRandom(SqlSession sqlSession) {
+		List<Quiz> qList
+			= sqlSession.selectList("QuizMapper.selectRandom");
+		return qList;
+	}
+	
 	@Override
 	public int insertQuiz(SqlSession session, Quiz quiz) {
 		int result = session.insert("QuizMapper.insertQuiz", quiz);
@@ -21,5 +29,6 @@ public class QuizStoreLogic implements QuizStore {
 		int result = session.insert("QuizMapper.insertQuizM", quizCh);
 		return result;
 	}
+
 
 }

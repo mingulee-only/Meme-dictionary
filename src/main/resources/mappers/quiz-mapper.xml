@@ -20,6 +20,10 @@
   		<result property="quizCh4" column="QUIZ_CH4"/>
   	</resultMap>
   	
+  	<select id="selectRandom" resultMap="quizResultMap">
+  		
+  	</select>
+  	
   	<insert id="insertQuiz" parameterType="Quiz">
   		INSERT INTO QUIZ_TBL VALUES(QUIZ_SEQ_NO.NEXTVAL, #{quizType}, #{quizQuest}, #{quizAnswer}, #{memberId}, DEFAULT)
   	</insert>

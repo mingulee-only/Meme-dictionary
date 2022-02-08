@@ -1,11 +1,14 @@
 package org.kh.meme.quiz.service;
 
+import java.util.List;
+
 import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizCh;
 
 public interface QuizService {
 
-	int writeQuiz(Quiz quiz);
-	int writeQuizM(QuizCh quizCh);
+	public List<Quiz> random();
+	public int writeQuiz(Quiz quiz);
+	public int writeQuizM(QuizCh quizCh);
 
 }

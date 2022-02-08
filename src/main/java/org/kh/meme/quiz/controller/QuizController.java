@@ -1,5 +1,7 @@
 package org.kh.meme.quiz.controller;
 
+import java.util.List;
+
 import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.service.QuizService;
@@ -16,6 +18,19 @@ public class QuizController {
 	
 	@Autowired
 	private QuizService qService;
+	
+	@RequestMapping(value = "/quiz/random.me", method = RequestMethod.GET)
+	public String random(
+			Model model) {
+		List<Quiz> qList = qService.random();
+		if(!qList.isEmpty()) {
+			model.addAttribute("qList", qList);
+			return ".tiles/quiz/random";
+		}else {
+			model.addAttribute("msg", "퀴즈 조회 실패");
+			return "common/errorPage";
+		}
+	}
 	
 	@RequestMapping(value = "/quiz/writeView.me", method = RequestMethod.GET)
 	public String quizWriteView() {
