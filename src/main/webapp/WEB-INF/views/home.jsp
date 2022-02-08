@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>MEME</title>
+      <title>유행어 사전</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -38,6 +39,7 @@
       <link rel="stylesheet" href="./resources/css/owl.carousel.min.css">
       <link rel="stylesheet" href="./resources/css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      
    </head>
    <body>
       <!-- banner bg main start -->
@@ -66,19 +68,18 @@
                      <a href="jewellery.html">타임라인</a>
                   </div>
                   <span class="toggle_icon" onclick="openNav()"><img src="./resources/images/toggle-icon.png" style="width: 35px"></span>
-                  
 				  <div class="main"></div>
                   <div class="header_box">
                      <div class="login_menu" >
                         <ul>
                            <li>
                            		<c:if test="${empty sessionScope.loginMember }">
-                           			<a href="/login.oj">
-                           		</c:if>
-                           		<c:if test="${not empty loginMember }">
-                           			<a href="/myPage.oj">
-                                </c:if>
-                              <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+	                     			<a href="/login.oj"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
+	                     		</c:if>
+	                     		<c:if test="${not empty loginMember }">
+	                     			<a href="/myPage.oj"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
+	                          	</c:if>
+	                          	
                            </li>
                         </ul>
                      </div>
@@ -99,20 +100,43 @@
                               
                               <div class="main">
 			                     <div class="input-group">
-			                     	<!-- 검색창 -->
-			                        <input type="text" class="form-control" width="20px" placeholder="ex) 어쩔티비">
+			                        <input type="text" class="form-control" id="keyword" value="" width="20px" placeholder="ex) 어쩔티비">
+			                        
 			                        <div class="input-group-append">
-			                           <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+			                           <button class="btn btn-secondary" type="button" onclick="searchMeme();" style="background-color: #f26522; border-color:#f26522 ">
 			                           <i class="fa fa-search"></i>
 			                           </button>
 			                        </div>
 			                     </div>
 			                  </div>
-                              <div class="buynow_bt"><a href="#">직접 등록하러 가기</a></div>
+                              
+                              <div class="buynow_bt"><a href="/meme/registerView">직접 등록하러 가기</a></div>
                            </div>
                         </div>
                      </div>
+<!--                      <div class="carousel-item"> -->
+<!--                         <div class="row"> -->
+<!--                            <div class="col-sm-12"> -->
+<!--                               <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1> -->
+<!--                               <div class="buynow_bt"><a href="#">Buy Now</a></div> -->
+<!--                            </div> -->
+<!--                         </div> -->
+<!--                      </div> -->
+<!--                      <div class="carousel-item"> -->
+<!--                         <div class="row"> -->
+<!--                            <div class="col-sm-12"> -->
+<!--                               <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1> -->
+<!--                               <div class="buynow_bt"><a href="#">Buy Now</a></div> -->
+<!--                            </div> -->
+<!--                         </div> -->
+<!--                      </div> -->
                   </div>
+<!--                   <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev"> -->
+<!--                   <i class="fa fa-angle-left"></i> -->
+<!--                   </a> -->
+<!--                   <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next"> -->
+<!--                   <i class="fa fa-angle-right"></i> -->
+<!--                   </a> -->
                </div>
             </div>
          </div>
@@ -137,6 +161,13 @@
          function closeNav() {
            document.getElementById("mySidenav").style.width = "0";
          }
+         
+         function searchMeme(){
+        	 var searchValue = document.querySelector("#keyword").value;
+        	 location.href='/meme/detail?memeName='+searchValue;
+         } 
+
+         
       </script>
    </body>
 </html>
