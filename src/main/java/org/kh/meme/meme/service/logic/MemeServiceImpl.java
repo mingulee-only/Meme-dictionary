@@ -45,6 +45,13 @@ public class MemeServiceImpl implements MemeService{
 		return meme;
 	}
 
+	//조회수
+	@Override
+	public int memeCountUpdate(int memeNo) {
+		int result = mStore.updateCount(sqlSession, memeNo);
+		return result;
+	}
+
 
 
 

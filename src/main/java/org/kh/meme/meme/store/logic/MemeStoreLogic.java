@@ -40,6 +40,12 @@ public class MemeStoreLogic implements MemeStore{
 		return meme;
 	}
 
+	@Override
+	public int updateCount(SqlSession session, int memeNo) {
+		int result = session.update("MemeMapper.updateMemeCount", memeNo);
+		return result;
+	}
+
 
 
 

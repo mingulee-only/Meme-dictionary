@@ -79,10 +79,12 @@ public class MemeController {
 	public String memeDetailView(
 			Model model
 			, @RequestParam(value="memeName") String memeName) {
-		//조회수 증가
 		
 		Meme meme = mService.printOneByMeme(memeName);
 		if(meme !=null) {
+			//조회수 증가
+			mService.memeCountUpdate(meme.getMemeNo());
+			
 			model.addAttribute("meme", meme);
 			return "meme/memeDetailView";
 		}else {

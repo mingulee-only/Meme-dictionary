@@ -173,8 +173,7 @@
         	 location.href='/meme/detail?memeName='+searchValue;
          } 
          
-         
- 
+         /* 자동완성 기능 */
          
          
       </script>

@@ -12,18 +12,25 @@
   	<result property="memeCount" column="MEME_COUNT" />
   	<result property="memeStatus" column="MEME_STATUS" />
   </resultMap>
+  	<!-- 유행어 검색가능한 페이지 수 -->
   	<select id="selectListCount" resultType="_int">
   		SELECT COUNT(*) FROM MEME_TBL WHERE MEME_STATUS='Y'
   	</select>
   	<select id="selectAllList" resultMap="memeResultMap">
   		SELECT * FROM MEME_TBL WHERE MEME_STATUS='Y' ORDER BY MEME_NO DESC
   	</select>
+  	<!-- 유행어 검색하여 상세페이지 이동  -->
   	<select id="selectOneByMeme" resultMap="memeResultMap">
   		SELECT * FROM MEME_TBL WHERE MEME_NAME = #{MemeName} AND MEME_STATUS = 'Y'
   	</select>
+  	<!-- 유행어 등록 요청 -->
   	<insert id="insertMeme" parameterType="org.kh.meme.meme.domain.Meme">
   		INSERT INTO MEME_TBL VALUES(SEQ_MEME_NO.NEXTVAL, #{memeName}, #{memeDate}, #{memeContents} , #{memberNickname}, DEFAULT, DEFAULT)
   	</insert>
+  	<!-- 조회수 증가  -->
+  	<update id="updateMemeCount" parameterType="_int">
+  		UPDATE MEME_TBL SET MEME_COUNT = MEME_COUNT + 1 WHERE MEME_NO = #{memeNo}
+  	</update>
   	
   	
  
