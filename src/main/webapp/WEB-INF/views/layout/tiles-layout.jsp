@@ -6,10 +6,57 @@
 <head>
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title" /></title>
+<style>
+	html, body {
+		height: 100%;
+		width: 100%;
+		background-color: black;
+	}
+	#container {
+		height:100%;
+		width:100%;
+		background-color: grey;
+	}
+	#header {
+		height:20%;
+		width:100%;
+		background-color: red;
+	}
+	#content {
+		height : 80%;
+		width: 100%;
+		background-color: pink;
+	}
+	#body {
+		height:100%;
+		width:80%;
+		background-color: gold;
+		float:left;
+	}
+	#rank {
+		height:100%;
+		width:20%;
+		background-color: white;
+		float:left;
+	}
+
+</style>
 </head>
-<body>
-	<tiles:insertAttribute name="header" />
-	<tiles:insertAttribute name="body" />
-	<tiles:insertAttribute name="rank" />
+<body>	
+
+	<div id= "container">
+		<div id="header">
+			<tiles:insertAttribute name="header" />
+		</div>
+		<div id="content">
+			<div id="body">
+				<tiles:insertAttribute name="body" />
+			</div>
+			
+			<div id="rank">
+				<tiles:insertAttribute name="rank" />
+			</div>
+		</div>
+	</div>
 </body>
 </html>

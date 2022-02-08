@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>유행어 사전</title>
 </head>
 <body>
-
+	<h1>유행어사전페이지</h1>
 </body>
 </html>
