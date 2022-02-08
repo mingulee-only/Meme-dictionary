@@ -53,11 +53,11 @@ $(document).ready(function(){
 	    <input type="text" name="quizAnswer" placeholder="정답을 입력 해주세요"><br>
 	    <br>
 	    <div id="choice" style="display: none;">
-			<input type="text" name="quiz_ch1" placeholder="보기를 입력 해주세요"> &nbsp;&nbsp;
+			<input type="text" name="quizCh1" placeholder="보기를 입력 해주세요"> &nbsp;&nbsp;
 			<input type="button" id="plus" value="+">
 			<input type="button" id="minus" value="-">
 			<br>
-			<input type="text" name="quiz_ch2" placeholder="보기를 입력 해주세요">
+			<input type="text" name="quizCh2" placeholder="보기를 입력 해주세요">
 			<div id="choices">
 	
 			</div>

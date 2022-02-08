@@ -23,7 +23,8 @@
   	<insert id="insertQuiz" parameterType="Quiz">
   		INSERT INTO QUIZ_TBL VALUES(QUIZ_SEQ_NO.NEXTVAL, #{quizType}, #{quizQuest}, #{quizAnswer}, #{memberId}, DEFAULT)
   	</insert>
+  	
   	<insert id="insertQuizM" parameterType="QuizCh">
-  		INSERT INTO QUIZ_TBL VALUES(#{quizNo}, #{quizCh1}, #{quizCh2}, #{quizCh3}, #{quizCh4})
+  		INSERT INTO QUIZ_CH VALUES(QUIZ_SEQ_NO.CURRVAL, #{quizCh1}, #{quizCh2}, #{quizCh3}, #{quizCh4})
   	</insert>
   </mapper>

@@ -32,11 +32,6 @@ public class QuizController {
 			int result = qService.writeQuiz(quiz);
 			if(quiz.getQuizType().equals("M")) {
 				qService.writeQuizM(quizCh);
-				System.out.println(quizCh.getQuizNo());
-				System.out.println(quizCh.getQuizCh1());
-				System.out.println(quizCh.getQuizCh2());
-				System.out.println(quizCh.getQuizCh3());
-				System.out.println(quizCh.getQuizCh4());
 			}
 			if(result>0) {
 				return ".tiles/quiz/write";
@@ -49,23 +44,5 @@ public class QuizController {
 			return "common/errorPage";
 		}
 	}
-	
-//	public String quizWriteM(
-//			Model model
-//			,@ModelAttribute QuizCh quizCh) {
-//		try {
-//			int result = qService.writeQuizM(quizCh);
-//			if(result>0) {
-//				return ".tiles/quiz/write";
-//			} else {
-//				model.addAttribute("msg", "보기등록 실패");
-//				return "common/errorPage";
-//			}
-//		} catch (Exception e) {
-//			model.addAttribute("msg", e.toString());
-//			return "common/errorPage";
-//		}
-//	}
-	
 	
 }
