@@ -21,7 +21,7 @@
   	</resultMap>
   	
   	<select id="selectRandom" resultMap="quizResultMap">
-  		
+  		SELECT * FROM (SELECT * FROM QUIZ_TBL ORDER BY DBMS_RANDOM.VALUE) WHERE <![CDATA[ROWNUM<=100]]>
   	</select>
   	
   	<insert id="insertQuiz" parameterType="Quiz">
