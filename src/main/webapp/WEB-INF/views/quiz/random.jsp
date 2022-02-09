@@ -12,13 +12,13 @@
     	var $quest =[]; // 문제 배열
     	var $answer = []; // 정답 배열
     	var $quizNo = []; // 퀴즈번호 배열
+    	var $quizType = []; // 퀴즈 유형
         var clock = 5; // 제한시간 설정
-        var nextNum = 0; // 차례 인덱스
+        var nextNum = 0; // 퀴즈 인덱스
         var userAnswer = []; // 유저가 입력한 정답
         var score = 0; // 점수
         
 		getQuizList();
-
         var time = setInterval(() => { // 타이머! 0초되면 결과로!
             if(clock>=0) {
                 $("#time").html(clock);
@@ -55,8 +55,31 @@
 						$quest[i] = data[i].quizQuest;
 						$answer[i] = data[i].quizAnswer;
 						$quizNo[i] = data[i].quizNo;
+						$quizType[i] = data[i].quizType;
 					}
-					$('#question').html($quest[0]);
+					$('#question').html($quest[nextNum]);
+					getMList();
+				},
+				error : function() {
+					alert("ajax 실패!");
+				}
+			});
+        }
+        
+        // 객관식 문항 json으로 가져오기
+        function getMList() {
+        	$.ajax({
+				url : "/quiz/getMList.me",
+				type : "get",
+				data : {"quizNo" : $quizNo[nextNum]},
+				dataType : "json",
+				success : function(data) {
+					for(var i in data) {
+						$("#ch1").html(data[i].quizCh1);
+						$("#ch2").html(data[i].quizCh2);
+						$("#ch3").html(data[i].quizCh3);
+						$("#ch4").html(data[i].quizCh4);
+					}
 				},
 				error : function() {
 					alert("ajax 실패!");
@@ -74,10 +97,18 @@
         		$('#whether').html("오답");
         		userAnswer[nextNum] =  $('#answer').val();
         	}
+        	
+        	// 객관신인 경우 보기 문항 가져오기
+        	if($quizType[nextNum] == "M") {
+        		getMList();
+        	} else {
+        		$("#ch1").html("");
+        		$("#ch2").html("");
+        	}
+        	
 			nextNum++;
         	$('#question').html($quest[nextNum]);
 		}
-        
     });
 </script>
 </head>
@@ -90,7 +121,7 @@
 	<br>
 	<div id="quest">
 		<b id="question"></b> <br>
-		<div id="choise" style="display: none;">
+		<div id="choise">
 			<div id="ch1"></div>
 			<div id="ch2"></div>
 			<div id="ch3"></div>

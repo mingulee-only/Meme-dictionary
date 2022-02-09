@@ -23,6 +23,18 @@ public class QuizController {
 	@Autowired
 	private QuizService qService;
 	
+	@ResponseBody
+	@RequestMapping(value = "/quiz/getMList.me", method = RequestMethod.GET)
+	public String getMList(
+			@RequestParam("quizNo") int quizNo) {
+		List<QuizCh> chList = qService.printAll(quizNo);
+		if(!chList.isEmpty()) {
+			Gson gson = new Gson();
+			return gson.toJson(chList);
+		}
+		return null;
+	}
+	
 	@RequestMapping(value = "/quiz/result.me", method = RequestMethod.POST)
 	public String result(
 			Model model,

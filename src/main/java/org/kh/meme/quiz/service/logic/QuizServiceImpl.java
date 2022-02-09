@@ -36,5 +36,11 @@ public class QuizServiceImpl implements QuizService {
 		return result;
 	}
 
+	@Override
+	public List<QuizCh> printAll(int quizNo) {
+		List<QuizCh> chList = qStore.selectAllM(sqlSession, quizNo);
+		return chList;
+	}
+
 
 }

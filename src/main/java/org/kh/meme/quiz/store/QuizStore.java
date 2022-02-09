@@ -10,6 +10,8 @@ public interface QuizStore {
 
 	public List<Quiz> selectRandom(SqlSession sqlSession);
 	public int insertQuiz(SqlSession session, Quiz quiz);
+	
 	public int insertQuizM(SqlSession session, QuizCh quizCh);
+	public List<QuizCh> selectAllM(SqlSession sqlSession, int quizNo);
 
 }

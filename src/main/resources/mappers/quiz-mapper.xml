@@ -31,4 +31,8 @@
   	<insert id="insertQuizM" parameterType="QuizCh">
   		INSERT INTO QUIZ_CH VALUES(QUIZ_SEQ_NO.CURRVAL, #{quizCh1}, #{quizCh2}, #{quizCh3}, #{quizCh4})
   	</insert>
+  	
+  	<select id="selectQuizM" resultMap="quizChResultMap">
+  		SELECT * FROM QUIZ_CH WHERE QUIZ_NO = #{quizNo}
+  	</select>
   </mapper>

@@ -29,5 +29,11 @@ public class QuizStoreLogic implements QuizStore {
 		return result;
 	}
 
+	@Override
+	public List<QuizCh> selectAllM(SqlSession sqlSession, int quizNo) {
+		List<QuizCh> chList = sqlSession.selectList("QuizMapper.selectQuizM", quizNo);
+		return chList;
+	}
+
 
 }

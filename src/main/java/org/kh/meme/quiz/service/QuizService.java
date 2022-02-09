@@ -9,6 +9,8 @@ public interface QuizService {
 
 	public List<Quiz> random();
 	public int writeQuiz(Quiz quiz);
+	
 	public int writeQuizM(QuizCh quizCh);
+	public List<QuizCh> printAll(int quizNo);
 
 }

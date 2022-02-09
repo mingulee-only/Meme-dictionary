@@ -33,7 +33,7 @@ $(document).ready(function(){
     
     minus.addEventListener("click", function() {
     	if(chNum>2) {
-    		$(choices).child().remove();
+    		
     	}
     });
 });
