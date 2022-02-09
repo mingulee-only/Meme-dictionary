@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -22,6 +22,25 @@ public class QuizController {
 	
 	@Autowired
 	private QuizService qService;
+	
+	@RequestMapping(value = "/quiz/result.me", method = RequestMethod.POST)
+	public String result(
+			Model model,
+			@RequestParam("quizNo")String[] quizNo
+			,@RequestParam("quizQuest")String[] quizQuest
+			,@RequestParam("quizAnswer")String[] quizAnswer
+			,@RequestParam("userAnswer")String[] userAnswer
+			,@RequestParam("score")int score
+			) {
+		
+		model.addAttribute("quizNo", quizNo);
+		model.addAttribute("quizQuest", quizQuest);
+		model.addAttribute("quizAnswer", quizAnswer);
+		model.addAttribute("userAnswer", userAnswer);
+		model.addAttribute("score", score);
+		
+		return ".tiles/quiz/result";
+	}
 	
 	@RequestMapping(value = "/quiz/random.me", method = RequestMethod.GET)
 	public String random() {
