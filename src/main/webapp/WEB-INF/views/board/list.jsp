@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,41 +34,17 @@
 			<th>작성날짜</th>
 			<th>조회수</th>
 		</tr>
-		<tr>
-			<td>자유</td>
-			<td width="400px"><a href="#">제목1</td>
-			<td>a</td>
-			<td>22.01.25 00:01:00</td>
-			<td>1</td>
-		</tr>
-		<tr>
-			<td>추진</td>
-			<td width="400px"><a href="#">제목2</a></td>
-			<td>b</td>
-			<td>22.01.25 00:01:01</td>
-			<td>2</td>
-		</tr>
-		<tr>
-			<td>자유</td>
-			<td width="400px"><a href="#">제목3</a></td>
-			<td>c</td>
-			<td>22.01.25 00:01:02</td>
-			<td>3</td>
-		</tr>
-		<tr>
-			<td>추진</td>
-			<td width="400px"><a href="#">제목4</a></td>
-			<td>d</td>
-			<td>22.01.25 00:01:03</td>
-			<td>4</td>
-		</tr>
-		<tr>
-			<td>자유</td>
-			<td width="400px"><a href="#">제목5</a></td>
-			<td>e</td>
-			<td>22.01.25 00:01:04</td>
-			<td>5</td>
-		</tr>
+
+		<c:forEach items="${boardAllList }" var="boardAllList">
+			<tr>
+				<td>${boardAllList.boardType }</td>
+				<td width="400px">${boardAllList.boardTitle }</td>
+				<td>${boardAllList.memberNickname }</td>
+				<td>${boardAllList.boardDate }</td>
+				<td>${boardAllList.boardCount }</td>
+			</tr>
+		</c:forEach>
+		
 	</table>
 	<br>
 	<br>

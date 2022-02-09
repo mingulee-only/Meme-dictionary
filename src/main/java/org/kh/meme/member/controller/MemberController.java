@@ -29,6 +29,7 @@ public class MemberController {
 			if(loginMember != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginMember", loginMember);
+				System.out.println(session.getId()+"로그인 완료");
 				return "redirect:/";
 			}else {
 				request.setAttribute("msg", "로그인 실패");
