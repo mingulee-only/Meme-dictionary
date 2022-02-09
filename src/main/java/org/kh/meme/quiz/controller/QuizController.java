@@ -9,9 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 public class QuizController {
@@ -20,15 +24,20 @@ public class QuizController {
 	private QuizService qService;
 	
 	@RequestMapping(value = "/quiz/random.me", method = RequestMethod.GET)
-	public String random(
-			Model model) {
+	public String random() {
+		return ".tiles/quiz/random";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/quiz/getRandom.me", method = RequestMethod.GET
+			)
+	public String randomQuiz() {
 		List<Quiz> qList = qService.random();
 		if(!qList.isEmpty()) {
-			model.addAttribute("qList", qList);
-			return ".tiles/quiz/random";
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			return gson.toJson(qList);
 		}else {
-			model.addAttribute("msg", "퀴즈 조회 실패");
-			return "common/errorPage";
+			return "fail";
 		}
 	}
 	

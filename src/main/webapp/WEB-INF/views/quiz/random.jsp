@@ -9,6 +9,7 @@
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function(){
+    	getQuizList();
     	
         var clock = 5; // 제한시간 설정
         var answer = "";
@@ -19,24 +20,27 @@
             }
         }, 1000);
 
+        // 엔터눌럿을때 정답 비교
         $(document).keyup(function(event) {
           	 if (event.keyCode == '13' && $('#answer').val() != '') {
-          	   console.log(${quiz.quizNo});
+          	   console.log("test");
+          	   $('#answer').val("");
           	 }
           	  
           });
         
         function getQuizList() {
         	$.ajax({
-				url : "/quiz/quizRandom.me",
-				type : "post",
-				data : {},
-				success : function() {
-					if(data == "success") {
-						$("#rContents").val("");
-					}else {
-						alert("댓글 등록 실패!");
-					}
+				url : "/quiz/getRandom.me",
+				type : "get",
+				dataType : "json",
+				success : function(data) {
+//                     var quizNo;
+// 					for(var i in data) {
+// 						quizNo+= data[i];
+// 					}
+					console.log(data.length);
+					console.log(data);
 				},
 				error : function() {
 					alert("ajax 실패!");

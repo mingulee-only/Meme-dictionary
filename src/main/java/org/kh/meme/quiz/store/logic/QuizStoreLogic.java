@@ -13,8 +13,7 @@ public class QuizStoreLogic implements QuizStore {
 
 	@Override
 	public List<Quiz> selectRandom(SqlSession sqlSession) {
-		List<Quiz> qList
-			= sqlSession.selectList("QuizMapper.selectRandom");
+		List<Quiz> qList = sqlSession.selectList("QuizMapper.selectRandom");
 		return qList;
 	}
 	
