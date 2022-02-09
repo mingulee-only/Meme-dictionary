@@ -19,15 +19,15 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- bootstrap css -->
-      <link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css">
       <!-- style css -->
-      <link rel="stylesheet" type="text/css" href="./resources/css/style.css">
+      <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
       <!-- Responsive-->
-      <link rel="stylesheet" href="./resources/css/responsive.css">
+      <link rel="stylesheet" href="../resources/css/responsive.css">
       <!-- fevicon -->
-      <link rel="icon" href="./resources/images/fevicon.png" type="image/gif" />
+      <link rel="icon" href="../resources/images/fevicon.png" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="./resources/css/jquery.mCustomScrollbar.min.css">
+      <link rel="stylesheet" href="../resources/css/jquery.mCustomScrollbar.min.css">
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <!-- fonts -->
@@ -37,8 +37,8 @@
       <!--  -->
       <!-- owl stylesheets -->
       <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
-      <link rel="stylesheet" href="./resources/css/owl.carousel.min.css">
-      <link rel="stylesheet" href="./resources/css/owl.theme.default.min.css">
+      <link rel="stylesheet" href="../resources/css/owl.carousel.min.css">
+      <link rel="stylesheet" href="../resources/css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
       
    </head>
@@ -63,10 +63,10 @@
                <div class="containt_main">
                   <div id="mySidenav" class="sidenav">
                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                     <a href="index.html">유행어사전</a>
-                     <a href="fashion.html">유행어 추진/자유게시판</a>
-                     <a href="electronic.html">유행어 퀴즈</a>
-                     <a href="jewellery.html">타임라인</a>
+                     <a href="/">유행어사전</a>
+                     <a href="/board">유행어 추진/자유게시판</a>
+                     <a href="/quiz">유행어 퀴즈</a>
+                     <a href="#">타임라인</a>
                   </div>
 
                   <span class="toggle_icon" onclick="openNav()"><img src="./resources/images/toggle-icon.png" style="width: 35px"></span>

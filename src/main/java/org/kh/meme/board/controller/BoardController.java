@@ -17,9 +17,14 @@ public class BoardController {
 
 	@Autowired
 	private RankService rService;
+
+	@RequestMapping(value="/boardtest", method=RequestMethod.GET)
+	public String boardTestList() {
+		return "/board/boardlist";
+	}
 	
 	@RequestMapping(value="/board", method = RequestMethod.GET)
-	public String memeranklist(Model model) {
+	public String boardranklist(Model model) {
 		model.addAttribute("page", "board");
 		List<MemeRank> memeRankList = rService.printMemeRank();
 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();

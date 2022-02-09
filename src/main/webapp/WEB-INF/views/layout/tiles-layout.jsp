@@ -28,6 +28,7 @@
 		background-color: pink;
 	}
 	#body {
+		margin-top: -10px
 		height:100%;
 		width:80%;
 		background-color: gold;
