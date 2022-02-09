@@ -27,13 +27,13 @@ public class HomeController {
 
 		return "home";
 	}
-	@RequestMapping(value="/login.oj", method=RequestMethod.GET)
+	@RequestMapping(value="/login.me", method=RequestMethod.GET)
 	public String login() {
-		return "member/login";
+		return ".tiles/member/login";
 	}
-	@RequestMapping(value="/myPage.oj", method=RequestMethod.GET)
+	@RequestMapping(value="/myPage.me", method=RequestMethod.GET)
 	public String myPage() {
-		return "member/myPage";
+		return ".tiles/member/myPage";
 	}
 	
 }

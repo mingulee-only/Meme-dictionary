@@ -17,7 +17,7 @@ public class MemberController {
 	@Autowired
 	private MemberService mService;
 
-	@RequestMapping(value="/member/login.oj", method=RequestMethod.POST)
+	@RequestMapping(value="/member/login.me", method=RequestMethod.POST)
 	public String memberLogin(HttpServletRequest request
 			,@RequestParam("user-id") String memberId
 			,@RequestParam("user-pw") String memberPw) {
@@ -40,16 +40,28 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value="/member/join.oj", method=RequestMethod.GET)
+	@RequestMapping(value="/member/join.me", method=RequestMethod.GET)
 	public String memberJoin() {
 		
 		return "member/memberJoin";
 	}
 	
-	@RequestMapping(value="/member/join.oj", method=RequestMethod.POST)
+	@RequestMapping(value="/member/join.me", method=RequestMethod.POST)
 	public String memberRegister() {
 		
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/member/logout.me", method=RequestMethod.GET)
+	public String memberLogout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session != null) {
+			session.invalidate();
+			return "redirect:/";
+		}else {
+			request.setAttribute("msg", "로그아웃 실패!");
+			return "common/errorPage";
+		}
 	}
 	
 }

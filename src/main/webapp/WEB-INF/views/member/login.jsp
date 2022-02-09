@@ -21,7 +21,7 @@
 <body>
 	<div class="inner">
 		<h3 align="center">로그인</h3>
-		<form action="/member/login.oj" method="post">
+		<form action="/member/login.me" method="post">
 			<table align="center">
 				<tr align="center">
 					<td colspan="2"><input type="text" name="user-id" placeholder="아이디"></td>
@@ -31,10 +31,10 @@
 				</tr>
 				<tr align="center">
 					<td><input type="submit" value="로그인"></td>
-					<td><button type="button" onclick="location.href='/member/join.oj'">회원가입</button>
+					<td><button type="button" onclick="location.href='/member/join.me'">회원가입</button>
 				</tr>
 				<tr align="center">
-					<td colspan="2"><button type="button" onclick="location.href='#'">아이디/비밀번호 찾기</button></td>
+					<td colspan="2"><button type="button" onclick="location.href='/member/find.me'">아이디/비밀번호 찾기</button></td>
 				</tr>
 			</table>	
 		</form>
