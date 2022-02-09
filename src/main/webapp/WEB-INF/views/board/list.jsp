@@ -28,6 +28,7 @@
 	</p>
 	<table id="boardTable">
 		<tr>
+			<th>번호</th>
 			<th>분류</th>
 			<th width="400px">글제목</th>
 			<th>작성자</th>
@@ -37,6 +38,7 @@
 
 		<c:forEach items="${boardAllList }" var="boardAllList">
 			<tr>
+				<td>${boardAllList.boardNo }</td>
 				<td>
 					<c:if test="${boardAllList.boardType eq 'P'}">
     					추진
