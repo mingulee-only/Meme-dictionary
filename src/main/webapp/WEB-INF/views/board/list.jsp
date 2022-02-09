@@ -34,13 +34,7 @@
 			<th>작성날짜</th>
 			<th>조회수</th>
 		</tr>
-		<tr>
-			<td>자유</td>
-			<td width="400px"><a href="#">제목1</td>
-			<td>a</td>
-			<td>22.01.25 00:01:00</td>
-			<td>1</td>
-		</tr>
+
 		<c:forEach items="${boardAllList }" var="boardAllList">
 			<tr>
 				<td>${boardAllList.boardType }</td>
