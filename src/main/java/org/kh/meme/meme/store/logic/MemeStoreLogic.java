@@ -5,8 +5,10 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.meme.domain.Meme;
+import org.kh.meme.meme.domain.MemeRequest;
 import org.kh.meme.meme.domain.PageInfo;
 import org.kh.meme.meme.store.MemeStore;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -46,7 +48,12 @@ public class MemeStoreLogic implements MemeStore{
 		return result;
 	}
 
-
+	//사전 수정 삭제 요청
+	@Override
+	public int insertMemeRequest(SqlSession session, MemeRequest memeRequest) {
+		int result = session.insert("MemeMapper.insertMemeRequest", memeRequest);
+		return result;
+	}
 
 
 }

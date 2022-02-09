@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.kh.meme.common.Pagination;
 import org.kh.meme.meme.domain.Meme;
+import org.kh.meme.meme.domain.MemeRequest;
 import org.kh.meme.meme.domain.PageInfo;
 import org.kh.meme.meme.service.MemeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,6 +94,37 @@ public class MemeController {
 		}
 	}
 	
+	
+	
+	//사전 수정삭제 요청
+	@RequestMapping(value="/meme/modifyView", method=RequestMethod.GET)
+	public String memeModifyView() {
+		
+		return "meme/memeModifyForm";
+	}
+	
+	//사전 수정 삭제 요청 등록
+	@RequestMapping(value = "/meme/modify", method = RequestMethod.GET)
+	public String memeModify(Model model, @ModelAttribute MemeRequest memeRequest) {
+		try {
+			int result = mService.modifyMeme(memeRequest);
+			if (result > 0) {
+				System.out.println("등록성공");
+				return "redirect:/";
+
+			} else {
+				System.out.println("등록 실패");
+				return "redirect:/";
+
+			}
+
+		} catch (Exception e) {
+			System.out.println("실패");
+			return "redirect:/";
+
+		}
+
+	}
 	
 
 }

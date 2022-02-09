@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.meme.domain.Meme;
+import org.kh.meme.meme.domain.MemeRequest;
 import org.kh.meme.meme.domain.PageInfo;
 import org.kh.meme.meme.service.MemeService;
 import org.kh.meme.meme.store.MemeStore;
@@ -49,6 +50,13 @@ public class MemeServiceImpl implements MemeService{
 	@Override
 	public int memeCountUpdate(int memeNo) {
 		int result = mStore.updateCount(sqlSession, memeNo);
+		return result;
+	}
+
+	//사전 수정삭제 요청
+	@Override
+	public int modifyMeme(MemeRequest memeRequest) {
+		int result = mStore.insertMemeRequest(sqlSession, memeRequest);
 		return result;
 	}
 

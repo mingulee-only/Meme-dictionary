@@ -32,6 +32,10 @@
   		UPDATE MEME_TBL SET MEME_COUNT = MEME_COUNT + 1 WHERE MEME_NO = #{memeNo}
   	</update>
   	
+  	<!-- 사전 수정삭제요청 -->
+  	<insert id="insertMemeRequest" parameterType="org.kh.meme.meme.domain.MemeRequest">
+  		INSERT INTO MEME_REQUEST VALUES(SEQ_MEMEREQ_NO.NEXTVAL, #{memeNo}, #{memeRequestType}, #{memeRequestContents}, #{memeRequestStatus})
+  	</insert>
   	
  
   </mapper>

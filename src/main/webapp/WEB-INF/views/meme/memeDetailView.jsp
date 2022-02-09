@@ -40,7 +40,7 @@
 	<br>
 	<br>
 	<hr>
-	<a href="#">의견내기</a>
+	<a href="/meme/modifyView">의견내기</a>
 
 
 

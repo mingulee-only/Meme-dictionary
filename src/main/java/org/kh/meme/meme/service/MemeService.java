@@ -3,6 +3,7 @@ package org.kh.meme.meme.service;
 import java.util.List;
 
 import org.kh.meme.meme.domain.Meme;
+import org.kh.meme.meme.domain.MemeRequest;
 import org.kh.meme.meme.domain.PageInfo;
 
 public interface MemeService {
@@ -15,5 +16,8 @@ public interface MemeService {
 	public Meme printOneByMeme(String memeName);
 	//사전 조회수
 	public int memeCountUpdate(int memeNo);
+	
+	//사전 수정삭제요청 등록
+	public int modifyMeme(MemeRequest memeRequest);
 
 }
