@@ -37,7 +37,7 @@
 	#rank {
 		height:100%;
 		width:20%;
-		background-color: white;
+		background-color: #f9f9f9;
 		float:left;
 	}
 
