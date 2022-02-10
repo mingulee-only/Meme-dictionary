@@ -77,8 +77,8 @@
 	        	$.ajax({
 					url : "/quiz/getList.me",
 					type : "get",
-					data : {"quizNo" : $quizNo[nextNum]},
 					dataType : "json",
+					data : {"quizNo" : $quizNo[nextNum]},
 					success : function(data) {
 						for(var i in data) {
 							$('#question').html(data[i].quizQuest);

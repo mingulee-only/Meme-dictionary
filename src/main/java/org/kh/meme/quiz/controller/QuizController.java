@@ -1,6 +1,9 @@
 package org.kh.meme.quiz.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizCh;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 
 @Controller
 public class QuizController {
@@ -24,14 +28,15 @@ public class QuizController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/quiz/getList.me", method = RequestMethod.GET)
-	public String getMList(
-			@RequestParam("quizNo") int quizNo) {
+	public void getMList(
+			@RequestParam("quizNo") int quizNo
+			,HttpServletResponse response) throws Exception {
 		List<Quiz> qList = qService.printAll(quizNo);
+		response.setCharacterEncoding("utf-8");
 		if(!qList.isEmpty()) {
 			Gson gson = new Gson();
-			return gson.toJson(qList);
+			gson.toJson(qList, response.getWriter());
 		}
-		return null;
 	}
 	
 	@RequestMapping(value = "/quiz/result.me", method = RequestMethod.POST)
@@ -63,8 +68,7 @@ public class QuizController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/quiz/getRandom.me", method = RequestMethod.GET
-			)
+	@RequestMapping(value = "/quiz/getRandom.me", method = RequestMethod.GET)
 	public String randomQuiz() {
 		List<Quiz> qList = qService.random();
 		if(!qList.isEmpty()) {
