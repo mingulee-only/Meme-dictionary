@@ -69,7 +69,7 @@
                      <a href="#">타임라인</a>
                   </div>
 
-                  <span class="toggle_icon" onclick="openNav()"><img src="./resources/images/toggle-icon.png" style="width: 35px"></span>
+                  <span class="toggle_icon" onclick="openNav()"><img src="../resources/images/toggle-icon.png" style="width: 35px"></span>
 				  <div class="main"></div>
                   <div class="header_box">
 <!--                   	 <div class=""><a href="#">MEME</a></div> -->

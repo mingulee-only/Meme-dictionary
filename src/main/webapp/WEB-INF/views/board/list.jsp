@@ -28,6 +28,7 @@
 	</p>
 	<table id="boardTable">
 		<tr>
+			<th>번호</th>
 			<th>분류</th>
 			<th width="400px">글제목</th>
 			<th>작성자</th>
@@ -37,7 +38,15 @@
 
 		<c:forEach items="${boardAllList }" var="boardAllList">
 			<tr>
-				<td>${boardAllList.boardType }</td>
+				<td>${boardAllList.boardNo }</td>
+				<td>
+					<c:if test="${boardAllList.boardType eq 'P'}">
+    					추진
+					</c:if>
+					<c:if test="${boardAllList.boardType eq 'F'}">
+    					자유
+					</c:if>
+				</td>
 				<td width="400px">${boardAllList.boardTitle }</td>
 				<td>${boardAllList.memberNickname }</td>
 				<td>${boardAllList.boardDate }</td>
@@ -52,8 +61,13 @@
 	<div>
 	<div style="text-align:center">
 	<button style="height:25px; width:55px"  >이전</button>
-	<a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-	<button style="height:25px; width:55px"  >다음</button>
+	<c:forEach var="p" begin="${pi.startNavi }" end="${pi.endNavi }">
+		<c:url var="pagination" value="/board">
+			<c:param name="page" value="${p }"></c:param>
+		</c:url>
+		<a href="${pagination }">${p }</a>&nbsp;
+	</c:forEach>
+	<button style="height:25px; width:55px">다음</button>
 	</div>
 	</div>
 	<br>

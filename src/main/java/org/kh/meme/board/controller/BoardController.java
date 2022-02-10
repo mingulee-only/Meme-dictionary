@@ -3,7 +3,9 @@ package org.kh.meme.board.controller;
 import java.util.List;
 
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.PageInfo;
 import org.kh.meme.board.service.BoardService;
+import org.kh.meme.common.Pagination;
 import org.kh.meme.rank.domain.BoardRank;
 import org.kh.meme.rank.domain.MemeRank;
 import org.kh.meme.rank.domain.QuizRank;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class BoardController {
@@ -29,16 +32,30 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board", method = RequestMethod.GET)
-	public String boardranklist(Model model) {
-		model.addAttribute("page", "board");
+	public String boardranklist(
+			Model model
+			, @RequestParam(value="page", required=false) Integer page) {
+		
+		int currentPage = (page != null) ? page : 1;
+		
+		int totalCount = bService.getListCount();
+
+		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+		
+		model.addAttribute("pi", pi);
+		//비즈니스 로직 -> DB에서 전체 게시물 갯수 가져옴
+		
 		//게시판
-		List<Board> boardAllList = bService.printAllBoard();
+		List<Board> boardAllList = bService.printAllBoard(pi);
+		
 		
 		//랭킹
+		model.addAttribute("page", "board");
 		List<MemeRank> memeRankList = rService.printMemeRank();
 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
 		List<QuizRank> quizRankList = rService.printQuizRank();
+ 
 		
 		if(!boardAllList.isEmpty() && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
 			//게시판

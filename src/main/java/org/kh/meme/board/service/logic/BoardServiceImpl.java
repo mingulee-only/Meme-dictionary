@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.PageInfo;
 import org.kh.meme.board.service.BoardService;
 import org.kh.meme.board.store.BoardStore;
 import org.kh.meme.rank.store.RankStore;
@@ -19,11 +20,19 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	@Override
-	public List<Board> printAllBoard() {
-		List<Board> boardAllList = bStore.selectAllBoard(sqlSession);
+	public List<Board> printAllBoard(PageInfo pi) {
+		List<Board> boardAllList = bStore.selectAllBoard(sqlSession, pi);
 		return boardAllList;
 	}
+
+	@Override
+	public int getListCount() {
+		int totalCount = bStore.selectListCount(sqlSession);
+		
+		return totalCount;
+	}
+	
 
 }
