@@ -51,4 +51,10 @@ public class BoardStoreLogic implements BoardStore{
 		return totalCount;
 	}
 
+	@Override
+	public int insertBoard(SqlSession sqlSession, Board board) {
+		int result = sqlSession.insert("BoardMapper.insertBoard");
+		return result;
+	}
+
 }

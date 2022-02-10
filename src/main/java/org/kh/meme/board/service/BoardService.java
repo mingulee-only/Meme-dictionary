@@ -12,4 +12,6 @@ public interface BoardService {
 
 	int getListCount();
 
+	int registerBoard(Board board);
+
 }

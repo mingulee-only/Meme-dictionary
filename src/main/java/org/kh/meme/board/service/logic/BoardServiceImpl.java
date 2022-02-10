@@ -33,6 +33,12 @@ public class BoardServiceImpl implements BoardService {
 		
 		return totalCount;
 	}
+
+	@Override
+	public int registerBoard(Board board) {
+		int result = bStore.insertBoard(sqlSession, board);
+		return result;
+	}
 	
 
 }

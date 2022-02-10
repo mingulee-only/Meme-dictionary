@@ -12,4 +12,6 @@ public interface BoardStore {
 
 	int selectListCount(SqlSession sqlSession);
 
+	int insertBoard(SqlSession sqlSession, Board board);
+
 }

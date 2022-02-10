@@ -29,7 +29,9 @@
 		SELECT * FROM BOARD_TBL WHERE BOARD_NO = #{boardNo}
 	</select>
 	<insert id="insertBoard" parameterType="Board">
-		INSERT INTO BOARD_TBL VALUES(SEQ_BOARD_NO.NEXTVAL, #{boardTitle}, #{boardContents}, #{boardWriter}, #{boardFilename }, #{boardFileRename }, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+		INSERT INTO BOARD_TBL VALUES(SEQ_BOARD_NO.NEXTVAL, #{boardType}, 
+		#{boardTitle}, '어쩔티비', DEFAULT, DEFAULT, #{boardContents }, 
+		DEFAULT, DEFAULT, DEFAULT, DEFAULT)
 	</insert>
 	<update id="updateBoard" parameterType="Board">
 		

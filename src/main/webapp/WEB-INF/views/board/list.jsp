@@ -24,7 +24,7 @@
 <body>
 	<h1 align="center">게시판</h1>
 	<p align="right">
-		<input type="button" value="글쓰기" />
+		<input type="button" value="글쓰기" onclick="location.href='/board/write'"/>
 	</p>
 	<table id="boardTable">
 		<tr>
@@ -60,14 +60,19 @@
 	
 	<div>
 	<div style="text-align:center">
-	<button style="height:25px; width:55px"  >이전</button>
+	<c:if test="${pi.startNavi gt 1 }">
+		<button style="height:25px; width:55px">이전</button>
+	</c:if>
 	<c:forEach var="p" begin="${pi.startNavi }" end="${pi.endNavi }">
 		<c:url var="pagination" value="/board">
 			<c:param name="page" value="${p }"></c:param>
 		</c:url>
 		<a href="${pagination }">${p }</a>&nbsp;
 	</c:forEach>
-	<button style="height:25px; width:55px">다음</button>
+	<c:if test="${pi.endNavi lt maxPage }">
+		<button style="height:25px; width:55px">다음</button>
+	</c:if>
+	
 	</div>
 	</div>
 	<br>
