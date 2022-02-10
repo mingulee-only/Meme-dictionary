@@ -37,7 +37,7 @@
 	  line-height:40px;
 	}
 	.tabmenu input{display:none;}
-	.tabCon{
+	.rankTabCon{
 	  display:none; 
 	  text-align:left; 
 	  padding: 20px;
@@ -50,7 +50,7 @@
 	.tabmenu input:checked ~ label{
 	  background:#ccc;
 	}
-	.tabmenu input:checked ~ .tabCon{
+	.tabmenu input:checked ~ .rankTabCon{
 	  display:block;
 	}
 	table {
@@ -64,7 +64,7 @@
 	  <ul>
 	    <li id="tab1" class="btnCon"> <input type="radio" name="tabmenu" id="tabmenu1">
 	      <label for="tabmenu1">유행어</label>
-	      <div class="tabCon">
+	      <div class="rankTabCon">
 	      	<table align="center" border="1">
 			<!-- 번호, 제목, 작성자, 날짜, 조회수, 첨부파일 -->
 				<tr>
@@ -83,7 +83,7 @@
 	    </li>
 	    <li id="tab2" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu2">
 	      <label for="tabmenu2">추진</label>
-	      <div class="tabCon">
+	      <div class="rankTabCon">
 	      	<table align="center" border="1">
 			<!-- 번호, 제목, 작성자, 날짜, 조회수, 첨부파일 -->
 				<tr>
@@ -104,7 +104,7 @@
 	    </li>    
 	    <li id="tab3" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu3">
 	      <label for="tabmenu3">자유</label>
-	      <div class="tabCon">
+	      <div class="rankTabCon">
 	      		<table align="center" border="1">
 				<!-- 번호, 제목, 작성자, 날짜, 조회수, 첨부파일 -->
 					<tr>
@@ -124,7 +124,7 @@
 	    </li>
 	    <li id="tab4" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu4">
 	      <label for="tabmenu4">퀴즈</label>
-	      <div class="tabCon">
+	      <div class="rankTabCon">
 	      	<table align="center" border="1">
 			<!-- 번호, 제목, 작성자, 날짜, 조회수, 첨부파일 -->
 				<tr>

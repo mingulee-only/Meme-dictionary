@@ -43,6 +43,43 @@ public class BoardController {
 		return "/board/write";
 	}
 	
+	@RequestMapping(value="/boarddetail", method=RequestMethod.GET)
+	public String boarddetailtest() {
+		return "/board/boardDetailView";
+	}
+	
+
+	@RequestMapping(value="/board/detail", method=RequestMethod.GET)
+	public String boardDetail( Model model) {
+		
+
+		//랭킹
+		model.addAttribute("rankmain", "board");
+		List<MemeRank> memeRankList = rService.printMemeRank();
+		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+		List<QuizRank> quizRankList = rService.printQuizRank();
+ 
+		
+		if(!memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
+		
+			//랭킹
+			model.addAttribute("memeRankList", memeRankList);
+			model.addAttribute("boardPushRankList", boardPushRankList);
+			model.addAttribute("boardFreeRankList", boardFreeRankList);
+			model.addAttribute("quizRankList", quizRankList);
+			return ".tiles/board/detail";
+		} else {
+			//일단 error 나누어서 안 적음, 필요하면 적기
+			model.addAttribute("msg", "랭킹 조회 실패");
+			return "error";
+		}
+		
+		
+	}
+	
+	
+	
 	@RequestMapping(value="/board/write", method=RequestMethod.GET)
 	public String boardwrite( Model model) {
 		

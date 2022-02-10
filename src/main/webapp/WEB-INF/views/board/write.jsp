@@ -16,7 +16,7 @@
  	margin: auto; 
 }
 
-th {
+#boardWriteTable th {
 	background-color: #eeeeee;
 }
 
