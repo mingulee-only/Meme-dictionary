@@ -12,6 +12,15 @@
   	<result property="memeCount" column="MEME_COUNT" />
   	<result property="memeStatus" column="MEME_STATUS" />
   </resultMap>
+  
+  <resultMap type="org.kh.meme.meme.domain.MemeFile" id="memeFileResultMap">
+	<id property="memeNo" column="MEME_NO"/>
+	<result property="memeFileNo" column="MEME_FILENO"/>  
+	<result property="memeFileName" column="MEME_FILENAME"/>  
+	<result property="memeFileExtension" column="MEME_FILEEXTENSION"/>  
+	<result property="memeFileRename" column="MEME_FILERENAME"/>  
+  </resultMap>
+  
   	<!-- 유행어 검색가능한 페이지 수 -->
   	<select id="selectListCount" resultType="_int">
   		SELECT COUNT(*) FROM MEME_TBL WHERE MEME_STATUS='Y'
@@ -21,14 +30,18 @@
   	</select>
   	<!-- 유행어 검색하여 상세페이지 이동  -->
   	<select id="selectOneByMeme" resultMap="memeResultMap">
-  		SELECT * FROM MEME_TBL WHERE MEME_NAME = #{MemeName} AND MEME_STATUS = 'Y'
+  		SELECT * FROM MEME_TBL WHERE MEME_NAME = #{memeName} AND MEME_STATUS = 'Y'
   	</select>
+  	<select id="selectOneByMemeFile" resultMap="memeFileResultMap">
+  		SELECT *FROM MEME_FILE WHERE MEME_NO = #{memeNo}
+  	</select>
+  	
   	<!-- 유행어 등록 요청 -->
   	<insert id="insertMeme" parameterType="org.kh.meme.meme.domain.Meme">
   		INSERT INTO MEME_TBL VALUES(SEQ_MEME_NO.NEXTVAL, #{memeName}, #{memeDate}, #{memeContents} , #{memberNickname}, DEFAULT, DEFAULT)
   	</insert>
   	<insert id="insertMemeFile">
-		INSERT INTO MEME_FILE VALUES(SEQ_MEME_NO.CURRVAL, #{memeFileNo }, #{memeFileName }, #{memeFileExtension }, #{memeFileRename })  	
+		INSERT INTO MEME_FILE VALUES(SEQ_MEME_NO.CURRVAL, SEQ_MEME_FILENO.NEXTVAL, #{memeFileName }, #{memeFileExtension }, #{memeFileRename })  	
   	</insert>
   	
   	<!-- 조회수 증가  -->

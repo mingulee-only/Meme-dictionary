@@ -115,18 +115,22 @@ public class MemeController {
 	
 	//사전 상세보기
 	@RequestMapping(value = "/meme/detail", method = RequestMethod.GET)
-	public String memeDetailView(Model model, @RequestParam(value = "memeName") String memeName) {
-
+	public String memeDetailView(Model model
+			, @RequestParam(value = "memeName") String memeName
+			) {
 		Meme meme = mService.printOneByMeme(memeName);
+		
+		MemeFile memeFile = mService.printOneByMemeFile(meme.getMemeNo());
 		if (meme != null) {
 			// 조회수 증가
 			mService.memeCountUpdate(meme.getMemeNo());
 			model.addAttribute("meme", meme);
+			model.addAttribute("memeFile", memeFile);
 			return "meme/memeDetailView";
-		} else {
-			System.out.println("조회 실패");
-			return "redirect:/";
+		}else {
+			return null;
 		}
+		
 	}
 
 	// 사전 수정삭제 요청

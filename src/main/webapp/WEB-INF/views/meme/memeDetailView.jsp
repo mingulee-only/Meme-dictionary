@@ -31,7 +31,7 @@
 		<tr>
 			<td>첨부파일</td>
 			<td>
-				 ${memeFile.memeFileName } 
+				 <img src="/resources/memeUploadFiles/${memeFile.memeFileRename }">
 			</td>
 		</tr>
 		<tr>

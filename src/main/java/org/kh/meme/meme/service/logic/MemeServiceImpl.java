@@ -50,6 +50,13 @@ public class MemeServiceImpl implements MemeService{
 		return meme;
 	}
 
+	
+	@Override
+	public MemeFile printOneByMemeFile(int memeNo) {
+		MemeFile memeFile = mStore.selectOneByMemeFile(sqlSession, memeNo);
+		return memeFile;
+	}
+
 	//조회수
 	@Override
 	public int memeCountUpdate(int memeNo) {

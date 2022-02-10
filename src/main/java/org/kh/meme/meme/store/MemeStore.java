@@ -15,6 +15,7 @@ public interface MemeStore {
 	public List<Meme> selectAll(SqlSession sqlSession, PageInfo pi);
 	public int insertMeme(SqlSession session, Meme meme);
 	public Meme selectOneByMeme(SqlSession session, String MemeName);
+	public MemeFile selectOneByMemeFile(SqlSession session, int memeNo);
 	public int updateCount(SqlSession Session, int memeNo);
 	
 	public int insertMemeFile(SqlSession session, MemeFile memeFile);

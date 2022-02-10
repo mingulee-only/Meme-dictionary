@@ -15,9 +15,10 @@ public interface MemeService {
 	public int registerMeme(Meme meme, MemeFile memeFile);
 	//사전 검색
 	public Meme printOneByMeme(String memeName);
+	//사전 검색 파일
+	public MemeFile printOneByMemeFile(int memeNo);
 	//사전 조회수
 	public int memeCountUpdate(int memeNo);
-	
 	//사전 수정삭제요청 등록
 	public int modifyMeme(MemeRequest memeRequest);
 

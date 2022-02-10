@@ -48,6 +48,11 @@ public class MemeStoreLogic implements MemeStore{
 		Meme meme = sqlSession.selectOne("MemeMapper.selectOneByMeme", memeName);
 		return meme;
 	}
+	@Override
+	public MemeFile selectOneByMemeFile(SqlSession session, int memeNo) {
+		MemeFile memeFile = session.selectOne("MemeMapper.selectOneByMemeFile",memeNo);
+		return memeFile;
+	}
 
 	@Override
 	public int updateCount(SqlSession session, int memeNo) {
@@ -61,6 +66,7 @@ public class MemeStoreLogic implements MemeStore{
 		int result = session.insert("MemeMapper.insertMemeRequest", memeRequest);
 		return result;
 	}
+
 
 
 }
