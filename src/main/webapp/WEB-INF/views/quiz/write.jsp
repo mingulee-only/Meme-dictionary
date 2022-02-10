@@ -70,6 +70,8 @@ $(document).ready(function(){
 			<input type="text" name="quizCh3" id="quizCh3" placeholder="보기를 입력 해주세요" style="display: none">
 			<input type="text" name="quizCh4" id="quizCh4" placeholder="보기를 입력 해주세요" style="display: none">
 		</div>
+		첨부파일<br>
+		<input type="file" name="uploadFile"><br>
 	    <input type="submit" value="등록하기">
 	    <input type="button" value="취소">
     </form>
