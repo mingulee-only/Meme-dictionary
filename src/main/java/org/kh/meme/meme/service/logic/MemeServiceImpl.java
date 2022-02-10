@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.meme.domain.Meme;
+import org.kh.meme.meme.domain.MemeFile;
 import org.kh.meme.meme.domain.MemeRequest;
 import org.kh.meme.meme.domain.PageInfo;
 import org.kh.meme.meme.service.MemeService;
@@ -34,8 +35,11 @@ public class MemeServiceImpl implements MemeService{
 	}
 	
 	@Override
-	public int registerMeme(Meme meme) {
+	public int registerMeme(Meme meme, MemeFile memeFile) {
 		int result = mStore.insertMeme(sqlSession, meme);
+		if(result > 0) {
+			mStore.insertMemeFile(sqlSession, memeFile);
+		}
 		return result;
 	}
 

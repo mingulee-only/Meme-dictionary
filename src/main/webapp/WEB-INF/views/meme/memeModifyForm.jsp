@@ -15,7 +15,8 @@
 	<hr>
 	<br>
 	<br>
-	<form action="/meme/modify" method="get" enctype="multipart/form-data">
+		<form action="/meme/modify" method="get"
+		enctype="multipart/form-data">
 		<table align="center">
 			<tr>
 				<td>요청 유형</td>
@@ -24,8 +25,9 @@
 						<option value="D">삭제</option></td>
 			</tr>
 			<tr>
-				<td>사전번호or유행어</td>
-				<td><input type="text" size="50" name="memeNo"></td>
+				<td>유행어</td>
+				<td><input type="text" size="50" name="memeName" value=${param.memeName }></td>
+				<%-- <td>${meme.memeName}</td> --%>
 			</tr>
 			<tr>
 				<td>요청 내용</td>
@@ -40,5 +42,7 @@
 			</tr>
 		</table>
 	</form>
+	
+
 </body>
 </html>

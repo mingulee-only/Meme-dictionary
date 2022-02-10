@@ -27,6 +27,10 @@
   	<insert id="insertMeme" parameterType="org.kh.meme.meme.domain.Meme">
   		INSERT INTO MEME_TBL VALUES(SEQ_MEME_NO.NEXTVAL, #{memeName}, #{memeDate}, #{memeContents} , #{memberNickname}, DEFAULT, DEFAULT)
   	</insert>
+  	<insert id="insertMemeFile">
+		INSERT INTO MEME_FILE VALUES(SEQ_MEME_NO.CURRVAL, #{memeFileNo }, #{memeFileName }, #{memeFileExtension }, #{memeFileRename })  	
+  	</insert>
+  	
   	<!-- 조회수 증가  -->
   	<update id="updateMemeCount" parameterType="_int">
   		UPDATE MEME_TBL SET MEME_COUNT = MEME_COUNT + 1 WHERE MEME_NO = #{memeNo}

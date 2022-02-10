@@ -15,7 +15,7 @@
 	<hr>
 	<br>
 	<br>
-	<form action="/meme/register" method="get"
+	<form action="/meme/register" method="Post"
 		enctype="multipart/form-data">
 		<table align="center">
 			<tr>

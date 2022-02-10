@@ -30,20 +30,27 @@
 		</tr>
 		<tr>
 			<td>첨부파일</td>
-			<td><%-- ${memefile.memeFileName } --%></td>
+			<td>
+				 ${memeFile.memeFileName } 
+			</td>
 		</tr>
 		<tr>
-			<td>등재요청자 </td>
+			<td>등재요청자</td>
 			<td>${meme.memberNickname}</td>
 		</tr>
 	</table>
 	<br>
 	<br>
 	<hr>
-	<a href="/meme/modifyView">의견내기</a>
+	<a href="/meme/modifyView?memeName=${meme.memeName}">의견내기</a>
 
-
-
+<!-- 	<script>
+		function requestMeme(){
+			var requestValue = document.querySelector("#")
+			location.href = '/meme/modifyView?memeName=' + requestValue;
+		}
+	</script>
+ -->
 
 </body>
 </html>

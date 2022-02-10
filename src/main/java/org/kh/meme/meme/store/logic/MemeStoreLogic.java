@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.meme.domain.Meme;
+import org.kh.meme.meme.domain.MemeFile;
 import org.kh.meme.meme.domain.MemeRequest;
 import org.kh.meme.meme.domain.PageInfo;
 import org.kh.meme.meme.store.MemeStore;
@@ -33,6 +34,12 @@ public class MemeStoreLogic implements MemeStore{
 	@Override
 	public int insertMeme(SqlSession session, Meme meme) {
 		int result = session.insert("MemeMapper.insertMeme", meme);
+		return result;
+	}
+	
+	@Override
+	public int insertMemeFile(SqlSession session, MemeFile memeFile) {
+		int result = session.insert("MemeMapper.insertMemeFile", memeFile);
 		return result;
 	}
 
