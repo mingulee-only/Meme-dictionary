@@ -48,7 +48,7 @@ public class BoardController {
 		
 
 		//랭킹
-		model.addAttribute("page", "board");
+		model.addAttribute("rankmain", "board");
 		List<MemeRank> memeRankList = rService.printMemeRank();
 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
@@ -63,6 +63,39 @@ public class BoardController {
 			model.addAttribute("boardFreeRankList", boardFreeRankList);
 			model.addAttribute("quizRankList", quizRankList);
 			return ".tiles/board/write";
+		} else {
+			//일단 error 나누어서 안 적음, 필요하면 적기
+			model.addAttribute("msg", "랭킹 조회 실패");
+			return "error";
+		}
+		
+		
+	}
+	
+	@RequestMapping(value="/board/register", method=RequestMethod.POST)
+	public String boardRegister( Model model
+			, @ModelAttribute Board board) {
+		
+		System.out.println(board);
+		int result = bService.registerBoard(board);
+		
+		
+		//랭킹
+		model.addAttribute("rankmain", "board");
+		List<MemeRank> memeRankList = rService.printMemeRank();
+		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+		List<QuizRank> quizRankList = rService.printQuizRank();
+		
+		
+		if(result > 0 && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
+		
+			//랭킹
+			model.addAttribute("memeRankList", memeRankList);
+			model.addAttribute("boardPushRankList", boardPushRankList);
+			model.addAttribute("boardFreeRankList", boardFreeRankList);
+			model.addAttribute("quizRankList", quizRankList);
+			return "redirect:/board";
 		} else {
 			//일단 error 나누어서 안 적음, 필요하면 적기
 			model.addAttribute("msg", "랭킹 조회 실패");
@@ -92,7 +125,7 @@ public class BoardController {
 		
 		
 		//랭킹
-		model.addAttribute("page", "board");
+		model.addAttribute("rankmain", "board");
 		List<MemeRank> memeRankList = rService.printMemeRank();
 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();

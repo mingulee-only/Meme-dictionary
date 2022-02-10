@@ -53,7 +53,7 @@ public class BoardStoreLogic implements BoardStore{
 
 	@Override
 	public int insertBoard(SqlSession sqlSession, Board board) {
-		int result = sqlSession.insert("BoardMapper.insertBoard");
+		int result = sqlSession.insert("BoardMapper.insertBoard", board);
 		return result;
 	}
 

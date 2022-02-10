@@ -150,14 +150,14 @@
 	<script>
 // 		console.log("test");
 		
-		var page = '<c:out value="${page}"/>';
-		console.log(page);
+		var rankmain = '<c:out value="${rankmain}"/>';
+		console.log(rankmain);
 		
-		if(page == 'meme'){
+		if(rankmain == 'meme'){
 			$('#tabmenu1').prop('checked', true);
-		} else if(page == 'board'){
+		} else if(rankmain == 'board'){
 			$('#tabmenu2').prop('checked', true);
-		} else if(page == 'quiz'){
+		} else if(rankmain == 'quiz'){
 			$('#tabmenu4').prop('checked', true);
 		}
 		

@@ -37,12 +37,12 @@ th {
 
 <body>
 	<h1 align="center">글쓰기</h1>
-	<form action="/board/register" method="post">
+	<form action="/board/register" method="post" enctype="multipart/form-data">
 		<table id="boardWriteTable" align="center" border="1">
 			<tr>
 				<td align="left">
-				&nbsp&nbsp추진<input type="radio" name="boardType" value="P">
-				&nbsp&nbsp자유<input type="radio" name="boardType" value="F" checked="checked"> 	
+					&nbsp&nbsp추진<input type="radio" name="boardType" value="P">
+					&nbsp&nbsp자유<input type="radio" name="boardType" value="F" checked> 	
 				</td>
 			<tr>
 				<td align="left">&nbsp<input type="file" name="filename"></td>
@@ -68,6 +68,5 @@ th {
 		</table>
 	
 	</form>
-
 </body>
 </html>
