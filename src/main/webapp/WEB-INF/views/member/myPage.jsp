@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>퀴즈</title>
+<title>마이페이지</title>
 </head>
 <body>
-	<h1>퀴즈 페이지</h1>
+	<h3>마이페이지 입니다.</h3>
 </body>
 </html>

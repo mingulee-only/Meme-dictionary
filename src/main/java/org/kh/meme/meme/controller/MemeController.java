@@ -23,11 +23,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 @Controller
 public class MemeController {
 
 	@Autowired
 	private MemeService mService;
+  
+  @Autowired
+  private RankService rService;
 
 	//사전 등재 요청
 	@RequestMapping(value = "/meme/registerView", method = RequestMethod.GET)
@@ -162,5 +166,34 @@ public class MemeController {
 		}
 
 	}
+
+	
+//	@RequestMapping(value="/meme", method = RequestMethod.GET)
+//	public String memelist(Model model) {
+//		model.addAttribute("page", "meme");
+//		return ".tiles/meme/list";
+//	}
+	
+// 	@RequestMapping(value="/meme", method = RequestMethod.GET)
+// 	public String memeranklist(Model model) {
+// 		model.addAttribute("rankmain", "meme");
+// 		List<MemeRank> memeRankList = rService.printMemeRank();
+// 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+// 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+		
+// 		List<QuizRank> quizRankList = rService.printQuizRank();
+// 		if(!memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
+// 			model.addAttribute("memeRankList", memeRankList);
+// 			model.addAttribute("boardPushRankList", boardPushRankList);
+// 			model.addAttribute("boardFreeRankList", boardFreeRankList);
+// 			model.addAttribute("quizRankList", quizRankList);
+// 			return ".tiles/meme/list";
+// 		} else {
+// 			//일단 error 나누어서 안 적음, 필요하면 적기
+// 			model.addAttribute("msg", "랭킹 조회 실패");
+// 			return "error";
+// 		}
+		
+// 	}
 
 }

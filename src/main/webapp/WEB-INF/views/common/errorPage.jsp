@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>퀴즈</title>
+<title>에러페이지</title>
 </head>
 <body>
-	<h1>퀴즈 페이지</h1>
+	${msg }
 </body>
 </html>
