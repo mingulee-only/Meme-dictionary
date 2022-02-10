@@ -74,8 +74,7 @@ public class MemeController {
 			if (!folder.exists()) {
 				folder.mkdir();
 			}
-
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			String originalFileName = uploadFile.getOriginalFilename();
 			String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + "."
 					+ originalFileName.substring(originalFileName.lastIndexOf(".") + 1);

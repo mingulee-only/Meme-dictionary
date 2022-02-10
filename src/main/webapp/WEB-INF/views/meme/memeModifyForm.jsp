@@ -27,7 +27,6 @@
 			<tr>
 				<td>유행어</td>
 				<td><input type="text" size="50" name="memeName" value=${param.memeName }></td>
-				<%-- <td>${meme.memeName}</td> --%>
 			</tr>
 			<tr>
 				<td>요청 내용</td>
