@@ -8,9 +8,9 @@ import org.kh.meme.quiz.domain.QuizCh;
 public interface QuizService {
 
 	public List<Quiz> random();
+	public List<Quiz> printAll(int quizNo);
 	public int writeQuiz(Quiz quiz);
 	
 	public int writeQuizM(QuizCh quizCh);
-	public List<QuizCh> printAll(int quizNo);
 
 }

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 @Controller
 public class QuizController {
@@ -24,13 +23,13 @@ public class QuizController {
 	private QuizService qService;
 	
 	@ResponseBody
-	@RequestMapping(value = "/quiz/getMList.me", method = RequestMethod.GET)
+	@RequestMapping(value = "/quiz/getList.me", method = RequestMethod.GET)
 	public String getMList(
 			@RequestParam("quizNo") int quizNo) {
-		List<QuizCh> chList = qService.printAll(quizNo);
-		if(!chList.isEmpty()) {
+		List<Quiz> qList = qService.printAll(quizNo);
+		if(!qList.isEmpty()) {
 			Gson gson = new Gson();
-			return gson.toJson(chList);
+			return gson.toJson(qList);
 		}
 		return null;
 	}
@@ -39,15 +38,11 @@ public class QuizController {
 	public String result(
 			Model model,
 			@RequestParam("quizNo")String[] quizNo
-			,@RequestParam("quizQuest")String[] quizQuest
-			,@RequestParam("quizAnswer")String[] quizAnswer
 			,@RequestParam("userAnswer")String[] userAnswer
 			,@RequestParam("score")int score
 			) {
 		
 		model.addAttribute("quizNo", quizNo);
-		model.addAttribute("quizQuest", quizQuest);
-		model.addAttribute("quizAnswer", quizAnswer);
 		model.addAttribute("userAnswer", userAnswer);
 		model.addAttribute("score", score);
 		
@@ -65,7 +60,7 @@ public class QuizController {
 	public String randomQuiz() {
 		List<Quiz> qList = qService.random();
 		if(!qList.isEmpty()) {
-			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			Gson gson = new Gson();
 			return gson.toJson(qList);
 		}else {
 			return "fail";

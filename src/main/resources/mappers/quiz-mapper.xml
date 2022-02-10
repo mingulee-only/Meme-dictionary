@@ -10,10 +10,6 @@
   		<result property="quizAnswer" column="QUIZ_ANSWER"/>
   		<result property="memberId" column="MEMBER_ID"/>
   		<result property="quizDate" column="QUIZ_DATE"/>
-  	</resultMap>
-  	
-  	<resultMap type="QuizCh" id="quizChResultMap">
-  		<id property="quizNo" column="QUIZ_NO"/>
   		<result property="quizCh1" column="QUIZ_CH1"/>
   		<result property="quizCh2" column="QUIZ_CH2"/>
   		<result property="quizCh3" column="QUIZ_CH3"/>
@@ -21,7 +17,14 @@
   	</resultMap>
   	
   	<select id="selectRandom" resultMap="quizResultMap">
-  		SELECT * FROM (SELECT * FROM QUIZ_TBL ORDER BY DBMS_RANDOM.VALUE) WHERE <![CDATA[ROWNUM<=100]]>
+  		SELECT QUIZ_NO FROM (SELECT QUIZ_NO FROM QUIZ_TBL ORDER BY DBMS_RANDOM.VALUE) WHERE <![CDATA[ROWNUM<=100]]>
+  	</select>
+  	
+  	<select id="selectQuiz" resultMap="quizResultMap">
+  		SELECT * FROM QUIZ_TBL Q
+		LEFT OUTER JOIN QUIZ_CH C
+		ON Q.QUIZ_NO = C.QUIZ_NO
+		WHERE Q.QUIZ_NO = #{quizNo}
   	</select>
   	
   	<insert id="insertQuiz" parameterType="Quiz">
@@ -32,7 +35,4 @@
   		INSERT INTO QUIZ_CH VALUES(QUIZ_SEQ_NO.CURRVAL, #{quizCh1}, #{quizCh2}, #{quizCh3}, #{quizCh4})
   	</insert>
   	
-  	<select id="selectQuizM" resultMap="quizChResultMap">
-  		SELECT * FROM QUIZ_CH WHERE QUIZ_NO = #{quizNo}
-  	</select>
   </mapper>

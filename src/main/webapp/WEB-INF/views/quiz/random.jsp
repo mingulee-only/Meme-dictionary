@@ -9,24 +9,21 @@
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function(){
-    	var $quest =[]; // 문제 배열
     	var $answer = []; // 정답 배열
     	var $quizNo = []; // 퀴즈번호 배열
     	var $quizType = []; // 퀴즈 유형
-        var clock = 30; // 제한시간 설정
+        var clock = 5; // 제한시간 설정
         var nextNum = 0; // 퀴즈 인덱스
         var userAnswer = []; // 유저가 입력한 정답
         var score = 0; // 점수
         
-		getQuizList();
+        getQuizNo();
         var time = setInterval(() => { // 타이머! 0초되면 결과로!
             if(clock>=0) {
                 $("#time").html(clock);
                 clock--;
             } else {
             	$("#quizNo_").val($quizNo);
-            	$("#quizQuest_").val($quest);
-            	$("#quizAnswer_").val($answer);
             	$("#userAnswer_").val(userAnswer);
             	$("#score_").val(score);
             	
@@ -44,22 +41,17 @@
           	  
           });
         
-        // 랜덤으로 퀴즈 json으로 가져오기
-        function getQuizList() {
+        // 랜덤으로 퀴즈번호 json으로 가져오기
+        function getQuizNo() {
         	$.ajax({
 				url : "/quiz/getRandom.me",
 				type : "get",
 				dataType : "json",
 				success : function(data) {
 					for(var i in data) {
-						$quest[i] = data[i].quizQuest;
-						$answer[i] = data[i].quizAnswer;
 						$quizNo[i] = data[i].quizNo;
-						$quizType[i] = data[i].quizType;
 					}
-					$('#question').html($quest[nextNum]);
-					if($quizType[nextNum] == 'M')
-						getMList();
+					getList();
 				},
 				error : function() {
 					alert("ajax 실패!");
@@ -67,25 +59,30 @@
 			});
         }
         
-        // 객관식 문항 json으로 가져오기
-        function getMList() {
-        	$.ajax({
-				url : "/quiz/getMList.me",
-				type : "get",
-				data : {"quizNo" : $quizNo[nextNum]},
-				dataType : "json",
-				success : function(data) {
-					for(var i in data) {
-						$("#ch1").html(data[i].quizCh1);
-						$("#ch2").html(data[i].quizCh2);
-						$("#ch3").html(data[i].quizCh3);
-						$("#ch4").html(data[i].quizCh4);
+        // 랜덤 퀴즈 번호로 퀴즈 리스트 json으로 가져오기
+        function getList() {
+        	if($quizNo[nextNum] != null) {
+	        	$.ajax({
+					url : "/quiz/getList.me",
+					type : "get",
+					data : {"quizNo" : $quizNo[nextNum]},
+					dataType : "json",
+					success : function(data) {
+						for(var i in data) {
+							$('#question').html(data[i].quizQuest);
+							$('#ch1').html(data[i].quizCh1);
+							$('#ch2').html(data[i].quizCh2);
+							$('#ch3').html(data[i].quizCh3);
+							$('#ch4').html(data[i].quizCh4);
+							$answer[nextNum] = data[i].quizAnswer;
+							$quizType[nextNum] = data[i].quizType;
+						}
+					},
+					error : function() {
+						
 					}
-				},
-				error : function() {
-					alert("ajax 실패!");
-				}
-			});
+				});
+        	}
         }
         
         // 정답 맞는지 체크하고 다음을 진행
@@ -98,20 +95,15 @@
         		$('#whether').html("오답");
         		userAnswer[nextNum] =  $('#answer').val();
         	}
-        	
-        	// 객관신인 경우 보기 문항 가져오기
-        	if($quizType[nextNum] == 'M') {
-        		console.log($quizType[nextNum]);
-        		getMList();
-        	} 
-        	if($quizType[nextNum] != 'M') {
-        		console.log("test");
-        		$("#ch1").html("");
-        		$("#ch2").html("");
-        	}
-        	
 			nextNum++;
-        	$('#question').html($quest[nextNum]);
+			getList();
+			
+			if($quizType[nextNum] != "M") {
+				$('#ch1').html("");
+				$('#ch2').html("");
+				$('#ch3').html("");
+				$('#ch4').html("");
+			}
 		}
     });
 </script>
@@ -125,19 +117,14 @@
 	<br>
 	<div id="quest">
 		<b id="question"></b> <br>
-		<div id="choise">
-			<div id="ch1"></div>
-			<div id="ch2"></div>
-			<div id="ch3"></div>
-			<div id="ch4"></div>
-		</div>
+		<div id="ch1"></div>
+		<div id="ch2"></div>
+		<div id="ch3"></div>
+		<div id="ch4"></div>
 		<br> <br> <br> <input type="text" id="answer" placeholder="정답 입력후 엔터">
 	</div>
-	
 	<form action="/quiz/result.me" method="post" id="postSubmit">
 		<input type="hidden" name="quizNo" id="quizNo_">
-		<input type="hidden" name="quizQuest" id="quizQuest_">
-		<input type="hidden" name="quizAnswer" id="quizAnswer_">
 		<input type="hidden" name="userAnswer" id="userAnswer_">
 		<input type="hidden" name="score" id="score_">
 	</form>

@@ -9,9 +9,9 @@ import org.kh.meme.quiz.domain.QuizCh;
 public interface QuizStore {
 
 	public List<Quiz> selectRandom(SqlSession sqlSession);
+	public List<Quiz> selectAll(SqlSession sqlSession, int quizNo);
 	public int insertQuiz(SqlSession session, Quiz quiz);
 	
 	public int insertQuizM(SqlSession session, QuizCh quizCh);
-	public List<QuizCh> selectAllM(SqlSession sqlSession, int quizNo);
 
 }

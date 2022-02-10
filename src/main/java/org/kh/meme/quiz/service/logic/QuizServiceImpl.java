@@ -25,6 +25,12 @@ public class QuizServiceImpl implements QuizService {
 	}
 	
 	@Override
+	public List<Quiz> printAll(int quizNo) {
+		List<Quiz> qList = qStore.selectAll(sqlSession, quizNo);
+		return qList;
+	}
+	
+	@Override
 	public int writeQuiz(Quiz quiz) {
 		int result = qStore.insertQuiz(sqlSession, quiz);
 		return result;
@@ -34,12 +40,6 @@ public class QuizServiceImpl implements QuizService {
 	public int writeQuizM(QuizCh quizCh) {
 		int result = qStore.insertQuizM(sqlSession, quizCh);
 		return result;
-	}
-
-	@Override
-	public List<QuizCh> printAll(int quizNo) {
-		List<QuizCh> chList = qStore.selectAllM(sqlSession, quizNo);
-		return chList;
 	}
 
 
