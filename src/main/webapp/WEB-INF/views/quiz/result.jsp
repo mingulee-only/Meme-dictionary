@@ -19,7 +19,9 @@
 	    	${quizCh4[vs.index]} <br>
     	</c:if>
     	정답 : ${quizAnswer[vs.index]} <br>
-    	나의 답 : ${i } <br><br><br>
+    	나의 답 : ${i } <br>
+    	신고 : ${quizNo[vs.index]}
+    	<br><br><br>
 	</c:forEach>
 	최고 기록 : ${score }
 </body>

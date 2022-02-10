@@ -21,6 +21,7 @@
         var nextNum = 0; // 퀴즈 인덱스
         var userAnswer = []; // 유저가 입력한 정답
         var score = 0; // 점수
+        var $report = [];
         
         getQuizNo();
         var time = setInterval(() => { // 타이머! 0초되면 결과로!
@@ -28,7 +29,7 @@
                 $("#time").html(clock);
                 clock--;
             } else {
-            	$("#quizNo_").val($quizNo);
+            	$("#quizNo_").val($report);
             	$("#quizQuest_").val($quizQuest);
             	$("#quizAnswer_").val($answer);
             	$("#userAnswer_").val(userAnswer);
@@ -92,6 +93,7 @@
 							$quizCh2[nextNum] = data[i].quizCh2;
 							$quizCh3[nextNum] = data[i].quizCh3;
 							$quizCh4[nextNum] = data[i].quizCh4;
+							$report[nextNum] = data[i].quizNo;
 						}
 					},
 					error : function() {

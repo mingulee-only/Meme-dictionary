@@ -43,6 +43,7 @@ public class QuizController {
 			,@RequestParam("quizCh2")String[] quizCh2
 			,@RequestParam("quizCh3")String[] quizCh3
 			,@RequestParam("quizCh4")String[] quizCh4
+			,@RequestParam("quizNo")String[] quizNo
 			,@RequestParam("score")String score) {
 		model.addAttribute("quizQuest", quizQuest);
 		model.addAttribute("userAnswer", userAnswer);
@@ -51,6 +52,7 @@ public class QuizController {
 		model.addAttribute("quizCh2", quizCh2);
 		model.addAttribute("quizCh3", quizCh3);
 		model.addAttribute("quizCh4", quizCh4);
+		model.addAttribute("quizNo", quizNo);
 		model.addAttribute("score", score);
 		return ".tiles/quiz/result";
 	}
