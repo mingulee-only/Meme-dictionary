@@ -45,6 +45,7 @@
 			 	border: 1px solid black; 
 				text-align: center;
 			 	margin: auto;
+			 	background-color: white;
 			}
 			
 			#boardCommentTable2 {
@@ -52,6 +53,7 @@
 			 	border: 1px solid black; 
 				text-align: center;
 			 	margin: auto;
+			 	background-color: white;
 			}
 			
 			
