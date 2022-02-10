@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.board.domain.Board;
-import org.kh.meme.board.domain.PageInfo;
 import org.kh.meme.board.store.BoardStore;
+import org.kh.meme.common.PageInfo;
 import org.springframework.stereotype.Repository;
 
 @Repository

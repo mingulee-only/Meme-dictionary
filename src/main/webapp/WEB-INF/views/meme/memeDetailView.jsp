@@ -5,17 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <title>사전 상세 페이지</title>
+<style>
+	#memeDetailTable {
+        width: 95%; 
+		background-color: #eeeeee; 
+	 	border: 1px solid black; 
+		text-align: center;
+	 	margin: auto; 
+	}
+</style>
 </head>
 <body>
 	<br>
 	<br>
 	<h1 align="center">MEME DICTIONARY</h1>
 	<br>
-	<br>
 	<hr>
 	<br>
-	<br>
-	<table align="center" border=1>
+	<table id="memeDetailTable" align="center" border=1>
 		<tr>
 			<td>유행어</td>
 			<td>${meme.memeName}</td>
@@ -39,10 +46,11 @@
 			<td>${meme.memberNickname}</td>
 		</tr>
 	</table>
-	<br>
+
 	<br>
 	<hr>
 	<a href="/meme/modifyView?memeName=${meme.memeName}">의견내기</a>
+	<br><br><br>
 
 </body>
 </html>

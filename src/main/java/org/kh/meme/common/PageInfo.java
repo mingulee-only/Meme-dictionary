@@ -1,4 +1,4 @@
-package org.kh.meme.board.domain;
+package org.kh.meme.common;
 
 public class PageInfo {
 	private int currentPage; 	//현재 페이지

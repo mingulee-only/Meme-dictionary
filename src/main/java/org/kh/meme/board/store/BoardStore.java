@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.board.domain.Board;
-import org.kh.meme.board.domain.PageInfo;
+import org.kh.meme.common.PageInfo;
 
 public interface BoardStore {
 	//페이징 처리
