@@ -13,7 +13,7 @@
     	var $answer = []; // 정답 배열
     	var $quizNo = []; // 퀴즈번호 배열
     	var $quizType = []; // 퀴즈 유형
-        var clock = 5; // 제한시간 설정
+        var clock = 30; // 제한시간 설정
         var nextNum = 0; // 퀴즈 인덱스
         var userAnswer = []; // 유저가 입력한 정답
         var score = 0; // 점수
@@ -58,7 +58,8 @@
 						$quizType[i] = data[i].quizType;
 					}
 					$('#question').html($quest[nextNum]);
-					getMList();
+					if($quizType[nextNum] == 'M')
+						getMList();
 				},
 				error : function() {
 					alert("ajax 실패!");
@@ -99,9 +100,12 @@
         	}
         	
         	// 객관신인 경우 보기 문항 가져오기
-        	if($quizType[nextNum] == "M") {
+        	if($quizType[nextNum] == 'M') {
+        		console.log($quizType[nextNum]);
         		getMList();
-        	} else {
+        	} 
+        	if($quizType[nextNum] != 'M') {
+        		console.log("test");
         		$("#ch1").html("");
         		$("#ch2").html("");
         	}

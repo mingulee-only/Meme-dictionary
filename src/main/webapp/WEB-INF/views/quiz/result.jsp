@@ -10,7 +10,9 @@
 <body>
 	<h1>퀴즈 결과</h1>
 	<c:forEach var="i" items="${userAnswer}" varStatus="vs">
-    	문제 : ${quizQuest[vs.index]} 정답 : ${quizAnswer[vs.index]} 나의 답 : ${i } <br>
+    	문제 : ${quizQuest[vs.index]}
+    	<c:if test=""></c:if>
+    	정답 : ${quizAnswer[vs.index]} 나의 답 : ${i } <br>
 	</c:forEach>
 	최고 기록 : ${score }
 </body>
