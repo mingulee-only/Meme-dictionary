@@ -26,7 +26,7 @@ public class MemeController {
 	
 	@RequestMapping(value="/meme", method = RequestMethod.GET)
 	public String memeranklist(Model model) {
-		model.addAttribute("page", "meme");
+		model.addAttribute("rankmain", "meme");
 		List<MemeRank> memeRankList = rService.printMemeRank();
 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();

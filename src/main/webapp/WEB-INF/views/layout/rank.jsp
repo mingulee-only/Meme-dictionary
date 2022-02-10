@@ -31,30 +31,32 @@
 	  line-height:40px;
 	}
 	.tabmenu label{
-	  display:block;
-	  width:100%; 
-	  height:40px;
-	  line-height:40px;
+		color:black;
+		display:block;
+		width:100%; 
+		height:40px;
+		line-height:40px;
 	}
 	.tabmenu input{display:none;}
-	.tabCon{
+	.rankTabCon{
 	  display:none; 
 	  text-align:left; 
 	  padding: 20px;
 	  position:absolute; 
 	  left:0; top:40px; 
 	  box-sizing: border-box; 
-	  border : 5px solid #f9f9f9;
+	  border : 5px solid #ccc;
 	  width : 100%;
 	}
 	.tabmenu input:checked ~ label{
 	  background:#ccc;
 	}
-	.tabmenu input:checked ~ .tabCon{
+	.tabmenu input:checked ~ .rankTabCon{
 	  display:block;
 	}
-	table {
+	#rankTable {
 		text-align : center;
+		color: black;
 	}
 	
 </style>
@@ -64,8 +66,8 @@
 	  <ul>
 	    <li id="tab1" class="btnCon"> <input type="radio" name="tabmenu" id="tabmenu1">
 	      <label for="tabmenu1">유행어</label>
-	      <div class="tabCon">
-	      	<table align="center" border="1">
+	      <div class="rankTabCon">
+	      	<table id="rankTable" align="center" border="1">
 			<!-- 번호, 제목, 작성자, 날짜, 조회수, 첨부파일 -->
 				<tr>
 					<th width="50" >등수</th>
@@ -83,8 +85,8 @@
 	    </li>
 	    <li id="tab2" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu2">
 	      <label for="tabmenu2">추진</label>
-	      <div class="tabCon">
-	      	<table align="center" border="1">
+	      <div class="rankTabCon">
+	      	<table id="rankTable" align="center" border="1">
 			<!-- 번호, 제목, 작성자, 날짜, 조회수, 첨부파일 -->
 				<tr>
 					<th width="50" >등수</th>
@@ -104,8 +106,8 @@
 	    </li>    
 	    <li id="tab3" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu3">
 	      <label for="tabmenu3">자유</label>
-	      <div class="tabCon">
-	      		<table align="center" border="1">
+	      <div class="rankTabCon">
+	      		<table id="rankTable" align="center" border="1">
 				<!-- 번호, 제목, 작성자, 날짜, 조회수, 첨부파일 -->
 					<tr>
 						<th width="50" >등수</th>
@@ -124,8 +126,8 @@
 	    </li>
 	    <li id="tab4" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu4">
 	      <label for="tabmenu4">퀴즈</label>
-	      <div class="tabCon">
-	      	<table align="center" border="1">
+	      <div class="rankTabCon">
+	      	<table id="rankTable" align="center" border="1">
 			<!-- 번호, 제목, 작성자, 날짜, 조회수, 첨부파일 -->
 				<tr>
 					<th width="50" >등수</th>
@@ -150,14 +152,14 @@
 	<script>
 // 		console.log("test");
 		
-		var page = '<c:out value="${page}"/>';
-		console.log(page);
+		var rankmain = '<c:out value="${rankmain}"/>';
+		console.log(rankmain);
 		
-		if(page == 'meme'){
+		if(rankmain == 'meme'){
 			$('#tabmenu1').prop('checked', true);
-		} else if(page == 'board'){
+		} else if(rankmain == 'board'){
 			$('#tabmenu2').prop('checked', true);
-		} else if(page == 'quiz'){
+		} else if(rankmain == 'quiz'){
 			$('#tabmenu4').prop('checked', true);
 		}
 		

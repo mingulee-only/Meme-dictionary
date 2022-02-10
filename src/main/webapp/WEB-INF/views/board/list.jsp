@@ -24,7 +24,7 @@
 <body>
 	<h1 align="center">게시판</h1>
 	<p align="right">
-		<input type="button" value="글쓰기" />
+		<input type="button" value="글쓰기" onclick="location.href='/board/write'"/>
 	</p>
 	<table id="boardTable">
 		<tr>
@@ -47,7 +47,11 @@
     					자유
 					</c:if>
 				</td>
-				<td width="400px">${boardAllList.boardTitle }</td>
+				
+				<c:url var="bDetail" value="/board/detail">
+					<c:param name="boardNo" value="${boardAllList.boardNo }"></c:param>
+				</c:url>
+				<td width="400px"><a href="${bDetail}">${boardAllList.boardTitle }</a></td>
 				<td>${boardAllList.memberNickname }</td>
 				<td>${boardAllList.boardDate }</td>
 				<td>${boardAllList.boardCount }</td>
@@ -60,14 +64,19 @@
 	
 	<div>
 	<div style="text-align:center">
-	<button style="height:25px; width:55px"  >이전</button>
+	<c:if test="${pi.startNavi gt 1 }">
+		<button style="height:25px; width:55px">이전</button>
+	</c:if>
 	<c:forEach var="p" begin="${pi.startNavi }" end="${pi.endNavi }">
 		<c:url var="pagination" value="/board">
 			<c:param name="page" value="${p }"></c:param>
 		</c:url>
 		<a href="${pagination }">${p }</a>&nbsp;
 	</c:forEach>
-	<button style="height:25px; width:55px">다음</button>
+	<c:if test="${pi.endNavi lt maxPage }">
+		<button style="height:25px; width:55px">다음</button>
+	</c:if>
+	
 	</div>
 	</div>
 	<br>

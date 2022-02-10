@@ -21,17 +21,22 @@
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*) FROM BOARD_TBL WHERE BOARD_STATUS = 'Y'
 	</select>
+	
+	<select id="selectBoardOneById" resultMap="boardResultMap">
+  		SELECT * FROM BOARD_TBL WHERE BOARD_NO = #{boardNo }
+  	</select>
+  	
 	<select id="selectBoardAllList" resultMap="boardResultMap">
 		SELECT * FROM BOARD_TBL WHERE BOARD_STATUS = 'Y' ORDER BY BOARD_NO DESC
 	</select>
 	
-	<select id="selectOneByNo" resultMap="boardResultMap">
-		SELECT * FROM BOARD_TBL WHERE BOARD_NO = #{boardNo}
-	</select>
+	
 	<insert id="insertBoard" parameterType="Board">
-		INSERT INTO BOARD_TBL VALUES(SEQ_BOARD_NO.NEXTVAL, #{boardTitle}, #{boardContents}, #{boardWriter}, #{boardFilename }, #{boardFileRename }, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+<!-- 		INSERT INTO BOARD_TBL (BOARD_NO, BOARD_TYPE, BOARD_TITLE, MEMBER_NICKNAME, BOARD_CONTENTS) -->
+<!-- 		VALUES(BOARD_SEQ_NO.NEXTVAL, #{boardType}, #{boardTitle}, '어쩔티비', #{boardContents}) -->
+		INSERT INTO BOARD_TBL VALUES(BOARD_SEQ_NO.NEXTVAL, #{boardType}, #{boardTitle}, '어쩔티비', DEFAULT, DEFAULT,
+		 #{boardContents}, 0, 0, 0, DEFAULT)
+
 	</insert>
-	<update id="updateBoard" parameterType="Board">
-		
-	</update>
+
 </mapper>

@@ -21,12 +21,8 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@Override
-	public List<Board> printAllBoard(PageInfo pi) {
-		List<Board> boardAllList = bStore.selectAllBoard(sqlSession, pi);
-		return boardAllList;
-	}
-
+	
+	//페이징 처리
 	@Override
 	public int getListCount() {
 		int totalCount = bStore.selectListCount(sqlSession);
@@ -34,5 +30,27 @@ public class BoardServiceImpl implements BoardService {
 		return totalCount;
 	}
 	
+	
+	
+	@Override
+	public List<Board> printAllBoard(PageInfo pi) {
+		List<Board> boardAllList = bStore.selectAllBoard(sqlSession, pi);
+		return boardAllList;
+	}
+	
+	@Override
+	public Board printBoardOneByNo(Integer boardNo) {
+		Board board = bStore.selectBoardOneById(sqlSession, boardNo);
+		return board;
+	}
+
+
+	@Override
+	public int registerBoard(Board board) {
+		int result = bStore.insertBoard(sqlSession, board);
+		return result;
+	}
+
+
 
 }

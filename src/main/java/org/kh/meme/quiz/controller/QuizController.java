@@ -21,7 +21,7 @@ public class QuizController {
 	
 	@RequestMapping(value="/quiz", method = RequestMethod.GET)
 	public String quizranklist(Model model) {
-		model.addAttribute("page", "quiz");
+		model.addAttribute("rankmain", "quiz");
 		List<MemeRank> memeRankList = rService.printMemeRank();
 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();

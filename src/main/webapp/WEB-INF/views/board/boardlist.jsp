@@ -5,13 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-// 	$(function() {
-// 		$("#btnWrite").on("click", function() {
-// 			location.href = "${path}/board/board_write.jsp";
-// 		});
-// 	});
-</script>
+
 <style>
 	th {
 		background-color: #eeeeee;
@@ -33,7 +27,7 @@
 <body>
 	<h1 align="center">게시판</h1>
 	<p align="right">
-		<input type="button" value="글쓰기" />
+		<input type="button" value="글쓰기"/>
 	</p>
 	<table align="center" border="1" style="text-align: center">
 <!-- 		<tr> -->
