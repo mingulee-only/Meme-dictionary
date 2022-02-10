@@ -12,7 +12,8 @@ $(document).ready(function(){
     var plus = document.querySelector("#plus");
     var minus = document.querySelector("#minus");
     var chNum = 3;
-    var choices = document.querySelector("#choices");
+    var quizCh3 = document.querySelector("#quizCh3");
+    var quizCh4 = document.querySelector("#quizCh4");
 	
     type.addEventListener("change", function() {
         var multiple = $("#type option:selected").val();
@@ -25,16 +26,24 @@ $(document).ready(function(){
     });
 
     plus.addEventListener("click", function() {
-        if(chNum<5) {
-            choices.innerHTML += "<input type='text' name='quiz_ch"+chNum+"' placeholder='보기를 입력 해주세요'> <br>";
+        if(chNum==3) {
+        	quizCh3.style.display = "block";
+            chNum++;
+        } else if(chNum==4) {
+        	quizCh4.style.display = "block";
             chNum++;
         }
     });
     
     minus.addEventListener("click", function() {
-    	if(chNum>2) {
-    		
+    	if(chNum==4) {
+    		quizCh3.style.display = "none";
+    		chNum--;
+    	} else if(chNum==5) {
+    		quizCh4.style.display = "none";
+    		chNum--;
     	}
+    		
     });
 });
 </script>
@@ -58,9 +67,8 @@ $(document).ready(function(){
 			<input type="button" id="minus" value="-">
 			<br>
 			<input type="text" name="quizCh2" placeholder="보기를 입력 해주세요">
-			<div id="choices">
-	
-			</div>
+			<input type="text" name="quizCh3" id="quizCh3" placeholder="보기를 입력 해주세요" style="display: none">
+			<input type="text" name="quizCh4" id="quizCh4" placeholder="보기를 입력 해주세요" style="display: none">
 		</div>
 	    <input type="submit" value="등록하기">
 	    <input type="button" value="취소">
