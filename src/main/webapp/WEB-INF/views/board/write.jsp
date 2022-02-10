@@ -31,6 +31,14 @@
 	width: 99%;
 }
 
+
+#boardWriteTextarea_1 {
+
+	height:100%;
+	width:100%;
+}
+    
+    
 </style>
 
 </head>
@@ -55,12 +63,11 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="jb-th-1">
-					<input type="text" name="boardContents" value="" class="textInput2"
-						placeholder="원하는 글 내용 적기">
-				</td>
-			</tr>
-				<td colspan = "2" align="right" height="30px">
+        		<td class="jb-th-1">
+        			<textarea id="boardWriteTextarea_1" name="boardContents"></textarea>
+        		</td>
+      		</tr>
+				<td colspan="2" align="right" height="30px">
 					<input type="reset" value="취소">
 					<input type="submit" value="등록하기">
 				</td>

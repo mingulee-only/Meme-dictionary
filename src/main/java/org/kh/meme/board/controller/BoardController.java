@@ -50,9 +50,14 @@ public class BoardController {
 	
 
 	@RequestMapping(value="/board/detail", method=RequestMethod.GET)
-	public String boardDetail( Model model) {
+	public String boardDetail( Model model
+			, @RequestParam("boardNo") Integer boardNo) {
 		
 
+		//게시글 보기
+		Board oneBoard = bService.printBoardOneByNo(boardNo);
+		
+		
 		//랭킹
 		model.addAttribute("rankmain", "board");
 		List<MemeRank> memeRankList = rService.printMemeRank();
@@ -61,8 +66,10 @@ public class BoardController {
 		List<QuizRank> quizRankList = rService.printQuizRank();
  
 		
-		if(!memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
-		
+		if(oneBoard != null && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
+			//게시물
+			model.addAttribute("oneBoard", oneBoard);
+			
 			//랭킹
 			model.addAttribute("memeRankList", memeRankList);
 			model.addAttribute("boardPushRankList", boardPushRankList);
@@ -71,7 +78,7 @@ public class BoardController {
 			return ".tiles/board/detail";
 		} else {
 			//일단 error 나누어서 안 적음, 필요하면 적기
-			model.addAttribute("msg", "랭킹 조회 실패");
+			model.addAttribute("msg", "게시글 조회 실패");
 			return "error";
 		}
 		

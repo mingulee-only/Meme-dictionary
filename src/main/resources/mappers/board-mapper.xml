@@ -21,9 +21,15 @@
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*) FROM BOARD_TBL WHERE BOARD_STATUS = 'Y'
 	</select>
+	
+	<select id="selectBoardOneById" resultMap="boardResultMap">
+  		SELECT * FROM BOARD_TBL WHERE BOARD_NO = #{boardNo }
+  	</select>
+  	
 	<select id="selectBoardAllList" resultMap="boardResultMap">
 		SELECT * FROM BOARD_TBL WHERE BOARD_STATUS = 'Y' ORDER BY BOARD_NO DESC
 	</select>
+	
 	
 	<insert id="insertBoard" parameterType="Board">
 <!-- 		INSERT INTO BOARD_TBL (BOARD_NO, BOARD_TYPE, BOARD_TITLE, MEMBER_NICKNAME, BOARD_CONTENTS) -->

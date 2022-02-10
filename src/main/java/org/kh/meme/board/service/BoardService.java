@@ -7,11 +7,15 @@ import org.kh.meme.board.domain.PageInfo;
 
 
 public interface BoardService {
-
-	List<Board> printAllBoard(PageInfo pi);
-
-	int getListCount();
-
-	int registerBoard(Board board);
+	
+	//페이징처리
+	public int getListCount();
+	
+	//게시글 리스트
+	public List<Board> printAllBoard(PageInfo pi);
+	//게시글 확인
+	public Board printBoardOneByNo(Integer boardNo);
+	//게시글 추가
+	public int registerBoard(Board board);
 
 }

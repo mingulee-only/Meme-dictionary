@@ -45,16 +45,25 @@ public class BoardStoreLogic implements BoardStore{
 		return boardAllList;
 	}
 
+	//게시판
 	@Override
 	public int selectListCount(SqlSession sqlSession) {
 		int totalCount = sqlSession.selectOne("BoardMapper.selectListCount");
 		return totalCount;
 	}
-
+	
+	@Override
+	public Board selectBoardOneById(SqlSession sqlSession, Integer boardNo) {
+		Board board = sqlSession.selectOne("BoardMapper.selectBoardOneById", boardNo);
+		return board;
+	}
+	
 	@Override
 	public int insertBoard(SqlSession sqlSession, Board board) {
 		int result = sqlSession.insert("BoardMapper.insertBoard", board);
 		return result;
 	}
+
+
 
 }

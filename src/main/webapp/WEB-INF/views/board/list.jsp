@@ -47,7 +47,11 @@
     					자유
 					</c:if>
 				</td>
-				<td width="400px">${boardAllList.boardTitle }</td>
+				
+				<c:url var="bDetail" value="/board/detail">
+					<c:param name="boardNo" value="${boardAllList.boardNo }"></c:param>
+				</c:url>
+				<td width="400px"><a href="${bDetail}">${boardAllList.boardTitle }</a></td>
 				<td>${boardAllList.memberNickname }</td>
 				<td>${boardAllList.boardDate }</td>
 				<td>${boardAllList.boardCount }</td>
