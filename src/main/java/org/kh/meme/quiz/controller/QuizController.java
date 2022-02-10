@@ -35,17 +35,23 @@ public class QuizController {
 	}
 	
 	@RequestMapping(value = "/quiz/result.me", method = RequestMethod.POST)
-	public String result(
-			Model model,
-			@RequestParam("quizNo")String[] quizNo
+	public String result(Model model
 			,@RequestParam("userAnswer")String[] userAnswer
-			,@RequestParam("score")int score
-			) {
-		
-		model.addAttribute("quizNo", quizNo);
+			,@RequestParam("quizQuest")String[] quizQuest
+			,@RequestParam("quizAnswer")String[] quizAnswer
+			,@RequestParam("quizCh1")String[] quizCh1
+			,@RequestParam("quizCh2")String[] quizCh2
+			,@RequestParam("quizCh3")String[] quizCh3
+			,@RequestParam("quizCh4")String[] quizCh4
+			,@RequestParam("score")String score) {
+		model.addAttribute("quizQuest", quizQuest);
 		model.addAttribute("userAnswer", userAnswer);
+		model.addAttribute("quizAnswer", quizAnswer);
+		model.addAttribute("quizCh1", quizCh1);
+		model.addAttribute("quizCh2", quizCh2);
+		model.addAttribute("quizCh3", quizCh3);
+		model.addAttribute("quizCh4", quizCh4);
 		model.addAttribute("score", score);
-		
 		return ".tiles/quiz/result";
 	}
 	

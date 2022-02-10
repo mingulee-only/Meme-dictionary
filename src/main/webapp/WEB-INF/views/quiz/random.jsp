@@ -12,6 +12,11 @@
     	var $answer = []; // 정답 배열
     	var $quizNo = []; // 퀴즈번호 배열
     	var $quizType = []; // 퀴즈 유형
+    	var $quizQuest = []; // 문제 배열
+    	var $quizCh1 = []; // 객관식 배열
+    	var $quizCh2 = []; // 객관식 배열
+    	var $quizCh3 = []; // 객관식 배열
+    	var $quizCh4 = []; // 객관식 배열
         var clock = 5; // 제한시간 설정
         var nextNum = 0; // 퀴즈 인덱스
         var userAnswer = []; // 유저가 입력한 정답
@@ -24,8 +29,14 @@
                 clock--;
             } else {
             	$("#quizNo_").val($quizNo);
+            	$("#quizQuest_").val($quizQuest);
+            	$("#quizAnswer_").val($answer);
             	$("#userAnswer_").val(userAnswer);
             	$("#score_").val(score);
+            	$("#quizCh1_").val($quizCh1);
+            	$("#quizCh2_").val($quizCh2);
+            	$("#quizCh3_").val($quizCh3);
+            	$("#quizCh4_").val($quizCh4);
             	
             	
             	$("#postSubmit").submit();
@@ -76,6 +87,11 @@
 							$('#ch4').html(data[i].quizCh4);
 							$answer[nextNum] = data[i].quizAnswer;
 							$quizType[nextNum] = data[i].quizType;
+							$quizQuest[nextNum] = data[i].quizQuest;
+							$quizCh1[nextNum] = data[i].quizCh1;
+							$quizCh2[nextNum] = data[i].quizCh2;
+							$quizCh3[nextNum] = data[i].quizCh3;
+							$quizCh4[nextNum] = data[i].quizCh4;
 						}
 					},
 					error : function() {
@@ -125,6 +141,12 @@
 	</div>
 	<form action="/quiz/result.me" method="post" id="postSubmit">
 		<input type="hidden" name="quizNo" id="quizNo_">
+		<input type="hidden" name="quizQuest" id="quizQuest_">
+		<input type="hidden" name="quizAnswer" id="quizAnswer_">
+		<input type="hidden" name="quizCh1" id="quizCh1_">
+		<input type="hidden" name="quizCh2" id="quizCh2_">
+		<input type="hidden" name="quizCh3" id="quizCh3_">
+		<input type="hidden" name="quizCh4" id="quizCh4_">
 		<input type="hidden" name="userAnswer" id="userAnswer_">
 		<input type="hidden" name="score" id="score_">
 	</form>
