@@ -112,15 +112,14 @@
 				<form action='<c:url value="/board/detail_like">
 					<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
 					</c:url>' method="post">
-<%-- 					<c:if test="${empty sessionScope.loginMember }"> --%>
-<!-- 	           			추천 -->
-<%-- 	           		</c:if> --%>
-<%-- 	           		<c:if test="${not empty loginMember }"> --%>
-<!-- 	           			<input type="submit" id="recommand" value="추천"> -->
-<%-- 	                </c:if> --%>
-	                <input type="submit" id="recommand" value="추천">
+					<c:if test="${empty sessionScope.loginMember }">
+	           			추천
+	           		</c:if>
+	           		<c:if test="${not empty loginMember }">
+	           			<input type="submit" id="recommand" value="추천">
+	                </c:if>
+
 					<br>${oneBoard.boardLike }
-				
 				</form>
 				
 			</td>

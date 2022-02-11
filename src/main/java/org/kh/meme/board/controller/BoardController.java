@@ -59,13 +59,13 @@ public class BoardController {
 			, @RequestParam("boardNo") Integer boardNo) {
 		
 		//추천 수
-//		HttpSession session = request.getSession();
-//		Member member = (Member) session.getAttribute("loginMember");
-//		System.out.println(member);
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("loginMember");
+		System.out.println(member);
 		
 		Recommend recommend = new Recommend();
 		recommend.setBoardNo(boardNo);
-		recommend.setRecommendId("khuser01");
+		recommend.setRecommendId(member.getMemberId());
 		
 		String referer = request.getHeader("Referer");
 		
