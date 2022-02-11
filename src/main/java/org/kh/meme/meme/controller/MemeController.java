@@ -130,6 +130,7 @@ public class MemeController {
 	// 사전 수정삭제 요청
 	@RequestMapping(value = "/meme/requestView", method = RequestMethod.GET)
 	public String memeRequestView(@RequestParam(value = "memeNo") int memeNo) {
+
 		return "meme/memeRequestForm";
 	}
 
@@ -151,6 +152,7 @@ public class MemeController {
 			return "redirect:/";
 		}
 	}
+
 
 //	@RequestMapping(value="/meme", method = RequestMethod.GET)
 //	public String memelist(Model model) {
