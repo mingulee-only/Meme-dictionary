@@ -1,7 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -39,6 +39,7 @@
       <link rel="stylesheet" href="./resources/css/owl.carousel.min.css">
       <link rel="stylesheet" href="./resources/css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      
    </head>
    <body>
       <!-- banner bg main start -->
@@ -61,30 +62,24 @@
                <div class="containt_main">
                   <div id="mySidenav" class="sidenav">
                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                     <a href="index.html">유행어사전</a>
-                     <a href="fashion.html">유행어 추진/자유게시판</a>
-                     <a href="electronic.html">유행어 퀴즈</a>
-                     <a href="jewellery.html">타임라인</a>
+                     <a href="/">유행어사전</a>
+                     <a href="/board">유행어 추진/자유게시판</a>
+                     <a href="/quiz">유행어 퀴즈</a>
+                     <a href="#">타임라인</a>
                   </div>
                   <span class="toggle_icon" onclick="openNav()"><img src="./resources/images/toggle-icon.png" style="width: 35px"></span>
-                  
-<!--                   <div class="main"> -->
-<!--                      Another variation with a button -->
-<!--                      <div class="input-group"> -->
-<!--                         <input type="text" class="form-control" placeholder="유행어를 검색하세요"> -->
-<!--                         <div class="input-group-append"> -->
-<!--                            <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 "> -->
-<!--                            <i class="fa fa-search"></i> -->
-<!--                            </button> -->
-<!--                         </div> -->
-<!--                      </div> -->
-<!--                   </div> -->
 				  <div class="main"></div>
                   <div class="header_box">
                      <div class="login_menu" >
                         <ul>
-                           <li><a href="#">
-                              <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                           <li>
+                           		<c:if test="${empty sessionScope.loginMember }">
+	                     			<a href="/login.oj"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
+	                     		</c:if>
+	                     		<c:if test="${not empty loginMember }">
+	                     			<a href="/myPage.oj"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
+	                          	</c:if>
+	                          	
                            </li>
                         </ul>
                      </div>
@@ -105,16 +100,17 @@
                               
                               <div class="main">
 			                     <div class="input-group">
-			                        <input type="text" class="form-control" width="20px" placeholder="ex) 어쩔티비">
+			                        <input type="text" class="form-control" id="keyword" value="" width="20px" placeholder="ex) 어쩔티비">
+			                        
 			                        <div class="input-group-append">
-			                           <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+			                           <button class="btn btn-secondary" type="button" onclick="searchMeme();" style="background-color: #f26522; border-color:#f26522 ">
 			                           <i class="fa fa-search"></i>
 			                           </button>
 			                        </div>
 			                     </div>
 			                  </div>
                               
-                              <div class="buynow_bt"><a href="#">직접 등록하러 가기</a></div>
+                              <div class="buynow_bt"><a href="/meme/registerView">직접 등록하러 가기</a></div>
                            </div>
                         </div>
                      </div>
@@ -165,6 +161,14 @@
          function closeNav() {
            document.getElementById("mySidenav").style.width = "0";
          }
+         
+         function searchMeme(){
+        	 var searchValue = document.querySelector("#keyword").value;
+        	 location.href='/meme/detail?memeName='+searchValue;
+         } 
+
+         
       </script>
    </body>
+
 </html>
