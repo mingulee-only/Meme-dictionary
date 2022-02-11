@@ -67,10 +67,12 @@ public class MemeServiceImpl implements MemeService{
 
 	//사전 수정삭제 요청
 	@Override
-	public int modifyMeme(MemeRequest memeRequest) {
+	public int requestMeme(MemeRequest memeRequest) {
 		int result = mStore.insertMemeRequest(sqlSession, memeRequest);
 		return result;
 	}
+
+
 
 
 

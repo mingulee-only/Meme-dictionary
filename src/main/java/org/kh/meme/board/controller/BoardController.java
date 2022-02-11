@@ -26,6 +26,7 @@ public class BoardController {
 	
 	@Autowired
 	private RankService rService;
+	
 
 	@RequestMapping(value="/boardtest", method=RequestMethod.GET)
 	public String boardTestList() {
@@ -69,6 +70,10 @@ public class BoardController {
 		if(oneBoard != null && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
 			//게시물
 			model.addAttribute("oneBoard", oneBoard);
+			
+			//게시물 조회수 ++
+//			bService.boardCount(oneBoard.getBoardNo());
+			bService.boardCount(boardNo);
 			
 			//랭킹
 			model.addAttribute("memeRankList", memeRankList);

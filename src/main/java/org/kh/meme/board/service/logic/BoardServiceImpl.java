@@ -31,18 +31,29 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	
-	
+	//게시물 리스트
 	@Override
 	public List<Board> printAllBoard(PageInfo pi) {
 		List<Board> boardAllList = bStore.selectAllBoard(sqlSession, pi);
 		return boardAllList;
 	}
 	
+	//게시물 디테일 페이지 확인
 	@Override
 	public Board printBoardOneByNo(Integer boardNo) {
 		Board board = bStore.selectBoardOneById(sqlSession, boardNo);
 		return board;
 	}
+	
+
+	//게시물 조회수 증가
+	@Override
+	public int boardCount(Integer boardNo) {
+		int result = bStore.updateBoardCount(sqlSession, boardNo);
+		return result;
+	}
+
+	
 
 
 	@Override
@@ -50,6 +61,7 @@ public class BoardServiceImpl implements BoardService {
 		int result = bStore.insertBoard(sqlSession, board);
 		return result;
 	}
+
 
 
 

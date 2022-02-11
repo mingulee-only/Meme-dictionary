@@ -15,7 +15,11 @@ public interface BoardService {
 	public List<Board> printAllBoard(PageInfo pi);
 	//게시글 확인
 	public Board printBoardOneByNo(Integer boardNo);
+	public int boardCount(Integer boardNo);
+	
 	//게시글 추가
 	public int registerBoard(Board board);
+
+	
 
 }

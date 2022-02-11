@@ -65,7 +65,8 @@
                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                      <a href="/">유행어사전</a>
                      <a href="/board">유행어 추진/자유게시판</a>
-                     <a href="/quiz">유행어 퀴즈</a>
+                     <a href="/quiz/random.me">유행어 퀴즈 풀기</a>
+                     <a href="/quiz/writeView.me">유행어 퀴즈 만들기</a>
                      <a href="#">타임라인</a>
                   </div>
 
@@ -77,10 +78,10 @@
                         <ul>
                            <li>
                            		<c:if test="${empty sessionScope.loginMember }">
-	                     			<a href="/login.oj"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
+	                     			<a href="/login.me"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
 	                     		</c:if>
 	                     		<c:if test="${not empty loginMember }">
-	                     			<a href="/myPage.oj"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
+	                     			<a href="/myPage.me"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
 	                          	</c:if>
 	                          	
                            </li>
