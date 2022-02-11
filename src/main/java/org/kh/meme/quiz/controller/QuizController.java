@@ -177,10 +177,8 @@ public class QuizController {
 			,@ModelAttribute Quiz quiz
 			,@ModelAttribute QuizCh quizCh
 			,@ModelAttribute QuizFile quizFile
-			,@RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile
+			,@RequestParam(value="uploadFile", required = false) MultipartFile uploadFile
 			, HttpServletRequest request) {
-		
-				
 		try {
 			if(!uploadFile.getOriginalFilename().contentEquals("")) {
 				// 실제 파일 저장

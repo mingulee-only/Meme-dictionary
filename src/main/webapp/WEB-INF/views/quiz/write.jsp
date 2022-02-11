@@ -58,7 +58,7 @@ $(document).ready(function(){
 </head>
 <body>
 	<h1 align="center">유행어 퀴즈 등록</h1>
-	<form action="/quiz/write.me" method="post" id="quizWriteForm">
+	<form action="/quiz/write.me" method="post" id="quizWriteForm" enctype="multipart/form-data">
 	    <select name="quizType" id="type">
 	        <option value="" selected disabled>유형선택</option>
 	        <option value="O">OX퀴즈</option>
