@@ -8,11 +8,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.kh.meme.common.PageInfo;
 import org.kh.meme.common.Pagination;
 import org.kh.meme.meme.domain.Meme;
 import org.kh.meme.meme.domain.MemeFile;
 import org.kh.meme.meme.domain.MemeRequest;
+//import org.kh.meme.meme.domain.PageInfo;
 import org.kh.meme.meme.service.MemeService;
 import org.kh.meme.rank.domain.BoardRank;
 import org.kh.meme.rank.domain.MemeRank;
@@ -33,48 +33,47 @@ public class MemeController {
 
 	@Autowired
 	private MemeService mService;
-  
+
 	@Autowired
 	private RankService rService;
 
-	//사전 등재 요청
-	//등록하러 가기
+	// 사전 등재 요청
 	@RequestMapping(value = "/meme/registerView", method = RequestMethod.GET)
 	public String memeWriteView() {
 
 		return "meme/memeRegisterForm";
 	}
 
-	//등록
 	@RequestMapping(value = "/meme/register", method = RequestMethod.POST)
-	public String memeRegister(Model model, @ModelAttribute Meme meme ,@ModelAttribute MemeFile memeFile
-			, @RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile, HttpServletRequest request) {
+	public String memeRegister(Model model, @ModelAttribute Meme meme, @ModelAttribute MemeFile memeFile,
+			@RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile,
+			HttpServletRequest request) {
 		try {
 			if (!uploadFile.getOriginalFilename().contentEquals("")) {
-				String renameFileName = saveFile(uploadFile, request); 
-				if (renameFileName != null) { 
+				String renameFileName = saveFile(uploadFile, request);
+				if (renameFileName != null) {
 					memeFile.setMemeFileName(uploadFile.getOriginalFilename());
 					memeFile.setMemeFileRename(renameFileName);
 				}
 			}
 			int result = mService.registerMeme(meme, memeFile);
 			if (result > 0) {
-				System.out.println("등록 성공");
+				System.out.println("등록성공");
 				return "redirect:/";
 
 			} else {
 				System.out.println("등록 실패");
-				return "error";
+				return "redirect:/";
 			}
 
 		} catch (Exception e) {
 			System.out.println("실패");
-			return "error";
-
+			return "redirect:/";
 		}
 
 	}
 
+	// 첨부파일저장
 	public String saveFile(MultipartFile uploadFile, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "\\memeUploadFiles";
@@ -86,7 +85,7 @@ public class MemeController {
 		String originalFileName = uploadFile.getOriginalFilename();
 		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + "."
 				+ originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
-		String filePath = folder + "\\" + renameFileName; 
+		String filePath = folder + "\\" + renameFileName;
 		try {
 			uploadFile.transferTo(new File(filePath));
 		} catch (IllegalStateException e) {
@@ -98,49 +97,39 @@ public class MemeController {
 
 	}
 
-	// 사전 목록
-	@RequestMapping(value = "/meme/list", method = RequestMethod.GET)
-	public String memeListView(Model model, @RequestParam(value = "page", required = false) Integer page) {
-		int currentPage = (page != null) ? page : 1;
-		int totalCount = mService.getListCount();
-		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
-		List<Meme> mList = mService.printAll(pi);
-		try {
-			if (!mList.isEmpty()) {
-				model.addAttribute("mList", mList);
-				model.addAttribute("pi", pi);
-				return "meme/memeListView";
-			} else {
-				System.out.println("전체조회실패");
-				return "error";
-			}
-		} catch (Exception e) {
-			System.out.println("실패");
-			return "error";
+	/*
+	 * // 사전 목록
+	 * 
+	 * @RequestMapping(value = "/meme/list", method = RequestMethod.GET) public
+	 * String memeListView(Model model, @RequestParam(value = "page", required =
+	 * false) Integer page) { int currentPage = (page != null) ? page : 1; int
+	 * totalCount = mService.getListCount(); PageInfo pi =
+	 * Pagination.getPageInfo(currentPage, totalCount); List<Meme> mList =
+	 * mService.printAll(pi); try { if (!mList.isEmpty()) {
+	 * model.addAttribute("mList", mList); model.addAttribute("pi", pi); return
+	 * "meme/memeListView"; } else { System.out.println("전체조회실패"); return
+	 * "redirect:/"; } } catch (Exception e) { System.out.println("실패"); return
+	 * "redirect:/";
+	 * 
+	 * } }
+	 */
 
-		}
-	}
-	
-
-	//사전 상세보기
-	@RequestMapping(value = "/meme/detail2", method = RequestMethod.GET)
-	public String memeDetailView(Model model
-			, @RequestParam(value = "memeName") String memeName
-			) {
-		Meme meme = mService.printOneByMeme(memeName);
-		
-		MemeFile memeFile = mService.printOneByMemeFile(meme.getMemeNo());
-		if (meme != null) {
-			// 조회수 증가
-			mService.memeCountUpdate(meme.getMemeNo());
-			model.addAttribute("meme", meme);
-			model.addAttribute("memeFile", memeFile);
-			return ".tiles/meme/memeDetailView";
-		} else {
-			return "error";
-		}
-		
-	}
+	// 사전 상세보기
+//	@RequestMapping(value = "/meme/detail", method = RequestMethod.GET)
+//	public String memeDetailView(Model model, @RequestParam(value = "memeName") String memeName) {
+//		Meme meme = mService.printOneByMeme(memeName);
+//		MemeFile memeFile = mService.printOneByMemeFile(meme.getMemeNo());
+//		if (meme != null) {
+//			// 조회수 증가
+//			mService.memeCountUpdate(meme.getMemeNo());
+//			model.addAttribute("meme", meme);
+//			model.addAttribute("memeFile", memeFile);
+//			return "meme/memeDetailView";
+//		} else {
+//			return "redirct:/";
+//		}
+//
+//	}
 
 
 	//사전 상세보기
@@ -167,6 +156,7 @@ public class MemeController {
  			// 조회수 증가
  			mService.memeCountUpdate(meme.getMemeNo());
 			model.addAttribute("meme", meme);
+			
 			model.addAttribute("memeFile", memeFile);
 			return ".tiles/meme/memeDetailView";
  		} else {
@@ -174,61 +164,59 @@ public class MemeController {
  			model.addAttribute("msg", "사전 상세 조회 실패");
  			return "error";
  		}
-
-		
 	}
 
 	// 사전 수정삭제 요청
-	@RequestMapping(value = "/meme/modifyView", method = RequestMethod.GET)
-	public String memeModifyView() {
+	@RequestMapping(value = "/meme/requestView", method = RequestMethod.GET)
+	public String memeRequestView(@RequestParam(value = "memeNo") int memeNo) {
 
-		return "meme/memeModifyForm";
+		return "meme/memeRequestForm";
 	}
 
 	// 사전 수정삭제 요청 등록
-	@RequestMapping(value = "/meme/modify", method = RequestMethod.GET)
-	public String memeModify(Model model, @ModelAttribute MemeRequest memeRequest) {
+	@RequestMapping(value = "/meme/request", method = RequestMethod.GET)
+	public String memeReqeust(Model model, @ModelAttribute MemeRequest memeRequest) {
+
 		try {
-			int result = mService.modifyMeme(memeRequest);
+			int result = mService.requestMeme(memeRequest);
 			if (result > 0) {
 				System.out.println("등록성공");
-				return "error";
+				return "redirect:/";
 
 			} else {
-				model.addAttribute("msg", "수정 실패");
+				System.out.println("등록 실패");
 				return "error";
-
 			}
-
 		} catch (Exception e) {
-			model.addAttribute("msg", "수정 실패");
+			e.printStackTrace();
 			return "error";
-
 		}
-
 	}
 
-	
- 	@RequestMapping(value="/meme", method = RequestMethod.GET)
- 	public String memeranklist(Model model) {
- 		model.addAttribute("rankmain", "meme");
- 		List<MemeRank> memeRankList = rService.printMemeRank();
- 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
- 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
-		
- 		List<QuizRank> quizRankList = rService.printQuizRank();
- 		if(!memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
- 			model.addAttribute("memeRankList", memeRankList);
- 			model.addAttribute("boardPushRankList", boardPushRankList);
- 			model.addAttribute("boardFreeRankList", boardFreeRankList);
- 			model.addAttribute("quizRankList", quizRankList);
- 			return ".tiles/meme/list";
- 		} else {
- 			//일단 error 나누어서 안 적음, 필요하면 적기
- 			model.addAttribute("msg", "랭킹 조회 실패");
- 			return "error";
- 		}
-		
- 	}
 
-}
+//	@RequestMapping(value="/meme", method = RequestMethod.GET)
+//	public String memelist(Model model) {
+//		model.addAttribute("page", "meme");
+//		return ".tiles/meme/list";
+//	}
+
+// 	@RequestMapping(value="/meme", method = RequestMethod.GET)
+// 	public String memeranklist(Model model) {
+// 		model.addAttribute("rankmain", "meme");
+// 		List<MemeRank> memeRankList = rService.printMemeRank();
+// 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+// 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+
+// 		List<QuizRank> quizRankList = rService.printQuizRank();
+// 		if(!memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
+// 			model.addAttribute("memeRankList", memeRankList);
+// 			model.addAttribute("boardPushRankList", boardPushRankList);
+// 			model.addAttribute("boardFreeRankList", boardFreeRankList);
+// 			model.addAttribute("quizRankList", quizRankList);
+// 			return ".tiles/meme/list";
+// 		} else {
+// 			//일단 error 나누어서 안 적음, 필요하면 적기
+// 			model.addAttribute("msg", "랭킹 조회 실패");
+// 			return "error";
+ 		}
+

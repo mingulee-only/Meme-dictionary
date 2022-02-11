@@ -40,4 +40,7 @@
 
 	</insert>
 
+	<update id="updateBoardCount" parameterType="_int">
+		UPDATE BOARD_TBL SET BOARD_COUNT = BOARD_COUNT + 1 WHERE BOARD_NO = #{boardNo}
+	</update>
 </mapper>
