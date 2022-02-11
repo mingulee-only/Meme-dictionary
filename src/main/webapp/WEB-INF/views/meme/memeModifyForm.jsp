@@ -15,8 +15,7 @@
 	<hr>
 	<br>
 	<br>
-		<form action="/meme/modify" method="get"
-		enctype="multipart/form-data">
+	<form action="/meme/modify" method="get" enctype="multipart/form-data">
 		<table align="center">
 			<tr>
 				<td>요청 유형</td>

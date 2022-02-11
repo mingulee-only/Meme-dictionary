@@ -192,7 +192,7 @@ public class MemeController {
 			int result = mService.modifyMeme(memeRequest);
 			if (result > 0) {
 				System.out.println("등록성공");
-				return "error";
+				return ".tiles/meme/detail";
 
 			} else {
 				model.addAttribute("msg", "수정 실패");
