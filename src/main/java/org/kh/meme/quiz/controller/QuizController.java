@@ -99,14 +99,15 @@ public class QuizController {
 			,@RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile
 			, HttpServletRequest request) {
 		try {
-//			if(!uploadFile.getOriginalFilename().equals("")) {
-//				// 실제 파일 저장
-//				String renameFileName = saveFile(uploadFile, request);
-//				
-//				if(renameFileName != null) {
-//					
-//				}
-//			}
+			if(!uploadFile.getOriginalFilename().equals("")) {
+				// 실제 파일 저장
+				String renameFileName = saveFile(uploadFile, request);
+				
+				if(renameFileName != null) {
+//					quiz.setQuizFilename(uploadFile.getOriginalFilename());
+//					quiz.setQuizFileRename(renameFileName);
+				}
+			}
 			
 			quiz.setMemberId("khuser01");
 			int result = qService.writeQuiz(quiz);

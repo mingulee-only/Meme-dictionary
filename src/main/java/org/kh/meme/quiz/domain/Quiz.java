@@ -13,6 +13,8 @@ public class Quiz {
 	private String quizCh2;
 	private String quizCh3;
 	private String quizCh4;
+	private String setQuizFilename;
+	private String setQuizFileRename;
 	
 	public Quiz() {}
 
@@ -95,6 +97,7 @@ public class Quiz {
 	public void setQuizCh4(String quizCh4) {
 		this.quizCh4 = quizCh4;
 	}
+
 	
 	
 	
