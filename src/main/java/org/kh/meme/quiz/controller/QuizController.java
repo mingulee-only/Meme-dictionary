@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.service.QuizService;
+import org.kh.meme.rank.domain.BoardRank;
+import org.kh.meme.rank.domain.MemeRank;
+import org.kh.meme.rank.domain.QuizRank;
+import org.kh.meme.rank.service.RankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,12 +36,17 @@ public class QuizController {
 	@Autowired
 	private QuizService qService;
 	
+	@Autowired
+	private RankService rService;
+	
+	
 	//퀴즈 랜덤으로 가져오기
 	@ResponseBody
 	@RequestMapping(value = "/quiz/getList.me", method = RequestMethod.GET)
 	public void getMList(
 			@RequestParam("quizNo") int quizNo
 			,HttpServletResponse response) throws Exception {
+		
 		List<Quiz> qList = qService.printAll(quizNo);
 		response.setCharacterEncoding("utf-8");
 		if(!qList.isEmpty()) {
@@ -58,6 +67,17 @@ public class QuizController {
 			,@RequestParam("quizCh4")String[] quizCh4
 			,@RequestParam("quizNo")String[] quizNo
 			,@RequestParam("score")String score) {
+		
+
+		//랭킹
+		model.addAttribute("rankmain", "quiz");
+		List<MemeRank> memeRankList = rService.printMemeRank();
+		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+		List<QuizRank> quizRankList = rService.printQuizRank();
+ 
+		
+		
 		model.addAttribute("quizQuest", quizQuest);
 		model.addAttribute("userAnswer", userAnswer);
 		model.addAttribute("quizAnswer", quizAnswer);
@@ -67,13 +87,35 @@ public class QuizController {
 		model.addAttribute("quizCh4", quizCh4);
 		model.addAttribute("quizNo", quizNo);
 		model.addAttribute("score", score);
+
+		//랭킹
+		model.addAttribute("memeRankList", memeRankList);
+		model.addAttribute("boardPushRankList", boardPushRankList);
+		model.addAttribute("boardFreeRankList", boardFreeRankList);
+		model.addAttribute("quizRankList", quizRankList);
 		
 		return ".tiles/quiz/result";
 	}
 	
 	//랜덤 퀴즈
 	@RequestMapping(value = "/quiz/random.me", method = RequestMethod.GET)
-	public String random() {
+	public String random( Model model ) {
+		
+		//랭킹
+		model.addAttribute("rankmain", "quiz");
+		List<MemeRank> memeRankList = rService.printMemeRank();
+		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+		List<QuizRank> quizRankList = rService.printQuizRank();
+		
+				
+				
+		//랭킹
+		model.addAttribute("memeRankList", memeRankList);
+		model.addAttribute("boardPushRankList", boardPushRankList);
+		model.addAttribute("boardFreeRankList", boardFreeRankList);
+		model.addAttribute("quizRankList", quizRankList);
+		
 		return ".tiles/quiz/random";
 	}
 	
@@ -92,7 +134,23 @@ public class QuizController {
 	
 	//퀴즈만들기
 	@RequestMapping(value = "/quiz/writeView.me", method = RequestMethod.GET)
-	public String quizWriteView() {
+	public String quizWriteView(Model model) {
+
+		//랭킹
+		model.addAttribute("rankmain", "quiz");
+		List<MemeRank> memeRankList = rService.printMemeRank();
+		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+		List<QuizRank> quizRankList = rService.printQuizRank();
+		
+
+		//랭킹
+		model.addAttribute("memeRankList", memeRankList);
+		model.addAttribute("boardPushRankList", boardPushRankList);
+		model.addAttribute("boardFreeRankList", boardFreeRankList);
+		model.addAttribute("quizRankList", quizRankList);
+		
+		
 		return ".tiles/quiz/write";
 	}
 	
@@ -103,6 +161,9 @@ public class QuizController {
 			,@ModelAttribute QuizCh quizCh
 			,@RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile
 			, HttpServletRequest request) {
+		
+	
+				
 		try {
 //			if(!uploadFile.getOriginalFilename().equals("")) {
 //				// 실제 파일 저장
@@ -112,6 +173,7 @@ public class QuizController {
 //					
 //				}
 //			}
+			
 			
 			quiz.setMemberId("khuser01");
 			int result = qService.writeQuiz(quiz);
