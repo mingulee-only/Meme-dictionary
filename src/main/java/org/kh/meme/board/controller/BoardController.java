@@ -26,6 +26,7 @@ public class BoardController {
 	
 	@Autowired
 	private RankService rService;
+	
 
 	@RequestMapping(value="/boardtest", method=RequestMethod.GET)
 	public String boardTestList() {
