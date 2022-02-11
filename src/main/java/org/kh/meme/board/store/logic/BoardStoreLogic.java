@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.Recommend;
 import org.kh.meme.board.store.BoardStore;
 import org.kh.meme.common.PageInfo;
 import org.springframework.stereotype.Repository;
@@ -64,6 +65,22 @@ public class BoardStoreLogic implements BoardStore{
 		int result = sqlSession.update("BoardMapper.updateBoardCount", boardNo);
 		return result;
 	}
+	
+	//게시물 추천수
+	
+	@Override
+	public int insertBoardLike(SqlSession sqlSession, Recommend recommend) {
+		int result = sqlSession.update("BoardMapper.insertBoardLike", recommend);
+		return result;
+	}
+
+	@Override
+	public int updateBoardLike(SqlSession sqlSession, Recommend recommend) {
+		int result = sqlSession.insert("BoardMapper.updateBoardLike", recommend);
+		return result;
+	}
+
+	
 
 	//게시물 작성
 	@Override
@@ -71,6 +88,8 @@ public class BoardStoreLogic implements BoardStore{
 		int result = sqlSession.insert("BoardMapper.insertBoard", board);
 		return result;
 	}
+
+
 
 
 
