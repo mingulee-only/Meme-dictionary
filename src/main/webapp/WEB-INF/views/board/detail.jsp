@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <style>
      #boardDetailTable {
@@ -57,16 +58,6 @@
 	    .textInput2 {
 	        padding-top: 80px;
 	    }
-	    
-        #commandinput{
-            width: 100%;
-            height: 100px;;
-        }
-        
-        #Cinputbutton{
-            width: 100%;
-            height: 100px;
-        }
         
         p {
         	color: black;
@@ -156,10 +147,10 @@
 	<table id="boardCommentTable2" border="1" width="95%">
 	    <tr>
 	        <td width="90%">
-	        	<input type="text" id="commandinput">
+	        	<input type="text" id="commandinput" style="width: 100%; height: 100px;">
 	        </td>
 	        <td>
-	        	<input type="button" value="등록" id="Cinputbutton">
+	        	<input type="button" value="등록" id="Cinputbutton" style="width: 100%; height: 100px;">
 	        </td>
 	    </tr>
 	</table>
