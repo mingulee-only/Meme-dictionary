@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.kh.meme.quiz.domain.Quiz;
+import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.service.QuizService;
 import org.kh.meme.rank.domain.BoardRank;
@@ -58,6 +59,7 @@ public class QuizController {
 	//퀴즈 결과
 	@RequestMapping(value = "/quiz/result.me", method = RequestMethod.POST)
 	public String result(Model model
+			,@ModelAttribute QuizBest qBest
 			,@RequestParam("userAnswer")String[] userAnswer
 			,@RequestParam("quizQuest")String[] quizQuest
 			,@RequestParam("quizAnswer")String[] quizAnswer
@@ -75,9 +77,8 @@ public class QuizController {
 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
 		List<QuizRank> quizRankList = rService.printQuizRank();
- 
 		
-		
+		// 퀴즈 결과
 		model.addAttribute("quizQuest", quizQuest);
 		model.addAttribute("userAnswer", userAnswer);
 		model.addAttribute("quizAnswer", quizAnswer);
@@ -87,6 +88,23 @@ public class QuizController {
 		model.addAttribute("quizCh4", quizCh4);
 		model.addAttribute("quizNo", quizNo);
 		model.addAttribute("score", score);
+		
+		String memberId="khuser03";
+		int bestScore = 0;
+		// 최고 기록 저장
+		try {
+			// 회원의 기존 기록
+			bestScore = qService.ScoreOne(memberId);
+		} catch (Exception e) {
+			
+		} finally {
+			if(bestScore<Integer.parseInt(score)) {
+				qBest.setMemberId(memberId);
+				qBest.setBestScore(Integer.parseInt(score));
+				qService.updateScore(qBest);
+				
+			}
+		}
 
 		//랭킹
 		model.addAttribute("memeRankList", memeRankList);
@@ -107,8 +125,6 @@ public class QuizController {
 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
 		List<QuizRank> quizRankList = rService.printQuizRank();
-		
-				
 				
 		//랭킹
 		model.addAttribute("memeRankList", memeRankList);
@@ -172,6 +188,7 @@ public class QuizController {
 //					
 //				}
 //			}
+			
 			
 			
 			quiz.setMemberId("khuser01");
