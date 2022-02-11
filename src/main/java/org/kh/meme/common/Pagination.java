@@ -1,10 +1,6 @@
 package org.kh.meme.common;
 
 
-import org.kh.meme.meme.domain.PageInfo;
-import org.kh.meme.board.domain.PageInfo;
-
-
 public class Pagination {
 	public static PageInfo getPageInfo(int currentPage, int totalCount) {
 		PageInfo pi = null;

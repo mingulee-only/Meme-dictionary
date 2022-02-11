@@ -3,10 +3,11 @@ package org.kh.meme.meme.store;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.kh.meme.common.PageInfo;
 import org.kh.meme.meme.domain.Meme;
 import org.kh.meme.meme.domain.MemeFile;
 import org.kh.meme.meme.domain.MemeRequest;
-import org.kh.meme.meme.domain.PageInfo;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 public interface MemeStore {

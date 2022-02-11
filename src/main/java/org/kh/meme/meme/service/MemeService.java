@@ -2,10 +2,11 @@ package org.kh.meme.meme.service;
 
 import java.util.List;
 
+import org.kh.meme.common.PageInfo;
 import org.kh.meme.meme.domain.Meme;
 import org.kh.meme.meme.domain.MemeFile;
 import org.kh.meme.meme.domain.MemeRequest;
-import org.kh.meme.meme.domain.PageInfo;
+
 
 public interface MemeService {
 	

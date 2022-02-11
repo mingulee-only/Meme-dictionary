@@ -33,7 +33,7 @@
   		SELECT * FROM MEME_TBL WHERE MEME_NAME = #{memeName} AND MEME_STATUS = 'Y'
   	</select>
   	<select id="selectOneByMemeFile" resultMap="memeFileResultMap">
-  		SELECT *FROM MEME_FILE WHERE MEME_NO = #{memeNo}
+  		SELECT * FROM MEME_FILE WHERE MEME_NO = #{memeNo}
   	</select>
   	
   	<!-- 유행어 등록 요청 -->
