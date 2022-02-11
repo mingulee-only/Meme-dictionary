@@ -57,7 +57,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<h1 align="center">유행어 등록</h1>
+	<h1 align="center">유행어 퀴즈 등록</h1>
 	<form action="/quiz/write.me" method="post" id="quizWriteForm">
 	    <select name="quizType" id="type">
 	        <option value="" selected disabled>유형선택</option>
