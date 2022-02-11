@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.Recommend;
 import org.kh.meme.board.service.BoardService;
 import org.kh.meme.board.store.BoardStore;
 import org.kh.meme.common.PageInfo;
@@ -53,14 +54,32 @@ public class BoardServiceImpl implements BoardService {
 		return result;
 	}
 
+	//게시물 추천 수
 	
+	@Override
+	public int addBoardLike(Recommend recommend) {
+		int result = bStore.insertBoardLike(sqlSession, recommend);
+		return result;
+	}
 
 
+	@Override
+	public int updateBoardLike(Recommend recommend) {
+		int result = bStore.updateBoardLike(sqlSession, recommend);
+		return result;
+	}
+
+	
+	//게시글 추가
 	@Override
 	public int registerBoard(Board board) {
 		int result = bStore.insertBoard(sqlSession, board);
 		return result;
 	}
+
+
+
+
 
 
 
