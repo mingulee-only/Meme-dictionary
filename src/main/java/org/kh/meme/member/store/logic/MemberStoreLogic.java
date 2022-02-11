@@ -39,6 +39,12 @@ public class MemberStoreLogic implements MemberStore{
 		return result;
 	}
 
+	@Override
+	public int memberDelete(SqlSession sqlSession, String memberId) {
+		int result = sqlSession.delete("MemberMapper.deleteMember", memberId);
+		return result;
+	}
+
 
 
 }

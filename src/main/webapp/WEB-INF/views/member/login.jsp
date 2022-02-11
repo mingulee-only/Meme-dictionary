@@ -16,11 +16,23 @@
 	margin-left : -150px;
 	background-color : lightgray;
 	}
+	.header {
+	height : 20%;
+	}
+	.body {
+	height : 80%;
+	padding-left : 50px;
+	margin-top : 20px;
+	}
 </style>
 </head>
 <body>
 	<div class="inner">
+		<div class="header">
 		<h3 align="center">로그인</h3>
+		<br>		
+		</div>
+		<div class="body">
 		<form action="/member/login.me" method="post">
 			<table align="center">
 				<tr align="center">
@@ -30,7 +42,7 @@
 					<td colspan="2"><input type="password" name="memberPw" placeholder="비밀번호"></td>	
 				</tr>
 				<tr align="center">
-					<td><input type="submit" value="로그인"></td>
+					<td><button type="submit">로그인</button></td>
 					<td><button type="button" onclick="location.href='/member/join.me'">회원가입</button>
 				</tr>
 				<tr align="center">
@@ -38,6 +50,7 @@
 				</tr>
 			</table>	
 		</form>
+		</div>
 	</div>
 </body>
 </html>

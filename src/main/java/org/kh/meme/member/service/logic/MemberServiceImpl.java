@@ -45,6 +45,12 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 
+	@Override
+	public int memberRemove(String memberId) {
+		int result = mStore.memberDelete(sqlSession, memberId);
+		return result;
+	}
+
 
 
 }

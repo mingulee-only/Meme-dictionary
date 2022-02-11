@@ -36,48 +36,48 @@ public class MemberController {
 				return "redirect:/";
 			}else {
 				request.setAttribute("msg", "로그인 실패");
-				return "common/errorPage";
+				return ".tiles/common/errorPage";
 			}
 		}catch (Exception e) {
 			request.setAttribute("msg", e.toString());
-			return "common/errorPage";
+			return ".tiles/common/errorPage";
 		}
 	}
 	
 	@RequestMapping(value="/member/join.me", method=RequestMethod.GET)
 	public String memberJoin() {
 		
-		return "member/memberJoin";
+		return ".tiles/member/memberJoin";
 	}
 	
 	@RequestMapping(value="/member/findId.me", method=RequestMethod.GET)
 	public String memberFindIdRedirect() {
-		return "member/findId";
+		return ".tiles/member/findId";
 	}
 	
 	@RequestMapping(value="/member/findPw.me", method=RequestMethod.GET)
 	public String memberFindPwRedirect() {
-		return "member/findPw";
+		return ".tiles/member/findPw";
 	}
 	
 	@RequestMapping(value="/member/myQuiz.me", method=RequestMethod.GET)
 	public String memberMyQuizRedirect() {
-		return "member/mypage/myQuiz";
+		return "member/myQuiz";
 	}
 	
 	@RequestMapping(value="/member/myComment.me", method=RequestMethod.GET)
 	public String memberMyCommentRedirect() {
-		return "member/mypage/myComment";
+		return "member/myComment";
 	}
 	
 	@RequestMapping(value="/member/modifyMember.me", method=RequestMethod.GET)
 	public String memberModifyMemberRedirect() {
-		return "member/mypage/modifyMember";
+		return "member/modifyMember";
 	}
 	
 	@RequestMapping(value="/member/deleteMember.me", method=RequestMethod.GET)
 	public String memberDeleteMemberRedirect() {
-		return "member/mypage/deleteMember";
+		return "member/deleteMember";
 	}
 	
 
@@ -89,7 +89,7 @@ public class MemberController {
 			return "redirect:/";
 		}else {
 			request.setAttribute("msg", "로그아웃 실패!");
-			return "common/errorPage";
+			return ".tiles/common/errorPage";
 		}
 	}
 	
@@ -100,14 +100,14 @@ public class MemberController {
 		try {
 			int result = mService.registerMember(member);
 			if(result > 0) {
-				return "redirect:/";
+				return "member/joinSuccess";
 			}else {
 				model.addAttribute("msg", "회원가입 실패");
-				return "common/errorPage";
+				return ".tiles/common/errorPage";
 			}			
 		}catch(Exception e) {
 			model.addAttribute("msg", e.toString());
-			return "common/errorPage";
+			return ".tiles/common/errorPage";
 		}
 	}
 	
@@ -119,14 +119,14 @@ public class MemberController {
 			Member memberOne = mService.findMemberId(member);
 			if(memberOne != null) {
 				model.addAttribute("member", memberOne);
-				return "member/findIdPrint";
+				return ".tiles/member/findIdPrint";
 			}else {
 				request.setAttribute("msg", "아이디 찾기 실패");
-				return "common/errorPage";
+				return ".tiles/common/errorPage";
 			}
 		}catch(Exception e) {
 			request.setAttribute("msg", e.toString());
-			return "common/errorPage";
+			return ".tiles/common/errorPage";
 		}
 	}
 	
@@ -138,14 +138,14 @@ public class MemberController {
 			Member memberOne = mService.findMemberPw(member);
 			if(memberOne != null) {
 				model.addAttribute("member", memberOne);
-				return "member/pwReset";
+				return ".tiles/member/pwReset";
 			}else {
 				request.setAttribute("msg", "비밀번호 찾기 실패");
-				return "common/errorPage";
+				return ".tiles/common/errorPage";
 			}
 		}catch(Exception e) {
 			request.setAttribute("msg", e.toString());
-			return "common/errorPage";
+			return ".tiles/common/errorPage";
 			}
 		}
 	
@@ -156,14 +156,28 @@ public class MemberController {
 		try {
 			int result = mService.memberPwReset(member);
 			if(result > 0) {
-				return "member/pwResetSuccess";
+				return ".tiles/member/pwResetSuccess";
 			}else {
 				request.setAttribute("msg", "비밀번호 재설정 실패");
-				return "common/errorPage";
+				return ".tiles/common/errorPage";
 			}
 		}catch(Exception e) {
 			request.setAttribute("msg", e.toString());
-			return "common/errorPage";
+			return ".tiles/common/errorPage";
+		}
+	}
+	
+	@RequestMapping(value="/member/remove.me", method=RequestMethod.GET)
+	public String memberRemove(HttpServletRequest request) {
+		String memberId = request.getParameter("memberId");
+		int result = mService.memberRemove(memberId);
+		if(result > 0) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			return "member/removeSuccess";
+		}else {
+			request.setAttribute("msg", "회원탈퇴 실패!");
+			return ".tiles.common/errorPage";
 		}
 	}
 	

@@ -14,6 +14,8 @@ public interface MemberService {
 
 	int memberPwReset(Member member);
 
+	int memberRemove(String memberId);
+
 
 
 }
