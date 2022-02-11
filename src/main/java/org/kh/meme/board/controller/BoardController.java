@@ -2,10 +2,15 @@ package org.kh.meme.board.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.Recommend;
 import org.kh.meme.board.service.BoardService;
 import org.kh.meme.common.PageInfo;
 import org.kh.meme.common.Pagination;
+import org.kh.meme.member.domain.Member;
 import org.kh.meme.rank.domain.BoardRank;
 import org.kh.meme.rank.domain.MemeRank;
 import org.kh.meme.rank.domain.QuizRank;
@@ -49,15 +54,50 @@ public class BoardController {
 		return "/board/boardDetailView";
 	}
 	
-
-	@RequestMapping(value="/board/detail", method=RequestMethod.GET)
-	public String boardDetail( Model model
+	@RequestMapping(value="/board/detail_like", method=RequestMethod.POST)
+	public String boardDetailLike( HttpServletRequest request 
 			, @RequestParam("boardNo") Integer boardNo) {
 		
+		//추천 수
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("loginMember");
+		System.out.println(member);
+		
+		Recommend recommend = new Recommend();
+		recommend.setBoardNo(boardNo);
+		recommend.setRecommendId(member.getMemberId());
+		
+		String referer = request.getHeader("Referer");
+		
+		//추천 수
+		//게시물 recommend 추가
+		int boardLikeData = bService.addBoardLike(recommend);
+		
+		if(boardLikeData > 0) {
+			//게시물 추천수
+			//board_tbl boardLike update
+			int boardLike = bService.updateBoardLike(recommend);
+			System.out.println("board에 게시물 추천수 반영!");
+			return "redirect:"+referer;
+		} else {
+			System.out.println("board에 게시물 추천수 반영 안됨!");
+			return "redirect:"+referer;
+		}
+		
+	}
 
+	@RequestMapping(value="/board/detail", method=RequestMethod.GET)
+	public String boardDetail( HttpServletRequest request
+			, Model model
+			, @RequestParam("boardNo") Integer boardNo) {
+		
+		//memberId session에서 가져오기
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("loginMember");
+		System.out.println(member);
+		
 		//게시글 보기
 		Board oneBoard = bService.printBoardOneByNo(boardNo);
-		
 		
 		//랭킹
 		model.addAttribute("rankmain", "board");
@@ -75,12 +115,12 @@ public class BoardController {
 //			bService.boardCount(oneBoard.getBoardNo());
 			bService.boardCount(boardNo);
 			
-			//랭킹
 			model.addAttribute("memeRankList", memeRankList);
-			model.addAttribute("boardPushRankList", boardPushRankList);
-			model.addAttribute("boardFreeRankList", boardFreeRankList);
-			model.addAttribute("quizRankList", quizRankList);
-			return ".tiles/board/detail";
+				model.addAttribute("boardPushRankList", boardPushRankList);
+				model.addAttribute("boardFreeRankList", boardFreeRankList);
+				model.addAttribute("quizRankList", quizRankList);
+				return ".tiles/board/detail";
+			
 		} else {
 			//일단 error 나누어서 안 적음, 필요하면 적기
 			model.addAttribute("msg", "게시글 조회 실패");

@@ -21,7 +21,7 @@ public class MemberController {
 	@Autowired
 	private MemberService mService;
 
-	@RequestMapping(value="/member/login.me", method=RequestMethod.POST)
+	@RequestMapping(value="/member/login.me", method=RequestMethod.GET)
 	public String memberLogin(HttpServletRequest request
 			,@RequestParam("memberId") String memberId
 			,@RequestParam("memberPw") String memberPw) {

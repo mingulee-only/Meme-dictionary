@@ -35,4 +35,15 @@
   		INSERT INTO QUIZ_CH VALUES(QUIZ_SEQ_NO.CURRVAL, #{quizCh1}, #{quizCh2}, #{quizCh3}, #{quizCh4})
   	</insert>
   	
+  	<select id="selectScore" resultType="_int">
+  		SELECT QUIZ_BESTSCORE FROM QUIZ_BEST WHERE MEMBER_ID = #{memberId}
+  	</select>
+  	
+  	<update id="updateScore" parameterType="QuizBest">
+	MERGE INTO QUIZ_BEST USING DUAL ON (MEMBER_ID = #{memberId})
+	WHEN MATCHED THEN
+    UPDATE SET QUIZ_BESTSCORE=#{bestScore}, QUIZ_BESTDATE = DEFAULT
+	WHEN NOT MATCHED THEN
+    INSERT(MEMBER_ID, QUIZ_BESTSCORE, QUIZ_BESTDATE) VALUES(#{memberId}, #{bestScore}, DEFAULT)
+  	</update>
   </mapper>

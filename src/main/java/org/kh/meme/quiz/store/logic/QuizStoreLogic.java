@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.quiz.domain.Quiz;
+import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.store.QuizStore;
 import org.springframework.stereotype.Repository;
@@ -34,6 +35,23 @@ public class QuizStoreLogic implements QuizStore {
 		List<Quiz> qList = sqlSession.selectList("QuizMapper.selectQuiz", quizNo);
 		return qList;
 	}
+
+	@Override
+	public int selectScore(SqlSession sqlSession, String memberId) {
+		int result = sqlSession.selectOne("QuizMapper.selectScore", memberId);
+		if(result>0) {
+			return result;
+		}else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int updateScore(SqlSession sqlSession, QuizBest qBest) {
+		int result = sqlSession.update("QuizMapper.updateScore", qBest);
+		return result;
+	}
+
 
 
 }

@@ -3,6 +3,7 @@ package org.kh.meme.quiz.service.logic;
 import java.util.List;
 
 import org.kh.meme.quiz.domain.Quiz;
+import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.service.QuizService;
 import org.kh.meme.quiz.store.QuizStore;
@@ -41,6 +42,21 @@ public class QuizServiceImpl implements QuizService {
 		int result = qStore.insertQuizM(sqlSession, quizCh);
 		return result;
 	}
+
+	@Override
+	public int ScoreOne(String memberId) {
+			int result = qStore.selectScore(sqlSession, memberId);
+			return result;
+	}
+
+	@Override
+	public int updateScore(QuizBest qBest) {
+		int result = qStore.updateScore(sqlSession, qBest);
+		return result;
+	}
+
+
+
 
 
 }

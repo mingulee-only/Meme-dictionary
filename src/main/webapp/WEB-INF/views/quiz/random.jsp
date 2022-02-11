@@ -86,6 +86,15 @@
 							$('#ch2').html(data[i].quizCh2);
 							$('#ch3').html(data[i].quizCh3);
 							$('#ch4').html(data[i].quizCh4);
+							
+							if(data[i].quizType == "O") {
+								$('#type').html("OX 퀴즈");
+							}else if (data[i].quizType == "S") {
+								$('#type').html("단답형 퀴즈");
+							}else {
+								$('#type').html("객관식 퀴즈");
+							}
+							
 							$answer[nextNum] = data[i].quizAnswer;
 							$quizType[nextNum] = data[i].quizType;
 							$quizQuest[nextNum] = data[i].quizQuest;
@@ -128,6 +137,7 @@
 </head>
 <body>
 	<h1>랜덤 퀴즈</h1>
+	<div id="type"></div>
 	제한시간 :
 	<B><span id="time"></span></B> 초
 	&nbsp;&nbsp;&nbsp;

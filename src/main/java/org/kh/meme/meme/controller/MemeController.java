@@ -140,7 +140,7 @@ public class MemeController {
 		try {
 			Meme meme = mService.printOneByMeme(memeName);
 			MemeFile memeFile = mService.printOneByMemeFile(meme.getMemeNo());
-			
+
 			model.addAttribute("rankmain", "meme");
 	 		List<MemeRank> memeRankList = rService.printMemeRank();
 	 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
@@ -189,13 +189,14 @@ public class MemeController {
 			if (result > 0) {
 				System.out.println("등록성공");
 				return "redirect:/";
+
 			} else {
 				System.out.println("등록 실패");
-				return "redirect:/";
+				return "error";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "redirect:/";
+			return "error";
 		}
 	}
 
