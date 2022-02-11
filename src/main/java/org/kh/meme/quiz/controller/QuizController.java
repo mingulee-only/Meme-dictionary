@@ -154,7 +154,7 @@ public class QuizController {
 		return ".tiles/quiz/write";
 	}
 	
-	@RequestMapping(value = "/quiz/write.me", method = RequestMethod.GET)
+	@RequestMapping(value = "/quiz/write.me", method = RequestMethod.POST)
 	public String quizWrite(
 			Model model
 			,@ModelAttribute Quiz quiz
@@ -181,7 +181,7 @@ public class QuizController {
 				qService.writeQuizM(quizCh);
 			}
 			if(result>0) {
-				return ".tiles/quiz/write";
+				return "redirect:/quiz/writeView.me";
 			} else {
 				model.addAttribute("msg", "퀴즈등록 실패");
 				return "common/errorPage";

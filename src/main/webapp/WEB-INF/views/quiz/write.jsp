@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+#quizWriteForm {
+	border: 1px solid black;
+	width:400px;
+	text-align: left;
+	margin: auto;
+}
+</style>
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -49,8 +57,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<h1>유행어 등록</h1>
-	<form action="/quiz/write.me" method="get">
+	<h1 align="center">유행어 등록</h1>
+	<form action="/quiz/write.me" method="post" id="quizWriteForm">
 	    <select name="quizType" id="type">
 	        <option value="" selected disabled>유형선택</option>
 	        <option value="O">OX퀴즈</option>
@@ -70,8 +78,7 @@ $(document).ready(function(){
 			<input type="text" name="quizCh3" id="quizCh3" placeholder="보기를 입력 해주세요" style="display: none">
 			<input type="text" name="quizCh4" id="quizCh4" placeholder="보기를 입력 해주세요" style="display: none">
 		</div>
-		첨부파일<br>
-		<input type="file" name="uploadFile"><br>
+		첨부파일 <input type="file" name="uploadFile"><br>
 	    <input type="submit" value="등록하기">
 	    <input type="button" value="취소">
     </form>
