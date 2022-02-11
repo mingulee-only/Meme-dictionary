@@ -15,35 +15,33 @@
 	<hr>
 	<br>
 	<br>
-	<form action="/meme/request" method="get" enctype="multipart/form-data">
-		<input type="hidden" name="memeNo" value="${param.memeNo }">
+		<form action="/meme/modify" method="get"
+		enctype="multipart/form-data">
 		<table align="center">
 			<tr>
 				<td>요청 유형</td>
-				<td>
-					<select name="memeRequestType">
-							<option value="M" selected="selectd">수정</option>
-							<option value="D">삭제</option>
-					</select>
-				</td>
+				<td><select name="memeRequestType">
+						<option value="M" selected="selectd">수정</option>
+						<option value="D">삭제</option></td>
 			</tr>
 			<tr>
 				<td>유행어</td>
-				<td>
-					<input type="text" size="50" name="memeName"
-						value=${param.memeName }>
-				</td>
+				<td><input type="text" size="50" name="memeName" value=${param.memeName }></td>
 			</tr>
 			<tr>
 				<td>요청 내용</td>
 				<td><textarea rows="5" cols="50" name="memeRequestContents"></textarea></td>
 			</tr>
 			<tr>
+				<td>첨부파일</td>
+				<td><input type="file" name="uploadFile"></td>
+			</tr>
+			<tr>
 				<td colspan="2" align="center"><input type="submit" value="등록">
 			</tr>
 		</table>
 	</form>
-
+	
 
 </body>
 </html>

@@ -21,6 +21,6 @@ public interface MemeService {
 	//사전 조회수
 	public int memeCountUpdate(int memeNo);
 	//사전 수정삭제요청 등록
-	public int requestMeme(MemeRequest memeRequest);
+	int requestMeme(MemeRequest memeRequest);
 
 }
