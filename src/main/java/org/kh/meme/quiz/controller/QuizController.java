@@ -66,6 +66,8 @@ public class QuizController {
 		model.addAttribute("quizNo", quizNo);
 		model.addAttribute("score", score);
 		
+		
+		
 		return ".tiles/quiz/result";
 	}
 	

@@ -17,7 +17,7 @@
     	var $quizCh2 = []; // 객관식 배열
     	var $quizCh3 = []; // 객관식 배열
     	var $quizCh4 = []; // 객관식 배열
-        var clock = 5; // 제한시간 설정
+        var clock = 30; // 제한시간 설정
         var nextNum = 0; // 퀴즈 인덱스
         var userAnswer = []; // 유저가 입력한 정답
         var score = 0; // 점수
@@ -86,6 +86,15 @@
 							$('#ch2').html(data[i].quizCh2);
 							$('#ch3').html(data[i].quizCh3);
 							$('#ch4').html(data[i].quizCh4);
+							
+							if(data[i].quizType == "O") {
+								$('#type').html("OX 퀴즈");
+							}else if (data[i].quizType == "S") {
+								$('#type').html("단답형 퀴즈");
+							}else {
+								$('#type').html("객관식 퀴즈");
+							}
+							
 							$answer[nextNum] = data[i].quizAnswer;
 							$quizType[nextNum] = data[i].quizType;
 							$quizQuest[nextNum] = data[i].quizQuest;
@@ -127,7 +136,8 @@
 </script>
 </head>
 <body>
-	<h1>랜덤 퀴즈</h1>
+	<h1>랜덤 퀴즈</h1><br>
+	<div id="type"></div>
 	제한시간 :
 	<B><span id="time"></span></B> 초
 	&nbsp;&nbsp;&nbsp;
