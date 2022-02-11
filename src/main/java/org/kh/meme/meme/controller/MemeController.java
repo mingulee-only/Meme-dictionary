@@ -167,6 +167,7 @@ public class MemeController {
  			// 조회수 증가
  			mService.memeCountUpdate(meme.getMemeNo());
 			model.addAttribute("meme", meme);
+			
 			model.addAttribute("memeFile", memeFile);
 			return ".tiles/meme/memeDetailView";
  		} else {

@@ -71,6 +71,10 @@ public class BoardController {
 			//게시물
 			model.addAttribute("oneBoard", oneBoard);
 			
+			//게시물 조회수 ++
+//			bService.boardCount(oneBoard.getBoardNo());
+			bService.boardCount(boardNo);
+			
 			//랭킹
 			model.addAttribute("memeRankList", memeRankList);
 			model.addAttribute("boardPushRankList", boardPushRankList);

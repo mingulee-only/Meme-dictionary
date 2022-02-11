@@ -14,8 +14,12 @@ public interface BoardStore {
 	//게시판
 	public List<Board> selectAllBoard(SqlSession sqlSession, PageInfo pi);
 	public Board selectBoardOneById(SqlSession sqlSession, Integer boardNo);
+	public int updateBoardCount(SqlSession sqlSession, Integer boardNo);
 	
 	public int insertBoard(SqlSession sqlSession, Board board);
+
+
+	
 	
 
 }
