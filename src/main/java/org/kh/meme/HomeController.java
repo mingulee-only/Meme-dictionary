@@ -29,11 +29,11 @@ public class HomeController {
 	}
 	@RequestMapping(value="/login.me", method=RequestMethod.GET)
 	public String login() {
-		return ".tiles/member/login";
+		return "member/login";
 	}
 	@RequestMapping(value="/myPage.me", method=RequestMethod.GET)
 	public String myPage() {
-		return ".tiles/member/myPage";
+		return "member/mypage/myPage";
 	}
 	
 }
