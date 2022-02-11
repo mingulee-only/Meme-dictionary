@@ -109,8 +109,20 @@
 	
 		<tr height="100px">
 			<td text align="center">
-				input type="button" id="recommand" value="추천">
-				<br>${oneBoard.boardLike }
+				<form action='<c:url value="/board/detail_like">
+					<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
+					</c:url>' method="post">
+<%-- 					<c:if test="${empty sessionScope.loginMember }"> --%>
+<!-- 	           			추천 -->
+<%-- 	           		</c:if> --%>
+<%-- 	           		<c:if test="${not empty loginMember }"> --%>
+<!-- 	           			<input type="submit" id="recommand" value="추천"> -->
+<%-- 	                </c:if> --%>
+	                <input type="submit" id="recommand" value="추천">
+					<br>${oneBoard.boardLike }
+				
+				</form>
+				
 			</td>
 		</tr>
 	</table>
