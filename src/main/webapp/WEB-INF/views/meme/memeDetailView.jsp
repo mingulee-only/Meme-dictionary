@@ -51,7 +51,7 @@
 
 	<br>
 	<hr>
-	<a href="/meme/modifyView?memeName=${meme.memeName}">의견내기</a>
+	<a href="/meme/requestView?memeName=${meme.memeName}&memeNo=${meme.memeNo}">의견내기</a>
 	<br><br><br>
 
 </body>
