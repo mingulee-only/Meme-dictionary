@@ -5,6 +5,7 @@ import java.util.List;
 import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
+import org.kh.meme.quiz.domain.QuizFile;
 import org.kh.meme.quiz.service.QuizService;
 import org.kh.meme.quiz.store.QuizStore;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -32,8 +33,11 @@ public class QuizServiceImpl implements QuizService {
 	}
 	
 	@Override
-	public int writeQuiz(Quiz quiz) {
+	public int writeQuiz(Quiz quiz, QuizFile quizFile) {
 		int result = qStore.insertQuiz(sqlSession, quiz);
+		if(result > 0) {
+			qStore.insertQuizFile(sqlSession, quizFile);
+		}
 		return result;
 	}
 
