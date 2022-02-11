@@ -125,6 +125,44 @@ public class MemeController {
 		} else {
 			return "redirct:/";
 		}
+
+	}
+
+
+	//사전 상세보기
+	@RequestMapping(value = "/meme/detail", method = RequestMethod.GET)
+	public String memeDetail(Model model
+			, @RequestParam(value = "memeName") String memeName
+			) {
+		Meme meme = mService.printOneByMeme(memeName);
+		
+		MemeFile memeFile = mService.printOneByMemeFile(meme.getMemeNo());
+		
+		model.addAttribute("rankmain", "meme");
+ 		List<MemeRank> memeRankList = rService.printMemeRank();
+ 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+ 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+		
+ 		List<QuizRank> quizRankList = rService.printQuizRank();
+ 		if(meme != null && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
+ 			model.addAttribute("memeRankList", memeRankList);
+ 			model.addAttribute("boardPushRankList", boardPushRankList);
+ 			model.addAttribute("boardFreeRankList", boardFreeRankList);
+ 			model.addAttribute("quizRankList", quizRankList);
+ 			
+ 			// 조회수 증가
+ 			mService.memeCountUpdate(meme.getMemeNo());
+			model.addAttribute("meme", meme);
+			
+			model.addAttribute("memeFile", memeFile);
+			return ".tiles/meme/memeDetailView";
+ 		} else {
+ 			//일단 error 나누어서 안 적음, 필요하면 적기
+ 			model.addAttribute("msg", "사전 상세 조회 실패");
+ 			return "error";
+ 		}
+
+		
 	}
 
 	// 사전 수정삭제 요청

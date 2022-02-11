@@ -9,7 +9,10 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="org.kh.meme.meme.domain.Meme" alias="Meme"/>
+		
 		<typeAlias type="org.kh.meme.board.domain.Board" alias="Board"/>
+		<typeAlias type="org.kh.meme.quiz.domain.Quiz" alias="Quiz"/>
+		<typeAlias type="org.kh.meme.quiz.domain.QuizCh" alias="QuizCh"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/board-mapper.xml"/>
@@ -17,8 +20,7 @@
 
 		<mapper resource="mappers/meme-mapper.xml"/>
 		<mapper resource="mappers/quiz-mapper.xml"/>
-<!-- 		<mapper resource="mappers/timeline-mapper.xml"/> -->
 		<mapper resource="mappers/rank-mapper.xml"/>
-		<mapper resource="mappers/timeline-mapper.xml"/>
+<!-- 		<mapper resource="mappers/timeline-mapper.xml"/> -->
 	</mappers>
 </configuration>
