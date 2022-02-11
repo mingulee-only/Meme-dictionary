@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -8,13 +8,13 @@
 <meta charset="UTF-8">
 <title>사전 상세 페이지</title>
 <style>
-	#memeDetailTable {
-        width: 95%; 
-		background-color: #eeeeee; 
-	 	border: 1px solid black; 
-		text-align: center;
-	 	margin: auto; 
-	}
+#memeDetailTable {
+	width: 95%;
+	background-color: #eeeeee;
+	border: 1px solid black;
+	text-align: center;
+	margin: auto;
+}
 </style>
 </head>
 <body>
@@ -35,12 +35,12 @@
 		</tr>
 		<tr>
 			<td height="300">유행어 설명</td>
-			<td width = "700">${meme.memeContents}</td>
+			<td width="700">${meme.memeContents}</td>
 		</tr>
 		<tr>
 			<td>첨부파일</td>
-			<td>
-				 <img src="/resources/memeUploadFiles/${memeFile.memeFileRename }">
+			<td><img
+				src="/resources/memeUploadFiles/${memeFile.memeFileRename }">
 			</td>
 		</tr>
 		<tr>
@@ -51,8 +51,15 @@
 
 	<br>
 	<hr>
-	<a href="/meme/requestView?memeName=${meme.memeName}&memeNo=${meme.memeNo}">의견내기</a>
-	<br><br><br>
+
+	<div align="right">
+		<a href="/meme/requestView?memeName=${meme.memeName}&memeNo=${meme.memeNo}"> 의견내기 &nbsp;&nbsp;</a>
+	</div>
+
+
+	<br>
+	<br>
+	<br>
 
 </body>
 </html>

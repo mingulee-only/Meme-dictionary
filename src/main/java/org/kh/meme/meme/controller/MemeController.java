@@ -147,7 +147,7 @@ public class MemeController {
 	 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
 			
 	 		List<QuizRank> quizRankList = rService.printQuizRank();
-	 		if(meme != null && memeFile != null && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
+	 		if(meme != null && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
 	 			model.addAttribute("memeRankList", memeRankList);
 	 			model.addAttribute("boardPushRankList", boardPushRankList);
 	 			model.addAttribute("boardFreeRankList", boardFreeRankList);
@@ -162,12 +162,12 @@ public class MemeController {
 	 		} else {
 	 			//일단 error 나누어서 안 적음, 필요하면 적기
 	 			model.addAttribute("msg", "사전 상세 조회 실패");
-	 			return "common/errorPage";
+	 			return "common/memeErrorPage";
 	 		}
 			
 		}catch(Exception e){
 			model.addAttribute("msg", "사전에 등재되지 않은 단어 입니다. 유행어를 등록 해주세요~!");
-			return "common/errorPage";
+			return "common/memeErrorPage";
 			
 		}
 
