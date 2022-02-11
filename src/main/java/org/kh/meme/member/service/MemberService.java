@@ -6,6 +6,8 @@ public interface MemberService {
 
 	Member loginMember(Member member);
 
+	Member selectById(String memberId);
+	
 	Member findMemberId(Member member);
 
 	Member findMemberPw(Member member);
@@ -14,7 +16,11 @@ public interface MemberService {
 
 	int memberPwReset(Member member);
 
+	int modifyMember(Member member);
+
 	int memberRemove(String memberId);
+
+
 
 
 

@@ -9,6 +9,8 @@ public interface MemberStore {
 	
 	public Member selectLoginMember(SqlSession sqlSession, Member member);
 
+	public Member selectById(SqlSession sqlSession, String memberId);
+
 	public Member selectMemberByNameEmail(SqlSession sqlSession, Member member);
 
 	public Member selectMemberByIdNameEmail(SqlSession sqlSession, Member member);
@@ -17,7 +19,11 @@ public interface MemberStore {
 
 	public int updateMemberPw(SqlSession sqlSession, Member member);
 
+	public int updateMember(SqlSession sqlSession, Member member);
+	
 	public int memberDelete(SqlSession sqlSession, String memberId);
+
+
 
 
 

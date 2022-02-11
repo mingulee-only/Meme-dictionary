@@ -93,16 +93,29 @@ li a.current {
 				<li><a href="/member/deleteMember.me">회원 탈퇴</a></li>
 			</ul>
 			<br> <br>
-			<table align="center" border="1">
-				<tr class="header">
-					<td id="part">구분</td>
-					<td id="no">글번호</td>
-					<td id="title">글제목</td>
-					<td id="date">작성일</td>
-					<td id="like">추천수</td>
-					<td id="comment">댓글수</td>
-				</tr>
-			</table>
+			<h3>회원정보 수정</h3>
+			<form action="/member/modifyMember.me" method="POST">
+				<table align="center">
+					<tr>
+						<td>아이디 <input type="text" name="memberId" readonly value="${member.memberId }"></td>
+					</tr>
+					<tr>
+						<td>비밀번호 <input type="password" name="memberPw"></td>
+					</tr>
+					<tr>
+						<td>이름 <input type="text" name="memberName" readonly value="${member.memberName }"></td>
+					</tr>
+					<tr>
+						<td>닉네임 <input type="text" name="memberNickname" readonly value="${member.memberNickname }"></td>
+					</tr>
+					<tr>
+						<td>이메일 <input type="text" name="memberEmail" value="${member.memberEmail }"></td>
+					</tr>
+					<tr>
+						<td><button type="submit">정보수정</button></td>
+					</tr>
+				</table>
+			</form>
 
 		</div>
 		<button type="button" onclick="location.href='/'">홈으로</button>

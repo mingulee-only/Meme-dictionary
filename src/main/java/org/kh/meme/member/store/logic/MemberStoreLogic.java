@@ -16,6 +16,12 @@ public class MemberStoreLogic implements MemberStore{
 	}
 	
 	@Override
+	public Member selectById(SqlSession sqlSession, String memberId) {
+		Member member = sqlSession.selectOne("MemberMapper.selectById", memberId);
+		return member;
+	}
+	
+	@Override
 	public Member selectMemberByNameEmail(SqlSession sqlSession, Member member) {
 		Member memberOne = sqlSession.selectOne("MemberMapper.selectMemberByNameEmail", member);
 		return memberOne;
@@ -40,10 +46,18 @@ public class MemberStoreLogic implements MemberStore{
 	}
 
 	@Override
+	public int updateMember(SqlSession sqlSession, Member member) {
+		int result = sqlSession.update("MemberMapper.updateMember", member);
+		return result;
+	}
+	
+	@Override
 	public int memberDelete(SqlSession sqlSession, String memberId) {
 		int result = sqlSession.delete("MemberMapper.deleteMember", memberId);
 		return result;
 	}
+
+
 
 
 

@@ -71,7 +71,25 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/modifyMember.me", method=RequestMethod.GET)
-	public String memberModifyMemberRedirect() {
+	public String memberModifyMemberRedirect(HttpServletRequest request
+			,Model model) {
+		HttpSession session = request.getSession();
+		Member memberOne = (Member)session.getAttribute("loginMember");
+		Member member = mService.selectById(memberOne.getMemberId());
+		model.addAttribute("member", member);
+		return "member/modifyMember";
+	}
+	
+	@RequestMapping(value="/member/modifyMember.me", method=RequestMethod.POST)
+	public String memberModifyMember(HttpServletRequest request
+			,Model model
+			,@ModelAttribute Member member) {
+		int result = mService.modifyMember(member);
+		if(result > 0) {
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember", member);
+			return "redirect:/member/modifyMember.me";
+		}
 		return "member/modifyMember";
 	}
 	
