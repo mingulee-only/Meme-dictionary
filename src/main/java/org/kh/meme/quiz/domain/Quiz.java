@@ -13,8 +13,8 @@ public class Quiz {
 	private String quizCh2;
 	private String quizCh3;
 	private String quizCh4;
-	private String setQuizFilename;
-	private String setQuizFileRename;
+	private String quizFilename;
+	private String quizFileRename;
 	
 	public Quiz() {}
 
@@ -96,6 +96,22 @@ public class Quiz {
 
 	public void setQuizCh4(String quizCh4) {
 		this.quizCh4 = quizCh4;
+	}
+
+	public String getQuizFilename() {
+		return quizFilename;
+	}
+
+	public void setQuizFilename(String quizFilename) {
+		this.quizFilename = quizFilename;
+	}
+
+	public String getQuizFileRename() {
+		return quizFileRename;
+	}
+
+	public void setQuizFileRename(String quizFileRename) {
+		this.quizFileRename = quizFileRename;
 	}
 
 	

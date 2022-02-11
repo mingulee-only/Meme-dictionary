@@ -35,4 +35,7 @@
   		INSERT INTO QUIZ_CH VALUES(QUIZ_SEQ_NO.CURRVAL, #{quizCh1}, #{quizCh2}, #{quizCh3}, #{quizCh4})
   	</insert>
   	
+  <!-- 	<insert id="insertQuizFile">
+		INSERT INTO QUIZ_FILE VALUES(QUIZ_SEQ_FILENO.NEXTVAL, #{quizFileName }, #{quizFileExtension }, #{quizFileRename }, QUIZ_SEQ_NO.CURRVAL)  	
+  	</insert> -->
   </mapper>

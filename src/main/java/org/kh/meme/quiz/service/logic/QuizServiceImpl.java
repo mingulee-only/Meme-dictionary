@@ -33,6 +33,9 @@ public class QuizServiceImpl implements QuizService {
 	@Override
 	public int writeQuiz(Quiz quiz) {
 		int result = qStore.insertQuiz(sqlSession, quiz);
+		if(result > 0) {
+//			qStore.insertQuizFile(sqlSession, quiz);
+		}
 		return result;
 	}
 

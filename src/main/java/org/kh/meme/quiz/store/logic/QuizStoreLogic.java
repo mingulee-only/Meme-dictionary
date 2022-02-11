@@ -35,5 +35,11 @@ public class QuizStoreLogic implements QuizStore {
 		return qList;
 	}
 
+	@Override
+	public int insertQuizFile(SqlSession sqlSession, Quiz quiz) {
+		int result = sqlSession.insert("MemeMapper.insertQuizFile", quiz);
+		return result;
+	}
+
 
 }
