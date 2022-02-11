@@ -78,10 +78,10 @@
                         <ul>
                            <li>
                            		<c:if test="${empty sessionScope.loginMember }">
-	                     			<a href="/login.oj"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
+	                     			<a href="/login.me"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
 	                     		</c:if>
 	                     		<c:if test="${not empty loginMember }">
-	                     			<a href="/myPage.oj"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
+	                     			<a href="/myPage.me"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
 	                          	</c:if>
 	                          	
                            </li>
