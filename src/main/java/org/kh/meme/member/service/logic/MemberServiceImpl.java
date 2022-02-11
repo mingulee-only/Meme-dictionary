@@ -21,4 +21,30 @@ public class MemberServiceImpl implements MemberService{
 		return memberOne;
 	}
 
+	@Override
+	public Member findMemberId(Member member) {
+		Member memberOne = mStore.selectMemberByNameEmail(sqlSession, member);
+		return memberOne;
+	}
+	
+	@Override
+	public Member findMemberPw(Member member) {
+		Member memberOne = mStore.selectMemberByIdNameEmail(sqlSession, member);
+		return memberOne;
+	}
+	
+	@Override
+	public int registerMember(Member member) {
+		int result = mStore.insertMember(sqlSession, member);
+		return result;
+	}
+
+	@Override
+	public int memberPwReset(Member member) {
+		int result = mStore.updateMemberPw(sqlSession, member);
+		return result;
+	}
+
+
+
 }
