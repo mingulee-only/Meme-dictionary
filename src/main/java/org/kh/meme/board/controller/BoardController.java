@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.Comment;
 import org.kh.meme.board.domain.Recommend;
 import org.kh.meme.board.service.BoardService;
 import org.kh.meme.common.PageInfo;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class BoardController {
@@ -52,6 +54,18 @@ public class BoardController {
 	@RequestMapping(value="/boarddetail", method=RequestMethod.GET)
 	public String boarddetailtest() {
 		return "/board/boardDetailView";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/board/commentAdd", method=RequestMethod.POST)
+	public String boardCommentAdd(
+			@ModelAttribute Comment comment) {
+		System.out.println(comment);
+		String commentWriter = "어쩔티비";
+		comment.setMemberNickname(commentWriter);
+		int result = bService.registerComment(comment);
+		
+		return null;
 	}
 	
 	@RequestMapping(value="/board/detail_like", method=RequestMethod.POST)

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.Comment;
 import org.kh.meme.board.domain.Recommend;
 import org.kh.meme.board.store.BoardStore;
 import org.kh.meme.common.PageInfo;
@@ -86,6 +87,13 @@ public class BoardStoreLogic implements BoardStore{
 	@Override
 	public int insertBoard(SqlSession sqlSession, Board board) {
 		int result = sqlSession.insert("BoardMapper.insertBoard", board);
+		return result;
+	}
+
+	//댓글
+	@Override
+	public int insertComment(SqlSession sqlSession, Comment comment) {
+		int result = sqlSession.insert("BoardMapper.insertComment", comment);
 		return result;
 	}
 
