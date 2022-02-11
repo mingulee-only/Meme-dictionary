@@ -123,7 +123,7 @@ public class MemeController {
 	
 
 	//사전 상세보기
-	@RequestMapping(value = "/meme/detail", method = RequestMethod.GET)
+	@RequestMapping(value = "/meme/detail2", method = RequestMethod.GET)
 	public String memeDetailView(Model model
 			, @RequestParam(value = "memeName") String memeName
 			) {
@@ -144,8 +144,8 @@ public class MemeController {
 
 
 	//사전 상세보기
-	@RequestMapping(value = "/meme/detail2", method = RequestMethod.GET)
-	public String memeDetailView2(Model model
+	@RequestMapping(value = "/meme/detail", method = RequestMethod.GET)
+	public String memeDetail(Model model
 			, @RequestParam(value = "memeName") String memeName
 			) {
 		Meme meme = mService.printOneByMeme(memeName);
