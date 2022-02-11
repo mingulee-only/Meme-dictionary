@@ -14,6 +14,9 @@ import org.kh.meme.meme.domain.MemeFile;
 import org.kh.meme.meme.domain.MemeRequest;
 //import org.kh.meme.meme.domain.PageInfo;
 import org.kh.meme.meme.service.MemeService;
+import org.kh.meme.rank.domain.BoardRank;
+import org.kh.meme.rank.domain.MemeRank;
+import org.kh.meme.rank.domain.QuizRank;
 import org.kh.meme.rank.service.RankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -112,21 +115,21 @@ public class MemeController {
 	 */
 
 	// 사전 상세보기
-	@RequestMapping(value = "/meme/detail", method = RequestMethod.GET)
-	public String memeDetailView(Model model, @RequestParam(value = "memeName") String memeName) {
-		Meme meme = mService.printOneByMeme(memeName);
-		MemeFile memeFile = mService.printOneByMemeFile(meme.getMemeNo());
-		if (meme != null) {
-			// 조회수 증가
-			mService.memeCountUpdate(meme.getMemeNo());
-			model.addAttribute("meme", meme);
-			model.addAttribute("memeFile", memeFile);
-			return "meme/memeDetailView";
-		} else {
-			return "redirct:/";
-		}
-
-	}
+//	@RequestMapping(value = "/meme/detail", method = RequestMethod.GET)
+//	public String memeDetailView(Model model, @RequestParam(value = "memeName") String memeName) {
+//		Meme meme = mService.printOneByMeme(memeName);
+//		MemeFile memeFile = mService.printOneByMemeFile(meme.getMemeNo());
+//		if (meme != null) {
+//			// 조회수 증가
+//			mService.memeCountUpdate(meme.getMemeNo());
+//			model.addAttribute("meme", meme);
+//			model.addAttribute("memeFile", memeFile);
+//			return "meme/memeDetailView";
+//		} else {
+//			return "redirct:/";
+//		}
+//
+//	}
 
 
 	//사전 상세보기
@@ -161,8 +164,6 @@ public class MemeController {
  			model.addAttribute("msg", "사전 상세 조회 실패");
  			return "error";
  		}
-
-		
 	}
 
 	// 사전 수정삭제 요청
