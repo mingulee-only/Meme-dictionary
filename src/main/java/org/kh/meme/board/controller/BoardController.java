@@ -67,6 +67,8 @@ public class BoardController {
 		recommend.setBoardNo(boardNo);
 		recommend.setRecommendId("khuser01");
 		
+		String referer = request.getHeader("Referer");
+		
 		//추천 수
 		//게시물 recommend 추가
 		int boardLikeData = bService.addBoardLike(recommend);
@@ -76,10 +78,10 @@ public class BoardController {
 			//board_tbl boardLike update
 			int boardLike = bService.updateBoardLike(recommend);
 			System.out.println("board에 게시물 추천수 반영!");
-			return "redirect:/board/detail?boardNo="+boardNo;
+			return "redirect:"+referer;
 		} else {
 			System.out.println("board에 게시물 추천수 반영 안됨!");
-			return "redirect:/board/detail?boardNo="+boardNo;
+			return "redirect:"+referer;
 		}
 		
 	}
