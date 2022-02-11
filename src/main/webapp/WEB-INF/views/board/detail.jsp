@@ -109,7 +109,7 @@
 	
 		<tr height="100px">
 			<td text align="center">
-				input type="button" id="recommand" value="추천">
+				<input type="button" id="recommand" value="추천">
 				<br>${oneBoard.boardLike }
 			</td>
 		</tr>
