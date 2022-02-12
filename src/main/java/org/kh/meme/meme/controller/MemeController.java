@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.kh.meme.common.Pagination;
@@ -41,11 +42,16 @@ public class MemeController {
 
 	// 사전 등재 요청
 	@RequestMapping(value = "/meme/registerView", method = RequestMethod.GET)
-	public String memeWriteView(HttpSession session) {
+	public String memeWriteView(
+			Model model
+			, HttpSession session) {
 		//비로그인->로그인페이지, 로그인->등재요청페이지
 		if(session.getAttribute("loginMember")==null) {
 			return "member/login";
 		}
+		//로그인 후 등재 요청시 작성자에 닉네임 출력
+		Member member = (Member)session.getAttribute("loginMember");
+		model.addAttribute("memberNickname", member.getMemberNickname());
 		return "meme/memeRegisterForm";
 	}
 
@@ -57,8 +63,6 @@ public class MemeController {
 			) {
 		
 		try {
-			
-
 			if (!uploadFile.getOriginalFilename().contentEquals("")) {
 				String renameFileName = saveFile(uploadFile, request);
 				if (renameFileName != null) {
