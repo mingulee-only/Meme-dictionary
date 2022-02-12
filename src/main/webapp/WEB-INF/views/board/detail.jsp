@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 
 <style>
      #boardDetailTable {
@@ -57,16 +58,6 @@
 	    .textInput2 {
 	        padding-top: 80px;
 	    }
-	    
-        #commandinput{
-            width: 100%;
-            height: 100px;;
-        }
-        
-        #Cinputbutton{
-            width: 100%;
-            height: 100px;
-        }
         
         p {
         	color: black;
@@ -152,16 +143,43 @@
 	</table>
 	
 	<!-- 댓글 등록 -->
+	
 	<table id="boardCommentTable2" border="1" width="95%">
-	    <tr>
-	        <td width="90%">
-	        	<input type="text" id="commandinput">
-	        </td>
-	        <td>
-	        	<input type="button" value="등록" id="Cinputbutton">
-	        </td>
-	    </tr>
+		<tr>
+			<td>
+				<textarea rows="3" cols="55" id="commentContents" style="width: 100%; height: 80px;"></textarea>
+			</td>
+			<td>
+				<input type="button" value="등록하기" id="cSubmit" style="width: 100%; height: 80px;" ></input>
+			</td>
+		</tr>
 	</table>
+	
+	<script>
+
+	$("#cSubmit").on("click", function(){
+		var boardNo = "${oneBoard.boardNo }";
+		var commentContents = $("#commentContents").val();
+		$.ajax({
+			url: "/board/commentAdd",
+			type: "post",
+			data: { "boardNo" : boardNo,
+				"commentContents" : commentContents },
+			success: function(){
+				console.log("ajax 성공");
+				if(data == "success"){
+					$("#commentContents").val("");
+				} else {
+					alert("댓글 등록 실패");
+				}
+			},
+			error: function(){
+				console.log("ajax 실패");
+			}
+		});
+	});
+		
+	</script>
 </body>
 
 </html>
