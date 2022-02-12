@@ -177,6 +177,7 @@
 			success: function(data){
 				console.log("ajax 성공");
 				if(data == "success"){
+					getCommentList();
 					$("#commentContents").val("");
 				} else {
 					alert("댓글 등록 실패");
