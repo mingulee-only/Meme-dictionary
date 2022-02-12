@@ -65,7 +65,13 @@ public class BoardController {
 		comment.setMemberNickname(commentWriter);
 		int result = bService.registerComment(comment);
 		
-		return null;
+		//후속조치
+		if(result > 0 ) {
+			return "success";
+		} else {
+			return "fail";
+		}
+
 	}
 	
 	@RequestMapping(value="/board/detail_like", method=RequestMethod.POST)

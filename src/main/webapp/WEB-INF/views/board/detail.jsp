@@ -168,6 +168,11 @@
 				"commentContents" : commentContents },
 			success: function(){
 				console.log("ajax 성공");
+				if(data == "success"){
+					$("#commentContents").val("");
+				} else {
+					alert("댓글 등록 실패");
+				}
 			},
 			error: function(){
 				console.log("ajax 실패");
