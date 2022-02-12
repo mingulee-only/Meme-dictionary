@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.kh.meme.common.Pagination;
+import org.kh.meme.member.domain.Member;
 import org.kh.meme.meme.domain.Meme;
 import org.kh.meme.meme.domain.MemeFile;
 import org.kh.meme.meme.domain.MemeRequest;
@@ -40,19 +41,28 @@ public class MemeController {
 
 	// 사전 등재 요청
 	@RequestMapping(value = "/meme/registerView", method = RequestMethod.GET)
-	public String memeWriteView() {
-
+	public String memeWriteView(HttpSession session) {
+		//비로그인->로그인페이지, 로그인->등재요청페이지
+		if(session.getAttribute("loginMember")==null) {
+			return "member/login";
+		}
 		return "meme/memeRegisterForm";
 	}
 
 	@RequestMapping(value = "/meme/register", method = RequestMethod.POST)
-	public String memeRegister(Model model, @ModelAttribute Meme meme, @ModelAttribute MemeFile memeFile,
-			@RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile,
-			HttpServletRequest request) {
-		
-
+	public String memeRegister(Model model, @ModelAttribute Meme meme
+			, @ModelAttribute MemeFile memeFile
+			, @RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile
+			, HttpServletRequest request
+			
+			//
+			//, @RequestParam(value="memberNickname") String memberNickname
+			) {
 		
 		try {
+			
+		
+			
 			if (!uploadFile.getOriginalFilename().contentEquals("")) {
 				String renameFileName = saveFile(uploadFile, request);
 				if (renameFileName != null) {
