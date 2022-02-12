@@ -59,6 +59,13 @@
 		color: black;
 	}
 	
+	#rankTable th {
+		height : 30px;
+	}
+	#rankTable tr {
+		height : 25px;
+	}
+	
 </style>
 </head>
 <body>

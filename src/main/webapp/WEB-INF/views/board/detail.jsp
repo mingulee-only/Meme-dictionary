@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 
 <style>
      #boardDetailTable {
@@ -57,16 +58,6 @@
 	    .textInput2 {
 	        padding-top: 80px;
 	    }
-	    
-        #commandinput{
-            width: 100%;
-            height: 100px;;
-        }
-        
-        #Cinputbutton{
-            width: 100%;
-            height: 100px;
-        }
         
         p {
         	color: black;
@@ -126,42 +117,176 @@
 		</tr>
 	</table>
 
+
+	<!-- 댓글 등록 -->
+	
+	<table id="boardCommentTable2" border="1" width="95%">
+		<tr>
+			<td>
+				<textarea rows="3" cols="55" id="commentContents" style="width: 100%; height: 80px;"></textarea>
+			</td>
+			<td>
+				<input type="button" value="등록하기" id="cSubmit" style="width: 100%; height: 80px;" ></input>
+			</td>
+		</tr>
+	</table>
 	
 	<!-- 댓글 목록 -->
 	<table id="boardCommentTable" border="1">
-	    <tr>
-	        <td>닉네임 : K</td>
-	        <td>무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세 <input type="button" id="Cinput" value="대댓글 입력"></td>
-	        <td>22/01/26<br>00:01:01</td>
-	    </tr>
-	    <td>닉네임 : S</td>
-	        <td>바람 서리 불변함은 우리 기상일세 
-	            <input type="button" id="Cmodify" value="수정">
-	            <input type="button" id="Cdelete" value="삭제">&nbsp;
-	            <input type="button" id="Cinput" value="대댓글 입력">
-	
-	        </td>
-	    <tr>
-	        <td>닉네임 : S</td>
-	        <td>남산 위에 저 소나무 철갑을 두른듯 
-	            <input type="button" id="Cmodify" value="수정">
-	            <input type="button" id="Cdelete" value="삭제">&nbsp;
-	            <input type="button" id="Cinput" value="대댓글 입력">
-	        </td>
-	    </tr>
+	    <thead>
+	    	<tr align="left" height="40px">
+			<!-- 댓글 갯수 -->
+				<td colspan="4">
+					<b id="commentCount">댓글갯수(3)</b>
+				</td>
+			</tr>
+	    </thead>
+	    <tbody>
+	    
+<!-- 	    <tr> -->
+<!-- 	        <td>닉네임 : K</td> -->
+<!-- 	        <td>무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세 <input type="button" id="Cinput" value="대댓글 입력"></td> -->
+<!-- 	        <td>22/01/26<br>00:01:01</td> -->
+<!-- 	    </tr> -->
+<!-- 		    <tr> -->
+<!-- 		        <td>닉네임 : S</td> -->
+<!-- 		        <td>남산 위에 저 소나무 철갑을 두른듯  -->
+<!-- 		            <input type="button" id="Cmodify" value="수정"> -->
+<!-- 		            <input type="button" id="Cdelete" value="삭제">&nbsp; -->
+<!-- 		            <input type="button" id="Cinput" value="대댓글 입력"> -->
+<!-- 		        </td> -->
+<!-- 		    </tr> -->
+	    </tbody>
+	    
+	    
 	</table>
 	
-	<!-- 댓글 등록 -->
-	<table id="boardCommentTable2" border="1" width="95%">
-	    <tr>
-	        <td width="90%">
-	        	<input type="text" id="commandinput">
-	        </td>
-	        <td>
-	        	<input type="button" value="등록" id="Cinputbutton">
-	        </td>
-	    </tr>
-	</table>
+	
+	<script>
+	
+	getCommentList();
+
+	$("#cSubmit").on("click", function(){
+		var boardNo = "${oneBoard.boardNo }";
+		var commentContents = $("#commentContents").val();
+		$.ajax({
+			url: "/board/commentAdd",
+			type: "post",
+			data: { "boardNo" : boardNo,
+				"commentContents" : commentContents },
+			success: function(data){
+				console.log("ajax 성공");
+				if(data == "success"){
+					getCommentList();
+					$("#commentContents").val("");
+				} else {
+					alert("댓글 등록 실패");
+				}
+			},
+			error: function(){
+				console.log("ajax 실패");
+			}
+		});
+	});
+		
+	
+
+	function getCommentList(){
+		var boardNo = "${oneBoard.boardNo }";
+		$.ajax({
+			url: "/board/commentList",
+			type: "get",
+			data : {"boardNo" : boardNo },
+			success : function(data) {
+				console.log(data);
+				var $tableBody = $("#boardCommentTable tbody");
+				$tableBody.html("");
+				var $commentWriter;
+				var $commentContent;
+				var $commentDate;
+				var $tr;
+				
+				/* jquery 아님 그냥 변수 선언 */
+				$("#commentCount").text("댓글 ("+ data.length +")"); //댓글 개수 표시
+				
+				if(data.length > 0){
+					for(var i in data){
+						//배열의 인덱스를 가져오는 구문
+						$tr = $("<tr height='30'>");
+						//기능이없는 $, tr태그 만들어줌
+						$commentWriter = $("<td width='100'>").text(data[i].memberNickname);
+						$commentContent = $("<td align='left'>").text(data[i].commentContents);
+						//데이터를 포함하고 있는 td
+						$commentDate = $("<td width='200'>").text(data[i].commentDate);
+// 						$commentDate = $("<td width='200'>").text(data[i].commentDate)
+// 										.append("&nbsp&nbsp <a href='javascript:void(0);' onclick='modifyViewComment(this);'> 수정 </a>")
+// 										.append("<a href='javascript:void(0);' onclick='removeComment("+data[i].commentNo+");'>삭제 </a>");			
+						$btnArea = $("<td width='80'>")
+										.append("<a href='javascript:void(0);' onclick='modifyViewComment(this, \""+data[i].commentContents+"\", "+data[i].commentNo+" );'> 수정 </a>")
+										.append("<a href='javascript:void(0);' onclick='removeComment("+data[i].commentNo+");'>삭제 </a>");	
+										
+						$tr.append($commentWriter);
+						$tr.append($commentContent);
+						$tr.append($commentDate);
+						$tr.append($btnArea);	
+						$tableBody.append($tr);
+						//크기만큼 반복
+						//여기까지 해야 댓글 가능
+					}
+				}
+			},
+			error : function(){
+				alert("ajax 통신 실패! 관리자에게 문의하세요.");
+			}
+		});
+		
+		
+	}
+	
+	function removeComment(commentNo) {
+// 		alert("test");
+		$.ajax({
+			url : "/board/commentDelete",
+			type : "get",
+			data : {"commentNo" : commentNo},
+			success : function(){
+				getCommentList(); //갱신
+			},
+			error : function(data){
+				alert("댓글 삭제 실패");
+			}
+		});
+	}
+	
+	function modifyViewComment(obj, commentContents, commentNo){
+// 		alert("test");
+		var $trModify = $("<tr>");
+		$trModify.append("<td colspan='2'><input type='text' size='70%' value='"+commentContents+"' id='modifyCommentVal'></td>");
+		$trModify.append("<td colspan='2'><button onclick='modifyComment("+commentNo+", \""+commentContents+"\")'>수정완료</button>");
+		console.log(obj);
+		$(obj).parent().parent().after($trModify);
+	}
+	
+	function modifyComment(commentNo){
+// 		alert("test");
+		var commentContents = $("#modifyCommentVal").val();
+		$.ajax({
+			url : "/board/commentModify",
+			type : "post",
+			data : { "commentNo" : commentNo, "commentContents" : commentContents },
+			success : function(data) {
+				if(data == "success") {
+					getCommentList();
+				} else {
+					alert("댓글 수정 실패");
+				}
+			},
+			error : function() {
+				alert("Ajax 통신 오류! 관리자에게 문의하세요");
+			}
+		});
+	}
+	</script>
 </body>
 
 </html>

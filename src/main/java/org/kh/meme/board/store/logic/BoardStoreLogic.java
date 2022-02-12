@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.Comment;
 import org.kh.meme.board.domain.Recommend;
 import org.kh.meme.board.store.BoardStore;
 import org.kh.meme.common.PageInfo;
@@ -88,6 +89,33 @@ public class BoardStoreLogic implements BoardStore{
 		int result = sqlSession.insert("BoardMapper.insertBoard", board);
 		return result;
 	}
+
+	//댓글
+	@Override
+	public int insertComment(SqlSession sqlSession, Comment comment) {
+		int result = sqlSession.insert("BoardMapper.insertComment", comment);
+		return result;
+	}
+	
+	@Override
+	public List<Comment> selectAllComment(SqlSession sqlSession, int boardNo) {
+		List<Comment> commentList = sqlSession.selectList("BoardMapper.selectAllComment", boardNo);
+		return commentList;
+	}
+
+	@Override
+	public int updateComment(SqlSession sqlSession, Comment comment) {
+		int result = sqlSession.update("BoardMapper.updateComment", comment);
+		return result;
+	}
+	
+	@Override
+	public int deleteComment(SqlSession sqlSession, int commentNo) {
+		int result = sqlSession.delete("BoardMapper.deleteComment", commentNo);
+		return result;
+	}
+
+
 
 
 

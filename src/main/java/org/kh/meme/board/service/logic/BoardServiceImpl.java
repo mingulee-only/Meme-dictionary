@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.Comment;
 import org.kh.meme.board.domain.Recommend;
 import org.kh.meme.board.service.BoardService;
 import org.kh.meme.board.store.BoardStore;
@@ -76,6 +77,35 @@ public class BoardServiceImpl implements BoardService {
 		int result = bStore.insertBoard(sqlSession, board);
 		return result;
 	}
+
+	//댓글
+
+	@Override
+	public int registerComment(Comment comment) {
+		int result = bStore.insertComment(sqlSession, comment);
+		return result;
+	}
+
+
+	@Override
+	public List<Comment> printAllCommentList(int boardNo) {
+		List<Comment> commentList = bStore.selectAllComment(sqlSession, boardNo);
+		return commentList;
+	}
+
+	
+	@Override
+	public int modifyComment(Comment comment) {
+		int result = bStore.updateComment(sqlSession, comment);
+		return result;
+	}
+
+	@Override
+	public int removeComment(int commentNo) {
+		int result = bStore.deleteComment(sqlSession, commentNo);
+		return result;
+	}
+
 
 
 
