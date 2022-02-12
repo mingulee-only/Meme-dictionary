@@ -16,6 +16,17 @@
   		<result property="quizCh4" column="QUIZ_CH4"/>
   	</resultMap>
   	
+  	<!-- 마이페이지 -->
+  	<select id="selectMyQuizList" parameterType="string" resultMap="quizResultMap">
+  		SELECT * FROM QUIZ_TBL WHERE MEMBER_ID = #{memberId } ORDER BY QUIZ_NO DESC
+  	</select>
+  	
+  	<select id="selectMyQuizCount" resultType="_int">
+  		SELECT COUNT(*) FROM QUIZ_TBL WHERE MEMBER_ID = #{memberId }
+  	</select>
+  	
+  	
+  	<!-- 퀴즈 메인 -->
   	<select id="selectRandom" resultMap="quizResultMap">
   		SELECT QUIZ_NO FROM (SELECT QUIZ_NO FROM QUIZ_TBL ORDER BY DBMS_RANDOM.VALUE) WHERE <![CDATA[ROWNUM<=100]]>
   	</select>
@@ -43,10 +54,10 @@
   	</select>
   	
   	<update id="updateScore" parameterType="QuizBest">
-	MERGE INTO QUIZ_BEST USING DUAL ON (MEMBER_ID = #{memberId})
-	WHEN MATCHED THEN
-    UPDATE SET QUIZ_BESTSCORE=#{bestScore}, QUIZ_BESTDATE = DEFAULT
-	WHEN NOT MATCHED THEN
-    INSERT(MEMBER_ID, QUIZ_BESTSCORE, QUIZ_BESTDATE) VALUES(#{memberId}, #{bestScore}, DEFAULT)
+		MERGE INTO QUIZ_BEST USING DUAL ON (MEMBER_ID = #{memberId})
+		WHEN MATCHED THEN
+	    UPDATE SET QUIZ_BESTSCORE=#{bestScore}, QUIZ_BESTDATE = DEFAULT
+		WHEN NOT MATCHED THEN
+	    INSERT(MEMBER_ID, QUIZ_BESTSCORE, QUIZ_BESTDATE) VALUES(#{memberId}, #{bestScore}, DEFAULT)
   	</update>
   </mapper>

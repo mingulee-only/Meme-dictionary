@@ -1,8 +1,13 @@
 package org.kh.meme.member.service.logic;
 
+import java.util.List;
+
+import org.kh.meme.board.domain.Board;
+import org.kh.meme.common.PageInfo;
 import org.kh.meme.member.domain.Member;
 import org.kh.meme.member.service.MemberService;
 import org.kh.meme.member.store.MemberStore;
+import org.kh.meme.quiz.domain.Quiz;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +25,12 @@ public class MemberServiceImpl implements MemberService{
 		Member memberOne = mStore.selectLoginMember(sqlSession, member);
 		return memberOne;
 	}
+	
+	@Override
+	public Member selectById(String memberId) {
+		Member member = mStore.selectById(sqlSession, memberId);
+		return member;
+	}
 
 	@Override
 	public Member findMemberId(Member member) {
@@ -34,6 +45,31 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public List<Board> printMyBoard(PageInfo pi, String memberId) {
+		List<Board> myPageList = mStore.selectMyBoard(sqlSession, pi, memberId);
+		
+		return myPageList;
+	}
+	
+	@Override
+	public List<Quiz> printMyQuiz(PageInfo pi, String memberId) {
+		List<Quiz> myQuizList = mStore.selectMyQuiz(sqlSession, pi, memberId);
+		return myQuizList;
+	}
+	
+	@Override
+	public int getMyPageListCount() {
+		int totalCount = mStore.myPageListCount(sqlSession);
+		return totalCount;
+	}
+	
+	@Override
+	public int getMyQuizListCount() {
+		int totalCount = mStore.myQuizListCount(sqlSession);
+		return totalCount;
+	}
+	
+	@Override
 	public int registerMember(Member member) {
 		int result = mStore.insertMember(sqlSession, member);
 		return result;
@@ -44,6 +80,22 @@ public class MemberServiceImpl implements MemberService{
 		int result = mStore.updateMemberPw(sqlSession, member);
 		return result;
 	}
+
+	@Override
+	public int modifyMember(Member member) {
+		int result = mStore.updateMember(sqlSession, member);
+		return result;
+	}
+	
+	@Override
+	public int memberRemove(String memberId) {
+		int result = mStore.memberDelete(sqlSession, memberId);
+		return result;
+	}
+
+
+
+
 
 
 
