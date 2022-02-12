@@ -121,7 +121,31 @@ public class BoardController {
 		}
 	}
 	
-	
+
+	@RequestMapping(value="/board/detail_report", method=RequestMethod.POST
+			, produces="application/json;charset=utf-8")
+	public String boardDetailReport(
+			HttpServletRequest request
+			, @RequestParam("boardNo") int boardNo) {
+		System.out.println(boardNo);
+		
+		String referer = request.getHeader("Referer");
+		
+		
+		int boardReportData = bService.addBoardReport(boardNo);
+		if(boardReportData > 0) {
+			//게시물 추천수
+			//board_tbl boardLike update
+			
+			System.out.println("board에 게시물 신고수 반영!");
+			return "redirect:/board/detail?boardNo="+boardNo;
+//			return "redirect:"+referer;
+		} else {
+			System.out.println("board에 게시물 신고수 반영 안됨!");
+			return "redirect:"+referer;
+		}
+
+	}
 	
 	@RequestMapping(value="/board/detail_like", method=RequestMethod.POST)
 	public String boardDetailLike( HttpServletRequest request 

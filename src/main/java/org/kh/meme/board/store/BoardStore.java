@@ -24,6 +24,12 @@ public interface BoardStore {
 	public int insertBoardLike(SqlSession sqlSession, Recommend recommend);
 	public int updateBoardLike(SqlSession sqlSession, Recommend recommend);
 	
+	//신고 수
+	public int updateBoardReport(SqlSession sqlSession, int boardNo);
+
+
+	
+	
 	
 	//게시글 추가
 	public int insertBoard(SqlSession sqlSession, Board board);

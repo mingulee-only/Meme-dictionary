@@ -99,7 +99,7 @@
 		</tr>
 	
 		<tr height="100px">
-			<td text align="center">
+			<td>
 				<form action='<c:url value="/board/detail_like">
 					<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
 					</c:url>' method="post">
@@ -107,12 +107,23 @@
 	           			추천
 	           		</c:if>
 	           		<c:if test="${not empty loginMember }">
-	           			<input type="submit" id="recommand" value="추천">
+	           			<input type="submit" id="boardRecommand" value="추천">
 	                </c:if>
 
-					<br>${oneBoard.boardLike }
+<%-- 					<br>${oneBoard.boardLike } --%>
 				</form>
 				
+			</td>
+			
+		</tr>
+		<tr>
+			<td align="right">
+				<form action='<c:url value="/board/detail_report">
+					<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
+					</c:url>' method="post">
+					<input type="submit" id="boardReport" value="신고" onclick="reportFunc();">
+					<br><p id="boardReport">${oneBoard.boardReport }</p>
+				</form>
 			</td>
 		</tr>
 	</table>
@@ -163,8 +174,11 @@
 	
 	
 	<script>
-	
 	getCommentList();
+	
+	function reportFunc(){
+		alert("신고 완료 되었습니다.");
+	}
 
 	$("#cSubmit").on("click", function(){
 		var boardNo = "${oneBoard.boardNo }";
@@ -196,9 +210,7 @@
 				}
 			});
 			
-        </c:if>
-	        
-	        
+        </c:if>    
 		
 	});
 		
