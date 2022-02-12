@@ -54,15 +54,11 @@ public class MemeController {
 			, @ModelAttribute MemeFile memeFile
 			, @RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile
 			, HttpServletRequest request
-			
-			//
-			//, @RequestParam(value="memberNickname") String memberNickname
 			) {
 		
 		try {
 			
-		
-			
+
 			if (!uploadFile.getOriginalFilename().contentEquals("")) {
 				String renameFileName = saveFile(uploadFile, request);
 				if (renameFileName != null) {
