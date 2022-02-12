@@ -121,12 +121,7 @@
 									</div>
 
 									<div class="buynow_bt">
-<%-- 										<c:if test="${empty sessionScope.loginMemeber }">
-											<a href="/login.me" aria-hidden="true">직접 등록하러 가기</a>
-										</c:if> --%>
-										<%-- <c:if test="${not empty sessionScope.loginMember }"> --%>
-											<a href="/meme/registerView" aria-hidden="true">직접 등록하러 가기</a>
-										<%-- </c:if> --%>
+										<a href="/meme/registerView">직접 등록하러 가기</a>
 									</div>
 								</div>
 							</div>
