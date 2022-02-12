@@ -30,6 +30,9 @@
   	<insert id="insertQuiz" parameterType="Quiz">
   		INSERT INTO QUIZ_TBL VALUES(QUIZ_SEQ_NO.NEXTVAL, #{quizType}, #{quizQuest}, #{quizAnswer}, #{memberId}, DEFAULT)
   	</insert>
+  	<insert id="insertQuizFile" parameterType="QuizFile">
+		INSERT INTO QUIZ_FILE VALUES(QUIZ_SEQ_FILENO.NEXTVAL, #{quizFileName }, #{quizFileExtension }, #{quizFileRename }, QUIZ_SEQ_NO.CURRVAL)  	
+  	</insert>
   	
   	<insert id="insertQuizM" parameterType="QuizCh">
   		INSERT INTO QUIZ_CH VALUES(QUIZ_SEQ_NO.CURRVAL, #{quizCh1}, #{quizCh2}, #{quizCh3}, #{quizCh4})
