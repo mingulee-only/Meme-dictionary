@@ -134,7 +134,7 @@
 	<!-- 댓글 목록 -->
 	<table id="boardCommentTable" border="1">
 	    <thead>
-	    	<tr align="left" height="50px">
+	    	<tr align="left" height="40px">
 			<!-- 댓글 갯수 -->
 				<td colspan="4">
 					<b id="commentCount">댓글갯수(3)</b>
@@ -205,7 +205,9 @@
 				var $commentContent;
 				var $commentDate;
 				var $tr;
-				/* jquery 아님 그냥 변수 선안 */
+				
+				/* jquery 아님 그냥 변수 선언 */
+				$("#commentCount").text("댓글 ("+ data.length +")"); //댓글 개수 표시
 				
 				if(data.length > 0){
 					for(var i in data){
