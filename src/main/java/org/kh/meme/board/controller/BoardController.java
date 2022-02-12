@@ -64,8 +64,8 @@ public class BoardController {
 	public String boardCommentAdd(
 			@ModelAttribute Comment comment) {
 		System.out.println(comment);
-		String commentWriter = "어쩔티비";
-		comment.setMemberNickname(commentWriter);
+//		String commentWriter = "어쩔티비";
+//		comment.setMemberNickname(commentWriter);
 		int result = bService.registerComment(comment);
 		
 		//후속조치
@@ -121,7 +121,31 @@ public class BoardController {
 		}
 	}
 	
-	
+
+	@RequestMapping(value="/board/detail_report", method=RequestMethod.POST
+			, produces="application/json;charset=utf-8")
+	public String boardDetailReport(
+			HttpServletRequest request
+			, @RequestParam("boardNo") int boardNo) {
+		System.out.println(boardNo);
+		
+		String referer = request.getHeader("Referer");
+		
+		
+		int boardReportData = bService.addBoardReport(boardNo);
+		if(boardReportData > 0) {
+			//게시물 추천수
+			//board_tbl boardLike update
+			
+			System.out.println("board에 게시물 신고수 반영!");
+			return "redirect:/board/detail?boardNo="+boardNo;
+//			return "redirect:"+referer;
+		} else {
+			System.out.println("board에 게시물 신고수 반영 안됨!");
+			return "redirect:"+referer;
+		}
+
+	}
 	
 	@RequestMapping(value="/board/detail_like", method=RequestMethod.POST)
 	public String boardDetailLike( HttpServletRequest request 
@@ -147,7 +171,8 @@ public class BoardController {
 			//board_tbl boardLike update
 			int boardLike = bService.updateBoardLike(recommend);
 			System.out.println("board에 게시물 추천수 반영!");
-			return "redirect:"+referer;
+			return "redirect:/board/detail?boardNo="+boardNo;
+//			return "redirect:"+referer;
 		} else {
 			System.out.println("board에 게시물 추천수 반영 안됨!");
 			return "redirect:"+referer;
@@ -179,6 +204,7 @@ public class BoardController {
 		if(oneBoard != null && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
 			//게시물
 			model.addAttribute("oneBoard", oneBoard);
+			model.addAttribute("member", member);
 			
 			//게시물 조회수 ++
 //			bService.boardCount(oneBoard.getBoardNo());
@@ -198,12 +224,8 @@ public class BoardController {
 		
 		
 	}
-	
-	@RequestMapping(value="/board/error", method=RequestMethod.GET)
-	public String boardWriteError() {
-		return ".tiles/board/error";
-	}
-	
+
+	//글쓰기 페이지
 	@RequestMapping(value="/board/write", method=RequestMethod.GET)
 	public String boardwrite( HttpServletRequest request,
 			Model model) {
@@ -239,6 +261,7 @@ public class BoardController {
 		
 	}
 	
+	//게시글 등록
 	@RequestMapping(value="/board/register", method=RequestMethod.POST)
 	public String boardRegister( Model model
 			, @ModelAttribute Board board) {

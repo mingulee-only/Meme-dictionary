@@ -69,6 +69,14 @@ public class BoardServiceImpl implements BoardService {
 		int result = bStore.updateBoardLike(sqlSession, recommend);
 		return result;
 	}
+	
+	//게시물 신고 수
+	@Override
+	public int addBoardReport(int boardNo) {
+		int result = bStore.updateBoardReport(sqlSession, boardNo);
+		return result;
+	}
+
 
 	
 	//게시글 추가
@@ -105,11 +113,6 @@ public class BoardServiceImpl implements BoardService {
 		int result = bStore.deleteComment(sqlSession, commentNo);
 		return result;
 	}
-
-
-
-
-
 
 
 

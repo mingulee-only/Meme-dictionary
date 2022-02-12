@@ -54,10 +54,15 @@
 	<insert id="insertBoard" parameterType="Board">
 <!-- 		INSERT INTO BOARD_TBL (BOARD_NO, BOARD_TYPE, BOARD_TITLE, MEMBER_NICKNAME, BOARD_CONTENTS) -->
 <!-- 		VALUES(BOARD_SEQ_NO.NEXTVAL, #{boardType}, #{boardTitle}, '어쩔티비', #{boardContents}) -->
-		INSERT INTO BOARD_TBL VALUES(BOARD_SEQ_NO.NEXTVAL, #{boardType}, #{boardTitle}, '어쩔티비', DEFAULT, DEFAULT,
+		INSERT INTO BOARD_TBL VALUES(BOARD_SEQ_NO.NEXTVAL, #{boardType}, #{boardTitle}, #{memberNickname}, DEFAULT, DEFAULT,
 		 #{boardContents}, 0, 0, 0, DEFAULT)
 
 	</insert>
+	
+	<!-- 조회 수 -->
+	<update id="updateBoardCount" parameterType="_int">
+		UPDATE BOARD_TBL SET BOARD_COUNT = BOARD_COUNT + 1 WHERE BOARD_NO = #{boardNo}
+	</update>
 	
 	<!-- 추천 수 -->
 	<insert id="insertBoardLike" parameterType="org.kh.meme.board.domain.Recommend">
@@ -69,8 +74,9 @@
 		UPDATE BOARD_TBL SET BOARD_LIKE = (SELECT COUNT(*) FROM RECOMMEND_TBL WHERE RECOMMEND_TBL.BOARD_NO = BOARD_TBL.BOARD_NO)
 	</update>
 	
-	<update id="updateBoardCount" parameterType="_int">
-		UPDATE BOARD_TBL SET BOARD_COUNT = BOARD_COUNT + 1 WHERE BOARD_NO = #{boardNo}
+	<!-- 신고 수 -->
+	<update id="updateBoardReport" parameterType="_int">
+		UPDATE BOARD_TBL SET BOARD_REPORT = BOARD_REPORT + 1 WHERE BOARD_NO = #{boardNo}
 	</update>
 	
 	<!-- 댓글 -->

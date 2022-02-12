@@ -25,6 +25,8 @@ public interface BoardService {
 	public int addBoardLike(Recommend recommend); //recommend 테이블 insert
 	public int updateBoardLike(Recommend recommend); // board 테이블 업데이트
 
+	//신고 수
+	public int addBoardReport(int boardNo);		
 	
 	//게시글 추가
 	public int registerBoard(Board board);
@@ -37,6 +39,8 @@ public interface BoardService {
 	public int modifyComment(Comment comment);	//댓글 수정
 
 	public int removeComment(int commentNo);	//댓글 삭제
+	
+	
 
 	
 

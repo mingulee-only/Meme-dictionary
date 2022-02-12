@@ -99,7 +99,7 @@
 		</tr>
 	
 		<tr height="100px">
-			<td text align="center">
+			<td>
 				<form action='<c:url value="/board/detail_like">
 					<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
 					</c:url>' method="post">
@@ -107,12 +107,23 @@
 	           			추천
 	           		</c:if>
 	           		<c:if test="${not empty loginMember }">
-	           			<input type="submit" id="recommand" value="추천">
+	           			<input type="submit" id="boardRecommand" value="추천">
 	                </c:if>
 
 					<br>${oneBoard.boardLike }
 				</form>
 				
+			</td>
+			
+		</tr>
+		<tr>
+			<td align="right">
+				<form action='<c:url value="/board/detail_report">
+					<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
+					</c:url>' method="post">
+					<input type="submit" id="boardReport" value="신고" onclick="reportFunc();">
+<%-- 					<br><p id="boardReport">${oneBoard.boardReport }</p> --%>
+				</form>
 			</td>
 		</tr>
 	</table>
@@ -163,30 +174,44 @@
 	
 	
 	<script>
-	
 	getCommentList();
+	
+	function reportFunc(){
+		alert("신고 완료 되었습니다.");
+	}
 
 	$("#cSubmit").on("click", function(){
 		var boardNo = "${oneBoard.boardNo }";
+		var memberNickname = "${member.memberNickname}";
 		var commentContents = $("#commentContents").val();
-		$.ajax({
-			url: "/board/commentAdd",
-			type: "post",
-			data: { "boardNo" : boardNo,
-				"commentContents" : commentContents },
-			success: function(data){
-				console.log("ajax 성공");
-				if(data == "success"){
-					getCommentList();
-					$("#commentContents").val("");
-				} else {
-					alert("댓글 등록 실패");
+		
+// 		console.log("${sessionScope.loginMember}");
+		<c:if test="${empty sessionScope.loginMember }">
+			alert("로그인이 필요합니다.");
+   		</c:if>
+   		<c:if test="${not empty loginMember }">
+			$.ajax({
+				url: "/board/commentAdd",
+				type: "post",
+				data: { "boardNo" : boardNo,
+					"memberNickname" : memberNickname,
+					"commentContents" : commentContents },
+				success: function(data){
+					console.log("ajax 성공");
+					if(data == "success"){
+						getCommentList();
+						$("#commentContents").val("");
+					} else {
+						alert("댓글 등록 실패");
+					}
+				},
+				error: function(){
+					console.log("ajax 실패");
 				}
-			},
-			error: function(){
-				console.log("ajax 실패");
-			}
-		});
+			});
+			
+        </c:if>    
+		
 	});
 		
 	

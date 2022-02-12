@@ -81,6 +81,14 @@ public class BoardStoreLogic implements BoardStore{
 		return result;
 	}
 
+	//신고 수
+	@Override
+	public int updateBoardReport(SqlSession sqlSession, int boardNo) {
+		int result = sqlSession.update("BoardMapper.updateBoardReport", boardNo);
+		return result;
+	}
+
+	
 	
 
 	//게시물 작성
@@ -114,7 +122,6 @@ public class BoardStoreLogic implements BoardStore{
 		int result = sqlSession.delete("BoardMapper.deleteComment", commentNo);
 		return result;
 	}
-
 
 
 
