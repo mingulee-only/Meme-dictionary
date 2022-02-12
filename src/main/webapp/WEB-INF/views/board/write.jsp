@@ -8,7 +8,7 @@
 <title>게시글 작성</title>
 <style>
 #boardWriteTable { 
-	width: 95%; 
+	width: 800px; 
 	height: 200px; 
 	background-color: #eeeeee; 
  	border: 1px solid black; 
