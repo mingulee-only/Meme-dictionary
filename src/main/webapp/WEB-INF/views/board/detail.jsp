@@ -117,31 +117,7 @@
 		</tr>
 	</table>
 
-	
-	<!-- 댓글 목록 -->
-	<table id="boardCommentTable" border="1">
-	    <tr>
-	        <td>닉네임 : K</td>
-	        <td>무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세 <input type="button" id="Cinput" value="대댓글 입력"></td>
-	        <td>22/01/26<br>00:01:01</td>
-	    </tr>
-	    <td>닉네임 : S</td>
-	        <td>바람 서리 불변함은 우리 기상일세 
-	            <input type="button" id="Cmodify" value="수정">
-	            <input type="button" id="Cdelete" value="삭제">&nbsp;
-	            <input type="button" id="Cinput" value="대댓글 입력">
-	
-	        </td>
-	    <tr>
-	        <td>닉네임 : S</td>
-	        <td>남산 위에 저 소나무 철갑을 두른듯 
-	            <input type="button" id="Cmodify" value="수정">
-	            <input type="button" id="Cdelete" value="삭제">&nbsp;
-	            <input type="button" id="Cinput" value="대댓글 입력">
-	        </td>
-	    </tr>
-	</table>
-	
+
 	<!-- 댓글 등록 -->
 	
 	<table id="boardCommentTable2" border="1" width="95%">
@@ -155,7 +131,35 @@
 		</tr>
 	</table>
 	
+	<!-- 댓글 목록 -->
+	<table id="boardCommentTable" border="1">
+	    <thead>
+	    	<tr align="left" height="50px">
+			<!-- 댓글 갯수 -->
+				<td colspan="4">
+					<b id="commentCount">댓글갯수(3)</b>
+				</td>
+			</tr>
+	    </thead>
+	    <tbody>
+	    
+<!-- 		    <tr> -->
+<!-- 		        <td>닉네임 : S</td> -->
+<!-- 		        <td>남산 위에 저 소나무 철갑을 두른듯  -->
+<!-- 		            <input type="button" id="Cmodify" value="수정"> -->
+<!-- 		            <input type="button" id="Cdelete" value="삭제">&nbsp; -->
+<!-- 		            <input type="button" id="Cinput" value="대댓글 입력"> -->
+<!-- 		        </td> -->
+<!-- 		    </tr> -->
+	    </tbody>
+	    
+	    
+	</table>
+	
+	
 	<script>
+	
+	getCommentList();
 
 	$("#cSubmit").on("click", function(){
 		var boardNo = "${oneBoard.boardNo }";
@@ -165,7 +169,7 @@
 			type: "post",
 			data: { "boardNo" : boardNo,
 				"commentContents" : commentContents },
-			success: function(){
+			success: function(data){
 				console.log("ajax 성공");
 				if(data == "success"){
 					$("#commentContents").val("");
@@ -179,6 +183,49 @@
 		});
 	});
 		
+	
+
+	function getCommentList(){
+		var boardNo = "${oneBoard.boardNo }";
+		$.ajax({
+			url: "/board/commentList",
+			type: "get",
+			data : {"boardNo" : boardNo },
+			success : function(data) {
+				console.log(data);
+				var $tableBody = $("#boardCommentTable tbody");
+				$tableBody.html("");
+				var $commentWriter;
+				var $commentContent;
+				var $commentDate;
+				var $tr;
+				/* jquery 아님 그냥 변수 선안 */
+				
+				if(data.length > 0){
+					for(var i in data){
+						//배열의 인덱스를 가져오는 구문
+						$tr = $("<tr height='30'>");
+						//기능이없는 $, tr태그 만들어줌
+						$commentWriter = $("<td width='100'>").text(data[i].memberNickname);
+						$commentContent = $("<td align='left'>").text(data[i].commentContents);
+						//데이터를 포함하고 있는 td
+						$commentDate = $("<td width='100'>").text(data[i].commentDate);
+						$btnArea = $("<td width='80'>");
+						$tr.append($commentWriter);
+						$tr.append($commentContent);
+						$tr.append($commentDate);
+						$tr.append($btnArea);
+						$tableBody.append($tr);
+						//크기만큼 반복
+						//여기까지 해야 댓글 가능
+					}
+				}
+			},
+			error : function(){
+				alert("ajax 통신 실패! 관리자에게 문의하세요.");
+			}
+		});
+	}
 	</script>
 </body>
 

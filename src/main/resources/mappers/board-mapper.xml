@@ -66,6 +66,10 @@
 	</update>
 	
 	<!-- 댓글 -->
+	<select id="selectAllComment" resultMap="commentResultMap">
+		SELECT * FROM COMMENT_TBL WHERE BOARD_NO = #{boardNo} AND COMMENT_STATUS = 'Y' ORDER BY COMMENT_NO DESC
+	</select>
+	
 	<insert id="insertComment">
 		INSERT INTO COMMENT_TBL VALUES(COMMENT_SEQ.NEXTVAL, #{boardNo}, #{commentParentsno}, #{memberNickname}, #{commentContents}, DEFAULT, DEFAULT, DEFAULT)
 	</insert>

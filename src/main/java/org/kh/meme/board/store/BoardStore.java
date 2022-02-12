@@ -31,4 +31,6 @@ public interface BoardStore {
 	//댓글
 	public int insertComment(SqlSession sqlSession, Comment comment);
 
+	public List<Comment> selectAllComment(SqlSession sqlSession, int boardNo);
+
 }
