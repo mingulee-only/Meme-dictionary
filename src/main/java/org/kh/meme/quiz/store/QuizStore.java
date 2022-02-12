@@ -7,6 +7,7 @@ import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.domain.QuizFile;
+import org.kh.meme.quiz.domain.QuizReport;
 import org.mybatis.spring.SqlSessionTemplate;
 
 public interface QuizStore {
@@ -19,5 +20,6 @@ public interface QuizStore {
 	public int selectScore(SqlSession sqlSession, String memberId);
 	public int updateScore(SqlSession sqlSession, QuizBest qBest);
 	public int insertQuizFile(SqlSession sqlSession, QuizFile quizFile);
+	public int insertReport(SqlSession sqlSession, QuizReport qReport);
 
 }

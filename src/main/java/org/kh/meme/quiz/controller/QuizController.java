@@ -9,11 +9,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.domain.QuizFile;
+import org.kh.meme.quiz.domain.QuizReport;
 import org.kh.meme.quiz.service.QuizService;
 import org.kh.meme.rank.domain.BoardRank;
 import org.kh.meme.rank.domain.MemeRank;
@@ -41,6 +43,26 @@ public class QuizController {
 	@Autowired
 	private RankService rService;
 	
+	// 신고하기 기능
+	@ResponseBody
+	@RequestMapping(value = "quiz/report.me", method = RequestMethod.GET)
+	public String report(
+			@ModelAttribute QuizReport qReport
+			,HttpSession session) {
+		String memberId = session.getAttribute("memberId")+"";
+		System.out.println(memberId);
+		if (session.getAttribute("memberId")==null) {
+			return "NoLogin";
+		}else {
+			qReport.setReportId(memberId);
+			int result = qService.registerReport(qReport);
+			if(result >0) {
+				return "success";
+			}else {
+				return "fail";
+			}
+		}
+	}
 	
 	//퀴즈 랜덤으로 가져오기
 	@ResponseBody
@@ -69,7 +91,8 @@ public class QuizController {
 			,@RequestParam("quizCh3")String[] quizCh3
 			,@RequestParam("quizCh4")String[] quizCh4
 			,@RequestParam("quizNo")String[] quizNo
-			,@RequestParam("score")String score) {
+			,@RequestParam("score")String score
+			,HttpSession session) {
 		
 
 		//랭킹
@@ -90,20 +113,22 @@ public class QuizController {
 		model.addAttribute("quizNo", quizNo);
 		model.addAttribute("score", score);
 		
-		String memberId="khuser03";
-		int bestScore = 0;
-		// 최고 기록 저장
-		try {
-			// 회원의 기존 기록
-			bestScore = qService.ScoreOne(memberId);
-		} catch (Exception e) {
-			
-		} finally {
-			if(bestScore<Integer.parseInt(score)) {
-				qBest.setMemberId(memberId);
-				qBest.setBestScore(Integer.parseInt(score));
-				qService.updateScore(qBest);
+		if(session.getAttribute("memberId")!=null) {
+			String memberId=session.getAttribute("memberId")+"";
+			int bestScore = 0;
+			// 최고 기록 저장
+			try {
+				// 회원의 기존 기록
+				bestScore = qService.ScoreOne(memberId);
+			} catch (Exception e) {
 				
+			} finally {
+				if(bestScore<Integer.parseInt(score)) {
+					qBest.setMemberId(memberId);
+					qBest.setBestScore(Integer.parseInt(score));
+					qService.updateScore(qBest);
+					
+				}
 			}
 		}
 
@@ -178,7 +203,8 @@ public class QuizController {
 			,@ModelAttribute QuizCh quizCh
 			,@ModelAttribute QuizFile quizFile
 			,@RequestParam(value="uploadFile", required = false) MultipartFile uploadFile
-			, HttpServletRequest request) {
+			, HttpServletRequest request
+			,HttpSession session) {
 		try {
 			if(!uploadFile.getOriginalFilename().contentEquals("")) {
 				// 실제 파일 저장
@@ -189,18 +215,21 @@ public class QuizController {
 					quizFile.setQuizFileRename(renameFileName);
 				}
 			}
-			
-			quiz.setMemberId("khuser01");
-			quizFile.setQuizFileExtension("jpeg");
-			int result = qService.writeQuiz(quiz, quizFile);
-			if(quiz.getQuizType().equals("M")) {
-				qService.writeQuizM(quizCh);
-			}
-			if(result>0) {
-				return "redirect:/quiz/writeView.me";
+			if(session.getAttribute("memberId")!= null) {
+				quiz.setMemberId(session.getAttribute("memberId")+"");
+				quizFile.setQuizFileExtension("jpeg");
+				int result = qService.writeQuiz(quiz, quizFile);
+				if(quiz.getQuizType().equals("M")) {
+					qService.writeQuizM(quizCh);
+				}
+				if(result>0) {
+					return "redirect:/quiz/writeView.me";
+				} else {
+					model.addAttribute("msg", "퀴즈등록 실패");
+					return "common/errorPage";
+				}
 			} else {
-				model.addAttribute("msg", "퀴즈등록 실패");
-				return "common/errorPage";
+				return "member/login";
 			}
 		}catch (Exception e) {
 			model.addAttribute("msg", e.toString());
