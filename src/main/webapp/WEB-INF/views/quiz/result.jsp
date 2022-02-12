@@ -99,19 +99,30 @@ window.onload = function(){
     for (var i=0; i<btnModal.length; i++) {
         btnModal[i].addEventListener("click", function(event){
         	modalOn();
-        	$("#report").val(this.id);
+        	$("#reportNo").val(this.id);
         });
     }
     
     // 모달에서 신고하기 버튼 클릭시
-    var report = document.querySelector("#report");
-    report.addEventListener("click", function() {
-    	
-    	
-    	
-    	
-    	modalOff();
-    });
+	    var report = document.querySelector("#report");
+	    report.addEventListener("click", function() {
+	    	if($("#reportContents").val() != "") {
+	    		var quizNo = $("#reportNo").val();
+	    		var reportContents = $("#reportContents").val();
+	    		$.ajax({
+	    			url : "/quiz/report.me",
+					type : "get",
+					data : {"quizNo" : quizNo, "reportContents" : reportContents},
+					success : function(data) {
+						console.log("성공");
+					},
+					error : function() {
+						console.log("실패");
+					}
+	    		});
+	    		modalOff();
+	    	}
+	    });
     
 }
 </script>

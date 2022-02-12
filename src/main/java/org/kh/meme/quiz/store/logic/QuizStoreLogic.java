@@ -7,6 +7,7 @@ import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.domain.QuizFile;
+import org.kh.meme.quiz.domain.QuizReport;
 import org.kh.meme.quiz.store.QuizStore;
 import org.springframework.stereotype.Repository;
 
@@ -57,6 +58,12 @@ public class QuizStoreLogic implements QuizStore {
 	public int insertQuizFile(SqlSession sqlSession, QuizFile quizFile) {
 		int result = sqlSession.insert("QuizMapper.insertQuizFile", quizFile);
 		return result;
+	}
+
+	@Override
+	public int insertReport(SqlSession sqlSession, QuizReport qReport) {
+		int result = sqlSession.insert("QuizMapper.insertQuizReport", qReport);
+		return 0;
 	}
 
 

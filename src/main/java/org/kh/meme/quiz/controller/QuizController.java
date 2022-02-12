@@ -14,6 +14,7 @@ import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.domain.QuizFile;
+import org.kh.meme.quiz.domain.QuizReport;
 import org.kh.meme.quiz.service.QuizService;
 import org.kh.meme.rank.domain.BoardRank;
 import org.kh.meme.rank.domain.MemeRank;
@@ -41,6 +42,20 @@ public class QuizController {
 	@Autowired
 	private RankService rService;
 	
+	// 신고하기 기능
+	@ResponseBody
+	@RequestMapping(value = "quiz/report.me", method = RequestMethod.GET)
+	public String report(
+			@ModelAttribute QuizReport qReport) {
+		String memberId = "khuser01";
+		qReport.setReportId(memberId);
+		int result = qService.registerReport(qReport);
+		if(result >0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
 	
 	//퀴즈 랜덤으로 가져오기
 	@ResponseBody

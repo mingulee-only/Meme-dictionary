@@ -6,6 +6,7 @@ import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.domain.QuizFile;
+import org.kh.meme.quiz.domain.QuizReport;
 import org.kh.meme.quiz.service.QuizService;
 import org.kh.meme.quiz.store.QuizStore;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -56,6 +57,12 @@ public class QuizServiceImpl implements QuizService {
 	@Override
 	public int updateScore(QuizBest qBest) {
 		int result = qStore.updateScore(sqlSession, qBest);
+		return result;
+	}
+
+	@Override
+	public int registerReport(QuizReport qReport) {
+		int result = qStore.insertReport(sqlSession, qReport);
 		return result;
 	}
 
