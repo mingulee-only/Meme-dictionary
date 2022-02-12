@@ -25,8 +25,8 @@
 			<tr>
 				<td>작성자</td>
 				<td>
-					<input type="text" size="50" name="memberNickname"
-					value=${param.memberNickname }>
+					<input type="text" size="50" name="memberNickname" value="${memberNickname }">
+					
 				</td>
 			</tr>
 			<tr>
