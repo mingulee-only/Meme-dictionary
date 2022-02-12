@@ -7,8 +7,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.kh.meme.common.Pagination;
+import org.kh.meme.member.domain.Member;
 import org.kh.meme.meme.domain.Meme;
 import org.kh.meme.meme.domain.MemeFile;
 import org.kh.meme.meme.domain.MemeRequest;
@@ -39,16 +41,28 @@ public class MemeController {
 
 	// 사전 등재 요청
 	@RequestMapping(value = "/meme/registerView", method = RequestMethod.GET)
-	public String memeWriteView() {
-
+	public String memeWriteView(HttpSession session) {
+		//비로그인->로그인페이지, 로그인->등재요청페이지
+		if(session.getAttribute("loginMember")==null) {
+			return "member/login";
+		}
 		return "meme/memeRegisterForm";
 	}
 
 	@RequestMapping(value = "/meme/register", method = RequestMethod.POST)
-	public String memeRegister(Model model, @ModelAttribute Meme meme, @ModelAttribute MemeFile memeFile,
-			@RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile,
-			HttpServletRequest request) {
+	public String memeRegister(Model model, @ModelAttribute Meme meme
+			, @ModelAttribute MemeFile memeFile
+			, @RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile
+			, HttpServletRequest request
+			
+			//
+			//, @RequestParam(value="memberNickname") String memberNickname
+			) {
+		
 		try {
+			
+		
+			
 			if (!uploadFile.getOriginalFilename().contentEquals("")) {
 				String renameFileName = saveFile(uploadFile, request);
 				if (renameFileName != null) {
@@ -137,33 +151,40 @@ public class MemeController {
 	public String memeDetail(Model model
 			, @RequestParam(value = "memeName") String memeName
 			) {
-		Meme meme = mService.printOneByMeme(memeName);
-		
-		MemeFile memeFile = mService.printOneByMemeFile(meme.getMemeNo());
-		
-		model.addAttribute("rankmain", "meme");
- 		List<MemeRank> memeRankList = rService.printMemeRank();
- 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
- 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
-		
- 		List<QuizRank> quizRankList = rService.printQuizRank();
- 		if(meme != null && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
- 			model.addAttribute("memeRankList", memeRankList);
- 			model.addAttribute("boardPushRankList", boardPushRankList);
- 			model.addAttribute("boardFreeRankList", boardFreeRankList);
- 			model.addAttribute("quizRankList", quizRankList);
- 			
- 			// 조회수 증가
- 			mService.memeCountUpdate(meme.getMemeNo());
-			model.addAttribute("meme", meme);
+		try {
+			Meme meme = mService.printOneByMeme(memeName);
+			MemeFile memeFile = mService.printOneByMemeFile(meme.getMemeNo());
+
+			model.addAttribute("rankmain", "meme");
+	 		List<MemeRank> memeRankList = rService.printMemeRank();
+	 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+	 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
 			
-			model.addAttribute("memeFile", memeFile);
-			return ".tiles/meme/memeDetailView";
- 		} else {
- 			//일단 error 나누어서 안 적음, 필요하면 적기
- 			model.addAttribute("msg", "사전 상세 조회 실패");
- 			return "error";
- 		}
+	 		List<QuizRank> quizRankList = rService.printQuizRank();
+	 		if(meme != null && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
+	 			model.addAttribute("memeRankList", memeRankList);
+	 			model.addAttribute("boardPushRankList", boardPushRankList);
+	 			model.addAttribute("boardFreeRankList", boardFreeRankList);
+	 			model.addAttribute("quizRankList", quizRankList);
+	 			
+	 			// 조회수 증가
+	 			mService.memeCountUpdate(meme.getMemeNo());
+				model.addAttribute("meme", meme);
+				
+				model.addAttribute("memeFile", memeFile);
+				return ".tiles/meme/memeDetailView";
+	 		} else {
+	 			//일단 error 나누어서 안 적음, 필요하면 적기
+	 			model.addAttribute("msg", "사전 상세 조회 실패");
+	 			return "common/memeErrorPage";
+	 		}
+			
+		}catch(Exception e){
+			model.addAttribute("msg", "사전에 등재되지 않은 단어 입니다. 유행어를 등록 해주세요~!");
+			return "common/memeErrorPage";
+			
+		}
+
 	}
 
 	// 사전 수정삭제 요청

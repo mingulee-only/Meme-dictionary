@@ -21,7 +21,7 @@
 <body>
 	<div class="inner">
 		<h3 align="center">로그인</h3>
-		<form action="/member/login.me" method="post">
+		<form action="/member/login.me" method="POST">
 			<table align="center">
 				<tr align="center">
 					<td colspan="2"><input type="text" name="memberId" placeholder="아이디"></td>
