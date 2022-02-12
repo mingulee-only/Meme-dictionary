@@ -34,6 +34,8 @@ public interface BoardService {
 	
 	public List<Comment> printAllCommentList(int boardNo); //댓글 목록
 
+	public int removeComment(int commentNo);	//댓글 삭제
+
 	
 
 }

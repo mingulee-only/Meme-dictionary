@@ -96,6 +96,18 @@ public class BoardController {
 
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/board/commentDelete", method=RequestMethod.GET)
+	public String boardCommentRemove(
+			@RequestParam("commentNo") int commentNo) {
+		int result = bService.removeComment(commentNo);
+		if(result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
 	
 	
 	@RequestMapping(value="/board/detail_like", method=RequestMethod.POST)

@@ -94,6 +94,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
+	@Override
+	public int removeComment(int commentNo) {
+		int result = bStore.deleteComment(sqlSession, commentNo);
+		return result;
+	}
+
+
 
 
 

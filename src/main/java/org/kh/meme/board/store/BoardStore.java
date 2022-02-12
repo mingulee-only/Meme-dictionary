@@ -33,4 +33,6 @@ public interface BoardStore {
 
 	public List<Comment> selectAllComment(SqlSession sqlSession, int boardNo);
 
+	public int deleteComment(SqlSession sqlSession, int commentNo);
+
 }

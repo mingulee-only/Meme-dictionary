@@ -217,12 +217,18 @@
 						$commentWriter = $("<td width='100'>").text(data[i].memberNickname);
 						$commentContent = $("<td align='left'>").text(data[i].commentContents);
 						//데이터를 포함하고 있는 td
-						$commentDate = $("<td width='100'>").text(data[i].commentDate);
-						$btnArea = $("<td width='80'>");
+// 						$commentDate = $("<td width='200'>").text(data[i].commentDate);
+						$commentDate = $("<td width='200'>").text(data[i].commentDate)
+										.append("&nbsp&nbsp <a href='#'> 수정 </a>")
+										.append("<a href='#' onclick='removeComment("+data[i].commentNo+");'>삭제 </a>");			
+// 						$btnArea = $("<td width='80'>")
+// 										.append("&nbsp&nbsp <a href='#'> 수정 </a>")
+// 										.append("<a href='#'>삭제 </a>");
+										
 						$tr.append($commentWriter);
 						$tr.append($commentContent);
 						$tr.append($commentDate);
-						$tr.append($btnArea);
+// 						$tr.append($btnArea);	
 						$tableBody.append($tr);
 						//크기만큼 반복
 						//여기까지 해야 댓글 가능
@@ -231,6 +237,23 @@
 			},
 			error : function(){
 				alert("ajax 통신 실패! 관리자에게 문의하세요.");
+			}
+		});
+		
+		
+	}
+	
+	function removeComment(commentNo) {
+// 		alert("test");
+		$.ajax({
+			url : "/board/commentDelete",
+			type : "get",
+			data : {"commentNo" : commentNo},
+			success : function(){
+				getCommentList(); //갱신
+			},
+			error : function(data){
+				alert("댓글 삭제 실패");
 			}
 		});
 	}

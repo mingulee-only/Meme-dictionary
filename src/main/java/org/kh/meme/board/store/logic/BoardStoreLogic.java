@@ -103,6 +103,12 @@ public class BoardStoreLogic implements BoardStore{
 		return commentList;
 	}
 
+	@Override
+	public int deleteComment(SqlSession sqlSession, int commentNo) {
+		int result = sqlSession.delete("BoardMapper.deleteComment", commentNo);
+		return result;
+	}
+
 
 
 

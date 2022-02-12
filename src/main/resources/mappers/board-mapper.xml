@@ -73,4 +73,8 @@
 	<insert id="insertComment">
 		INSERT INTO COMMENT_TBL VALUES(COMMENT_SEQ.NEXTVAL, #{boardNo}, #{commentParentsno}, #{memberNickname}, #{commentContents}, DEFAULT, DEFAULT, DEFAULT)
 	</insert>
+	
+	<delete id="deleteComment">
+		DELETE FROM COMMENT_TBL WHERE COMMENT_NO = #{commentNo}
+	</delete>
 </mapper>
