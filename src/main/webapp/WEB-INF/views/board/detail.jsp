@@ -109,9 +109,8 @@
 	           		<c:if test="${not empty loginMember }">
 	           			<input type="submit" id="recommand" value="추천">
 	                </c:if>
-<!-- 	                <input type="submit" id="recommand" value="추천"> -->
+
 					<br>${oneBoard.boardLike }
-				
 				</form>
 				
 			</td>
