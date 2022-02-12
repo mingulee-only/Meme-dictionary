@@ -110,7 +110,7 @@
 	           			<input type="submit" id="boardRecommand" value="추천">
 	                </c:if>
 
-<%-- 					<br>${oneBoard.boardLike } --%>
+					<br>${oneBoard.boardLike }
 				</form>
 				
 			</td>
@@ -122,7 +122,7 @@
 					<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
 					</c:url>' method="post">
 					<input type="submit" id="boardReport" value="신고" onclick="reportFunc();">
-					<br><p id="boardReport">${oneBoard.boardReport }</p>
+<%-- 					<br><p id="boardReport">${oneBoard.boardReport }</p> --%>
 				</form>
 			</td>
 		</tr>
