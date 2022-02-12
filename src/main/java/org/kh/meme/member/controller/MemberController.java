@@ -1,12 +1,17 @@
 package org.kh.meme.member.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.kh.meme.board.domain.Board;
+import org.kh.meme.common.PageInfo;
+import org.kh.meme.common.Pagination;
 import org.kh.meme.member.domain.Member;
 import org.kh.meme.member.service.MemberService;
+import org.kh.meme.quiz.domain.Quiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,48 +42,97 @@ public class MemberController {
 				return "redirect:/";
 			}else {
 				request.setAttribute("msg", "로그인 실패");
-				return "common/errorPage";
+				return ".tiles/common/errorPage";
 			}
 		}catch (Exception e) {
 			request.setAttribute("msg", e.toString());
-			return "common/errorPage";
+			return ".tiles/common/errorPage";
 		}
 	}
 	
 	@RequestMapping(value="/member/join.me", method=RequestMethod.GET)
 	public String memberJoin() {
 		
-		return "member/memberJoin";
+		return ".tiles/member/memberJoin";
 	}
 	
 	@RequestMapping(value="/member/findId.me", method=RequestMethod.GET)
 	public String memberFindIdRedirect() {
-		return "member/findId";
+		return ".tiles/member/findId";
 	}
 	
 	@RequestMapping(value="/member/findPw.me", method=RequestMethod.GET)
 	public String memberFindPwRedirect() {
-		return "member/findPw";
+		return ".tiles/member/findPw";
+	}
+	
+	@RequestMapping(value="/myPage.me", method=RequestMethod.GET)
+	public String myPage(HttpServletRequest request
+			,Model model
+			, @RequestParam(value="page", required=false) Integer page) {
+		
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = mService.getMyPageListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+		model.addAttribute("pi", pi);
+		
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		List<Board> myBoardList = mService.printMyBoard(pi, member.getMemberId());
+		model.addAttribute("myBoardList", myBoardList);
+		return "member/myPage";
 	}
 	
 	@RequestMapping(value="/member/myQuiz.me", method=RequestMethod.GET)
-	public String memberMyQuizRedirect() {
-		return "member/mypage/myQuiz";
+	public String memberMyQuizRedirect(HttpServletRequest request
+			,Model model
+			,@RequestParam(value="page", required=false) Integer page) {
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = mService.getMyQuizListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+		model.addAttribute("pi", pi);
+		
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		List<Quiz> myQuizList = mService.printMyQuiz(pi, member.getMemberId());
+		model.addAttribute("myQuizList", myQuizList);
+		return "member/myQuiz";
 	}
 	
 	@RequestMapping(value="/member/myComment.me", method=RequestMethod.GET)
 	public String memberMyCommentRedirect() {
-		return "member/mypage/myComment";
+
+		return "member/myComment";
 	}
 	
 	@RequestMapping(value="/member/modifyMember.me", method=RequestMethod.GET)
-	public String memberModifyMemberRedirect() {
-		return "member/mypage/modifyMember";
+	public String memberModifyMemberRedirect(HttpServletRequest request
+			,Model model) {
+		HttpSession session = request.getSession();
+		Member memberOne = (Member)session.getAttribute("loginMember");
+		Member member = mService.selectById(memberOne.getMemberId());
+		model.addAttribute("member", member);
+		return "member/modifyMember";
+	}
+	
+	@RequestMapping(value="/member/modifyMember.me", method=RequestMethod.POST)
+	public String memberModifyMember(HttpServletRequest request
+			,Model model
+			,@ModelAttribute Member member) {
+		int result = mService.modifyMember(member);
+		if(result > 0) {
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember", member);
+			return "redirect:/member/modifyMember.me";
+		}
+		return "member/modifyMember";
 	}
 	
 	@RequestMapping(value="/member/deleteMember.me", method=RequestMethod.GET)
 	public String memberDeleteMemberRedirect() {
-		return "member/mypage/deleteMember";
+		return "member/deleteMember";
 	}
 	
 
@@ -90,7 +144,7 @@ public class MemberController {
 			return "redirect:/";
 		}else {
 			request.setAttribute("msg", "로그아웃 실패!");
-			return "common/errorPage";
+			return ".tiles/common/errorPage";
 		}
 	}
 	
@@ -101,14 +155,14 @@ public class MemberController {
 		try {
 			int result = mService.registerMember(member);
 			if(result > 0) {
-				return "redirect:/";
+				return "member/joinSuccess";
 			}else {
 				model.addAttribute("msg", "회원가입 실패");
-				return "common/errorPage";
+				return ".tiles/common/errorPage";
 			}			
 		}catch(Exception e) {
 			model.addAttribute("msg", e.toString());
-			return "common/errorPage";
+			return ".tiles/common/errorPage";
 		}
 	}
 	
@@ -120,14 +174,14 @@ public class MemberController {
 			Member memberOne = mService.findMemberId(member);
 			if(memberOne != null) {
 				model.addAttribute("member", memberOne);
-				return "member/findIdPrint";
+				return ".tiles/member/findIdPrint";
 			}else {
 				request.setAttribute("msg", "아이디 찾기 실패");
-				return "common/errorPage";
+				return ".tiles/common/errorPage";
 			}
 		}catch(Exception e) {
 			request.setAttribute("msg", e.toString());
-			return "common/errorPage";
+			return ".tiles/common/errorPage";
 		}
 	}
 	
@@ -139,14 +193,14 @@ public class MemberController {
 			Member memberOne = mService.findMemberPw(member);
 			if(memberOne != null) {
 				model.addAttribute("member", memberOne);
-				return "member/pwReset";
+				return ".tiles/member/pwReset";
 			}else {
 				request.setAttribute("msg", "비밀번호 찾기 실패");
-				return "common/errorPage";
+				return ".tiles/common/errorPage";
 			}
 		}catch(Exception e) {
 			request.setAttribute("msg", e.toString());
-			return "common/errorPage";
+			return ".tiles/common/errorPage";
 			}
 		}
 	
@@ -157,14 +211,28 @@ public class MemberController {
 		try {
 			int result = mService.memberPwReset(member);
 			if(result > 0) {
-				return "member/pwResetSuccess";
+				return ".tiles/member/pwResetSuccess";
 			}else {
 				request.setAttribute("msg", "비밀번호 재설정 실패");
-				return "common/errorPage";
+				return ".tiles/common/errorPage";
 			}
 		}catch(Exception e) {
 			request.setAttribute("msg", e.toString());
-			return "common/errorPage";
+			return ".tiles/common/errorPage";
+		}
+	}
+	
+	@RequestMapping(value="/member/remove.me", method=RequestMethod.GET)
+	public String memberRemove(HttpServletRequest request) {
+		String memberId = request.getParameter("memberId");
+		int result = mService.memberRemove(memberId);
+		if(result > 0) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			return "member/removeSuccess";
+		}else {
+			request.setAttribute("msg", "회원탈퇴 실패!");
+			return ".tiles.common/errorPage";
 		}
 	}
 	
