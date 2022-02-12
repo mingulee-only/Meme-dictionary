@@ -97,16 +97,16 @@ li a.current {
 			<table align="center" border="1">
 				<tr class="header">
 					<td id="part">구분</td>
-					<td id="no">글번호</td>
-					<td id="title">글제목</td>
+					<td id="no">글제목</td>
+					<td id="title">댓글 내용</td>
 					<td id="date">작성일</td>
-					<td id="like">추천수</td>
-					<td id="comment">댓글수</td>
 				</tr>
 			</table>
 		</div>
-		<button type="button" onclick="location.href='/'">홈으로</button>
-		<button type="button" onclick="location.href='/member/logout.me'">로그아웃</button>
+		<div class="footer">
+			<button type="button" onclick="location.href='/'">홈으로</button>
+			<button type="button" onclick="location.href='/member/logout.me'">로그아웃</button>		
+		</div>
 	</div>
 </body>
 </html>

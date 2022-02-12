@@ -11,6 +11,7 @@ import org.kh.meme.common.PageInfo;
 import org.kh.meme.common.Pagination;
 import org.kh.meme.member.domain.Member;
 import org.kh.meme.member.service.MemberService;
+import org.kh.meme.quiz.domain.Quiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,12 +84,25 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/myQuiz.me", method=RequestMethod.GET)
-	public String memberMyQuizRedirect() {
+	public String memberMyQuizRedirect(HttpServletRequest request
+			,Model model
+			,@RequestParam(value="page", required=false) Integer page) {
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = mService.getMyQuizListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+		model.addAttribute("pi", pi);
+		
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		List<Quiz> myQuizList = mService.printMyQuiz(pi, member.getMemberId());
+		model.addAttribute("myQuizList", myQuizList);
 		return "member/myQuiz";
 	}
 	
 	@RequestMapping(value="/member/myComment.me", method=RequestMethod.GET)
 	public String memberMyCommentRedirect() {
+
 		return "member/myComment";
 	}
 	

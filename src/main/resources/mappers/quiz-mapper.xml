@@ -20,6 +20,14 @@
   		SELECT QUIZ_NO FROM (SELECT QUIZ_NO FROM QUIZ_TBL ORDER BY DBMS_RANDOM.VALUE) WHERE <![CDATA[ROWNUM<=100]]>
   	</select>
   	
+  	<select id="selectMyQuizList" parameterType="string" resultMap="quizResultMap">
+  		SELECT * FROM QUIZ_TBL WHERE MEMBER_ID = #{memberId } ORDER BY QUIZ_NO DESC
+  	</select>
+  	
+  	<select id="selectMyQuizCount" resultType="_int">
+  		SELECT COUNT(*) FROM QUIZ_TBL WHERE MEMBER_ID = #{memberId }
+  	</select>
+  	
   	<select id="selectQuiz" resultMap="quizResultMap">
   		SELECT * FROM QUIZ_TBL Q
 		LEFT OUTER JOIN QUIZ_CH C

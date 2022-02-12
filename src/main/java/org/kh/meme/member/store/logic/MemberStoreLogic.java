@@ -9,6 +9,7 @@ import org.kh.meme.board.domain.Board;
 import org.kh.meme.common.PageInfo;
 import org.kh.meme.member.domain.Member;
 import org.kh.meme.member.store.MemberStore;
+import org.kh.meme.quiz.domain.Quiz;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,8 +54,26 @@ public class MemberStoreLogic implements MemberStore{
 	}
 	
 	@Override
+	public List<Quiz> selectMyQuiz(SqlSession sqlSession, PageInfo pi, String memberId) {
+		int limit = pi.getBoardLimit();
+		int currentPage = pi.getCurrentPage();
+		int offset = (currentPage - 1 ) * limit;
+
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Quiz> myQuizList = sqlSession.selectList("QuizMapper.selectMyQuizList", memberId, rowBounds);
+		return myQuizList;
+	}
+	
+	@Override
 	public int myPageListCount(SqlSession sqlSession) {
 		int totalCount = sqlSession.selectOne("BoardMapper.selectMyPageListCount");
+		return totalCount;
+	}
+	
+	@Override
+	public int myQuizListCount(SqlSession sqlSession) {
+		int totalCount = sqlSession.selectOne("QuizMapper.selectMyQuizCount");
 		return totalCount;
 	}
 	
@@ -81,6 +100,7 @@ public class MemberStoreLogic implements MemberStore{
 		int result = sqlSession.delete("MemberMapper.deleteMember", memberId);
 		return result;
 	}
+
 
 
 

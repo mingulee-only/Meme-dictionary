@@ -5,6 +5,7 @@ import java.util.List;
 import org.kh.meme.board.domain.Board;
 import org.kh.meme.common.PageInfo;
 import org.kh.meme.member.domain.Member;
+import org.kh.meme.quiz.domain.Quiz;
 
 public interface MemberService {
 
@@ -18,8 +19,12 @@ public interface MemberService {
 
 	List<Board> printMyBoard(PageInfo pi, String memberId);
 
+	List<Quiz> printMyQuiz(PageInfo pi, String memberId);
+	
 	int getMyPageListCount();
 	
+	int getMyQuizListCount();
+
 	int registerMember(Member member);
 
 	int memberPwReset(Member member);
@@ -27,6 +32,9 @@ public interface MemberService {
 	int modifyMember(Member member);
 
 	int memberRemove(String memberId);
+
+
+
 
 
 
