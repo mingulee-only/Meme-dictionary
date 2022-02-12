@@ -104,10 +104,18 @@ public class BoardStoreLogic implements BoardStore{
 	}
 
 	@Override
+	public int updateComment(SqlSession sqlSession, Comment comment) {
+		int result = sqlSession.update("BoardMapper.updateComment", comment);
+		return result;
+	}
+	
+	@Override
 	public int deleteComment(SqlSession sqlSession, int commentNo) {
 		int result = sqlSession.delete("BoardMapper.deleteComment", commentNo);
 		return result;
 	}
+
+
 
 
 

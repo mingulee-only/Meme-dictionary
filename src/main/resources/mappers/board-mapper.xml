@@ -74,6 +74,10 @@
 		INSERT INTO COMMENT_TBL VALUES(COMMENT_SEQ.NEXTVAL, #{boardNo}, #{commentParentsno}, #{memberNickname}, #{commentContents}, DEFAULT, DEFAULT, DEFAULT)
 	</insert>
 	
+	<update id="updateComment">
+		UPDATE COMMENT_TBL SET COMMENT_CONTENTS = #{commentContents} WHERE COMMENT_NO = #{commentNo}	
+	</update>
+	
 	<delete id="deleteComment">
 		DELETE FROM COMMENT_TBL WHERE COMMENT_NO = #{commentNo}
 	</delete>

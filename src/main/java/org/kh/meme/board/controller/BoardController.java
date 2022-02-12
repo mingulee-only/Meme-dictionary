@@ -96,6 +96,19 @@ public class BoardController {
 
 	}
 	
+
+	@ResponseBody
+	@RequestMapping(value="/board/commentModify", method=RequestMethod.POST)
+	public String boardReplyModify(
+			@ModelAttribute Comment comment) {
+		int result = bService.modifyComment(comment);
+		if(result > 0 ) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
 	@ResponseBody
 	@RequestMapping(value="/board/commentDelete", method=RequestMethod.GET)
 	public String boardCommentRemove(

@@ -217,18 +217,18 @@
 						$commentWriter = $("<td width='100'>").text(data[i].memberNickname);
 						$commentContent = $("<td align='left'>").text(data[i].commentContents);
 						//데이터를 포함하고 있는 td
-// 						$commentDate = $("<td width='200'>").text(data[i].commentDate);
-						$commentDate = $("<td width='200'>").text(data[i].commentDate)
-										.append("&nbsp&nbsp <a href='#'> 수정 </a>")
-										.append("<a href='#' onclick='removeComment("+data[i].commentNo+");'>삭제 </a>");			
-// 						$btnArea = $("<td width='80'>")
-// 										.append("&nbsp&nbsp <a href='#'> 수정 </a>")
-// 										.append("<a href='#'>삭제 </a>");
+						$commentDate = $("<td width='200'>").text(data[i].commentDate);
+// 						$commentDate = $("<td width='200'>").text(data[i].commentDate)
+// 										.append("&nbsp&nbsp <a href='javascript:void(0);' onclick='modifyViewComment(this);'> 수정 </a>")
+// 										.append("<a href='javascript:void(0);' onclick='removeComment("+data[i].commentNo+");'>삭제 </a>");			
+						$btnArea = $("<td width='80'>")
+										.append("<a href='javascript:void(0);' onclick='modifyViewComment(this, \""+data[i].commentContents+"\", "+data[i].commentNo+" );'> 수정 </a>")
+										.append("<a href='javascript:void(0);' onclick='removeComment("+data[i].commentNo+");'>삭제 </a>");	
 										
 						$tr.append($commentWriter);
 						$tr.append($commentContent);
 						$tr.append($commentDate);
-// 						$tr.append($btnArea);	
+						$tr.append($btnArea);	
 						$tableBody.append($tr);
 						//크기만큼 반복
 						//여기까지 해야 댓글 가능
@@ -254,6 +254,35 @@
 			},
 			error : function(data){
 				alert("댓글 삭제 실패");
+			}
+		});
+	}
+	
+	function modifyViewComment(obj, commentContents, commentNo){
+// 		alert("test");
+		var $trModify = $("<tr>");
+		$trModify.append("<td colspan='2'><input type='text' size='70%' value='"+commentContents+"' id='modifyCommentVal'></td>");
+		$trModify.append("<td colspan='2'><button onclick='modifyComment("+commentNo+", \""+commentContents+"\")'>수정완료</button>");
+		console.log(obj);
+		$(obj).parent().parent().after($trModify);
+	}
+	
+	function modifyComment(commentNo){
+// 		alert("test");
+		var commentContents = $("#modifyCommentVal").val();
+		$.ajax({
+			url : "/board/commentModify",
+			type : "post",
+			data : { "commentNo" : commentNo, "commentContents" : commentContents },
+			success : function(data) {
+				if(data == "success") {
+					getCommentList();
+				} else {
+					alert("댓글 수정 실패");
+				}
+			},
+			error : function() {
+				alert("Ajax 통신 오류! 관리자에게 문의하세요");
 			}
 		});
 	}
