@@ -199,12 +199,22 @@ public class BoardController {
 		
 	}
 	
-	
+	@RequestMapping(value="/board/error", method=RequestMethod.GET)
+	public String boardWriteError() {
+		return ".tiles/board/error";
+	}
 	
 	@RequestMapping(value="/board/write", method=RequestMethod.GET)
-	public String boardwrite( Model model) {
+	public String boardwrite( HttpServletRequest request,
+			Model model) {
 		
 
+		//memberId session에서 가져오기
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("loginMember");
+		System.out.println(member);
+				
+				
 		//랭킹
 		model.addAttribute("rankmain", "board");
 		List<MemeRank> memeRankList = rService.printMemeRank();
@@ -214,7 +224,6 @@ public class BoardController {
  
 		
 		if(!memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
-		
 			//랭킹
 			model.addAttribute("memeRankList", memeRankList);
 			model.addAttribute("boardPushRankList", boardPushRankList);

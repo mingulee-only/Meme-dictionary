@@ -14,21 +14,22 @@
         </script>
         <style>
             .layer {
-                position: absolute;
+/*                 position: absolute; */
                 top: 0;
                 left: 0;
                 width: 100%;
-                height: 100%;
+                height: 200px;
                 text-align: center;
+                margin-top: 10%
             }
 
             .layer .content {
                 display: inline-block;
                 background: #dddddd;
                 vertical-align: middle;
-                border: 3px solid black;
-                width: 75%;
-                height: 60%;
+/*                 border: 1px solid black; */
+                width: 30%;
+                height: 100%;
             }
 
             .layer .blank {
@@ -38,10 +39,10 @@
                 vertical-align: middle
             }
             #btnWriter{
-                width: 100px;
-                height: 50px;
-                background-color: gray;
-                color : white;
+                width: 50px;
+                height: 30px;
+/*                 background-color: gray; */
+                color : black;
                 font-size: 15px;
                 border: 1px solid black;
             }
@@ -50,25 +51,16 @@
     <body>
     <div class="layer">
         <span class="content" style="text-align: left;">
+
+            <h2 align="center">로그인 필요</h2>
+            <h4 align="center">로그인이 필요합니다</h4>
+
             <br>
             <br>
-            <h1>&nbsp&nbsp&nbsp로그인 필요</h1>
-            <br>
-            <br>
-            <br>
-            <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp로그인이 필요합니다</h3>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            
             <p align="center">
                 <input type="button" id="btnWriter" value="확인" />
             </p>
-            <br>
-            <br>
-            <br>
             <br>
         </span>
         <span class="blank"></span>
