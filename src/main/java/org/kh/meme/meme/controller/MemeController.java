@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.kh.meme.common.Pagination;
 import org.kh.meme.meme.domain.Meme;
@@ -48,6 +49,9 @@ public class MemeController {
 	public String memeRegister(Model model, @ModelAttribute Meme meme, @ModelAttribute MemeFile memeFile,
 			@RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile,
 			HttpServletRequest request) {
+		
+
+		
 		try {
 			if (!uploadFile.getOriginalFilename().contentEquals("")) {
 				String renameFileName = saveFile(uploadFile, request);

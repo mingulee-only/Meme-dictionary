@@ -52,8 +52,11 @@
 	<br>
 	<hr>
 
+	<!-- 로그인한 회원만 의견내기 a태그가 보여짐-->
 	<div align="right">
+		<c:if test="${not empty sessionScope.loginMember }">
 		<a href="/meme/requestView?memeName=${meme.memeName}&memeNo=${meme.memeNo}"> 의견내기 &nbsp;&nbsp;</a>
+		</c:if>
 	</div>
 
 
