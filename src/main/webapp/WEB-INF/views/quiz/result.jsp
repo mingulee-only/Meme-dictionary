@@ -114,10 +114,13 @@ window.onload = function(){
 					type : "get",
 					data : {"quizNo" : quizNo, "reportContents" : reportContents},
 					success : function(data) {
-						console.log("성공");
+						console.log(data);
+						if(data=="NoLogin") {
+							window.open("http://127.0.0.1:8889/login.me");
+						}
 					},
 					error : function() {
-						console.log("실패");
+						console.log(data);
 					}
 	    		});
 	    		modalOff();
