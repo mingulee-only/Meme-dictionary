@@ -1,10 +1,17 @@
 package org.kh.meme.member.store.logic;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
+import org.kh.meme.board.domain.Board;
+import org.kh.meme.common.PageInfo;
 import org.kh.meme.member.domain.Member;
 import org.kh.meme.member.store.MemberStore;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Repository
 public class MemberStoreLogic implements MemberStore{
@@ -34,6 +41,24 @@ public class MemberStoreLogic implements MemberStore{
 	}
 	
 	@Override
+	public List<Board> selectMyBoard(SqlSession sqlSession, PageInfo pi, String memberId) {
+		int limit = pi.getBoardLimit();
+		int currentPage = pi.getCurrentPage();
+		int offset = (currentPage - 1 ) * limit;
+
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Board> myBoardList = sqlSession.selectList("BoardMapper.selectMyBoardList", memberId, rowBounds);
+		return myBoardList;
+	}
+	
+	@Override
+	public int myPageListCount(SqlSession sqlSession) {
+		int totalCount = sqlSession.selectOne("BoardMapper.selectMyPageListCount");
+		return totalCount;
+	}
+	
+	@Override
 	public int insertMember(SqlSession sqlSession, Member member) {
 		int result = sqlSession.insert("MemberMapper.insertMember", member);
 		return result;
@@ -56,6 +81,7 @@ public class MemberStoreLogic implements MemberStore{
 		int result = sqlSession.delete("MemberMapper.deleteMember", memberId);
 		return result;
 	}
+
 
 
 

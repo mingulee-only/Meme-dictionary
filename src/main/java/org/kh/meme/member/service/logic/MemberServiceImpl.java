@@ -1,5 +1,9 @@
 package org.kh.meme.member.service.logic;
 
+import java.util.List;
+
+import org.kh.meme.board.domain.Board;
+import org.kh.meme.common.PageInfo;
 import org.kh.meme.member.domain.Member;
 import org.kh.meme.member.service.MemberService;
 import org.kh.meme.member.store.MemberStore;
@@ -40,6 +44,19 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public List<Board> printMyBoard(PageInfo pi, String memberId) {
+		List<Board> myPageList = mStore.selectMyBoard(sqlSession, pi, memberId);
+		
+		return myPageList;
+	}
+	
+	@Override
+	public int getMyPageListCount() {
+		int totalCount = mStore.myPageListCount(sqlSession);
+		return totalCount;
+	}
+	
+	@Override
 	public int registerMember(Member member) {
 		int result = mStore.insertMember(sqlSession, member);
 		return result;
@@ -62,6 +79,7 @@ public class MemberServiceImpl implements MemberService{
 		int result = mStore.memberDelete(sqlSession, memberId);
 		return result;
 	}
+
 
 
 

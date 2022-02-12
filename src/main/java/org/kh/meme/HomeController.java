@@ -31,10 +31,7 @@ public class HomeController {
 	public String login() {
 		return ".tiles/member/login";
 	}
-	@RequestMapping(value="/myPage.me", method=RequestMethod.GET)
-	public String myPage() {
-		return "member/myPage";
-	}
+	
 	
 	
 }

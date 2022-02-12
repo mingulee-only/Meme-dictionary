@@ -1,10 +1,14 @@
 package org.kh.meme.member.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.kh.meme.board.domain.Board;
+import org.kh.meme.common.PageInfo;
+import org.kh.meme.common.Pagination;
 import org.kh.meme.member.domain.Member;
 import org.kh.meme.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +62,24 @@ public class MemberController {
 	@RequestMapping(value="/member/findPw.me", method=RequestMethod.GET)
 	public String memberFindPwRedirect() {
 		return ".tiles/member/findPw";
+	}
+	
+	@RequestMapping(value="/myPage.me", method=RequestMethod.GET)
+	public String myPage(HttpServletRequest request
+			,Model model
+			, @RequestParam(value="page", required=false) Integer page) {
+		
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = mService.getMyPageListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+		model.addAttribute("pi", pi);
+		
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		List<Board> myBoardList = mService.printMyBoard(pi, member.getMemberId());
+		model.addAttribute("myBoardList", myBoardList);
+		return "member/myPage";
 	}
 	
 	@RequestMapping(value="/member/myQuiz.me", method=RequestMethod.GET)
