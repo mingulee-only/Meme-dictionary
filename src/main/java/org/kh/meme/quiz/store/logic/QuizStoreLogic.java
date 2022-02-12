@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
+import org.kh.meme.quiz.domain.QuizFile;
 import org.kh.meme.quiz.store.QuizStore;
 import org.springframework.stereotype.Repository;
 
@@ -49,6 +50,12 @@ public class QuizStoreLogic implements QuizStore {
 	@Override
 	public int updateScore(SqlSession sqlSession, QuizBest qBest) {
 		int result = sqlSession.update("QuizMapper.updateScore", qBest);
+		return result;
+	}
+
+	@Override
+	public int insertQuizFile(SqlSession sqlSession, QuizFile quizFile) {
+		int result = sqlSession.insert("QuizMapper.insertQuizFile", quizFile);
 		return result;
 	}
 

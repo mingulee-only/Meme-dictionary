@@ -2,7 +2,6 @@ package org.kh.meme.meme.service.logic;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.common.PageInfo;
 import org.kh.meme.meme.domain.Meme;
 import org.kh.meme.meme.domain.MemeFile;

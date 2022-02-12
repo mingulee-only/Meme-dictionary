@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
+import org.kh.meme.quiz.domain.QuizFile;
 import org.kh.meme.quiz.service.QuizService;
 import org.kh.meme.rank.domain.BoardRank;
 import org.kh.meme.rank.domain.MemeRank;
@@ -175,24 +176,23 @@ public class QuizController {
 			Model model
 			,@ModelAttribute Quiz quiz
 			,@ModelAttribute QuizCh quizCh
-			,@RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile
+			,@ModelAttribute QuizFile quizFile
+			,@RequestParam(value="uploadFile", required = false) MultipartFile uploadFile
 			, HttpServletRequest request) {
-		
-				
 		try {
-//			if(!uploadFile.getOriginalFilename().equals("")) {
-//				// 실제 파일 저장
-//				String renameFileName = saveFile(uploadFile, request);
-//				
-//				if(renameFileName != null) {
-//					
-//				}
-//			}
-			
-			
+			if(!uploadFile.getOriginalFilename().contentEquals("")) {
+				// 실제 파일 저장
+				String renameFileName = saveFile(uploadFile, request);
+				
+				if(renameFileName != null) {
+					quizFile.setQuizFileName(uploadFile.getOriginalFilename());
+					quizFile.setQuizFileRename(renameFileName);
+				}
+			}
 			
 			quiz.setMemberId("khuser01");
-			int result = qService.writeQuiz(quiz);
+			quizFile.setQuizFileExtension("jpeg");
+			int result = qService.writeQuiz(quiz, quizFile);
 			if(quiz.getQuizType().equals("M")) {
 				qService.writeQuizM(quizCh);
 			}
@@ -211,7 +211,7 @@ public class QuizController {
 	public String saveFile(MultipartFile uploadFile, HttpServletRequest request) {
 		// 파일 경로
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\buploadFiles";
+		String savePath = root + "\\quizUploadFiles";
 		// 폴더 선택
 		File folder = new File(savePath);
 		// 폴더 없으면 자동 생성
