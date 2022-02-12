@@ -168,25 +168,38 @@
 
 	$("#cSubmit").on("click", function(){
 		var boardNo = "${oneBoard.boardNo }";
+		var memberNickname = "${member.memberNickname}";
 		var commentContents = $("#commentContents").val();
-		$.ajax({
-			url: "/board/commentAdd",
-			type: "post",
-			data: { "boardNo" : boardNo,
-				"commentContents" : commentContents },
-			success: function(data){
-				console.log("ajax 성공");
-				if(data == "success"){
-					getCommentList();
-					$("#commentContents").val("");
-				} else {
-					alert("댓글 등록 실패");
+		
+// 		console.log("${sessionScope.loginMember}");
+		<c:if test="${empty sessionScope.loginMember }">
+			alert("로그인이 필요합니다.");
+   		</c:if>
+   		<c:if test="${not empty loginMember }">
+			$.ajax({
+				url: "/board/commentAdd",
+				type: "post",
+				data: { "boardNo" : boardNo,
+					"memberNickname" : memberNickname,
+					"commentContents" : commentContents },
+				success: function(data){
+					console.log("ajax 성공");
+					if(data == "success"){
+						getCommentList();
+						$("#commentContents").val("");
+					} else {
+						alert("댓글 등록 실패");
+					}
+				},
+				error: function(){
+					console.log("ajax 실패");
 				}
-			},
-			error: function(){
-				console.log("ajax 실패");
-			}
-		});
+			});
+			
+        </c:if>
+	        
+	        
+		
 	});
 		
 	

@@ -33,6 +33,8 @@ public class MemberController {
 		Member member = new Member();
 		member.setMemberId(memberId);
 		member.setMemberPw(memberPw);
+		String referer = request.getHeader("Referer");
+		
 		try {
 			Member loginMember = mService.loginMember(member);
 			if(loginMember != null) {
