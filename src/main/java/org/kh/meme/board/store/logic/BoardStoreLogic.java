@@ -96,6 +96,26 @@ public class BoardStoreLogic implements BoardStore{
 		int result = sqlSession.insert("BoardMapper.insertComment", comment);
 		return result;
 	}
+	
+	@Override
+	public List<Comment> selectAllComment(SqlSession sqlSession, int boardNo) {
+		List<Comment> commentList = sqlSession.selectList("BoardMapper.selectAllComment", boardNo);
+		return commentList;
+	}
+
+	@Override
+	public int updateComment(SqlSession sqlSession, Comment comment) {
+		int result = sqlSession.update("BoardMapper.updateComment", comment);
+		return result;
+	}
+	
+	@Override
+	public int deleteComment(SqlSession sqlSession, int commentNo) {
+		int result = sqlSession.delete("BoardMapper.deleteComment", commentNo);
+		return result;
+	}
+
+
 
 
 

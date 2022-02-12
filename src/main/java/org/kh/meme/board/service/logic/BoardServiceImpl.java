@@ -87,6 +87,27 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
+	@Override
+	public List<Comment> printAllCommentList(int boardNo) {
+		List<Comment> commentList = bStore.selectAllComment(sqlSession, boardNo);
+		return commentList;
+	}
+
+	
+	@Override
+	public int modifyComment(Comment comment) {
+		int result = bStore.updateComment(sqlSession, comment);
+		return result;
+	}
+
+	@Override
+	public int removeComment(int commentNo) {
+		int result = bStore.deleteComment(sqlSession, commentNo);
+		return result;
+	}
+
+
+
 
 
 

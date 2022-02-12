@@ -25,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 @Controller
 public class BoardController {
 
@@ -73,6 +76,52 @@ public class BoardController {
 		}
 
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/board/commentList", method=RequestMethod.GET
+								, produces="application/json;charset=utf-8")
+	public String boardCommentList(
+			@RequestParam("boardNo") int boardNo) {
+		
+		List<Comment> commentList = bService.printAllCommentList(boardNo);
+		if(!commentList.isEmpty()) {
+//			return new Gson().toJson(rList);
+			//같은 내용
+//			Gson gson = new Gson();
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			return gson.toJson(commentList);
+		}
+		return null;
+
+	}
+	
+
+	@ResponseBody
+	@RequestMapping(value="/board/commentModify", method=RequestMethod.POST)
+	public String boardReplyModify(
+			@ModelAttribute Comment comment) {
+		int result = bService.modifyComment(comment);
+		if(result > 0 ) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/board/commentDelete", method=RequestMethod.GET)
+	public String boardCommentRemove(
+			@RequestParam("commentNo") int commentNo) {
+		int result = bService.removeComment(commentNo);
+		if(result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
+	
 	
 	@RequestMapping(value="/board/detail_like", method=RequestMethod.POST)
 	public String boardDetailLike( HttpServletRequest request 

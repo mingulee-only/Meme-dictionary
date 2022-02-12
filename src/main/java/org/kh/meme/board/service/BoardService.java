@@ -31,6 +31,12 @@ public interface BoardService {
 
 	//댓글
 	public int registerComment(Comment comment); //댓글 등록
+	
+	public List<Comment> printAllCommentList(int boardNo); //댓글 목록
+	
+	public int modifyComment(Comment comment);	//댓글 수정
+
+	public int removeComment(int commentNo);	//댓글 삭제
 
 	
 

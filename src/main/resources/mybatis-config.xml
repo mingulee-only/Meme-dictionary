@@ -12,6 +12,7 @@
 		
 		<typeAlias type="org.kh.meme.board.domain.Board" alias="Board"/>
 		<typeAlias type="org.kh.meme.board.domain.Comment" alias="Comment"/>
+		
 		<typeAlias type="org.kh.meme.quiz.domain.Quiz" alias="Quiz"/>
 		<typeAlias type="org.kh.meme.quiz.domain.QuizCh" alias="QuizCh"/>
 		<typeAlias type="org.kh.meme.quiz.domain.QuizBest" alias="QuizBest"/>
