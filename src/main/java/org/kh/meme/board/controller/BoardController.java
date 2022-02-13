@@ -82,9 +82,11 @@ public class BoardController {
 	@RequestMapping(value="/board/commentList", method=RequestMethod.GET
 								, produces="application/json;charset=utf-8")
 	public String boardCommentList(
-			@RequestParam("boardNo") int boardNo) {
+			Model model
+			, @RequestParam("boardNo") int boardNo) {
 		
 		List<Comment> commentList = bService.printAllCommentList(boardNo);
+
 		if(!commentList.isEmpty()) {
 //			return new Gson().toJson(rList);
 			//같은 내용
