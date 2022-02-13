@@ -24,4 +24,12 @@ public interface MemeStore {
 	//사전 수정삭제 요청 등록
 	public int insertMemeRequest(SqlSession Session, MemeRequest memeRequest);
 	
+	//타임라인
+	public List<Meme> selectFirstTimeline(SqlSession sqlSession);
+	public List<Meme> selectSecondTimeline(SqlSessionTemplate sqlSession);
+	public List<Meme> selectThirdTimeline(SqlSessionTemplate sqlSession);
+	public List<Meme> selectFourthTimeline(SqlSessionTemplate sqlSession);
+	public List<Meme> selectFifthTimeline(SqlSessionTemplate sqlSession);
+	public List<Meme> selectSixthTimeline(SqlSessionTemplate sqlSession);
+	
 }
