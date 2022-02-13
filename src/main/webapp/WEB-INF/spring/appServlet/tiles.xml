@@ -12,7 +12,7 @@
 		<put-attribute name="rank" value="/WEB-INF/views/layout/rank.jsp" />
 	</definition>
 	<!-- 헤드만 붙이기 -->
-	<definition name="layout-tiles2" template="/WEB-INF/views/layout/tiles-layout.jsp">
+	<definition name="layout-tiles2" template="/WEB-INF/views/layout/tiles-layout2.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
 		<put-attribute name="body" value="" />
 	</definition>

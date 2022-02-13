@@ -30,14 +30,8 @@
 	#body {
 		margin-top: -10px
 		height:100%;
-		width:80%;
+		width:100%;
 		background-color: gold;
-		float:left;
-	}
-	#rank {
-		height:100%;
-		width:20%;
-		background-color: #f9f9f9;
 		float:left;
 	}
 
@@ -54,9 +48,7 @@
 				<tiles:insertAttribute name="body" />
 			</div>
 			
-			<div id="rank">
-				<tiles:insertAttribute name="rank" />
-			</div>
+			
 		</div>
 	</div>
 </body>
