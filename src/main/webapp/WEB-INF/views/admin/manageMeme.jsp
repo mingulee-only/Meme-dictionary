@@ -19,11 +19,12 @@
 }
 
 .body {
-	height: 80%;
+	height: 90%;
 }
 .content {
-	height : 80%;
-	width : 80%;
+	height : 75%;
+	width : 100%;
+	float : left;
 }
 .pi {
 	height : 10%;
@@ -91,29 +92,34 @@
 .sub {
 	font-size: smaller;
 }
+.inner-header {
+	height: 15%;
+}
 </style>
 </head>
 <body>
 
 
 	<div class="inner" align="center">
-		<div class="body">
-
-			<br>
-			<br>
-			<ul>
-				<li><a href="/admin/manageMember.me">회원 관리</a></li>
-				<li>유행어 사전 관리</li>
-				<li><a href="/admin/manageBoard.me">추진/자유게시판 관리</a></li>
-				<li><a href="/admin/manageQuiz.me">퀴즈 관리</a></li>
-			</ul>
-			<br>
-			<ul class="sub">
-				<li>전체 유행어 목록</li>
-				<li><a href="/admin/manageMemeRequest.me">사전 요청 목록</a></li>
-			</ul>
-			<br>
+		<div class="body" align="center">
+			<div class="inner-header">
+				<br>
+				<br>
+				<ul>
+					<li><a href="/admin/manageMember.me">회원 관리</a></li>
+					<li>유행어 사전 관리</li>
+					<li><a href="/admin/manageBoard.me">추진/자유게시판 관리</a></li>
+					<li><a href="/admin/manageQuiz.me">퀴즈 관리</a></li>
+				</ul>
+				<br>
+				<ul class="sub">
+					<li>전체 유행어 목록</li>
+					<li><a href="/admin/manageMemeRequest.me">사전 요청 목록</a></li>
+				</ul>
+				<br>
+			</div>
 			<div class="content">
+			<br>
 				<table align="center" border="1">
 					<tr class="header">
 						<td id="no">번호</td>
@@ -149,8 +155,6 @@
 					<button style="height:25px; width:55px">다음</button>
 				</c:if>
 			</div>
-		</div>
-		<div style="text-align:center" class="pi">
 		</div>
 		
 		<div class="footer">

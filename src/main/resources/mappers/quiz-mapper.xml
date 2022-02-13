@@ -15,6 +15,13 @@
   		<result property="quizCh3" column="QUIZ_CH3"/>
   		<result property="quizCh4" column="QUIZ_CH4"/>
   	</resultMap>
+  	<resultMap type="QuizReport" id="quizReportResultMap">
+  		<id property="reportNo" column="REPORT_NO"/>
+  		<result property="reportId" column="REPORT_ID"/>
+  		<result property="reportContents" column="REPORT_CONTENTS"/>
+  		<result property="reportDate" column="REPORT_DATE"/>
+  		<result property="quizNo" column="QUIZ_NO"/>
+  	</resultMap>
   	
   	<!-- 마이페이지 -->
   	<select id="selectMyQuizList" parameterType="string" resultMap="quizResultMap">
@@ -25,7 +32,22 @@
   		SELECT COUNT(*) FROM QUIZ_TBL WHERE MEMBER_ID = #{memberId }
   	</select>
   	
+  	<!-- 관리자페이지 -->
+  	<select id="selectAllQuizListCount" resultType="_int">
+  		SELECT COUNT(*) FROM QUIZ_TBL
+  	</select>
   	
+  	<select id="selectAllQuizReportListCount" resultType="_int">
+  		SELECT COUNT(*) FROM QUIZ_REPORT
+  	</select>
+  	
+  	<select id="selectAllQuizList" resultMap="quizResultMap">
+  		SELECT * FROM QUIZ_TBL ORDER BY QUIZ_NO DESC
+  	</select>
+  	
+  	<select id="selectAllQuizReportList" resultMap="quizReportResultMap">
+  		SELECT * FROM QUIZ_REPORT ORDER BY REPORT_NO DESC
+  	</select>
   	<!-- 퀴즈 메인 -->
   	<select id="selectRandom" resultMap="quizResultMap">
   		SELECT QUIZ_NO FROM (SELECT QUIZ_NO FROM QUIZ_TBL ORDER BY DBMS_RANDOM.VALUE) WHERE <![CDATA[ROWNUM<=100]]>

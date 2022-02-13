@@ -12,6 +12,8 @@ import org.kh.meme.member.domain.Member;
 import org.kh.meme.member.service.AdminService;
 import org.kh.meme.meme.domain.Meme;
 import org.kh.meme.meme.domain.MemeRequest;
+import org.kh.meme.quiz.domain.Quiz;
+import org.kh.meme.quiz.domain.QuizReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -110,7 +112,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/manageBoard.me", method=RequestMethod.GET)
-	public String manageBoard(HttpServletRequest request) {
+	public String manageBoard(HttpServletRequest request
+			,Model model
+			, @RequestParam(value="page", required=false) Integer page) {
 		HttpSession session = request.getSession();
 		Member member = (Member)session.getAttribute("loginMember");
 		if(member == null) {
@@ -118,6 +122,15 @@ public class AdminController {
 		}else if(member.getmGrade().equals("M")) {
 			return ".tilesHead/admin/error";
 		}
+		
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = aService.getAllBoardListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+		model.addAttribute("pi", pi);
+		
+		
+		List<Board> allBoardList = aService.printAllBoard(pi);
+		model.addAttribute("allBoardList", allBoardList);
 		return ".tilesHead/admin/manageBoard";
 	}
 	
@@ -134,7 +147,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/manageQuiz.me", method=RequestMethod.GET)
-	public String manageQuiz(HttpServletRequest request) {
+	public String manageQuiz(HttpServletRequest request
+			,Model model
+			, @RequestParam(value="page", required=false) Integer page) {
 		HttpSession session = request.getSession();
 		Member member = (Member)session.getAttribute("loginMember");
 		if(member == null) {
@@ -142,11 +157,22 @@ public class AdminController {
 		}else if(member.getmGrade().equals("M")) {
 			return ".tilesHead/admin/error";
 		}
+		
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = aService.getAllQuizListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+		model.addAttribute("pi", pi);
+		
+		
+		List<Quiz> allQuizList = aService.printAllQuiz(pi);
+		model.addAttribute("allQuizList", allQuizList);
 		return ".tilesHead/admin/manageQuiz";
 	}
 	
 	@RequestMapping(value="/admin/manageQuizReported.me", method=RequestMethod.GET)
-	public String manageQuizReported(HttpServletRequest request) {
+	public String manageQuizReported(HttpServletRequest request
+			,Model model
+			, @RequestParam(value="page", required=false) Integer page) {
 		HttpSession session = request.getSession();
 		Member member = (Member)session.getAttribute("loginMember");
 		if(member == null) {
@@ -154,6 +180,15 @@ public class AdminController {
 		}else if(member.getmGrade().equals("M")) {
 			return ".tilesHead/admin/error";
 		}
+		
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = aService.getAllQuizReportListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+		model.addAttribute("pi", pi);
+		
+		
+		List<QuizReport> allQuizReportList = aService.printAllQuizReportRequest(pi);
+		model.addAttribute("allQuizReportList", allQuizReportList);
 		return ".tilesHead/admin/manageQuizReported";
 	}
 }

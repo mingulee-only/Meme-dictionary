@@ -58,23 +58,33 @@
 }
 
 #part {
-	width: 35px;
+	width: 40px;
+	text-align: center;
+	font-size: smaller;
 }
 
 #no {
-	width: 50px;
+	width: 35px;
+	text-align: center;
+	font-size: smaller;
 }
 
 #question {
-	width: 150px;
+	width: 250px;
+	text-align: center;
+	font-size: smaller;
 }
 
 #writer {
 	width: 100px;
+	text-align: center;
+	font-size: smaller;
 }
 
 #date {
 	width: 50px;
+	text-align: center;
+	font-size: smaller;
 }
 
 
@@ -113,15 +123,48 @@
 				<table align="center" border="1">
 					<tr class="header">
 						<td id="part">유형</td>
-						<td id="no">퀴즈</td>
+						<td id="no">번호</td>
 						<td id="question">퀴즈내용</td>
+						<td id="answer">정답</td>
 						<td id="writer">출제자</td>
 						<td id="date">작성일</td>
 					</tr>
+					<c:forEach items="${allQuizList }" var="allQuizList">
+						<tr>
+							<td id="part">
+								<c:if test="${allQuizList.quizType eq 'O'}">
+			    					O/X
+								</c:if>
+								<c:if test="${allQuizList.quizType eq 'S'}">
+			    					단답형
+								</c:if>
+								<c:if test="${allQuizList.quizType eq 'M'}">
+			    					객관식
+								</c:if>
+							</td>
+							<td id="no">${allQuizList.quizNo }</td>
+							<td id="question">${allQuizList.quizQuest }</td>
+							<td id="answer">${allQuizList.quizAnswer }</td>
+							<td id="writer">${allQuizList.memberId }</td>
+							<td id="date">${allQuizList.quizDate }</td>
+						</tr>
+					</c:forEach>
 				</table>
 			</div>
-		</div>
-		<div style="text-align:center" class="pi">
+			<div style="text-align:center" class="pi">
+				<c:if test="${pi.startNavi gt 1 }">
+					<button style="height:25px; width:55px">이전</button>
+				</c:if>
+				<c:forEach var="p" begin="${pi.startNavi }" end="${pi.endNavi }">
+					<c:url var="pagination" value="/admin/manageQuiz.me">
+						<c:param name="page" value="${p }"></c:param>
+					</c:url>
+					<a href="${pagination }">${p }</a>&nbsp;
+				</c:forEach>
+				<c:if test="${pi.endNavi lt maxPage }">
+					<button style="height:25px; width:55px">다음</button>
+				</c:if>
+			</div>
 		</div>
 		
 		<div class="footer">
