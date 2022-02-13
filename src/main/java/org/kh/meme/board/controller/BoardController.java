@@ -1,11 +1,16 @@
 package org.kh.meme.board.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.BoardFile;
 import org.kh.meme.board.domain.Comment;
 import org.kh.meme.board.domain.Recommend;
 import org.kh.meme.board.service.BoardService;
@@ -24,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -265,37 +271,87 @@ public class BoardController {
 	
 	//게시글 등록
 	@RequestMapping(value="/board/register", method=RequestMethod.POST)
-	public String boardRegister( Model model
-			, @ModelAttribute Board board) {
+	public String boardRegister( 
+			Model model
+//			, @ModelAttribute BoardFile boardFile
+			, @ModelAttribute Board board
+			, HttpServletRequest request
+//			, @RequestParam(value="uploadFile", required = false) MultipartFile uploadFile
+			) {
 		
-		System.out.println(board);
-		int result = bService.registerBoard(board);
-		
-		
-		//랭킹
-		model.addAttribute("rankmain", "board");
-		List<MemeRank> memeRankList = rService.printMemeRank();
-		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
-		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
-		List<QuizRank> quizRankList = rService.printQuizRank();
-		
-		
-		if(result > 0 && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
-		
+		//memberId session에서 가져오기
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("loginMember");
+		System.out.println(member);
+
+//			//첨부파일
+//			if(!uploadFile.getOriginalFilename().contentEquals("")) {
+//				String fileRename = saveFile(uploadFile, request);
+//				if(fileRename != null) {
+//					boardFile.setBoardFilename(uploadFile.getOriginalFilename());
+//					boardFile.setBoardFilerename(fileRename);
+//				}
+//			}
+			
+			System.out.println(board);
+//			System.out.println(boardFile);
+			board.setMemberNickname(member.getMemberNickname());
+			int result = bService.registerBoard(board);
+
+//			int result = bService.registerNewBoard(board, boardFile);
+			System.out.println(result); //이게 아예 안 넘어옴...
+			
 			//랭킹
-			model.addAttribute("memeRankList", memeRankList);
-			model.addAttribute("boardPushRankList", boardPushRankList);
-			model.addAttribute("boardFreeRankList", boardFreeRankList);
-			model.addAttribute("quizRankList", quizRankList);
-			return "redirect:/board";
-		} else {
-			//일단 error 나누어서 안 적음, 필요하면 적기
-			model.addAttribute("msg", "랭킹 조회 실패");
-			return "error";
-		}
-		
+			model.addAttribute("rankmain", "board");
+			List<MemeRank> memeRankList = rService.printMemeRank();
+			List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+			List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+			List<QuizRank> quizRankList = rService.printQuizRank();
+			
+			
+			if(result > 0 && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
+			
+				//랭킹
+				model.addAttribute("memeRankList", memeRankList);
+				model.addAttribute("boardPushRankList", boardPushRankList);
+				model.addAttribute("boardFreeRankList", boardFreeRankList);
+				model.addAttribute("quizRankList", quizRankList);
+				return "redirect:/board";
+			} else {
+				//일단 error 나누어서 안 적음, 필요하면 적기
+				model.addAttribute("msg", "랭킹 조회 실패");
+				return "error";
+			}
 		
 	}
+	
+
+	// 첨부파일저장
+	public String saveFile(MultipartFile uploadFile, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\boardUploadFiles";
+		File folder = new File(savePath);
+		if (!folder.exists()) {
+			folder.mkdir();
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String fileOriginalname = uploadFile.getOriginalFilename();
+		String fileRename = sdf.format(new Date(System.currentTimeMillis())) + "."
+				+ fileOriginalname.substring(fileOriginalname.lastIndexOf(".") + 1);
+		String filePath = folder + "\\" + fileRename;
+		try {
+			uploadFile.transferTo(new File(filePath));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return fileRename;
+
+	}
+
+	
+	
 	
 	
 	@RequestMapping(value="/board", method = RequestMethod.GET, produces="application/text;charset=utf-8")

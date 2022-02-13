@@ -3,6 +3,7 @@ package org.kh.meme.board.service;
 import java.util.List;
 
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.BoardFile;
 import org.kh.meme.board.domain.Comment;
 import org.kh.meme.board.domain.Recommend;
 import org.kh.meme.common.PageInfo;
@@ -30,6 +31,7 @@ public interface BoardService {
 	
 	//게시글 추가
 	public int registerBoard(Board board);
+//	public int registerNewBoard(Board board, BoardFile boardFile);
 
 	//댓글
 	public int registerComment(Comment comment); //댓글 등록
