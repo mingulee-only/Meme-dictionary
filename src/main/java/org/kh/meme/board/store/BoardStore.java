@@ -39,6 +39,13 @@ public interface BoardStore {
 
 	public int insertBoardFile(SqlSession sqlSession, BoardFile boardFile);
 
+	//게시글 수정
+
+	public int updateBoard(SqlSession sqlSession, Board board);
+
+	public int updateBoardFile(SqlSession sqlSession, BoardFile boardFile);
+
+
 	
 	//댓글
 	public int insertComment(SqlSession sqlSession, Comment comment);

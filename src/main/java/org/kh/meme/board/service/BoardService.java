@@ -21,6 +21,9 @@ public interface BoardService {
 	//게시글 상세 페이지
 	public Board printBoardOneByNo(Integer boardNo);		//게시글 내용
 	public BoardFile printBoardFileOneByNo(int boardNo);	//첨부파일
+
+
+
 	
 	//조회 수
 	public int boardCount(Integer boardNo);
@@ -35,6 +38,11 @@ public interface BoardService {
 	//게시글 추가
 	public int registerBoard(Board board);
 	public int registerNewBoard(Board board, BoardFile boardFile);
+	
+	//게시글 수정
+	public int updateBoard(Board board, BoardFile boardFile);
+	
+	//게시글 삭제
 
 	//댓글
 	public int registerComment(Comment comment); //댓글 등록

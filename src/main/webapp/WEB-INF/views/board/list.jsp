@@ -24,8 +24,6 @@
 <body>
 	<h1 align="center">게시판</h1>
 	<p align="right">
-		
-
 		<input type="button" value="글쓰기" onclick="boardWriteFunc();"/>
 	</p>
 	<table id="boardTable">
