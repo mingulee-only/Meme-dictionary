@@ -10,6 +10,8 @@ import org.kh.meme.common.PageInfo;
 import org.kh.meme.common.Pagination;
 import org.kh.meme.member.domain.Member;
 import org.kh.meme.member.service.AdminService;
+import org.kh.meme.meme.domain.Meme;
+import org.kh.meme.meme.domain.MemeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,10 +33,10 @@ public class AdminController {
 		if(member == null) {
 			return "redirect:/login.me";
 		}else if(member.getmGrade().equals("M")) {
-			return "admin/error";
+			return ".tilesHead/admin/error";
 		}
 		
-		return "admin/adminHome";
+		return ".tilesHead/admin/adminHome";
 	}
 	
 	@RequestMapping(value="/admin/manageMember.me", method=RequestMethod.GET)
@@ -46,7 +48,7 @@ public class AdminController {
 		if(member == null) {
 			return "redirect:/login.me";
 		}else if(member.getmGrade().equals("M")) {
-			return "admin/error";
+			return ".tilesHead/admin/error";
 		}
 		
 		int currentPage = (page != null) ? page : 1;
@@ -58,19 +60,53 @@ public class AdminController {
 		List<Member> allMemberList = aService.printAllMember(pi);
 		model.addAttribute("allMemberList", allMemberList);
 		
-		return "admin/manageMember";
+		return ".tilesHead/admin/manageMember";
 	}
 	
 	@RequestMapping(value="/admin/manageMeme.me", method=RequestMethod.GET)
-	public String manageMeme(HttpServletRequest request) {
+	public String manageMeme(HttpServletRequest request
+			,Model model
+			, @RequestParam(value="page", required=false) Integer page) {
 		HttpSession session = request.getSession();
 		Member member = (Member)session.getAttribute("loginMember");
 		if(member == null) {
 			return "redirect:/login.me";
 		}else if(member.getmGrade().equals("M")) {
-			return "admin/error";
+			return ".tilesHead/admin/error";
 		}
-		return "admin/manageMeme";
+		
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = aService.getAllMemeListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+		model.addAttribute("pi", pi);
+		
+		
+		List<Meme> allMemeList = aService.printAllMeme(pi);
+		model.addAttribute("allMemeList", allMemeList);
+		return ".tilesHead/admin/manageMeme";
+	}
+	
+	@RequestMapping(value="/admin/manageMemeRequest.me", method=RequestMethod.GET)
+	public String manageMemeRequest(HttpServletRequest request
+			,Model model
+			, @RequestParam(value="page", required=false) Integer page) {
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		if(member == null) {
+			return "redirect:/login.me";
+		}else if(member.getmGrade().equals("M")) {
+			return ".tilesHead/admin/error";
+		}
+		
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = aService.getAllMemeRequestListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+		model.addAttribute("pi", pi);
+		
+		
+		List<MemeRequest> allMemeList = aService.printAllMemeRequest(pi);
+		model.addAttribute("allMemeRequestList", allMemeList);
+		return ".tilesHead/admin/manageMemeRequest";
 	}
 	
 	@RequestMapping(value="/admin/manageBoard.me", method=RequestMethod.GET)
@@ -80,9 +116,9 @@ public class AdminController {
 		if(member == null) {
 			return "redirect:/login.me";
 		}else if(member.getmGrade().equals("M")) {
-			return "admin/error";
+			return ".tilesHead/admin/error";
 		}
-		return "admin/manageBoard";
+		return ".tilesHead/admin/manageBoard";
 	}
 	
 	@RequestMapping(value="/admin/manageBoardReported.me", method=RequestMethod.GET)
@@ -92,9 +128,9 @@ public class AdminController {
 		if(member == null) {
 			return "redirect:/login.me";
 		}else if(member.getmGrade().equals("M")) {
-			return "admin/error";
+			return ".tilesHead/admin/error";
 		}
-		return "admin/manageBoardReported";
+		return ".tilesHead/admin/manageBoardReported";
 	}
 	
 	@RequestMapping(value="/admin/manageQuiz.me", method=RequestMethod.GET)
@@ -104,9 +140,9 @@ public class AdminController {
 		if(member == null) {
 			return "redirect:/login.me";
 		}else if(member.getmGrade().equals("M")) {
-			return "admin/error";
+			return ".tilesHead/admin/error";
 		}
-		return "admin/manageQuiz";
+		return ".tilesHead/admin/manageQuiz";
 	}
 	
 	@RequestMapping(value="/admin/manageQuizReported.me", method=RequestMethod.GET)
@@ -116,8 +152,8 @@ public class AdminController {
 		if(member == null) {
 			return "redirect:/login.me";
 		}else if(member.getmGrade().equals("M")) {
-			return "admin/error";
+			return ".tilesHead/admin/error";
 		}
-		return "admin/manageQuizReported";
+		return ".tilesHead/admin/manageQuizReported";
 	}
 }

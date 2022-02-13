@@ -32,12 +32,12 @@
 	height : 10%;
 }
 
-ul {
+.body ul {
 	list-style-type: none;
 	padding-left: 130px;
 }
 
-li {
+.body li {
 	color: white;
 	float: left;
 	background-color: #4A4646;
@@ -45,7 +45,7 @@ li {
 	text-align: center;
 }
 
-li a {
+.body li a {
 	color: white;
 	display: block;
 	background-color: darkgray;
@@ -53,7 +53,7 @@ li a {
 	text-align: center;
 }
 
-li a.current {
+.body li a.current {
 	color: white;
 }
 

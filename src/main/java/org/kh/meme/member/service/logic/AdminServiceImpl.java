@@ -6,6 +6,8 @@ import org.kh.meme.common.PageInfo;
 import org.kh.meme.member.domain.Member;
 import org.kh.meme.member.service.AdminService;
 import org.kh.meme.member.store.AdminStore;
+import org.kh.meme.meme.domain.Meme;
+import org.kh.meme.meme.domain.MemeRequest;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,9 +25,29 @@ public class AdminServiceImpl implements AdminService{
 		return totalCount;
 	}
 	@Override
+	public int getAllMemeListCount() {
+		int totalCount = aStore.allMemeListCount(sqlSession);
+		return totalCount;
+	}
+	@Override
+	public int getAllMemeRequestListCount() {
+		int totalCount = aStore.allMemeRequestListCount(sqlSession);
+		return totalCount;
+	}
+	@Override
 	public List<Member> printAllMember(PageInfo pi) {
 		List<Member> allMemberList = aStore.selectAllMember(sqlSession, pi);
 		return allMemberList;
+	}
+	@Override
+	public List<Meme> printAllMeme(PageInfo pi) {
+		List<Meme> allMemeList = aStore.selectAllMeme(sqlSession, pi);
+		return allMemeList;
+	}
+	@Override
+	public List<MemeRequest> printAllMemeRequest(PageInfo pi) {
+		List<MemeRequest> allMemeRequestList = aStore.selectAllMemeRequest(sqlSession, pi);
+		return allMemeRequestList;
 	}
 
 }
