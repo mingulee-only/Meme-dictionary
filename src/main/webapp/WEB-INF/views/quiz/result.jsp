@@ -147,18 +147,19 @@ window.onload = function(){
 </head>
 <body>
 	<h1>퀴즈 결과</h1>
-	<c:forEach var="i" items="${userAnswer}" varStatus="vs">
-    	문제 : ${quizQuest[vs.index]} <br>
-    	<c:if test="${not empty quizCh1[vs.index]}">
+	
+	<c:forEach var="i" items="${qList}" varStatus="vs">
+		문제 : ${i.quizQuest} <br>
+    	<c:if test="${not empty i.quizCh1}">
     	보기 <br>
-	    	(1) ${quizCh1[vs.index]} <br>
-	    	(2) ${quizCh2[vs.index]} <br>
-	    	(3) ${quizCh3[vs.index]} <br>
-	    	(4) ${quizCh4[vs.index]} <br>
+	    	(1) ${i.quizCh1} <br>
+	    	(2) ${i.quizCh2} <br>
+	    	(3) ${i.quizCh3} <br>
+	    	(4) ${i.quizCh4} <br>
     	</c:if>
-    	정답 : ${quizAnswer[vs.index]} <br>
-    	나의 답 : ${i } <br>
-        <button class="btn-modal" id="${quizNo[vs.index]}">신고</button>
+    	정답 : ${i.quizAnswer} <br>
+    	나의 답 : ${userAnswer[vs.index] } <br>
+        <button class="btn-modal" id="${i.quizNo}">신고</button>
     	<br><br><br>
 	</c:forEach>
 	정답 갯수 : ${score }

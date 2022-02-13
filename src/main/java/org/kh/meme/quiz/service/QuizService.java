@@ -11,7 +11,7 @@ import org.kh.meme.quiz.domain.QuizReport;
 public interface QuizService {
 
 	public List<Quiz> random();
-	public List<Quiz> printAll(int quizNo);
+	public Quiz printOneByNo(Integer quizNo);
 	public int writeQuiz(Quiz quiz, QuizFile quizFile);
 	
 	public int writeQuizM(QuizCh quizCh);

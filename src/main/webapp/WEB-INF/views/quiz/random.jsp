@@ -36,14 +36,8 @@
                 clock--;
             } else {
             	$("#quizNo_").val($report);
-            	$("#quizQuest_").val($quizQuest);
-            	$("#quizAnswer_").val($answer);
             	$("#userAnswer_").val(userAnswer);
             	$("#score_").val(score);
-            	$("#quizCh1_").val($quizCh1);
-            	$("#quizCh2_").val($quizCh2);
-            	$("#quizCh3_").val($quizCh3);
-            	$("#quizCh4_").val($quizCh4);
             	
             	
             	$("#postSubmit").submit();
@@ -86,38 +80,28 @@
 					dataType : "json",
 					data : {"quizNo" : $quizNo[nextNum]},
 					success : function(data) {
-						for(var i in data) {
-							$('#question').html(data[i].quizQuest);
-							$('#ch1').html(data[i].quizCh1);
-							$('#ch2').html(data[i].quizCh2);
-							$('#ch3').html(data[i].quizCh3);
-							$('#ch4').html(data[i].quizCh4);
+							$('#question').html(data.quizQuest);
+							$('#ch1').html(data.quizCh1);
+							$('#ch2').html(data.quizCh2);
+							$('#ch3').html(data.quizCh3);
+							$('#ch4').html(data.quizCh4);
 							
-							if(data[i].quizType == "O") {
+							if(data.quizType == "O") {
 								$('#type').html("OX 퀴즈");
 								$('#answer').attr("placeholder", "O, X 입력후 엔터");
-							}else if (data[i].quizType == "S") {
+							}else if (data.quizType == "S") {
 								$('#type').html("단답형 퀴즈");
 								$('#answer').attr("placeholder", "단어 입력후 엔터");
 							}else {
 								$('#type').html("객관식 퀴즈");
-								$('#ch1').html("보기<br>(1) "+data[i].quizCh1);
-								$('#ch2').html("(2) "+data[i].quizCh2);
-								$('#ch3').html("(3) "+data[i].quizCh3);
-								$('#ch4').html("(4) "+data[i].quizCh4);
+								$('#ch1').html("보기<br>(1) "+data.quizCh1);
+								$('#ch2').html("(2) "+data.quizCh2);
+								$('#ch3').html("(3) "+data.quizCh3);
+								$('#ch4').html("(4) "+data.quizCh4);
 								$('#answer').attr("placeholder", "1 ~ 4 숫자 입력후 엔터");
 							}
 
-							
-							$answer[nextNum] = data[i].quizAnswer;
-							$quizType[nextNum] = data[i].quizType;
-							$quizQuest[nextNum] = data[i].quizQuest;
-							$quizCh1[nextNum] = data[i].quizCh1;
-							$quizCh2[nextNum] = data[i].quizCh2;
-							$quizCh3[nextNum] = data[i].quizCh3;
-							$quizCh4[nextNum] = data[i].quizCh4;
-							$report[nextNum] = data[i].quizNo;
-						}
+							$report[nextNum] = data.quizNo;
 					},
 					error : function() {
 						
@@ -167,12 +151,6 @@
 	</div>
 	<form action="/quiz/result.me" method="post" id="postSubmit">
 		<input type="hidden" name="quizNo" id="quizNo_">
-		<input type="hidden" name="quizQuest" id="quizQuest_">
-		<input type="hidden" name="quizAnswer" id="quizAnswer_">
-		<input type="hidden" name="quizCh1" id="quizCh1_">
-		<input type="hidden" name="quizCh2" id="quizCh2_">
-		<input type="hidden" name="quizCh3" id="quizCh3_">
-		<input type="hidden" name="quizCh4" id="quizCh4_">
 		<input type="hidden" name="userAnswer" id="userAnswer_">
 		<input type="hidden" name="score" id="score_">
 	</form>

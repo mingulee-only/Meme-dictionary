@@ -4,6 +4,7 @@ package org.kh.meme.quiz.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -69,14 +70,14 @@ public class QuizController {
 	@ResponseBody
 	@RequestMapping(value = "/quiz/getList.me", method = RequestMethod.GET)
 	public void getMList(
-			@RequestParam("quizNo") int quizNo
+			@RequestParam("quizNo") Integer quizNo
 			,HttpServletResponse response) throws Exception {
 		
-		List<Quiz> qList = qService.printAll(quizNo);
+		Quiz quiz = qService.printOneByNo(quizNo);
 		response.setCharacterEncoding("utf-8");
-		if(!qList.isEmpty()) {
+		if(quiz!=null) {
 			Gson gson = new Gson();
-			gson.toJson(qList, response.getWriter());
+			gson.toJson(quiz, response.getWriter());
 		}
 	}
 	
@@ -85,17 +86,17 @@ public class QuizController {
 	public String result(Model model
 			,@ModelAttribute QuizBest qBest
 			,@RequestParam("userAnswer")String[] userAnswer
-			,@RequestParam("quizQuest")String[] quizQuest
-			,@RequestParam("quizAnswer")String[] quizAnswer
-			,@RequestParam("quizCh1")String[] quizCh1
-			,@RequestParam("quizCh2")String[] quizCh2
-			,@RequestParam("quizCh3")String[] quizCh3
-			,@RequestParam("quizCh4")String[] quizCh4
-			,@RequestParam("quizNo")String[] quizNo
+			,@RequestParam("quizNo")Integer[] quizNo
 			,@RequestParam("score")String score
 			,HttpSession session) {
 		
-
+		ArrayList<Quiz> qList = new ArrayList<Quiz>();
+		for(int i = 0; i<quizNo.length-1; i++) {
+			Quiz quiz = new Quiz();
+			quiz = qService.printOneByNo(quizNo[i]);
+			qList.add(quiz);
+		}
+		
 		//랭킹
 		model.addAttribute("rankmain", "quiz");
 		List<MemeRank> memeRankList = rService.printMemeRank();
@@ -104,15 +105,10 @@ public class QuizController {
 		List<QuizRank> quizRankList = rService.printQuizRank();
 		
 		// 퀴즈 결과
-		model.addAttribute("quizQuest", quizQuest);
 		model.addAttribute("userAnswer", userAnswer);
-		model.addAttribute("quizAnswer", quizAnswer);
-		model.addAttribute("quizCh1", quizCh1);
-		model.addAttribute("quizCh2", quizCh2);
-		model.addAttribute("quizCh3", quizCh3);
-		model.addAttribute("quizCh4", quizCh4);
 		model.addAttribute("quizNo", quizNo);
 		model.addAttribute("score", score);
+		model.addAttribute("qList", qList);
 		
 		Member member = (Member) session.getAttribute("loginMember");
 		if(member!=null) {
@@ -176,7 +172,7 @@ public class QuizController {
 	}
 	
 	
-	//퀴즈만들기
+	//퀴즈만들기 페이지
 	@RequestMapping(value = "/quiz/writeView.me", method = RequestMethod.GET)
 	public String quizWriteView(Model model) {
 
@@ -198,6 +194,7 @@ public class QuizController {
 		return ".tiles/quiz/write";
 	}
 	
+	// 퀴즈 만들기 DB에 넣기
 	@RequestMapping(value = "/quiz/write.me", method = RequestMethod.POST)
 	public String quizWrite(
 			Model model
@@ -239,6 +236,16 @@ public class QuizController {
 			model.addAttribute("msg", e.toString());
 			return "common/errorPage";
 		}
+	}
+	
+	@RequestMapping(value = "/quiz/modifyView.me", method = RequestMethod.GET)
+	public String quizModify(
+			@RequestParam("quizNo") int quizNo
+			,Model model) {
+		Quiz quiz = qService.printOneByNo(quizNo);
+		System.out.println(quiz);
+		model.addAttribute("quiz", quiz);
+		return ".tiles/quiz/modify";
 	}
 	
 	public String saveFile(MultipartFile uploadFile, HttpServletRequest request) {

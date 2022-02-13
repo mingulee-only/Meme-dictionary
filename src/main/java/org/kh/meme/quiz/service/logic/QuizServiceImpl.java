@@ -28,9 +28,9 @@ public class QuizServiceImpl implements QuizService {
 	}
 	
 	@Override
-	public List<Quiz> printAll(int quizNo) {
-		List<Quiz> qList = qStore.selectAll(sqlSession, quizNo);
-		return qList;
+	public Quiz printOneByNo(Integer quizNo) {
+		Quiz quiz = qStore.selectOneByNo(sqlSession, quizNo);
+		return quiz;
 	}
 	
 	@Override

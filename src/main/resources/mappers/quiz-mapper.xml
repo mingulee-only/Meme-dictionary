@@ -31,7 +31,7 @@
   		SELECT QUIZ_NO FROM (SELECT QUIZ_NO FROM QUIZ_TBL ORDER BY DBMS_RANDOM.VALUE) WHERE <![CDATA[ROWNUM<=100]]>
   	</select>
   	
-  	<select id="selectQuiz" resultMap="quizResultMap">
+  	<select id="selectOneByNo" resultMap="quizResultMap">
   		SELECT * FROM QUIZ_TBL Q
 		LEFT OUTER JOIN QUIZ_CH C
 		ON Q.QUIZ_NO = C.QUIZ_NO

@@ -33,9 +33,9 @@ public class QuizStoreLogic implements QuizStore {
 	}
 
 	@Override
-	public List<Quiz> selectAll(SqlSession sqlSession, int quizNo) {
-		List<Quiz> qList = sqlSession.selectList("QuizMapper.selectQuiz", quizNo);
-		return qList;
+	public Quiz selectOneByNo(SqlSession sqlSession, Integer quizNo) {
+		Quiz quiz = sqlSession.selectOne("QuizMapper.selectOneByNo", quizNo);
+		return quiz;
 	}
 
 	@Override

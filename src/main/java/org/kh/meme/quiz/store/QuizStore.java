@@ -13,7 +13,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 public interface QuizStore {
 
 	public List<Quiz> selectRandom(SqlSession sqlSession);
-	public List<Quiz> selectAll(SqlSession sqlSession, int quizNo);
+	public Quiz selectOneByNo(SqlSession sqlSession, Integer quizNo);
 	public int insertQuiz(SqlSession session, Quiz quiz);
 	
 	public int insertQuizM(SqlSession session, QuizCh quizCh);
