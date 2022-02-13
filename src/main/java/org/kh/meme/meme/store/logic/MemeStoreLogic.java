@@ -68,6 +68,44 @@ public class MemeStoreLogic implements MemeStore{
 		return result;
 	}
 
+	
+	//타임라인
+	@Override
+	public List<Meme> selectFirstTimeline(SqlSession sqlSession) {
+		List<Meme> memeTimeline = sqlSession.selectList("MemeMapper.selectFirstTimeline");
+		return memeTimeline;
+	}
+
+	@Override
+	public List<Meme> selectSecondTimeline(SqlSessionTemplate sqlSession) {
+		List<Meme> memeSecondTimeline = sqlSession.selectList("MemeMapper.selectSecondTimeline");
+		return memeSecondTimeline;
+	}
+
+	@Override
+	public List<Meme> selectThirdTimeline(SqlSessionTemplate sqlSession) {
+		List<Meme> memeThirdTimeline = sqlSession.selectList("MemeMapper.selectThirdTimeline");
+		return memeThirdTimeline;
+	}
+
+	@Override
+	public List<Meme> selectFourthTimeline(SqlSessionTemplate sqlSession) {
+		List<Meme> memeFourthTimeline = sqlSession.selectList("MemeMapper.selectFourthTimeline");
+		return memeFourthTimeline;
+	}
+
+	@Override
+	public List<Meme> selectFifthTimeline(SqlSessionTemplate sqlSession) {
+		List<Meme> memeFifthTimeline = sqlSession.selectList("MemeMapper.selectFifthTimeline");
+		return memeFifthTimeline;
+	}
+
+	@Override
+	public List<Meme> selectSixthTimeline(SqlSessionTemplate sqlSession) {
+		List<Meme> memeSixthTimeline = sqlSession.selectList("MemeMapper.selectSixthTimeline");
+		return memeSixthTimeline;
+	}
+
 
 
 }

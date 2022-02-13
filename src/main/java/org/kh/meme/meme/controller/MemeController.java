@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-
 @Controller
 public class MemeController {
 
@@ -42,26 +41,22 @@ public class MemeController {
 
 	// 사전 등재 요청
 	@RequestMapping(value = "/meme/registerView", method = RequestMethod.GET)
-	public String memeWriteView(
-			Model model
-			, HttpSession session) {
-		//비로그인->로그인페이지, 로그인->등재요청페이지
-		if(session.getAttribute("loginMember")==null) {
+	public String memeWriteView(Model model, HttpSession session) {
+		// 비로그인->로그인페이지, 로그인->등재요청페이지
+		if (session.getAttribute("loginMember") == null) {
 			return "member/login";
 		}
-		//로그인 후 등재 요청시 작성자에 닉네임 출력
-		Member member = (Member)session.getAttribute("loginMember");
+		// 로그인 후 등재 요청시 작성자에 닉네임 출력
+		Member member = (Member) session.getAttribute("loginMember");
 		model.addAttribute("memberNickname", member.getMemberNickname());
 		return "meme/memeRegisterForm";
 	}
 
 	@RequestMapping(value = "/meme/register", method = RequestMethod.POST)
-	public String memeRegister(Model model, @ModelAttribute Meme meme
-			, @ModelAttribute MemeFile memeFile
-			, @RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile
-			, HttpServletRequest request
-			) {
-		
+	public String memeRegister(Model model, @ModelAttribute Meme meme, @ModelAttribute MemeFile memeFile,
+			@RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile,
+			HttpServletRequest request) {
+
 		try {
 			if (!uploadFile.getOriginalFilename().contentEquals("")) {
 				String renameFileName = saveFile(uploadFile, request);
@@ -145,44 +140,42 @@ public class MemeController {
 //
 //	}
 
-
-	//사전 상세보기
+	// 사전 상세보기
 	@RequestMapping(value = "/meme/detail", method = RequestMethod.GET)
-	public String memeDetail(Model model
-			, @RequestParam(value = "memeName") String memeName
-			) {
+	public String memeDetail(Model model, @RequestParam(value = "memeName") String memeName) {
 		try {
 			Meme meme = mService.printOneByMeme(memeName);
 			MemeFile memeFile = mService.printOneByMemeFile(meme.getMemeNo());
 
 			model.addAttribute("rankmain", "meme");
-	 		List<MemeRank> memeRankList = rService.printMemeRank();
-	 		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
-	 		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
-			
-	 		List<QuizRank> quizRankList = rService.printQuizRank();
-	 		if(meme != null && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
-	 			model.addAttribute("memeRankList", memeRankList);
-	 			model.addAttribute("boardPushRankList", boardPushRankList);
-	 			model.addAttribute("boardFreeRankList", boardFreeRankList);
-	 			model.addAttribute("quizRankList", quizRankList);
-	 			
-	 			// 조회수 증가
-	 			mService.memeCountUpdate(meme.getMemeNo());
+			List<MemeRank> memeRankList = rService.printMemeRank();
+			List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+			List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+
+			List<QuizRank> quizRankList = rService.printQuizRank();
+			if (meme != null && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty()
+					&& !quizRankList.isEmpty()) {
+				model.addAttribute("memeRankList", memeRankList);
+				model.addAttribute("boardPushRankList", boardPushRankList);
+				model.addAttribute("boardFreeRankList", boardFreeRankList);
+				model.addAttribute("quizRankList", quizRankList);
+
+				// 조회수 증가
+				mService.memeCountUpdate(meme.getMemeNo());
 				model.addAttribute("meme", meme);
-				
+
 				model.addAttribute("memeFile", memeFile);
 				return ".tiles/meme/memeDetailView";
-	 		} else {
-	 			//일단 error 나누어서 안 적음, 필요하면 적기
-	 			model.addAttribute("msg", "사전 상세 조회 실패");
-	 			return "common/memeErrorPage";
-	 		}
-			
-		}catch(Exception e){
+			} else {
+				// 일단 error 나누어서 안 적음, 필요하면 적기
+				model.addAttribute("msg", "사전 상세 조회 실패");
+				return "common/memeErrorPage";
+			}
+
+		} catch (Exception e) {
 			model.addAttribute("msg", "사전에 등재되지 않은 단어 입니다. 유행어를 등록 해주세요~!");
 			return "common/memeErrorPage";
-			
+
 		}
 
 	}
@@ -214,7 +207,6 @@ public class MemeController {
 		}
 	}
 
-
 //	@RequestMapping(value="/meme", method = RequestMethod.GET)
 //	public String memelist(Model model) {
 //		model.addAttribute("page", "meme");
@@ -239,5 +231,33 @@ public class MemeController {
 // 			//일단 error 나누어서 안 적음, 필요하면 적기
 // 			model.addAttribute("msg", "랭킹 조회 실패");
 // 			return "error";
- 		}
 
+	//타임라인
+	@RequestMapping(value="/meme/timeline", method=RequestMethod.GET)
+	public String memeTimeline(Model model) {
+		List<Meme> memeTimeline = mService.printMemeTimeline();
+		model.addAttribute("memeTimeline",memeTimeline);
+		
+		List<Meme> memeSecondTimeline = mService.printSeoncdMemeTimeline();
+		model.addAttribute("memeSecondTimeline",memeSecondTimeline);
+
+		List<Meme> memeThirdTimeline = mService.printThirdMemeTimeline();
+		model.addAttribute("memeThirdTimeline",memeThirdTimeline);
+
+		List<Meme> memeFourthTimeline = mService.printFourthMemeTimeline();
+		model.addAttribute("memeFourthTimeline",memeFourthTimeline);
+		
+		List<Meme> memeFifthTimeline = mService.printFifthMemeTimeline();
+		model.addAttribute("memeFifthTimeline",memeFifthTimeline);
+		
+		List<Meme> memeSixthTimeline = mService.printSixthMemeTimeline();
+		model.addAttribute("memeSixthTimeline",memeSixthTimeline);
+		
+		
+		
+		return"meme/memeTimeline";
+	}
+	
+	
+	
+}

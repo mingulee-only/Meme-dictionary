@@ -71,6 +71,44 @@ public class MemeServiceImpl implements MemeService{
 		return result;
 	}
 
+	
+	//타임라인
+	@Override
+	public List<Meme> printMemeTimeline() {
+		List<Meme> memeTimeline = mStore.selectFirstTimeline(sqlSession);
+		return memeTimeline;
+	}
+
+	@Override
+	public List<Meme> printSeoncdMemeTimeline() {
+		List<Meme> memeSecondTimeline = mStore.selectSecondTimeline(sqlSession);
+		return memeSecondTimeline;
+	}
+
+	@Override
+	public List<Meme> printThirdMemeTimeline() {
+		List<Meme> memeThirdTimeline = mStore.selectThirdTimeline(sqlSession);
+		return memeThirdTimeline;
+	}
+
+	@Override
+	public List<Meme> printFourthMemeTimeline() {
+		List<Meme> memeFourthTimeline = mStore.selectFourthTimeline(sqlSession);
+		return memeFourthTimeline;
+	}
+
+	@Override
+	public List<Meme> printFifthMemeTimeline() {
+		List<Meme> memeFifthTimeline = mStore.selectFifthTimeline(sqlSession);
+		return memeFifthTimeline;
+	}
+
+	@Override
+	public List<Meme> printSixthMemeTimeline() {
+		List<Meme> memeSixthTimeline = mStore.selectSixthTimeline(sqlSession);
+		return memeSixthTimeline;
+	}
+
 
 
 

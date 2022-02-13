@@ -22,5 +22,12 @@ public interface MemeService {
 	public int memeCountUpdate(int memeNo);
 	//사전 수정삭제요청 등록
 	int requestMeme(MemeRequest memeRequest);
+	//타임라인
+	public List<Meme> printMemeTimeline();
+	public List<Meme> printSeoncdMemeTimeline();
+	public List<Meme> printThirdMemeTimeline();
+	public List<Meme> printFourthMemeTimeline();
+	public List<Meme> printFifthMemeTimeline();
+	public List<Meme> printSixthMemeTimeline();
 
 }
