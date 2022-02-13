@@ -7,14 +7,30 @@
 <title>로그인 페이지</title>
 <style>
 	.inner {
-	position : absolute;
-	width : 300px;
-	height : 200px;
-	top : 50%;
-	left : 50%;
-	margin-top : -100px;
-	margin-left : -150px;
-	background-color : lightgray;
+/* 		position : absolute; */
+		width : 300px;
+		height : 200px;
+		text-align: center;
+	 	margin: auto; 
+		background-color : lightgray;
+		
+		margin-top : 10%;
+		margin-bottom : 10%;
+		margin-left : 35%;
+	}
+ 	.header {
+ 		height : 20%;
+ 	}
+ 	.body {
+	 	height : 80%;
+	 	padding-left : 50px;
+		margin-top : 20px;
+	}
+	
+	#memberLoginTable {
+		text-align: center;
+	 	margin: auto; 
+	 	margin-top : 10%;
 	}
 	.header {
 	height : 20%;
@@ -34,18 +50,20 @@
 		</div>
 		<div class="body">
 		<form action="/member/login.me" method="post">
-			<table align="center">
-				<tr align="center">
+			<table id="memberLoginTable">
+				<tr>
 					<td colspan="2"><input type="text" name="memberId" placeholder="아이디"></td>
 				</tr>
-				<tr align="center">
+				<tr>
 					<td colspan="2"><input type="password" name="memberPw" placeholder="비밀번호"></td>	
 				</tr>
+
 				<tr align="center">
 					<td><button type="submit">로그인</button></td>
+
 					<td><button type="button" onclick="location.href='/member/join.me'">회원가입</button>
 				</tr>
-				<tr align="center">
+				<tr>
 					<td colspan="2"><button type="button" onclick="location.href='/member/findId.me'">아이디/비밀번호 찾기</button></td>
 				</tr>
 			</table>	

@@ -3,7 +3,10 @@ package org.kh.meme.quiz.service.logic;
 import java.util.List;
 
 import org.kh.meme.quiz.domain.Quiz;
+import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
+import org.kh.meme.quiz.domain.QuizFile;
+import org.kh.meme.quiz.domain.QuizReport;
 import org.kh.meme.quiz.service.QuizService;
 import org.kh.meme.quiz.store.QuizStore;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -25,14 +28,23 @@ public class QuizServiceImpl implements QuizService {
 	}
 	
 	@Override
-	public List<Quiz> printAll(int quizNo) {
-		List<Quiz> qList = qStore.selectAll(sqlSession, quizNo);
-		return qList;
+	public Quiz printOneByNo(Integer quizNo) {
+		Quiz quiz = qStore.selectOneByNo(sqlSession, quizNo);
+		return quiz;
 	}
 	
 	@Override
-	public int writeQuiz(Quiz quiz) {
+	public int writeQuiz(Quiz quiz, QuizFile quizFile) {
 		int result = qStore.insertQuiz(sqlSession, quiz);
+		if(result > 0) {
+			qStore.insertQuizFile(sqlSession, quizFile);
+		}
+		return result;
+	}
+	
+	@Override
+	public int modifyQuiz(Quiz quiz) {
+		int result = qStore.updateQuiz(sqlSession, quiz);
 		return result;
 	}
 
@@ -41,6 +53,28 @@ public class QuizServiceImpl implements QuizService {
 		int result = qStore.insertQuizM(sqlSession, quizCh);
 		return result;
 	}
+
+	@Override
+	public int ScoreOne(String memberId) {
+			int result = qStore.selectScore(sqlSession, memberId);
+			return result;
+	}
+
+	@Override
+	public int updateScore(QuizBest qBest) {
+		int result = qStore.updateScore(sqlSession, qBest);
+		return result;
+	}
+
+	@Override
+	public int registerReport(QuizReport qReport) {
+		int result = qStore.insertReport(sqlSession, qReport);
+		return result;
+	}
+
+
+
+
 
 
 }

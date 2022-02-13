@@ -24,7 +24,7 @@
 <body>
 	<h1 align="center">게시판</h1>
 	<p align="right">
-		<input type="button" value="글쓰기" onclick="location.href='/board/write'"/>
+		<input type="button" value="글쓰기" onclick="boardWriteFunc();"/>
 	</p>
 	<table id="boardTable">
 		<tr>
@@ -94,5 +94,15 @@
 			
 		</div>
 	</div>
+	<script>
+		function boardWriteFunc(){
+			<c:if test="${empty sessionScope.loginMember }">
+				alert("로그인이 필요합니다.");
+	   		</c:if>
+	   		<c:if test="${not empty loginMember }">
+	   			location.href="/board/write";
+	        </c:if>
+		}
+	</script>
 </body>
 </html>

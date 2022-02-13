@@ -30,7 +30,7 @@
 	</select>
 	<select id="selectAllMember" resultMap="memberResultMap">
 		SELECT * FROM MEMBER_TBL WHERE M_STATUS = 'Y' AND M_GRADE = 'M' ORDER BY MEMBER_ID DESC
-	</select>
+  </select>
 	<insert id="insertMember" parameterType="org.kh.meme.member.domain.Member">
 		INSERT INTO MEMBER_TBL VALUES(#{memberId}, #{memberPw}, #{memberName}, #{memberNickname}, #{memberEmail}, DEFAULT, DEFAULT)
 	</insert>

@@ -6,59 +6,59 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-#quizWriteForm {
-	border: 1px solid black;
-	width:400px;
-	text-align: left;
-	margin: auto;
-}
+	#quizWriteForm {
+		border: 1px solid black;
+		width:400px;
+		text-align: left;
+		margin: auto;
+	}
 </style>
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function(){
-	var type = document.querySelector("#type");
-    var plus = document.querySelector("#plus");
-    var minus = document.querySelector("#minus");
-    var chNum = 3;
-    var quizCh3 = document.querySelector("#quizCh3");
-    var quizCh4 = document.querySelector("#quizCh4");
+	$(document).ready(function(){
+		var type = document.querySelector("#type");
+	    var plus = document.querySelector("#plus");
+	    var minus = document.querySelector("#minus");
+	    var chNum = 3;
+	    var quizCh3 = document.querySelector("#quizCh3");
+	    var quizCh4 = document.querySelector("#quizCh4");
+		
+	    type.addEventListener("change", function() {
+	        var multiple = $("#type option:selected").val();
+	        var choice = document.querySelector("#choice");
+	        if(multiple == "M") {
+	            choice.style.display = "block";
+	        } else {
+	        	choice.style.display = "none";
+	        }
+	    });
 	
-    type.addEventListener("change", function() {
-        var multiple = $("#type option:selected").val();
-        var choice = document.querySelector("#choice");
-        if(multiple == "M") {
-            choice.style.display = "block";
-        } else {
-        	choice.style.display = "none";
-        }
-    });
-
-    plus.addEventListener("click", function() {
-        if(chNum==3) {
-        	quizCh3.style.display = "block";
-            chNum++;
-        } else if(chNum==4) {
-        	quizCh4.style.display = "block";
-            chNum++;
-        }
-    });
-    
-    minus.addEventListener("click", function() {
-    	if(chNum==4) {
-    		quizCh3.style.display = "none";
-    		chNum--;
-    	} else if(chNum==5) {
-    		quizCh4.style.display = "none";
-    		chNum--;
-    	}
-    		
-    });
-});
+	    plus.addEventListener("click", function() {
+	        if(chNum==3) {
+	        	quizCh3.style.display = "block";
+	            chNum++;
+	        } else if(chNum==4) {
+	        	quizCh4.style.display = "block";
+	            chNum++;
+	        }
+	    });
+	    
+	    minus.addEventListener("click", function() {
+	    	if(chNum==4) {
+	    		quizCh3.style.display = "none";
+	    		chNum--;
+	    	} else if(chNum==5) {
+	    		quizCh4.style.display = "none";
+	    		chNum--;
+	    	}
+	    		
+	    });
+	});
 </script>
 </head>
 <body>
 	<h1 align="center">유행어 퀴즈 등록</h1>
-	<form action="/quiz/write.me" method="post" id="quizWriteForm">
+	<form action="/quiz/write.me" method="post" id="quizWriteForm" enctype="multipart/form-data">
 	    <select name="quizType" id="type">
 	        <option value="" selected disabled>유형선택</option>
 	        <option value="O">OX퀴즈</option>

@@ -15,7 +15,7 @@
 	<hr>
 	<br>
 	<br>
-	<form action="/meme/register" method="Post"
+	<form action="/meme/register" method="POST"
 		enctype="multipart/form-data">
 		<table align="center">
 			<tr>
@@ -24,13 +24,14 @@
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" size="50" name="memberNickname"></td>
+				<td>
+					<input type="text" size="50" name="memberNickname" value="${memberNickname }">
+					
+				</td>
 			</tr>
 			<tr>
 				<td>유행 시기</td>
-				<td>
- 				<input type="date" name="memeDate">
-				</td>
+				<td><input type="date" name="memeDate"></td>
 			</tr>
 			<tr>
 				<td>유행어 설명</td>

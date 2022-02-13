@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.BoardFile;
+import org.kh.meme.board.domain.Comment;
+import org.kh.meme.board.domain.Recommend;
 import org.kh.meme.board.service.BoardService;
 import org.kh.meme.board.store.BoardStore;
 import org.kh.meme.common.PageInfo;
@@ -45,6 +48,12 @@ public class BoardServiceImpl implements BoardService {
 		return board;
 	}
 	
+	@Override
+	public BoardFile printBoardFileOneByNo(int boardNo) {
+		BoardFile boardFile = bStore.selectBoardFileOneByNo(sqlSession, boardNo);
+		return boardFile;
+	}
+
 
 	//게시물 조회수 증가
 	@Override
@@ -53,14 +62,88 @@ public class BoardServiceImpl implements BoardService {
 		return result;
 	}
 
+	//게시물 추천 수
 	
+	@Override
+	public int addBoardLike(Recommend recommend) {
+		int result = bStore.insertBoardLike(sqlSession, recommend);
+		return result;
+	}
 
 
+	@Override
+	public int updateBoardLike(Recommend recommend) {
+		int result = bStore.updateBoardLike(sqlSession, recommend);
+		return result;
+	}
+	
+	//게시물 신고 수
+	@Override
+	public int addBoardReport(int boardNo) {
+		int result = bStore.updateBoardReport(sqlSession, boardNo);
+		return result;
+	}
+
+
+	
+	//게시글 추가
 	@Override
 	public int registerBoard(Board board) {
 		int result = bStore.insertBoard(sqlSession, board);
 		return result;
 	}
+
+	@Override
+	public int registerNewBoard(Board board, BoardFile boardFile) {
+		int result = bStore.insertBoard(sqlSession, board);
+		if(result > 0) {
+			bStore.insertBoardFile(sqlSession, boardFile);
+		}
+		return result;
+	}
+	
+	
+	//게시글 수정
+	@Override
+	public int updateBoard(Board board, BoardFile boardFile) {
+		int result = bStore.updateBoard(sqlSession, board);
+		if(result > 0) {
+			bStore.updateBoardFile(sqlSession, boardFile);
+		}
+		return result;
+	}
+
+
+	//댓글
+
+	@Override
+	public int registerComment(Comment comment) {
+		int result = bStore.insertComment(sqlSession, comment);
+		return result;
+	}
+
+
+	@Override
+	public List<Comment> printAllCommentList(int boardNo) {
+		List<Comment> commentList = bStore.selectAllComment(sqlSession, boardNo);
+		return commentList;
+	}
+
+	
+	@Override
+	public int modifyComment(Comment comment) {
+		int result = bStore.updateComment(sqlSession, comment);
+		return result;
+	}
+
+	@Override
+	public int removeComment(int commentNo) {
+		int result = bStore.deleteComment(sqlSession, commentNo);
+		return result;
+	}
+
+
+
 
 
 
