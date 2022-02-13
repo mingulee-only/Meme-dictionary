@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.BoardFile;
 import org.kh.meme.board.domain.Comment;
 import org.kh.meme.board.domain.Recommend;
 import org.kh.meme.board.store.BoardStore;
@@ -54,12 +55,22 @@ public class BoardStoreLogic implements BoardStore{
 		return totalCount;
 	}
 	
+	
 	//게시물 조회
 	@Override
 	public Board selectBoardOneById(SqlSession sqlSession, Integer boardNo) {
 		Board board = sqlSession.selectOne("BoardMapper.selectBoardOneById", boardNo);
 		return board;
 	}
+	
+	//게시물 조회 - 첨부파일
+	@Override
+	public BoardFile selectBoardFileOneByNo(SqlSession sqlSession, int boardNo) {
+		BoardFile boardFile = sqlSession.selectOne("BoardMapper.selectBoardFileOneByNo", boardNo);
+		return boardFile;
+	}
+
+	
 	//게시물 조회수
 	@Override
 	public int updateBoardCount(SqlSession sqlSession, Integer boardNo) {
@@ -97,6 +108,13 @@ public class BoardStoreLogic implements BoardStore{
 		int result = sqlSession.insert("BoardMapper.insertBoard", board);
 		return result;
 	}
+	
+	@Override
+	public int insertBoardFile(SqlSession sqlSession, BoardFile boardFile) {
+		int result = sqlSession.insert("BoardMapper.insertBoardFile", boardFile);
+		return result;
+	}
+
 
 	//댓글
 	@Override
@@ -122,6 +140,8 @@ public class BoardStoreLogic implements BoardStore{
 		int result = sqlSession.delete("BoardMapper.deleteComment", commentNo);
 		return result;
 	}
+
+
 
 
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.BoardFile;
 import org.kh.meme.board.domain.Comment;
 import org.kh.meme.board.domain.Recommend;
 import org.kh.meme.board.service.BoardService;
@@ -47,6 +48,12 @@ public class BoardServiceImpl implements BoardService {
 		return board;
 	}
 	
+	@Override
+	public BoardFile printBoardFileOneByNo(int boardNo) {
+		BoardFile boardFile = bStore.selectBoardFileOneByNo(sqlSession, boardNo);
+		return boardFile;
+	}
+
 
 	//게시물 조회수 증가
 	@Override
@@ -86,6 +93,17 @@ public class BoardServiceImpl implements BoardService {
 		return result;
 	}
 
+	@Override
+	public int registerNewBoard(Board board, BoardFile boardFile) {
+		int result = bStore.insertBoard(sqlSession, board);
+		if(result > 0) {
+			bStore.insertBoardFile(sqlSession, boardFile);
+		}
+		return result;
+	}
+	
+	
+
 	//댓글
 
 	@Override
@@ -113,6 +131,7 @@ public class BoardServiceImpl implements BoardService {
 		int result = bStore.deleteComment(sqlSession, commentNo);
 		return result;
 	}
+
 
 
 
