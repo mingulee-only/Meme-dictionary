@@ -28,5 +28,9 @@
 		<put-attribute name="title" value="게시판" />
 	</definition>
 
+		<definition name=".tilesHead/*/*/*" extends="layout-tiles2">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+		<put-attribute name="title" value="게시판" />
+	</definition>
 
 </tiles-definitions>
