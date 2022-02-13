@@ -24,6 +24,7 @@
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
         }
+/*         modal창 (파란색 배경) */
         #modal .modal-window {
             background: rgba( 69, 139, 197, 0.70 );
             box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -34,7 +35,7 @@
             width: 400px;
             height: 500px;
             position: relative;
-            top: -100px;
+            top: 50px;
             padding: 10px;
         }
         #modal .title {
@@ -61,6 +62,12 @@
             padding: 0px 10px;
             text-shadow: 1px 1px 2px gray;
             color: white;
+            text-align: center;
+        }
+        
+        #modal #reportContents {
+        	width: 350px;
+            height: 300px;
         }
     </style>
 <script>
@@ -93,7 +100,7 @@ window.onload = function(){
 	    }
 	})
 
-    // 모달 온, 신고창 뛰우기
+    // 모달 온, 신고창 띄우기
 	var btnModal = document.querySelectorAll(".btn-modal");
 
     for (var i=0; i<btnModal.length; i++) {
