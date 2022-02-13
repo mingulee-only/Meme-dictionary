@@ -30,25 +30,14 @@
 	#memberLoginTable {
 		text-align: center;
 	 	margin: auto; 
-	 	margin-top : 10%;
-	}
-	.header {
-	height : 20%;
-	}
-	.body {
-	height : 80%;
-	padding-left : 50px;
-	margin-top : 20px;
+	 	margin-top : 0%;
 	}
 </style>
 </head>
 <body>
 	<div class="inner">
-		<div class="header">
+	<br>
 		<h3 align="center">로그인</h3>
-		<br>		
-		</div>
-		<div class="body">
 		<form action="/member/login.me" method="post">
 			<table id="memberLoginTable">
 				<tr>
@@ -57,10 +46,8 @@
 				<tr>
 					<td colspan="2"><input type="password" name="memberPw" placeholder="비밀번호"></td>	
 				</tr>
-
-				<tr align="center">
-					<td><button type="submit">로그인</button></td>
-
+				<tr>
+					<td><input type="submit" value="로그인"></td>
 					<td><button type="button" onclick="location.href='/member/join.me'">회원가입</button>
 				</tr>
 				<tr>
@@ -68,7 +55,6 @@
 				</tr>
 			</table>	
 		</form>
-		</div>
 	</div>
 </body>
 </html>
