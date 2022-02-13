@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kh.meme.member.domain.Member;
 import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
@@ -49,11 +50,11 @@ public class QuizController {
 	public String report(
 			@ModelAttribute QuizReport qReport
 			,HttpSession session) {
-		String memberId = session.getAttribute("memberId")+"";
-		System.out.println(memberId);
-		if (session.getAttribute("memberId")==null) {
+		Member member = (Member) session.getAttribute("loginMember");
+		if (member==null) {
 			return "NoLogin";
 		}else {
+			String memberId = member.getMemberId();
 			qReport.setReportId(memberId);
 			int result = qService.registerReport(qReport);
 			if(result >0) {
@@ -113,8 +114,9 @@ public class QuizController {
 		model.addAttribute("quizNo", quizNo);
 		model.addAttribute("score", score);
 		
-		if(session.getAttribute("memberId")!=null) {
-			String memberId=session.getAttribute("memberId")+"";
+		Member member = (Member) session.getAttribute("loginMember");
+		if(member!=null) {
+			String memberId=member.getMemberId();
 			int bestScore = 0;
 			// 최고 기록 저장
 			try {
@@ -215,8 +217,10 @@ public class QuizController {
 					quizFile.setQuizFileRename(renameFileName);
 				}
 			}
-			if(session.getAttribute("memberId")!= null) {
-				quiz.setMemberId(session.getAttribute("memberId")+"");
+			
+			Member member = (Member) session.getAttribute("loginMember");
+			if(member!= null) {
+				quiz.setMemberId(member.getMemberId());
 				quizFile.setQuizFileExtension("jpeg");
 				int result = qService.writeQuiz(quiz, quizFile);
 				if(quiz.getQuizType().equals("M")) {

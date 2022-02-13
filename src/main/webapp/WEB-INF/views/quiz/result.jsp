@@ -7,6 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
     <style>
+    	body {
+			margin: 0 auto;
+			text-align: center;
+		}
+		button{
+			background-color: red;
+			color: yellow;
+		}
         #modal.modal-overlay {
             width: 100%;
             height: 100%;
