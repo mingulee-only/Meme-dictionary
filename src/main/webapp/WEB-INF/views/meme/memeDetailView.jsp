@@ -9,7 +9,7 @@
 <title>사전 상세 페이지</title>
 <style>
 #memeDetailTable {
-	width: 95%;
+	width: 800px;
 	background-color: #eeeeee;
 	border: 1px solid black;
 	text-align: center;

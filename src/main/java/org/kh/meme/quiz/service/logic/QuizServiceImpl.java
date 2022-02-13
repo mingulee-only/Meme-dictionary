@@ -6,6 +6,7 @@ import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizBest;
 import org.kh.meme.quiz.domain.QuizCh;
 import org.kh.meme.quiz.domain.QuizFile;
+import org.kh.meme.quiz.domain.QuizReport;
 import org.kh.meme.quiz.service.QuizService;
 import org.kh.meme.quiz.store.QuizStore;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -27,9 +28,9 @@ public class QuizServiceImpl implements QuizService {
 	}
 	
 	@Override
-	public List<Quiz> printAll(int quizNo) {
-		List<Quiz> qList = qStore.selectAll(sqlSession, quizNo);
-		return qList;
+	public Quiz printOneByNo(Integer quizNo) {
+		Quiz quiz = qStore.selectOneByNo(sqlSession, quizNo);
+		return quiz;
 	}
 	
 	@Override
@@ -38,6 +39,12 @@ public class QuizServiceImpl implements QuizService {
 		if(result > 0) {
 			qStore.insertQuizFile(sqlSession, quizFile);
 		}
+		return result;
+	}
+	
+	@Override
+	public int modifyQuiz(Quiz quiz) {
+		int result = qStore.updateQuiz(sqlSession, quiz);
 		return result;
 	}
 
@@ -58,6 +65,13 @@ public class QuizServiceImpl implements QuizService {
 		int result = qStore.updateScore(sqlSession, qBest);
 		return result;
 	}
+
+	@Override
+	public int registerReport(QuizReport qReport) {
+		int result = qStore.insertReport(sqlSession, qReport);
+		return result;
+	}
+
 
 
 

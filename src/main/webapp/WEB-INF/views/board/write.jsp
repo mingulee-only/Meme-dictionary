@@ -8,7 +8,7 @@
 <title>게시글 작성</title>
 <style>
 #boardWriteTable { 
-	width: 95%; 
+	width: 800px; 
 	height: 200px; 
 	background-color: #eeeeee; 
  	border: 1px solid black; 
@@ -53,7 +53,7 @@
 					&nbsp&nbsp자유<input type="radio" name="boardType" value="F" checked> 	
 				</td>
 			<tr>
-				<td align="left">&nbsp<input type="file" name="filename"></td>
+				<td align="left">&nbsp<input type="file" name="uploadFile"></td>
 			</tr>
 			</tr>
 			<tr style="text-align: center">

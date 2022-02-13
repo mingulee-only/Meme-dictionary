@@ -36,35 +36,46 @@
 	li a.current {
 		color : white;
 	}
+	.header {
+	height : 20%;
+	}
+	.body {
+	height : 80%;
+	padding-left : 50px;
+	margin-top : 5px;
+	}
 </style>
 </head>
 <body>
 	<div class="inner">
 	<br><br>
-		<ul>
-			<li><a href="/member/findId.me">아이디 찾기</a></li>
-			<li>비밀번호 찾기</li>
-		</ul>
-		<br><br>
-		<form action="/member/findPw.me" method="post">
-			<table align="center">
-				<tr align="center">
-					<td colspan="2"><input type="text" name="memberId" placeholder="아이디"></td>
-				</tr>
-				<tr align="center">
-					<td colspan="2"><input type="text" name="memberName" placeholder="이름"></td>
-				</tr>
-				<tr>
-					<td colspan="2"><input type="text" name="memberEmail" placeholder="이메일"></td>
-				</tr>
-				<tr align="center">
-					<td>
-						<input type="submit" value="비밀번호 찾기">
-					</td>
-					<td><button type="button" onclick="location.href='/login.me'">돌아가기</button>
-				</tr>
-			</table>
-		</form>
+		<div class="header">
+			<ul>
+				<li><a href="/member/findId.me">아이디 찾기</a></li>
+				<li>비밀번호 찾기</li>
+			</ul>
+		</div>
+		<div class="body">
+			<form action="/member/findPw.me" method="post">
+				<table align="center">
+					<tr align="center">
+						<td colspan="2"><input type="text" name="memberId" placeholder="아이디"></td>
+					</tr>
+					<tr align="center">
+						<td colspan="2"><input type="text" name="memberName" placeholder="이름"></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="text" name="memberEmail" placeholder="이메일"></td>
+					</tr>
+					<tr align="center">
+						<td>
+							<input type="submit" value="비밀번호 찾기">
+						</td>
+						<td><button type="button" onclick="location.href='/login.me'">돌아가기</button>
+					</tr>
+				</table>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

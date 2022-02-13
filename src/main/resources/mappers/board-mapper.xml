@@ -18,6 +18,14 @@
 		<result property="boardStatus" column="BOARD_STATUS"/>
 	</resultMap>
 	
+	<resultMap type="BoardFile" id="boardFileResultMap">
+		<id property="boardNo" column="BOARD_NO"/>
+		<result property="boardFileNo" column="BOARD_FILENO"/>  
+		<result property="boardFilename" column="BOARD_FILENAME"/>  
+		<result property="boardFilerename" column="BOARD_FILERENAME"/>  
+		<result property="boardFileextension" column="BOARD_FILEEXTENSION"/>  
+  	</resultMap>	
+	
 	<resultMap type="Comment" id="commentResultMap">
 		<id property="commentNo" column="COMMENT_NO"/>
 		<result property="boardNo" column="BOARD_NO"/>
@@ -29,6 +37,16 @@
 		<result property="commentStatus" column="COMMENT_STATUS"/>
 	</resultMap>
 	
+	<!-- 마이페이지 -->
+	<select id="selectMyPageListCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD_TBL JOIN MEMBER_TBL USING(MEMBER_NICKNAME) WHERE BOARD_STATUS = 'Y'
+	</select>
+	
+	<select id="selectMyBoardList" parameterType="string" resultMap="boardResultMap">
+		SELECT * FROM BOARD_TBL JOIN MEMBER_TBL USING(MEMBER_NICKNAME) WHERE MEMBER_ID = #{memberId} AND BOARD_STATUS = 'Y' ORDER BY BOARD_NO DESC
+	</select>
+	
+	<!-- 게시판 메인 -->
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*) FROM BOARD_TBL WHERE BOARD_STATUS = 'Y'
 	</select>
@@ -40,15 +58,49 @@
 	<select id="selectBoardAllList" resultMap="boardResultMap">
 		SELECT * FROM BOARD_TBL WHERE BOARD_STATUS = 'Y' ORDER BY BOARD_NO DESC
 	</select>
+
+	<select id="selectBoardFileOneByNo" resultMap="boardFileResultMap">
+  		SELECT * FROM BOARD_FILE WHERE BOARD_NO = #{boardNo}
+  	</select>
+  
+	<select id="selectMyPageListCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD_TBL JOIN MEMBER_TBL USING(MEMBER_NICKNAME) WHERE BOARD_STATUS = 'Y'
+	</select>
 	
-	
+	<select id="selectMyBoardList" parameterType="string" resultMap="boardResultMap">
+		SELECT * FROM BOARD_TBL JOIN MEMBER_TBL USING(MEMBER_NICKNAME) WHERE MEMBER_ID = #{memberId} AND BOARD_STATUS = 'Y' ORDER BY BOARD_NO DESC
+	</select>
+  
+
 	<insert id="insertBoard" parameterType="Board">
 <!-- 		INSERT INTO BOARD_TBL (BOARD_NO, BOARD_TYPE, BOARD_TITLE, MEMBER_NICKNAME, BOARD_CONTENTS) -->
 <!-- 		VALUES(BOARD_SEQ_NO.NEXTVAL, #{boardType}, #{boardTitle}, '어쩔티비', #{boardContents}) -->
-		INSERT INTO BOARD_TBL VALUES(BOARD_SEQ_NO.NEXTVAL, #{boardType}, #{boardTitle}, '어쩔티비', DEFAULT, DEFAULT,
+		INSERT INTO BOARD_TBL VALUES(BOARD_SEQ_NO.NEXTVAL, #{boardType}, #{boardTitle}, #{memberNickname}, DEFAULT, DEFAULT,
 		 #{boardContents}, 0, 0, 0, DEFAULT)
 
 	</insert>
+	
+	<insert id="insertBoardFile" parameterType="BoardFile">
+		INSERT INTO BOARD_FILE VALUES(BOARD_SEQ_NO.CURRVAL, BOARD_FILE_SEQ.NEXTVAL, #{boardFilename }, #{boardFilerename }, #{boardFileextension })
+	</insert>
+	
+	
+	<update id="updateBoard" parameterType="Board">
+<!-- 		INSERT INTO BOARD_TBL (BOARD_NO, BOARD_TYPE, BOARD_TITLE, MEMBER_NICKNAME, BOARD_CONTENTS) -->
+<!-- 		VALUES(BOARD_SEQ_NO.NEXTVAL, #{boardType}, #{boardTitle}, '어쩔티비', #{boardContents}) -->
+		UPDATE BOARD_TBL SET BOARD_TYPE = #{boardType}, BOARD_TITLE = #{boardTitle}, BOARD_CONTENTS = #{boardContents}, BOARD_REDATE = SYSDATE WHERE BOARD_NO = #{boardNo}
+
+	</update>
+	
+	<update id="updateBoardFile" parameterType="BoardFile">
+		UPDATE BOARD_FILE SET BOARD_FILENAME = #{boardFilename}, BOARD_FILERENAME = #{boardFilerename} WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	
+	<!-- 조회 수 -->
+	<update id="updateBoardCount" parameterType="_int">
+		UPDATE BOARD_TBL SET BOARD_COUNT = BOARD_COUNT + 1 WHERE BOARD_NO = #{boardNo}
+	</update>
 	
 	<!-- 추천 수 -->
 	<insert id="insertBoardLike" parameterType="org.kh.meme.board.domain.Recommend">
@@ -60,13 +112,25 @@
 		UPDATE BOARD_TBL SET BOARD_LIKE = (SELECT COUNT(*) FROM RECOMMEND_TBL WHERE RECOMMEND_TBL.BOARD_NO = BOARD_TBL.BOARD_NO)
 	</update>
 	
-	
-	<update id="updateBoardCount" parameterType="_int">
-		UPDATE BOARD_TBL SET BOARD_COUNT = BOARD_COUNT + 1 WHERE BOARD_NO = #{boardNo}
+	<!-- 신고 수 -->
+	<update id="updateBoardReport" parameterType="_int">
+		UPDATE BOARD_TBL SET BOARD_REPORT = BOARD_REPORT + 1 WHERE BOARD_NO = #{boardNo}
 	</update>
 	
 	<!-- 댓글 -->
+	<select id="selectAllComment" resultMap="commentResultMap">
+		SELECT * FROM COMMENT_TBL WHERE BOARD_NO = #{boardNo} AND COMMENT_STATUS = 'Y' ORDER BY COMMENT_NO DESC
+	</select>
+	
 	<insert id="insertComment">
 		INSERT INTO COMMENT_TBL VALUES(COMMENT_SEQ.NEXTVAL, #{boardNo}, #{commentParentsno}, #{memberNickname}, #{commentContents}, DEFAULT, DEFAULT, DEFAULT)
 	</insert>
+	
+	<update id="updateComment">
+		UPDATE COMMENT_TBL SET COMMENT_CONTENTS = #{commentContents} WHERE COMMENT_NO = #{commentNo}	
+	</update>
+	
+	<delete id="deleteComment">
+		DELETE FROM COMMENT_TBL WHERE COMMENT_NO = #{commentNo}
+	</delete>
 </mapper>
