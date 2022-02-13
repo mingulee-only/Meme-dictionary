@@ -86,6 +86,33 @@ public class MemberController {
 		return "member/myPage";
 	}
 	
+	@RequestMapping(value="/myPage.me", method=RequestMethod.GET)
+	public String myPage(HttpServletRequest request
+			,Model model
+			, @RequestParam(value="page", required=false) Integer page) {
+		
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		if(member == null) {
+			return "redirect:/login.me";
+		}
+		
+		if(member.getmGrade().equals("A")) {
+			return "redirect:/admin/adminHome.me";
+		}
+		
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = mService.getMyPageListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+		model.addAttribute("pi", pi);
+		
+		
+		List<Board> myBoardList = mService.printMyBoard(pi, member.getMemberId());
+		model.addAttribute("myBoardList", myBoardList);
+		return "member/myPage";
+	}
+	
 	@RequestMapping(value="/member/myQuiz.me", method=RequestMethod.GET)
 	public String memberMyQuizRedirect(HttpServletRequest request
 			,Model model
@@ -97,7 +124,11 @@ public class MemberController {
 		
 		HttpSession session = request.getSession();
 		Member member = (Member)session.getAttribute("loginMember");
-		
+
+		if(member == null) {
+			return "redirect:/login.me";
+		}
+
 		List<Quiz> myQuizList = mService.printMyQuiz(pi, member.getMemberId());
 		model.addAttribute("myQuizList", myQuizList);
 		return "member/myQuiz";
@@ -235,6 +266,20 @@ public class MemberController {
 		}else {
 			request.setAttribute("msg", "회원탈퇴 실패!");
 			return ".tiles.common/errorPage";
+		}
+	}
+	
+	@RequestMapping(value="/member/remove.me", method=RequestMethod.GET)
+	public String memberRemove(HttpServletRequest request) {
+		String memberId = request.getParameter("memberId");
+		int result = mService.memberRemove(memberId);
+		if(result > 0) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			return "member/removeSuccess";
+		}else {
+			request.setAttribute("msg", "회원탈퇴 실패!");
+			return "common/errorPage";
 		}
 	}
 	

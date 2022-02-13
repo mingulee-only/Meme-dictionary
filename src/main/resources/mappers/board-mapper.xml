@@ -58,11 +58,20 @@
 	<select id="selectBoardAllList" resultMap="boardResultMap">
 		SELECT * FROM BOARD_TBL WHERE BOARD_STATUS = 'Y' ORDER BY BOARD_NO DESC
 	</select>
-	
+
 	<select id="selectBoardFileOneByNo" resultMap="boardFileResultMap">
   		SELECT * FROM BOARD_FILE WHERE BOARD_NO = #{boardNo}
   	</select>
-  	
+  
+	<select id="selectMyPageListCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD_TBL JOIN MEMBER_TBL USING(MEMBER_NICKNAME) WHERE BOARD_STATUS = 'Y'
+	</select>
+	
+	<select id="selectMyBoardList" parameterType="string" resultMap="boardResultMap">
+		SELECT * FROM BOARD_TBL JOIN MEMBER_TBL USING(MEMBER_NICKNAME) WHERE MEMBER_ID = #{memberId} AND BOARD_STATUS = 'Y' ORDER BY BOARD_NO DESC
+	</select>
+  
+
 	<insert id="insertBoard" parameterType="Board">
 <!-- 		INSERT INTO BOARD_TBL (BOARD_NO, BOARD_TYPE, BOARD_TITLE, MEMBER_NICKNAME, BOARD_CONTENTS) -->
 <!-- 		VALUES(BOARD_SEQ_NO.NEXTVAL, #{boardType}, #{boardTitle}, '어쩔티비', #{boardContents}) -->
