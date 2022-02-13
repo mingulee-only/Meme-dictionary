@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
     <style>
-    	body {
+    	#quizBody {
 			margin: 0 auto;
 			text-align: center;
 		}
@@ -145,7 +145,7 @@ window.onload = function(){
 }
 </script>
 </head>
-<body>
+<body id="quizBody">
 	<h1>퀴즈 결과</h1>
 	<c:forEach var="i" items="${userAnswer}" varStatus="vs">
     	문제 : ${quizQuest[vs.index]} <br>
