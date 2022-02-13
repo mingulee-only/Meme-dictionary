@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	body {
+	#quizBody {
 		margin: 0 auto;
 		text-align: center;
 	}
@@ -133,7 +133,7 @@
     });
 </script>
 </head>
-<body>
+<body id="quizBody">
 	<h1>랜덤 퀴즈</h1>
 	<div id="type"></div>
 	제한시간 :
