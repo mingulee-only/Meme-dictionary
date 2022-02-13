@@ -19,7 +19,10 @@ public interface BoardService {
 	
 	
 	//게시글 상세 페이지
-	public Board printBoardOneByNo(Integer boardNo);
+	public Board printBoardOneByNo(Integer boardNo);		//게시글 내용
+	public BoardFile printBoardFileOneByNo(int boardNo);	//첨부파일
+	
+	//조회 수
 	public int boardCount(Integer boardNo);
 
 	//추천 수
@@ -31,7 +34,7 @@ public interface BoardService {
 	
 	//게시글 추가
 	public int registerBoard(Board board);
-//	public int registerNewBoard(Board board, BoardFile boardFile);
+	public int registerNewBoard(Board board, BoardFile boardFile);
 
 	//댓글
 	public int registerComment(Comment comment); //댓글 등록
@@ -41,7 +44,8 @@ public interface BoardService {
 	public int modifyComment(Comment comment);	//댓글 수정
 
 	public int removeComment(int commentNo);	//댓글 삭제
-	
+
+
 	
 
 	

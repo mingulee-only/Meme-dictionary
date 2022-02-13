@@ -55,12 +55,22 @@ public class BoardStoreLogic implements BoardStore{
 		return totalCount;
 	}
 	
+	
 	//게시물 조회
 	@Override
 	public Board selectBoardOneById(SqlSession sqlSession, Integer boardNo) {
 		Board board = sqlSession.selectOne("BoardMapper.selectBoardOneById", boardNo);
 		return board;
 	}
+	
+	//게시물 조회 - 첨부파일
+	@Override
+	public BoardFile selectBoardFileOneByNo(SqlSession sqlSession, int boardNo) {
+		BoardFile boardFile = sqlSession.selectOne("BoardMapper.selectBoardFileOneByNo", boardNo);
+		return boardFile;
+	}
+
+	
 	//게시물 조회수
 	@Override
 	public int updateBoardCount(SqlSession sqlSession, Integer boardNo) {
@@ -130,6 +140,7 @@ public class BoardStoreLogic implements BoardStore{
 		int result = sqlSession.delete("BoardMapper.deleteComment", commentNo);
 		return result;
 	}
+
 
 
 

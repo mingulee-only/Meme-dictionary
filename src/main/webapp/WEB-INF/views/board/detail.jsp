@@ -95,6 +95,7 @@
 	    <tr>
 	        <td class="jb-th-1" align="left" valign="top">
 	            <p>${oneBoard.boardContents }</p>
+	            <p><img src="/resources/boardUploadFiles/${boardFile.boardFilerename}"></p>
 	    	</td>
 		</tr>
 	

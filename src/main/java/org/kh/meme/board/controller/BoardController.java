@@ -200,6 +200,7 @@ public class BoardController {
 		
 		//게시글 보기
 		Board oneBoard = bService.printBoardOneByNo(boardNo);
+		BoardFile boardFile = bService.printBoardFileOneByNo(oneBoard.getBoardNo());
 		
 		//랭킹
 		model.addAttribute("rankmain", "board");
@@ -212,6 +213,7 @@ public class BoardController {
 		if(oneBoard != null && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
 			//게시물
 			model.addAttribute("oneBoard", oneBoard);
+			model.addAttribute("boardFile", boardFile);
 			model.addAttribute("member", member);
 			
 			//게시물 조회수 ++
@@ -273,32 +275,33 @@ public class BoardController {
 	@RequestMapping(value="/board/register", method=RequestMethod.POST)
 	public String boardRegister( 
 			Model model
-//			, @ModelAttribute BoardFile boardFile
+			, @ModelAttribute BoardFile boardFile
 			, @ModelAttribute Board board
 			, HttpServletRequest request
-//			, @RequestParam(value="uploadFile", required = false) MultipartFile uploadFile
+			, @RequestParam(value="uploadFile", required = false) MultipartFile uploadFile
 			) {
 		
 		//memberId session에서 가져오기
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("loginMember");
 		System.out.println(member);
-
-//			//첨부파일
-//			if(!uploadFile.getOriginalFilename().contentEquals("")) {
-//				String fileRename = saveFile(uploadFile, request);
-//				if(fileRename != null) {
-//					boardFile.setBoardFilename(uploadFile.getOriginalFilename());
-//					boardFile.setBoardFilerename(fileRename);
-//				}
-//			}
+		
+		try {
+			//첨부파일
+			if(!uploadFile.getOriginalFilename().contentEquals("")) {
+				String fileRename = saveFile(uploadFile, request);
+				if(fileRename != null) {
+					boardFile.setBoardFilename(uploadFile.getOriginalFilename());
+					boardFile.setBoardFilerename(fileRename);
+				}
+			}
 			
 			System.out.println(board);
-//			System.out.println(boardFile);
+			System.out.println(boardFile);
 			board.setMemberNickname(member.getMemberNickname());
-			int result = bService.registerBoard(board);
+//			int result = bService.registerBoard(board);
 
-//			int result = bService.registerNewBoard(board, boardFile);
+			int result = bService.registerNewBoard(board, boardFile);
 			System.out.println(result); //이게 아예 안 넘어옴...
 			
 			//랭킹
@@ -322,6 +325,11 @@ public class BoardController {
 				model.addAttribute("msg", "랭킹 조회 실패");
 				return "error";
 			}
+		} catch (Exception e) {
+			System.out.println("게시글 추가 실패");
+			return "error";
+		}
+			
 		
 	}
 	

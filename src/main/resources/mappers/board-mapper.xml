@@ -18,6 +18,14 @@
 		<result property="boardStatus" column="BOARD_STATUS"/>
 	</resultMap>
 	
+	<resultMap type="BoardFile" id="boardFileResultMap">
+		<id property="boardNo" column="BOARD_NO"/>
+		<result property="boardFileNo" column="BOARD_FILENO"/>  
+		<result property="boardFilename" column="BOARD_FILENAME"/>  
+		<result property="boardFilerename" column="BOARD_FILERENAME"/>  
+		<result property="boardFileextension" column="BOARD_FILEEXTENSION"/>  
+  	</resultMap>	
+	
 	<resultMap type="Comment" id="commentResultMap">
 		<id property="commentNo" column="COMMENT_NO"/>
 		<result property="boardNo" column="BOARD_NO"/>
@@ -51,12 +59,20 @@
 		SELECT * FROM BOARD_TBL WHERE BOARD_STATUS = 'Y' ORDER BY BOARD_NO DESC
 	</select>
 	
+	<select id="selectBoardFileOneByNo" resultMap="boardFileResultMap">
+  		SELECT * FROM BOARD_FILE WHERE BOARD_NO = #{boardNo}
+  	</select>
+  	
 	<insert id="insertBoard" parameterType="Board">
 <!-- 		INSERT INTO BOARD_TBL (BOARD_NO, BOARD_TYPE, BOARD_TITLE, MEMBER_NICKNAME, BOARD_CONTENTS) -->
 <!-- 		VALUES(BOARD_SEQ_NO.NEXTVAL, #{boardType}, #{boardTitle}, '어쩔티비', #{boardContents}) -->
 		INSERT INTO BOARD_TBL VALUES(BOARD_SEQ_NO.NEXTVAL, #{boardType}, #{boardTitle}, #{memberNickname}, DEFAULT, DEFAULT,
 		 #{boardContents}, 0, 0, 0, DEFAULT)
 
+	</insert>
+	
+	<insert id="insertBoardFile" parameterType="BoardFile">
+		INSERT INTO BOARD_FILE VALUES(BOARD_SEQ_NO.CURRVAL, BOARD_FILE_SEQ.NEXTVAL, #{boardFilename }, #{boardFilerename }, #{boardFileextension })
 	</insert>
 	
 	<!-- 조회 수 -->

@@ -48,6 +48,12 @@ public class BoardServiceImpl implements BoardService {
 		return board;
 	}
 	
+	@Override
+	public BoardFile printBoardFileOneByNo(int boardNo) {
+		BoardFile boardFile = bStore.selectBoardFileOneByNo(sqlSession, boardNo);
+		return boardFile;
+	}
+
 
 	//게시물 조회수 증가
 	@Override
@@ -87,16 +93,16 @@ public class BoardServiceImpl implements BoardService {
 		return result;
 	}
 
-//	@Override
-//	public int registerNewBoard(Board board, BoardFile boardFile) {
-//		int result = bStore.insertBoard(sqlSession, board);
-//		if(result > 0) {
-//			bStore.insertBoardFile(sqlSession, boardFile);
-//		}
-//		return result;
-//	}
-//	
-//	
+	@Override
+	public int registerNewBoard(Board board, BoardFile boardFile) {
+		int result = bStore.insertBoard(sqlSession, board);
+		if(result > 0) {
+			bStore.insertBoardFile(sqlSession, boardFile);
+		}
+		return result;
+	}
+	
+	
 
 	//댓글
 
@@ -125,6 +131,7 @@ public class BoardServiceImpl implements BoardService {
 		int result = bStore.deleteComment(sqlSession, commentNo);
 		return result;
 	}
+
 
 
 

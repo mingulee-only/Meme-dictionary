@@ -14,9 +14,13 @@ public interface BoardStore {
 	public int selectListCount(SqlSession sqlSession);
 
 	
-	//게시판
+	//게시판 list
 	public List<Board> selectAllBoard(SqlSession sqlSession, PageInfo pi);
+	
+	//게시판 detail
 	public Board selectBoardOneById(SqlSession sqlSession, Integer boardNo);
+	public BoardFile selectBoardFileOneByNo(SqlSession sqlSession, int boardNo);	//첨부파일
+
 	
 	//조회수
 	public int updateBoardCount(SqlSession sqlSession, Integer boardNo);
@@ -30,13 +34,12 @@ public interface BoardStore {
 
 
 	
-	
-	
 	//게시글 추가
 	public int insertBoard(SqlSession sqlSession, Board board);
 
 	public int insertBoardFile(SqlSession sqlSession, BoardFile boardFile);
 
+	
 	//댓글
 	public int insertComment(SqlSession sqlSession, Comment comment);
 
