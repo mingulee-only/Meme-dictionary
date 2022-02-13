@@ -136,10 +136,10 @@ window.onload = function(){
     	문제 : ${quizQuest[vs.index]} <br>
     	<c:if test="${not empty quizCh1[vs.index]}">
     	보기 <br>
-	    	${quizCh1[vs.index]} <br>
-	    	${quizCh2[vs.index]} <br>
-	    	${quizCh3[vs.index]} <br>
-	    	${quizCh4[vs.index]} <br>
+	    	(1) ${quizCh1[vs.index]} <br>
+	    	(2) ${quizCh2[vs.index]} <br>
+	    	(3) ${quizCh3[vs.index]} <br>
+	    	(4) ${quizCh4[vs.index]} <br>
     	</c:if>
     	정답 : ${quizAnswer[vs.index]} <br>
     	나의 답 : ${i } <br>

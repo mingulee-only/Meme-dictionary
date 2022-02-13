@@ -89,11 +89,19 @@
 							
 							if(data[i].quizType == "O") {
 								$('#type').html("OX 퀴즈");
+								$('#answer').attr("placeholder", "O, X 입력후 엔터");
 							}else if (data[i].quizType == "S") {
 								$('#type').html("단답형 퀴즈");
+								$('#answer').attr("placeholder", "단어 입력후 엔터");
 							}else {
 								$('#type').html("객관식 퀴즈");
+								$('#ch1').html("보기<br>(1) "+data[i].quizCh1);
+								$('#ch2').html("(2) "+data[i].quizCh2);
+								$('#ch3').html("(3) "+data[i].quizCh3);
+								$('#ch4').html("(4) "+data[i].quizCh4);
+								$('#answer').attr("placeholder", "1 ~ 4 숫자 입력후 엔터");
 							}
+
 							
 							$answer[nextNum] = data[i].quizAnswer;
 							$quizType[nextNum] = data[i].quizType;
@@ -149,7 +157,7 @@
 		<div id="ch2"></div>
 		<div id="ch3"></div>
 		<div id="ch4"></div>
-		<br> <br> <br> <input type="text" id="answer" placeholder="정답 입력후 엔터">
+		<br> <br> <br> <input type="text" id="answer">
 	</div>
 	<form action="/quiz/result.me" method="post" id="postSubmit">
 		<input type="hidden" name="quizNo" id="quizNo_">
