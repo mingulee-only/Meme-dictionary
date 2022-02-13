@@ -44,7 +44,7 @@ public class MemeController {
 	public String memeWriteView(Model model, HttpSession session) {
 		// 비로그인->로그인페이지, 로그인->등재요청페이지
 		if (session.getAttribute("loginMember") == null) {
-			return "member/login";
+			return "redirect:/login.me";
 		}
 		// 로그인 후 등재 요청시 작성자에 닉네임 출력
 		Member member = (Member) session.getAttribute("loginMember");
