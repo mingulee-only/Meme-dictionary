@@ -41,7 +41,7 @@
             border-radius: 10px;
             border: 1px solid rgba( 255, 255, 255, 0.18 );
             width: 400px;
-            height: 500px;
+            height: 350px;
             position: relative;
             top: 50px;
             padding: 10px;
@@ -75,7 +75,7 @@
         
         #modal #reportContents {
         	width: 350px;
-            height: 300px;
+            height: 200px;
         }
     </style>
 <script>
