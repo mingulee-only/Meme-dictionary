@@ -56,14 +56,17 @@ public class QuizStoreLogic implements QuizStore {
 
 	@Override
 	public int insertQuizFile(SqlSession sqlSession, QuizFile quizFile) {
-		int result = sqlSession.insert("QuizMapper.insertQuizFile", quizFile);
+		int result =0;
+		if(quizFile.getQuizFileName()!=null) {
+			result = sqlSession.insert("QuizMapper.insertQuizFile", quizFile);
+		}
 		return result;
 	}
 
 	@Override
 	public int insertReport(SqlSession sqlSession, QuizReport qReport) {
 		int result = sqlSession.insert("QuizMapper.insertQuizReport", qReport);
-		return 0;
+		return result;
 	}
 
 
