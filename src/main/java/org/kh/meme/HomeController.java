@@ -31,6 +31,6 @@ public class HomeController {
 	public String login() {
 		
 		return ".tiles/member/login";
-	
+	}
 	
 }

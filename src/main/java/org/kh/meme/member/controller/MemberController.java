@@ -73,24 +73,6 @@ public class MemberController {
 			,Model model
 			, @RequestParam(value="page", required=false) Integer page) {
 		
-		int currentPage = (page != null) ? page : 1;
-		int totalCount = mService.getMyPageListCount();
-		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
-		model.addAttribute("pi", pi);
-		
-		HttpSession session = request.getSession();
-		Member member = (Member)session.getAttribute("loginMember");
-		
-		List<Board> myBoardList = mService.printMyBoard(pi, member.getMemberId());
-		model.addAttribute("myBoardList", myBoardList);
-		return "member/myPage";
-	}
-	
-	@RequestMapping(value="/myPage.me", method=RequestMethod.GET)
-	public String myPage(HttpServletRequest request
-			,Model model
-			, @RequestParam(value="page", required=false) Integer page) {
-		
 		HttpSession session = request.getSession();
 		Member member = (Member)session.getAttribute("loginMember");
 		
@@ -254,20 +236,7 @@ public class MemberController {
 			return ".tiles/common/errorPage";
 		}
 	}
-	
-	@RequestMapping(value="/member/remove.me", method=RequestMethod.GET)
-	public String memberRemove(HttpServletRequest request) {
-		String memberId = request.getParameter("memberId");
-		int result = mService.memberRemove(memberId);
-		if(result > 0) {
-			HttpSession session = request.getSession();
-			session.invalidate();
-			return "member/removeSuccess";
-		}else {
-			request.setAttribute("msg", "회원탈퇴 실패!");
-			return ".tiles.common/errorPage";
-		}
-	}
+
 	
 	@RequestMapping(value="/member/remove.me", method=RequestMethod.GET)
 	public String memberRemove(HttpServletRequest request) {
