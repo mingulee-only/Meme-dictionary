@@ -7,7 +7,7 @@ import org.kh.meme.member.domain.Member;
 
 public interface AdminService {
 
-	int getManageMemberListCount();
+	int getAllMemberListCount();
 
 	List<Member> printAllMember(PageInfo pi);
 

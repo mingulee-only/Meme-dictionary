@@ -50,7 +50,7 @@ public class AdminController {
 		}
 		
 		int currentPage = (page != null) ? page : 1;
-		int totalCount = aService.getManageMemberListCount();
+		int totalCount = aService.getAllMemberListCount();
 		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
 		model.addAttribute("pi", pi);
 		

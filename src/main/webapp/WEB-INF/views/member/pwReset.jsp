@@ -30,7 +30,7 @@
 					<td><input type="password" name="memberPw" placeholder="비밀번호"></td>	
 				</tr>
 				<tr align="center">
-					<td><input type="submit" value="비밀번호 재설정"></td>
+					<td><button type="submit">비밀번호 재설정</button></td>
 				</tr>
 			</table>	
 		</form>

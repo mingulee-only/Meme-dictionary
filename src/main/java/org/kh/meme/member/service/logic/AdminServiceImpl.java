@@ -18,7 +18,7 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	@Override
-	public int getManageMemberListCount() {
+	public int getAllMemberListCount() {
 		int totalCount = aStore.allMemberListCount(sqlSession);
 		return totalCount;
 	}

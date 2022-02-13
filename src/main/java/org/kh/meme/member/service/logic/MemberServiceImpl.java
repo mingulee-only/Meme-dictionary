@@ -3,6 +3,7 @@ package org.kh.meme.member.service.logic;
 import java.util.List;
 
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.Comment;
 import org.kh.meme.common.PageInfo;
 import org.kh.meme.member.domain.Member;
 import org.kh.meme.member.service.MemberService;
@@ -58,14 +59,26 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public int getMyPageListCount() {
-		int totalCount = mStore.myPageListCount(sqlSession);
+	public List<Comment> printMyComment(PageInfo pi, String memberId) {
+		List<Comment> myCommentList = mStore.selectMyComment(sqlSession, pi, memberId);
+		return myCommentList;
+	}
+	
+	@Override
+	public int getMyPageListCount(String memberId) {
+		int totalCount = mStore.myPageListCount(sqlSession, memberId);
 		return totalCount;
 	}
 	
 	@Override
-	public int getMyQuizListCount() {
-		int totalCount = mStore.myQuizListCount(sqlSession);
+	public int getMyQuizListCount(String memberId) {
+		int totalCount = mStore.myQuizListCount(sqlSession, memberId);
+		return totalCount;
+	}
+	
+	@Override
+	public int getMyCommentListCount(String memberId) {
+		int totalCount = mStore.myCommentListCount(sqlSession, memberId);
 		return totalCount;
 	}
 	
@@ -92,6 +105,7 @@ public class MemberServiceImpl implements MemberService{
 		int result = mStore.memberDelete(sqlSession, memberId);
 		return result;
 	}
+
 
 
 
