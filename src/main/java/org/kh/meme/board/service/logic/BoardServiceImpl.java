@@ -103,6 +103,16 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	
+	//게시글 수정
+	@Override
+	public int updateBoard(Board board, BoardFile boardFile) {
+		int result = bStore.updateBoard(sqlSession, board);
+		if(result > 0) {
+			bStore.updateBoardFile(sqlSession, boardFile);
+		}
+		return result;
+	}
+
 
 	//댓글
 
@@ -131,6 +141,8 @@ public class BoardServiceImpl implements BoardService {
 		int result = bStore.deleteComment(sqlSession, commentNo);
 		return result;
 	}
+
+
 
 
 

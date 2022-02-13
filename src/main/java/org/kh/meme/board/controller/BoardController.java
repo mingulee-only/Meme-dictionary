@@ -65,6 +65,8 @@ public class BoardController {
 		return "/board/boardDetailView";
 	}
 	
+	
+	//댓글
 	@ResponseBody
 	@RequestMapping(value="/board/commentAdd", method=RequestMethod.POST)
 	public String boardCommentAdd(
@@ -129,6 +131,112 @@ public class BoardController {
 		}
 	}
 	
+	
+	
+	
+	//게시글
+	@RequestMapping(value="/board/detail_updateView", method=RequestMethod.POST)
+	public String boardDetailUpdateView(
+			Model model
+			, @RequestParam("boardNo") Integer boardNo) {
+		
+		//게시글 보기
+		Board oneBoard = bService.printBoardOneByNo(boardNo);
+		BoardFile boardFile = bService.printBoardFileOneByNo(oneBoard.getBoardNo());
+		
+		//랭킹
+		model.addAttribute("rankmain", "board");
+		List<MemeRank> memeRankList = rService.printMemeRank();
+		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+		List<QuizRank> quizRankList = rService.printQuizRank();
+ 
+		
+		if(oneBoard != null && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
+			//게시물
+			model.addAttribute("oneBoard", oneBoard);
+			model.addAttribute("boardFile", boardFile);
+			
+			model.addAttribute("memeRankList", memeRankList);
+				model.addAttribute("boardPushRankList", boardPushRankList);
+				model.addAttribute("boardFreeRankList", boardFreeRankList);
+				model.addAttribute("quizRankList", quizRankList);
+				return ".tiles/board/update";
+			
+		} else {
+			//일단 error 나누어서 안 적음, 필요하면 적기
+			model.addAttribute("msg", "게시글 조회 실패");
+			return "error";
+		}
+		
+//		return ".tiles/board/update";
+	}
+	
+	@RequestMapping(value="/board/detail_update", method=RequestMethod.POST)
+	public String boardDetailUpdate(
+			Model model
+			, @RequestParam("boardNo") Integer boardNo
+			, @ModelAttribute BoardFile boardFile
+			, @ModelAttribute Board board
+			, HttpServletRequest request
+			, @RequestParam(value="uploadFile", required = false) MultipartFile uploadFile
+			) {
+	
+		//memberId session에서 가져오기
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("loginMember");
+		System.out.println(member);
+		
+		//첨부파일
+		if(!uploadFile.getOriginalFilename().contentEquals("")) {
+			String fileRename = saveFile(uploadFile, request);
+			if(fileRename != null) {
+				boardFile.setBoardFilename(uploadFile.getOriginalFilename());
+				boardFile.setBoardFilerename(fileRename);
+			}
+		}
+		
+		board.setBoardNo(boardNo);
+		board.setMemberNickname(member.getMemberNickname());
+		System.out.println(board);
+		System.out.println(boardFile);
+		
+		
+//		int result = bService.registerBoard(board);
+
+		int result = bService.updateBoard(board, boardFile);
+		System.out.println(result);
+		
+		//랭킹
+		model.addAttribute("rankmain", "board");
+		List<MemeRank> memeRankList = rService.printMemeRank();
+		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+		List<QuizRank> quizRankList = rService.printQuizRank();
+		
+		
+		if(result > 0 && !memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
+		
+			//랭킹
+			model.addAttribute("memeRankList", memeRankList);
+			model.addAttribute("boardPushRankList", boardPushRankList);
+			model.addAttribute("boardFreeRankList", boardFreeRankList);
+			model.addAttribute("quizRankList", quizRankList);
+			return "redirect:/board";
+		} else {
+			//일단 error 나누어서 안 적음, 필요하면 적기
+			model.addAttribute("msg", "랭킹 조회 실패");
+			return "error";
+		}
+		
+//		try {
+//			
+//		} catch (Exception e) {
+//			System.out.println("게시글 추가 실패");
+//			return "error";
+//		}
+		
+	}
 
 	@RequestMapping(value="/board/detail_report", method=RequestMethod.POST
 			, produces="application/json;charset=utf-8")
