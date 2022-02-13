@@ -41,28 +41,28 @@ public class MemberController {
 				return "redirect:/";
 			}else {
 				request.setAttribute("msg", "로그인 실패");
-				return ".tiles/common/errorPage";
+				return "common/errorPage";
 			}
 		}catch (Exception e) {
 			request.setAttribute("msg", e.toString());
-			return ".tiles/common/errorPage";
+			return "common/errorPage";
 		}
 	}
 	
 	@RequestMapping(value="/member/join.me", method=RequestMethod.GET)
 	public String memberJoin() {
 		
-		return ".tiles/member/memberJoin";
+		return "member/memberJoin";
 	}
 	
 	@RequestMapping(value="/member/findId.me", method=RequestMethod.GET)
 	public String memberFindIdRedirect() {
-		return ".tiles/member/findId";
+		return "member/findId";
 	}
 	
 	@RequestMapping(value="/member/findPw.me", method=RequestMethod.GET)
 	public String memberFindPwRedirect() {
-		return ".tiles/member/findPw";
+		return "member/findPw";
 	}
 	
 	@RequestMapping(value="/myPage.me", method=RequestMethod.GET)
@@ -70,13 +70,22 @@ public class MemberController {
 			,Model model
 			, @RequestParam(value="page", required=false) Integer page) {
 		
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		if(member == null) {
+			return "redirect:/login.me";
+		}
+		
+		if(member.getmGrade().equals("A")) {
+			return "redirect:/admin/adminHome.me";
+		}
+		
 		int currentPage = (page != null) ? page : 1;
 		int totalCount = mService.getMyPageListCount();
 		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
 		model.addAttribute("pi", pi);
 		
-		HttpSession session = request.getSession();
-		Member member = (Member)session.getAttribute("loginMember");
 		
 		List<Board> myBoardList = mService.printMyBoard(pi, member.getMemberId());
 		model.addAttribute("myBoardList", myBoardList);
@@ -94,7 +103,9 @@ public class MemberController {
 		
 		HttpSession session = request.getSession();
 		Member member = (Member)session.getAttribute("loginMember");
-		
+		if(member == null) {
+			return "redirect:/login.me";
+		}
 		List<Quiz> myQuizList = mService.printMyQuiz(pi, member.getMemberId());
 		model.addAttribute("myQuizList", myQuizList);
 		return "member/myQuiz";
@@ -143,7 +154,7 @@ public class MemberController {
 			return "redirect:/";
 		}else {
 			request.setAttribute("msg", "로그아웃 실패!");
-			return ".tiles/common/errorPage";
+			return "common/errorPage";
 		}
 	}
 	
@@ -157,11 +168,11 @@ public class MemberController {
 				return "member/joinSuccess";
 			}else {
 				model.addAttribute("msg", "회원가입 실패");
-				return ".tiles/common/errorPage";
+				return "common/errorPage";
 			}			
 		}catch(Exception e) {
 			model.addAttribute("msg", e.toString());
-			return ".tiles/common/errorPage";
+			return "common/errorPage";
 		}
 	}
 	
@@ -173,14 +184,14 @@ public class MemberController {
 			Member memberOne = mService.findMemberId(member);
 			if(memberOne != null) {
 				model.addAttribute("member", memberOne);
-				return ".tiles/member/findIdPrint";
+				return "member/findIdPrint";
 			}else {
 				request.setAttribute("msg", "아이디 찾기 실패");
-				return ".tiles/common/errorPage";
+				return "common/errorPage";
 			}
 		}catch(Exception e) {
 			request.setAttribute("msg", e.toString());
-			return ".tiles/common/errorPage";
+			return "common/errorPage";
 		}
 	}
 	
@@ -192,14 +203,14 @@ public class MemberController {
 			Member memberOne = mService.findMemberPw(member);
 			if(memberOne != null) {
 				model.addAttribute("member", memberOne);
-				return ".tiles/member/pwReset";
+				return "member/pwReset";
 			}else {
 				request.setAttribute("msg", "비밀번호 찾기 실패");
-				return ".tiles/common/errorPage";
+				return "common/errorPage";
 			}
 		}catch(Exception e) {
 			request.setAttribute("msg", e.toString());
-			return ".tiles/common/errorPage";
+			return "common/errorPage";
 			}
 		}
 	
@@ -210,14 +221,14 @@ public class MemberController {
 		try {
 			int result = mService.memberPwReset(member);
 			if(result > 0) {
-				return ".tiles/member/pwResetSuccess";
+				return "member/pwResetSuccess";
 			}else {
 				request.setAttribute("msg", "비밀번호 재설정 실패");
-				return ".tiles/common/errorPage";
+				return "common/errorPage";
 			}
 		}catch(Exception e) {
 			request.setAttribute("msg", e.toString());
-			return ".tiles/common/errorPage";
+			return "common/errorPage";
 		}
 	}
 	
@@ -231,7 +242,7 @@ public class MemberController {
 			return "member/removeSuccess";
 		}else {
 			request.setAttribute("msg", "회원탈퇴 실패!");
-			return ".tiles.common/errorPage";
+			return "common/errorPage";
 		}
 	}
 	

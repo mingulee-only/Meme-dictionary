@@ -13,6 +13,9 @@
 		<result property="mStatus" column="M_STATUS" />
 	</resultMap>
 
+	<select id="selectAllMemberCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER_TBL WHERE M_STATUS = 'Y' AND M_GRADE = 'M'
+	</select>
 	<select id="selectLoginMember" parameterType="org.kh.meme.member.domain.Member" resultMap="memberResultMap">
 		SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = #{memberId } AND MEMBER_PW = #{memberPw }
 	</select>
@@ -24,6 +27,9 @@
 	</select>
 	<select id="selectMemberByIdNameEmail" parameterType="org.kh.meme.member.domain.Member" resultMap="memberResultMap">
 		SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = #{memberId } AND MEMBER_NAME = #{memberName } AND MEMBER_EMAIL = #{memberEmail }
+	</select>
+	<select id="selectAllMember" resultMap="memberResultMap">
+		SELECT * FROM MEMBER_TBL WHERE M_STATUS = 'Y' AND M_GRADE = 'M' ORDER BY MEMBER_ID DESC
 	</select>
 	<insert id="insertMember" parameterType="org.kh.meme.member.domain.Member">
 		INSERT INTO MEMBER_TBL VALUES(#{memberId}, #{memberPw}, #{memberName}, #{memberNickname}, #{memberEmail}, DEFAULT, DEFAULT)
