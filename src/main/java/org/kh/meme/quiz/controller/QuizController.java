@@ -66,7 +66,7 @@ public class QuizController {
 		}
 	}
 	
-	//퀴즈 랜덤으로 가져오기
+	//랜덤퀴즈 번호 이용해서 퀴즈 가져오기
 	@ResponseBody
 	@RequestMapping(value = "/quiz/getList.me", method = RequestMethod.GET)
 	public void getMList(
@@ -139,7 +139,7 @@ public class QuizController {
 		return ".tiles/quiz/result";
 	}
 	
-	//랜덤 퀴즈
+	//랜덤 퀴즈 페이지
 	@RequestMapping(value = "/quiz/random.me", method = RequestMethod.GET)
 	public String random( Model model ) {
 		
@@ -159,6 +159,7 @@ public class QuizController {
 		return ".tiles/quiz/random";
 	}
 	
+	// 랜덤 퀴즈 번호 가져오기
 	@ResponseBody
 	@RequestMapping(value = "/quiz/getRandom.me", method = RequestMethod.GET)
 	public String randomQuiz() {
@@ -238,14 +239,28 @@ public class QuizController {
 		}
 	}
 	
+	// 퀴즈 수정 페이지
 	@RequestMapping(value = "/quiz/modifyView.me", method = RequestMethod.GET)
-	public String quizModify(
+	public String quizModifyForm(
 			@RequestParam("quizNo") int quizNo
 			,Model model) {
 		Quiz quiz = qService.printOneByNo(quizNo);
-		System.out.println(quiz);
 		model.addAttribute("quiz", quiz);
 		return ".tiles/quiz/modify";
+	}
+	
+	// 퀴즈 DB 수정
+	@RequestMapping(value = "/quiz/modify.me", method = RequestMethod.POST)
+	public String quizModifyView(Model model
+			,@ModelAttribute Quiz quiz
+			,@ModelAttribute QuizCh quizCh) {
+		int result = qService.modifyQuiz(quiz);
+		if(result>0) {
+			return "member/myPage";
+		}else {
+			model.addAttribute("msg", "퀴즈수정 실패");
+			return "common/errorPage";
+		}
 	}
 	
 	public String saveFile(MultipartFile uploadFile, HttpServletRequest request) {

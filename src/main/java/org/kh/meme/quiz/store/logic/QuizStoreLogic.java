@@ -25,6 +25,15 @@ public class QuizStoreLogic implements QuizStore {
 		int result = session.insert("QuizMapper.insertQuiz", quiz);
 		return result;
 	}
+	
+	@Override
+	public int updateQuiz(SqlSession sqlSession, Quiz quiz) {
+		int result = sqlSession.update("QuizMapper.updateQuiz", quiz);
+		if(!quiz.getQuizCh1().equals("")) {
+			sqlSession.update("QuizMapper.updateQuizM", quiz);
+		}
+		return result;
+	}
 
 	@Override
 	public int insertQuizM(SqlSession session, QuizCh quizCh) {
@@ -68,6 +77,7 @@ public class QuizStoreLogic implements QuizStore {
 		int result = sqlSession.insert("QuizMapper.insertQuizReport", qReport);
 		return result;
 	}
+
 
 
 

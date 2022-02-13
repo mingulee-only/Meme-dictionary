@@ -41,6 +41,12 @@ public class QuizServiceImpl implements QuizService {
 		}
 		return result;
 	}
+	
+	@Override
+	public int modifyQuiz(Quiz quiz) {
+		int result = qStore.updateQuiz(sqlSession, quiz);
+		return result;
+	}
 
 	@Override
 	public int writeQuizM(QuizCh quizCh) {
@@ -65,6 +71,7 @@ public class QuizServiceImpl implements QuizService {
 		int result = qStore.insertReport(sqlSession, qReport);
 		return result;
 	}
+
 
 
 

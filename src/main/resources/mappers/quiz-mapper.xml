@@ -44,10 +44,16 @@
   	<insert id="insertQuizFile" parameterType="QuizFile">
 		INSERT INTO QUIZ_FILE VALUES(QUIZ_SEQ_FILENO.NEXTVAL, #{quizFileName }, #{quizFileExtension }, #{quizFileRename }, QUIZ_SEQ_NO.CURRVAL)  	
   	</insert>
+  	<update id="updateQuiz" parameterType="Quiz">
+  		UPDATE QUIZ_TBL SET QUIZ_QUESTION = #{quizQuest}, QUIZ_ANSWER=#{quizAnswer}, QUIZ_DATE = DEFAULT, QUIZ_TYPE=#{quizType} WHERE QUIZ_NO = #{quizNo}
+  	</update>
   	
   	<insert id="insertQuizM" parameterType="QuizCh">
   		INSERT INTO QUIZ_CH VALUES(QUIZ_SEQ_NO.CURRVAL, #{quizCh1}, #{quizCh2}, #{quizCh3}, #{quizCh4})
   	</insert>
+  	<update id="updateQuizM" parameterType="Quiz">
+  		UPDATE QUIZ_CH SET QUIZ_CH1 = #{quizCh1}, QUIZ_CH2 = #{quizCh2}, QUIZ_CH3 = #{quizCh3}, QUIZ_CH4 = #{quizCh4} WHERE QUIZ_NO = #{quizNo}
+  	</update>
   	
   	<select id="selectScore" resultType="_int">
   		SELECT QUIZ_BESTSCORE FROM QUIZ_BEST WHERE MEMBER_ID = #{memberId}

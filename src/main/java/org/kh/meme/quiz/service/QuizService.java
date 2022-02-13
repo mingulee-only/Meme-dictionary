@@ -13,8 +13,10 @@ public interface QuizService {
 	public List<Quiz> random();
 	public Quiz printOneByNo(Integer quizNo);
 	public int writeQuiz(Quiz quiz, QuizFile quizFile);
+	public int modifyQuiz(Quiz quiz);
 	
 	public int writeQuizM(QuizCh quizCh);
+	
 	public int ScoreOne(String memberId);
 	public int updateScore(QuizBest qBest);
 	
