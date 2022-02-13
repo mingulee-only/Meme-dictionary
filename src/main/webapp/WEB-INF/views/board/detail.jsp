@@ -218,6 +218,7 @@
 
 	function getCommentList(){
 		var boardNo = "${oneBoard.boardNo }";
+		var memberNickname = "${member.memberNickname}";
 		$.ajax({
 			url: "/board/commentList",
 			type: "get",
@@ -246,14 +247,20 @@
 // 						$commentDate = $("<td width='200'>").text(data[i].commentDate)
 // 										.append("&nbsp&nbsp <a href='javascript:void(0);' onclick='modifyViewComment(this);'> 수정 </a>")
 // 										.append("<a href='javascript:void(0);' onclick='removeComment("+data[i].commentNo+");'>삭제 </a>");			
-						$btnArea = $("<td width='80'>")
+						if(data[i].memberNickname == memberNickname) {
+							$btnArea = $("<td width='80'>")
 										.append("<a href='javascript:void(0);' onclick='modifyViewComment(this, \""+data[i].commentContents+"\", "+data[i].commentNo+" );'> 수정 </a>")
 										.append("<a href='javascript:void(0);' onclick='removeComment("+data[i].commentNo+");'>삭제 </a>");	
-										
+						}
+						
 						$tr.append($commentWriter);
 						$tr.append($commentContent);
 						$tr.append($commentDate);
-						$tr.append($btnArea);	
+						
+						if(data[i].memberNickname == memberNickname){
+							$tr.append($btnArea);
+						}
+						
 						$tableBody.append($tr);
 						//크기만큼 반복
 						//여기까지 해야 댓글 가능
