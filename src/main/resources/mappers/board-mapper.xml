@@ -89,6 +89,16 @@
 	</update>
 	
 	
+	<delete id="deleteBoard">
+		DELETE FROM BOARD_TBL WHERE BOARD_NO = #{boardNo}
+
+	</delete>
+	
+	<delete id="deleteBoardFile">
+		DELETE FROM BOARD_FILE WHERE BOARD_NO = #{boardNo}
+	</delete>
+	
+	
 	<!-- 조회 수 -->
 	<update id="updateBoardCount" parameterType="_int">
 		UPDATE BOARD_TBL SET BOARD_COUNT = BOARD_COUNT + 1 WHERE BOARD_NO = #{boardNo}

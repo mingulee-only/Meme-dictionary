@@ -126,24 +126,24 @@
 <%-- 					<br><p id="boardReport">${oneBoard.boardReport }</p> --%>
 				</form>
 			</td>
+			<c:if test="${sessionScope.loginMember.memberNickname eq oneBoard.memberNickname}">
+				<td align="right">
+					<form action='<c:url value="/board/detail_updateView">
+						<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
+						</c:url>' method="post">
+	
+						<input type="submit" id="boardUpdate" value="수정">
+					</form>
+				</td>
+				<td align="right">
+					<form action='<c:url value="/board/detail_delete">
+						<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
+						</c:url>' method="post">
+						<input type="submit" id="boardDelete" value="삭제">
+					</form>
+				</td>
+   			</c:if>
 			
-			<td align="right">
-				<form action='<c:url value="/board/detail_updateView">
-					<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
-					</c:url>' method="post">
-
-					<input type="submit" id="boardUpdate" value="수정">
-<%-- 					<br><p id="boardReport">${oneBoard.boardReport }</p> --%>
-				</form>
-			</td>
-			<td align="right">
-				<form action='<c:url value="/board/detail_delete">
-					<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
-					</c:url>' method="post">
-					<input type="submit" id="boardDelete" value="삭제" onclick="">
-<%-- 					<br><p id="boardReport">${oneBoard.boardReport }</p> --%>
-				</form>
-			</td>
 		</tr>
 	</table>
 

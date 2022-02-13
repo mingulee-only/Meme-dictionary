@@ -113,7 +113,20 @@ public class BoardServiceImpl implements BoardService {
 		return result;
 	}
 
+	//게시글 삭제
 
+	@Override
+	public int deleteBoard(Integer boardNo) {
+		int result = bStore.deleteBoard(sqlSession, boardNo);
+		
+		if(result > 0) {
+			bStore.deleteBoardFile(sqlSession, boardNo);
+		}
+		return result;
+	}
+
+
+	
 	//댓글
 
 	@Override

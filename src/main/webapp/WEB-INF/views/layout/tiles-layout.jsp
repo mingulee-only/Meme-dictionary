@@ -31,13 +31,13 @@
 		margin-top: -10px
 		height:100%;
 		width:80%;
-		background-color: gold;
+		background-color: #f9f9f9;
 		float:left;
 	}
 	#rank {
 		height:100%;
 		width:20%;
-		background-color: #f9f9f9;
+		background-color: white;
 		float:left;
 	}
 
