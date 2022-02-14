@@ -65,7 +65,7 @@
 	
 	.header {
 		color: white;
-		background-color: #75582F;
+		background-color: #8F2B00 ;
 		height: 30px;
 	}
 	

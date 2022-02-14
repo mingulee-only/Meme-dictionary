@@ -66,7 +66,7 @@
 	
 	.header {
 		color: white;
-		background-color: #75582F;
+		background-color: #A64E08 ;
 		height: 30px;
 	}
 	
@@ -133,7 +133,11 @@
 				<c:forEach items="${myCommentList }" var="myCommentList">
 					<tr>
 						<td>${myCommentList.commentNo }</td>
-						<td>${myCommentList.boardNo }</td>
+						<c:url var="bDetail" value="/board/detail">
+							<c:param name="boardNo" value="${myCommentList.boardNo }"></c:param>
+						</c:url>
+						<td><a href="${bDetail}">${myCommentList.boardNo }</a></td>
+						
 						<td>${myCommentList.commentContents }</td>
 						<td>${myCommentList.commentDate }</td>
 					</tr>

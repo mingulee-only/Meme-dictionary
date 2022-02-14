@@ -10,7 +10,7 @@
 <style>
 #memeDetailTable {
 	width: 700px;
-	background-color: #eeeeee;
+	background-color: white;
 	border: 1px solid black;
 	text-align: center;
 	margin: auto;
