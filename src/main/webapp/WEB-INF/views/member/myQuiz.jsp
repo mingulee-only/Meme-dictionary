@@ -100,7 +100,7 @@
 		    					객관식
 							</c:if>
 						</td>
-						<td width="200px">${myQuizList.quizQuest }</td>
+						<td width="200px"><a href="../quiz/modifyView.me?quizNo=${myQuizList.quizNo }">${myQuizList.quizQuest }</a></td>
 						<td>${myQuizList.quizAnswer }</td>
 						<td>${myQuizList.quizDate }</td>
 					</tr>
