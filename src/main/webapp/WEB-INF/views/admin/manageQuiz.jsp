@@ -25,7 +25,7 @@
 	}
 	.content {
 		height : 60%;
-		width : 80%;
+		width : 100%;
 		margin: auto;
 		text-align: center;
 	}
@@ -112,7 +112,7 @@
 	#delete {
 		text-align: center;
 		font-size: smaller;
-		width: 35px;
+		width: 40px;
 	}
 	
 
