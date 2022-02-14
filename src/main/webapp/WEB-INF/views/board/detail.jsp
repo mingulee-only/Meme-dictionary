@@ -119,7 +119,7 @@
 			
 		</tr>
 		<tr>
-			<c:if test="${sessionScope.loginMember.memberNickname eq oneBoard.memberNickname}">
+			<c:if test="${sessionScope.loginMember.memberId ne 'admin' || sessionScope.loginMember eq null}">
 				<td align="left">
 					<form action='<c:url value="/board/detail_report">
 						<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
@@ -128,7 +128,7 @@
 	<%-- 					<br><p id="boardReport">${oneBoard.boardReport }</p> --%>
 					</form>
 				</td>
-   			</c:if>
+			</c:if>
    			<c:if test="${sessionScope.loginMember.memberId eq 'admin'}">
 				<td align="left">
 				<c:if test="${oneBoard.boardStatus eq 'Y' }">
