@@ -155,7 +155,21 @@ public class BoardServiceImpl implements BoardService {
 		return result;
 	}
 
+	
+	
+	//게시글 숨기기 (관리자)
 
+	@Override
+	public int boardReportManagerToN(int boardNo) {
+		int result = bStore.updateBoardReportManagerToN(sqlSession, boardNo);
+		return result;
+	}
+
+	@Override
+	public int boardReportManagerToY(int boardNo) {
+		int result = bStore.updateBoardReportManagerToY(sqlSession, boardNo);
+		return result;
+	}
 
 
 

@@ -61,6 +61,11 @@ public interface BoardStore {
 	public int deleteComment(SqlSession sqlSession, int commentNo);
 
 
+	//게시글 숨기기(관리자)
+	public int updateBoardReportManagerToN(SqlSession sqlSession, int boardNo);
+	public int updateBoardReportManagerToY(SqlSession sqlSession, int boardNo);
+
+
 
 
 

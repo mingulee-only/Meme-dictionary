@@ -82,5 +82,16 @@ public class AdminServiceImpl implements AdminService{
 		List<QuizReport> allQuizReportList = aStore.selectAllQuizReport(sqlSession, pi);
 		return allQuizReportList;
 	}
+	//게시판 신고 기록
+	@Override
+	public int getReportBoardListCount() {
+		int reportBoardListCount = aStore.selectReportBoardListCount(sqlSession);
+		return reportBoardListCount;
+	}
+	@Override
+	public List<Board> printAllReportBoard(PageInfo pi) {
+		List<Board> reportBoardList = aStore.selectReportBoardList(sqlSession, pi);
+		return reportBoardList;
+	}
 
 }

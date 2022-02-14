@@ -54,6 +54,23 @@
 		SELECT * FROM COMMENT_TBL JOIN MEMBER_TBL USING(MEMBER_NICKNAME) WHERE MEMBER_ID = #{memberId} AND COMMENT_STATUS = 'Y' ORDER BY COMMENT_NO DESC
 	</select>
 	
+	<!-- 관리자 페이지 -->
+	<!-- 신고 게시글 -->
+	<select id="selectReportBoardListCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD_TBL WHERE BOARD_STATUS = 'Y' AND BOARD_REPORT > 0
+	</select>
+  	
+	<select id="selectReportBoardList" resultMap="boardResultMap">
+		SELECT * FROM BOARD_TBL WHERE BOARD_STATUS = 'Y' AND BOARD_REPORT > 0 ORDER BY BOARD_NO DESC
+	</select>
+	
+	<update id="updateBoardReportManagerToN" parameterType="Board">
+		UPDATE BOARD_TBL SET BOARD_STATUS = 'N' WHERE BOARD_NO = #{boardNo }
+	</update>
+	<update id="updateBoardReportManagerToY" parameterType="Board">
+		UPDATE BOARD_TBL SET BOARD_STATUS = 'Y' WHERE BOARD_NO = #{boardNo }
+	</update>
+	
 	<!-- 게시판 메인 -->
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*) FROM BOARD_TBL WHERE BOARD_STATUS = 'Y'
