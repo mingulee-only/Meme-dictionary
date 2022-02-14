@@ -329,6 +329,54 @@ public class BoardController {
 
 	}
 	
+	@RequestMapping(value="/board/detail_reportAdminToN", method=RequestMethod.POST
+			, produces="application/json;charset=utf-8")
+	public String boardDetailReportManager1(
+			HttpServletRequest request
+			, @RequestParam("boardNo") int boardNo) {
+		System.out.println(boardNo);
+
+		String referer = request.getHeader("Referer");
+		
+		int boardReportManager = bService.boardReportManagerToN(boardNo);
+		if(boardReportManager > 0) {
+			//게시물 추천수
+			//board_tbl boardLike update
+			
+			System.out.println("board 숨기기");
+			return "redirect:/admin/manageBoardReported.me";
+//				return "redirect:"+referer;
+		} else {
+			System.out.println("board 숨기기 실패");
+			return "redirect:"+referer;
+		}
+		
+	}
+	
+	@RequestMapping(value="/board/detail_reportAdminToY", method=RequestMethod.POST
+			, produces="application/json;charset=utf-8")
+	public String boardDetailReportManager2(
+			HttpServletRequest request
+			, @RequestParam("boardNo") int boardNo) {
+		System.out.println(boardNo);
+
+		String referer = request.getHeader("Referer");
+		
+		int boardReportManager = bService.boardReportManagerToY(boardNo);
+		if(boardReportManager > 0) {
+			//게시물 추천수
+			//board_tbl boardLike update
+			
+			System.out.println("board 보이기");
+			return "redirect:/admin/manageBoardReported.me";
+//				return "redirect:"+referer;
+		} else {
+			System.out.println("board 보이기 실패");
+			return "redirect:"+referer;
+		}
+		
+	}
+	
 	@RequestMapping(value="/board/detail_like", method=RequestMethod.POST)
 	public String boardDetailLike( HttpServletRequest request 
 			, @RequestParam("boardNo") Integer boardNo) {

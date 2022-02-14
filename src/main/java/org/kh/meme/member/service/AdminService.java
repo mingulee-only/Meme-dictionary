@@ -25,6 +25,12 @@ public interface AdminService {
 	List<Quiz> printAllQuiz(PageInfo pi);
 	List<QuizReport> printAllQuizReportRequest(PageInfo pi);
 	List<Board> printAllBoard(PageInfo pi);
+	//게시판 신고기록
+	int getReportBoardListCount();
+	List<Board> printAllReportBoard(PageInfo pi);
+	//게시글 보이기
+	int getStatusNBoardListCount();
+	List<Board> printStatusNBoard(PageInfo pi);
 
 
 

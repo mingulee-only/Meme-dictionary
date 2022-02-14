@@ -169,6 +169,20 @@ public class BoardStoreLogic implements BoardStore{
 		return result;
 	}
 
+	
+	//게시글 숨기기(관리자)
+	@Override
+	public int updateBoardReportManagerToN(SqlSession sqlSession, int boardNo) {
+		int result = sqlSession.update("BoardMapper.updateBoardReportManagerToN", boardNo);
+		return result;
+	}
+	@Override
+	public int updateBoardReportManagerToY(SqlSession sqlSession, int boardNo) {
+		int result = sqlSession.update("BoardMapper.updateBoardReportManagerToY", boardNo);
+		return result;
+	}
+
+
 
 
 

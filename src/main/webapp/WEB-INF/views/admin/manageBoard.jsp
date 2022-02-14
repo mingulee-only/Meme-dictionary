@@ -142,6 +142,7 @@
 				<ul class="sub">
 					<li>전체 글 목록</li>
 					<li><a href="/admin/manageBoardReported.me">신고된 글 목록</a></li>
+<!-- 					<li><a href="/admin/manageBoardStatus.me">숨겨진 글 목록</a></li> -->
 				</ul>
 			</div>
 			

@@ -182,9 +182,31 @@ public class MemeController {
 
 	// 사전 수정삭제 요청
 	@RequestMapping(value = "/meme/requestView", method = RequestMethod.GET)
-	public String memeRequestView(@RequestParam(value = "memeNo") int memeNo) {
+	public String memeRequestView(Model model, @RequestParam(value = "memeNo") int memeNo) {
 
-		return ".tiles/meme/memeRequestForm";
+		//랭킹
+		model.addAttribute("rankmain", "meme");
+		List<MemeRank> memeRankList = rService.printMemeRank();
+		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+		List<QuizRank> quizRankList = rService.printQuizRank();
+
+
+		if(!memeRankList.isEmpty() && !boardPushRankList.isEmpty() && !boardFreeRankList.isEmpty() && !quizRankList.isEmpty()) {
+
+			//랭킹
+			model.addAttribute("memeRankList", memeRankList);
+			model.addAttribute("boardPushRankList", boardPushRankList);
+			model.addAttribute("boardFreeRankList", boardFreeRankList);
+			model.addAttribute("quizRankList", quizRankList);
+			return ".tiles/meme/memeRequestForm";
+		} else {
+			//일단 error 나누어서 안 적음, 필요하면 적기
+			model.addAttribute("msg", "랭킹 조회 실패");
+			return "error";
+		}
+		
+		
 	}
 
 	// 사전 수정삭제 요청 등록
@@ -195,6 +217,7 @@ public class MemeController {
 			int result = mService.requestMeme(memeRequest);
 			if (result > 0) {
 				System.out.println("등록성공");
+				
 				return "redirect:/";
 
 			} else {

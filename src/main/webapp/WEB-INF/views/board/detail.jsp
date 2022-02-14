@@ -119,14 +119,41 @@
 			
 		</tr>
 		<tr>
-			<td align="left">
-				<form action='<c:url value="/board/detail_report">
-					<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
-					</c:url>' method="post">
-					<input style="background-color:#DB4000; color:white" type="submit" id="boardReport" value="신고" onclick="reportFunc();">
+			<c:if test="${sessionScope.loginMember.memberNickname eq oneBoard.memberNickname}">
+				<td align="left">
+					<form action='<c:url value="/board/detail_report">
+						<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
+						</c:url>' method="post">
+						<input style="background-color:#DB4000; color:white" type="submit" id="boardReport" value="신고" onclick="reportFunc();">
+	<%-- 					<br><p id="boardReport">${oneBoard.boardReport }</p> --%>
+					</form>
+				</td>
+   			</c:if>
+   			<c:if test="${sessionScope.loginMember.memberId eq 'admin'}">
+				<td align="left">
+				<c:if test="${oneBoard.boardStatus eq 'Y' }">
+					<form action='<c:url value="/board/detail_reportAdminToN">
+						<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
+						</c:url>' method="post">
+						
+						<input style="background-color:#DB4000; color:white" type="submit" id="boardReportAdmin" value="게시글 숨기기" onclick="reportAdminFuncToN();">
 <%-- 					<br><p id="boardReport">${oneBoard.boardReport }</p> --%>
-				</form>
-			</td>
+
+					</form>
+				</c:if>
+				<c:if test="${oneBoard.boardStatus eq 'N' }">
+					<form action='<c:url value="/board/detail_reportAdminToY">
+						<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
+						</c:url>' method="post">
+			
+						<input style="background-color:#DB4000; color:white" type="submit" id="boardReportAdmin" value="게시글 보이기" onclick="reportAdminFuncToY();">
+<%-- 					<br><p id="boardReport">${oneBoard.boardReport }</p> --%>
+	
+					</form>
+				</c:if>
+				</td>
+   			</c:if>
+			
 			<c:if test="${sessionScope.loginMember.memberNickname eq oneBoard.memberNickname || sessionScope.loginMember.memberId eq 'admin'}">
 				<td align="right">
 					<form action='<c:url value="/board/detail_updateView">
@@ -198,6 +225,12 @@
 	
 	function reportFunc(){
 		alert("신고 완료 되었습니다.");
+	}
+	function reportAdminFuncToN(){
+		alert("숨김 처리 되었습니다.");
+	}
+	function reportAdminFuncToY(){
+		alert("글이 보이도록 처리 되었습니다.");
 	}
 
 	$("#cSubmit").on("click", function(){
