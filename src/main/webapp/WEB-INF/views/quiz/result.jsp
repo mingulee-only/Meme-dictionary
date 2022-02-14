@@ -87,7 +87,7 @@
         }
         
         #userAnswer{
-            color: blue;
+            color: #008F7C;
         }
     </style>
 <script>
