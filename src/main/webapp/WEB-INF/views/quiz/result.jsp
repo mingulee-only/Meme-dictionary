@@ -7,9 +7,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
     <style>
-    	#quizBody {
+    	body {
 			margin: 0 auto;
 			text-align: center;
+		}
+		#quizContents {
+/* 			border: 1px solid black; */
+			width: 500px;
+			text-align: left;
+			margin: auto;
 		}
 		button{
 			background-color: red;
@@ -76,6 +82,18 @@
         #modal #reportContents {
         	width: 350px;
             height: 200px;
+        }
+        
+        #choice{
+        	color: darkgreen
+        }
+        
+        #answer{
+            color: red;
+        }
+        
+        #userAnswer{
+            color: #008F7C;
         }
     </style>
 <script>
@@ -145,36 +163,43 @@ window.onload = function(){
 }
 </script>
 </head>
-<body id="quizBody">
+<body>
+	<p></p>
 	<h1>퀴즈 결과</h1>
+	<div id="quizContents">
+		<c:forEach var="i" items="${qList}" varStatus="vs">
+			<b>문제 : ${i.quizQuest} <br></b>
+	    	<c:if test="${not empty i.quizCh1}">
+	    		<div id="choice">
+	    		보기 <br>
+		    	(1) ${i.quizCh1} <br>
+		    	(2) ${i.quizCh2} <br>
+		    	(3) ${i.quizCh3} <br>
+		    	(4) ${i.quizCh4} <br>
+		    	</div>
+	    	</c:if>
+		    	<div id="answer">정답 : ${i.quizAnswer} <br></div>
+		    	<div id="userAnswer">나의 답 : ${userAnswer[vs.index] } <br></div>
+		        <button align="right" class="btn-modal" id="${i.quizNo}">신고</button>
+		    	<br><br><br>
+		</c:forEach>
+		정답 갯수 : ${score }
+		
+		<!-- 모달 영역 -->
+		<div id="modal" class="modal-overlay">
+	        <div class="modal-window">
+	            <div class="close-area">X</div>
+	                <div class="content">
+	                    <p>신고 내용을 입력해주세요</p>
+	                    <textarea id="reportContents" name="reportContents" rows="15" cols="50"></textarea>
+	                    <button id="report">신고</button>
+	                    <input type="hidden" id="reportNo" name="reportNo">
+	                </div>
+	        </div>
+	    </div>
 	
-	<c:forEach var="i" items="${qList}" varStatus="vs">
-		문제 : ${i.quizQuest} <br>
-    	<c:if test="${not empty i.quizCh1}">
-    	보기 <br>
-	    	(1) ${i.quizCh1} <br>
-	    	(2) ${i.quizCh2} <br>
-	    	(3) ${i.quizCh3} <br>
-	    	(4) ${i.quizCh4} <br>
-    	</c:if>
-    	정답 : ${i.quizAnswer} <br>
-    	나의 답 : ${userAnswer[vs.index] } <br>
-        <button class="btn-modal" id="${i.quizNo}">신고</button>
-    	<br><br><br>
-	</c:forEach>
-	정답 갯수 : ${score }
+	</div>
 	
-	<!-- 모달 영역 -->
-	<div id="modal" class="modal-overlay">
-        <div class="modal-window">
-            <div class="close-area">X</div>
-                <div class="content">
-                    <p>신고 내용을 입력해주세요</p>
-                    <textarea id="reportContents" name="reportContents" rows="15" cols="50"></textarea>
-                    <button id="report">신고</button>
-                    <input type="hidden" id="reportNo" name="reportNo">
-                </div>
-        </div>
-    </div>
+	
 </body>
 </html>

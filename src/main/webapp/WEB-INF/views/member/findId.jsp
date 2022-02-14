@@ -16,32 +16,32 @@
 	margin-left : -150px;
 	background-color : lightgray;
 	}
-	ul {
+	.header ul {
 	list-style-type : none;
 	padding-left : 50px;
 	}
-	li {
+	.header li {
 	color : white;
 	float : left;
 	background-color : #4A4646;
 	text-align : center;
 	}
-	li a {
+	.header li a {
 	color : white;
 	display : block;
 	background-color : darkgray;
 	text-decoration : none;
 	text-align : center;
 	}
-	li a.current {
+	.header li a.current {
 		color : white;
 	}
 	.header {
 	height : 20%;
+	margin-left : 20px;
 	}
 	.body {
 	height : 80%;
-	padding-left : 50px;
 	margin-top : 5px;
 	}
 </style>
@@ -66,7 +66,7 @@
 					</tr>
 					<tr align="center">
 						<td>
-							<input type="submit" value="아이디 찾기">
+							<button type="submit">아이디 찾기</button>
 						</td>
 						<td><button type="button" onclick="location.href='/login.me'">돌아가기</button>
 					</tr>

@@ -9,6 +9,7 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="org.kh.meme.meme.domain.Meme" alias="Meme"/>
+		<typeAlias type="org.kh.meme.meme.domain.MemeRequest" alias="MemeRequest"/>
 		
 		<typeAlias type="org.kh.meme.board.domain.Board" alias="Board"/>
 		<typeAlias type="org.kh.meme.board.domain.BoardFile" alias="BoardFile"/>

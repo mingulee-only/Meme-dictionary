@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.kh.meme.board.domain.Board;
+import org.kh.meme.board.domain.Comment;
 import org.kh.meme.common.PageInfo;
 import org.kh.meme.member.domain.Member;
 import org.kh.meme.member.store.MemberStore;
@@ -66,14 +67,32 @@ public class MemberStoreLogic implements MemberStore{
 	}
 	
 	@Override
-	public int myPageListCount(SqlSession sqlSession) {
-		int totalCount = sqlSession.selectOne("BoardMapper.selectMyPageListCount");
+	public List<Comment> selectMyComment(SqlSession sqlSession, PageInfo pi, String memberId) {
+		int limit = pi.getBoardLimit();
+		int currentPage = pi.getCurrentPage();
+		int offset = (currentPage - 1 ) * limit;
+
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Comment> myCommentList = sqlSession.selectList("BoardMapper.selectMyCommentList", memberId, rowBounds);
+		return myCommentList;
+	}
+	
+	@Override
+	public int myPageListCount(SqlSession sqlSession, String memberId) {
+		int totalCount = sqlSession.selectOne("BoardMapper.selectMyPageListCount", memberId);
 		return totalCount;
 	}
 	
 	@Override
-	public int myQuizListCount(SqlSession sqlSession) {
-		int totalCount = sqlSession.selectOne("QuizMapper.selectMyQuizCount");
+	public int myQuizListCount(SqlSession sqlSession, String memberId) {
+		int totalCount = sqlSession.selectOne("QuizMapper.selectMyQuizCount", memberId);
+		return totalCount;
+	}
+	
+	@Override
+	public int myCommentListCount(SqlSession sqlSession, String memberId) {
+		int totalCount = sqlSession.selectOne("BoardMapper.selectMyCommentListCount", memberId);
 		return totalCount;
 	}
 	
@@ -100,6 +119,7 @@ public class MemberStoreLogic implements MemberStore{
 		int result = sqlSession.delete("MemberMapper.deleteMember", memberId);
 		return result;
 	}
+
 
 
 

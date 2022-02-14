@@ -32,12 +32,12 @@
 	height : 10%;
 }
 
-ul {
+.body ul {
 	list-style-type: none;
 	padding-left: 130px;
 }
 
-li {
+.body li {
 	color: white;
 	float: left;
 	background-color: #4A4646;
@@ -45,7 +45,7 @@ li {
 	text-align: center;
 }
 
-li a {
+.body li a {
 	color: white;
 	display: block;
 	background-color: darkgray;
@@ -53,7 +53,7 @@ li a {
 	text-align: center;
 }
 
-li a.current {
+.body li a.current {
 	color: white;
 }
 
@@ -112,17 +112,37 @@ li a.current {
 			<div class="content">
 				<table align="center" border="1">
 					<tr class="header">
-						<td id="part">유형</td>
-						<td id="no">번호</td>
-						<td id="question">퀴즈내용</td>
-						<td id="writer">출제자</td>
-						<td id="date">작성일</td>
-						<td id="reason">신고사유</td>
+						<td id="part">번호</td>
+						<td id="no">신고자</td>
+						<td id="question">신고내용</td>
+						<td id="writer">신고일</td>
+						<td id="date">퀴즈번호</td>
 					</tr>
+					<c:forEach items="${allQuizReportList }" var="allQuizReportList">
+						<tr>
+							<td>${allQuizReportList.reportNo }</td>
+							<td>${allQuizReportList.reportId }</td>
+							<td><a href="../quiz/modifyView.me?quizNo=${allQuizReportList.quizNo }">${allQuizReportList.reportContents }</a></td>
+							<td>${allQuizReportList.reportDate }</td>
+							<td>${allQuizReportList.quizNo }</td>
+						</tr>
+					</c:forEach>
 				</table>
 			</div>
-		</div>
-		<div style="text-align:center" class="pi">
+			<div style="text-align:center" class="pi">
+				<c:if test="${pi.startNavi gt 1 }">
+					<button style="height:25px; width:55px">이전</button>
+				</c:if>
+				<c:forEach var="p" begin="${pi.startNavi }" end="${pi.endNavi }">
+					<c:url var="pagination" value="/admin/manageQuizReported.me">
+						<c:param name="page" value="${p }"></c:param>
+					</c:url>
+					<a href="${pagination }">${p }</a>&nbsp;
+				</c:forEach>
+				<c:if test="${pi.endNavi lt maxPage }">
+					<button style="height:25px; width:55px">다음</button>
+				</c:if>
+			</div>
 		</div>
 		
 		<div class="footer">

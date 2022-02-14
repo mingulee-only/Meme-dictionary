@@ -91,7 +91,7 @@ public class QuizController {
 			,HttpSession session) {
 		
 		ArrayList<Quiz> qList = new ArrayList<Quiz>();
-		for(int i = 0; i<quizNo.length-1; i++) {
+		for(int i = 0; i<quizNo.length; i++) {
 			Quiz quiz = new Quiz();
 			quiz = qService.printOneByNo(quizNo[i]);
 			qList.add(quiz);
@@ -246,6 +246,21 @@ public class QuizController {
 			,Model model) {
 		Quiz quiz = qService.printOneByNo(quizNo);
 		model.addAttribute("quiz", quiz);
+		
+		//랭킹
+		model.addAttribute("rankmain", "quiz");
+		List<MemeRank> memeRankList = rService.printMemeRank();
+		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+		List<QuizRank> quizRankList = rService.printQuizRank();
+				
+
+		//랭킹
+		model.addAttribute("memeRankList", memeRankList);
+		model.addAttribute("boardPushRankList", boardPushRankList);
+		model.addAttribute("boardFreeRankList", boardFreeRankList);
+		model.addAttribute("quizRankList", quizRankList);
+		
 		return ".tiles/quiz/modify";
 	}
 	
