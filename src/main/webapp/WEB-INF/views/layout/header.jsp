@@ -73,9 +73,10 @@
 				<div class="containt_main">
 					<div id="mySidenav" class="sidenav">
 						<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-						<a align="left" href="/">유행어사전</a> <a align="left" href="/board">유행어
-							추진/자유게시판</a> <a align="left" href="/quiz/random.me">유행어 퀴즈 풀기</a> <a
-							align="left" href="/quiz/writeView.me">유행어 퀴즈 만들기</a>
+						<a align="left" href="/">유행어사전</a>
+						<a align="left" href="/board">유행어 추진/자유게시판</a>
+						<a align="left" href="/quiz/random.me">유행어 퀴즈 풀기</a>
+						<a align="left" href="/quiz/writeView.me">유행어 퀴즈 만들기</a>
 						<!-- <a href="/quiz/writeView.me">유행어 퀴즈 만들기</a> -->
 						<a align="left" href="/meme/timeline">타임라인</a>
 					</div>

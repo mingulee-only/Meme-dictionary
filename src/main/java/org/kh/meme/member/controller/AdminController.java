@@ -134,17 +134,30 @@ public class AdminController {
 		return ".tilesHead/admin/manageBoard";
 	}
 	
-	@RequestMapping(value="/admin/manageBoardReported.me", method=RequestMethod.GET)
-	public String manageBoardReported(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		Member member = (Member)session.getAttribute("loginMember");
-		if(member == null) {
-			return "redirect:/login.me";
-		}else if(member.getmGrade().equals("M")) {
-			return ".tilesHead/admin/error";
-		}
-		return ".tilesHead/admin/manageBoardReported";
-	}
+//	@RequestMapping(value="/admin/manageBoardReported.me", method=RequestMethod.GET)
+//	public String manageBoardReported(
+//			Model model
+//			, HttpServletRequest request
+//			, @RequestParam(value="page", required=false) Integer page) {
+//		HttpSession session = request.getSession();
+//		Member member = (Member)session.getAttribute("loginMember");
+//		if(member == null) {
+//			return "redirect:/login.me";
+//		}else if(member.getmGrade().equals("M")) {
+//			return ".tilesHead/admin/error";
+//			
+//		}
+//		int currentPage = (page != null) ? page : 1;
+//		int totalCount = aService.getReportBoardListCount();
+//		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+//		model.addAttribute("pi", pi);
+//		
+//		
+//		List<Board> allBoardList = aService.printAllReportBoard(pi);
+//		model.addAttribute("allBoardList", allBoardList);
+//		
+//		return ".tilesHead/admin/manageBoardReported";
+//	}
 	
 	@RequestMapping(value="/admin/manageQuiz.me", method=RequestMethod.GET)
 	public String manageQuiz(HttpServletRequest request

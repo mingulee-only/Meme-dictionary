@@ -104,10 +104,10 @@
 		font-size: smaller;
 		width: 50px;
 	}
-	#delete {
+	#reports {
 		text-align: center;
 		font-size: smaller;
-		width: 35px;
+		width: 40px;
 	}
 	
 	.header {
@@ -156,6 +156,26 @@
 						<th id="date">작성일</th>
 						<th id="reports">신고수</th>
 					</tr>
+					<c:forEach items="${allBoardList }" var="allBoardList">
+						<tr>
+							<td id="part">
+								<c:if test="${allBoardList.boardType eq 'P'}">
+			    					추진
+								</c:if>
+								<c:if test="${allBoardList.boardType eq 'F'}">
+			    					자유
+								</c:if>
+							</td>
+							<td id="no">${allBoardList.boardNo }</td>
+							<c:url var="bDetail" value="/board/detail">
+								<c:param name="boardNo" value="${allBoardList.boardNo }"></c:param>
+							</c:url>
+							<td><a href="${bDetail }">${allBoardList.boardTitle }</a></td>
+							<td>${allBoardList.memberNickname }</td>
+							<td>${allBoardList.boardDate }</td>
+							<td>${allBoardList.boardReport }</td>
+						</tr>
+					</c:forEach>
 				</table>
 			</div>
 		</div>
