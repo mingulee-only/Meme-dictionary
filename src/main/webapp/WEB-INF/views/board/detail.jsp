@@ -14,7 +14,8 @@
      #boardDetailTable {
      	height:70px;
         width: 700px;
-		background-color: #eeeeee; 
+		background-color: #EB755E  ; 
+		color : black;
 		border: 1px solid black; 
 		text-align: center;
 		margin: auto; 
@@ -122,7 +123,7 @@
 				<form action='<c:url value="/board/detail_report">
 					<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
 					</c:url>' method="post">
-					<input style="background-color:red; color:white" type="submit" id="boardReport" value="신고" onclick="reportFunc();">
+					<input style="background-color:#DB4000; color:white" type="submit" id="boardReport" value="신고" onclick="reportFunc();">
 <%-- 					<br><p id="boardReport">${oneBoard.boardReport }</p> --%>
 				</form>
 			</td>

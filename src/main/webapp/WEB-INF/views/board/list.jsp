@@ -14,6 +14,11 @@
 		text-align: center;
 		margin: auto;
 	}
+	#boardTable th{
+		height: 30px;
+		background-color:#EB755E  ;
+		color:  white;
+	}
 	
 	#boardTable th, td{
 		border: 1px solid black;
