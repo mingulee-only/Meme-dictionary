@@ -13,7 +13,7 @@
 <style>
      #boardDetailTable {
      	height:70px;
-        width: 800px; 
+        width: 700px;
 		background-color: #eeeeee; 
 		border: 1px solid black; 
 		text-align: center;
@@ -25,7 +25,7 @@
 	     }
 	
 	#boardDetailTable2 {
-		width: 800px; 
+		width: 700px;
 		background-color: white; 
 	 	border: 1px solid black; 
 		text-align: center;
@@ -39,7 +39,7 @@
 	    }
 	         
 	#boardCommentTable {
-		width: 800px; 
+		width: 700px;
 	 	border: 1px solid black; 
 		text-align: center;
 	 	margin: auto;
@@ -47,7 +47,7 @@
 	}
 	
 	#boardCommentTable2 {
-		width: 800px; 
+		width: 700px; 
 	 	border: 1px solid black; 
 		text-align: center;
 	 	margin: auto;
