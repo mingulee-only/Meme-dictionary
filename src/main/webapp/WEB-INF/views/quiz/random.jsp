@@ -37,7 +37,7 @@
         var score = 0; // 점수
         var $report = [];
         
-        getQuizNo();
+        getQuizNo(); // 맨 처음에 퀴즈 가져오기
         var time = setInterval(() => { // 타이머! 0초되면 결과로!
             if(clock>=0) {
                 $("#time").html(clock);

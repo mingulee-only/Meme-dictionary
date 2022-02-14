@@ -159,6 +159,8 @@
 						<th id="question">신고내용</th>
 						<th id="date">신고일</th>
 						<th id="quizno">퀴즈번호</th>
+						<th id="delete">&nbsp</th>
+						<th id="delete">&nbsp</th>
 					</tr>
 					<c:forEach items="${allQuizReportList }" var="allQuizReportList">
 						<tr>
@@ -167,6 +169,20 @@
 							<td>${allQuizReportList.reportContents }</td>
 							<td>${allQuizReportList.reportDate }</td>
 							<td>${allQuizReportList.quizNo }</td>
+							<td>
+							<form action='<c:url value="/quiz/modifyView.me">
+								<c:param name="quizNo" value="${allQuizReportList.quizNo }"></c:param>
+								</c:url>' method="post">
+								<button type="submit">수정</button>
+							</form>
+						</td>
+							<td id="delete">
+							<form action='<c:url value="/quiz/delete.me">
+								<c:param name="quizNo" value="${allQuizReportList.quizNo }"></c:param>
+								</c:url>' method="post">
+								<button type="submit">삭제</button>
+							</form>
+						</td>
 						</tr>
 					</c:forEach>
 				</table>
