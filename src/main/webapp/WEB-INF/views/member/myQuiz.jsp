@@ -133,6 +133,7 @@
 					<td id="no">문제</td>
 					<td id="title">답</td>
 					<td id="date">작성일</td>
+					<td colspan="2"></td>
 				</tr>
 				<c:forEach items="${myQuizList }" var="myQuizList">
 					<tr>
