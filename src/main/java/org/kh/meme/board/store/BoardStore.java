@@ -45,7 +45,11 @@ public interface BoardStore {
 
 	public int updateBoardFile(SqlSession sqlSession, BoardFile boardFile);
 
-
+	//게시글 삭제
+	public int deleteBoard(SqlSession sqlSession, Integer boardNo);
+	
+	public int deleteBoardFile(SqlSession sqlSession, Integer boardNo);
+	
 	
 	//댓글
 	public int insertComment(SqlSession sqlSession, Comment comment);
@@ -55,6 +59,9 @@ public interface BoardStore {
 	public int updateComment(SqlSession sqlSession, Comment comment);
 
 	public int deleteComment(SqlSession sqlSession, int commentNo);
+
+
+
 
 
 

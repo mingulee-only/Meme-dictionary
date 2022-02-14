@@ -130,7 +130,18 @@ public class BoardStoreLogic implements BoardStore{
 	}
 
 
+	//게시글 삭제
+	@Override
+	public int deleteBoard(SqlSession sqlSession, Integer boardNo) {
+		int result = sqlSession.delete("BoardMapper.deleteBoard", boardNo);
+		return result;
+	}
 
+	@Override
+	public int deleteBoardFile(SqlSession sqlSession, Integer boardNo) {
+		int result = sqlSession.delete("BoardMapper.deleteBoardFile", boardNo);
+		return result;
+	}
 	
 
 	//댓글
@@ -157,6 +168,8 @@ public class BoardStoreLogic implements BoardStore{
 		int result = sqlSession.delete("BoardMapper.deleteComment", commentNo);
 		return result;
 	}
+
+
 
 
 

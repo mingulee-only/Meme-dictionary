@@ -43,6 +43,7 @@ public interface BoardService {
 	public int updateBoard(Board board, BoardFile boardFile);
 	
 	//게시글 삭제
+	public int deleteBoard(Integer boardNo);
 
 	//댓글
 	public int registerComment(Comment comment); //댓글 등록
@@ -52,6 +53,8 @@ public interface BoardService {
 	public int modifyComment(Comment comment);	//댓글 수정
 
 	public int removeComment(int commentNo);	//댓글 삭제
+
+
 
 
 	
