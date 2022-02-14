@@ -14,44 +14,59 @@
 	<br>
 	<hr>
 	<br>
+	<div align="center">
 	<h3>2000년 이전</h3>
 	<c:forEach items="${memeTimeline }" var="tFirstList">
-		<button>${tFirstList.memeName }</button>
+		<button class="timelineBTN">${tFirstList.memeName }</button>
+		<%-- 		<button onclick="firstBtn(${tFirstList.index})" href='/meme/detail?memeName='+${tFirstList.memeName }>${tFirstList.memeName }</button> --%>
 	</c:forEach>
-	<br>
+	<br><br>
+	</div>
 
+	<div align="center">
 	<h3>2001년 - 2005년</h3>
 	<c:forEach items="${memeSecondTimeline }" var="tSecondList">
-		<button>${tSecondList.memeName }</button>
+		<button class="timelineBTN">${tSecondList.memeName }</button>
 	</c:forEach>
-	<br>
+	<br><br>
+	</div>
 
+	<div align="center">
 	<h3>2006년 - 2010년</h3>
 	<c:forEach items="${memeThirdTimeline }" var="tThirdList">
-		<button>${tThirdList.memeName }</button>
+		<button class="timelineBTN">${tThirdList.memeName }</button>
 	</c:forEach>
-	<br>
+	<br><br>
+	</div>
 
+	<div align="center">
 	<h3>2011년 - 2015년</h3>
 	<c:forEach items="${memeFourthTimeline }" var="tFourthList">
-		<button>${tFourthList.memeName }</button>
+		<button class="timelineBTN">${tFourthList.memeName }</button>
 	</c:forEach>
-	<br>
-	
+	<br><br>
+	</div>
+
+	<div align="center">
 	<h3>2016년 - 2020년</h3>
 	<c:forEach items="${memeFifthTimeline }" var="tFifthList">
-		<button>${tFifthList.memeName }</button>
+		<button class="timelineBTN">${tFifthList.memeName }</button>
 	</c:forEach>
-	<br>
-	
+	<br><br>
+	</div>
+
+	<div align="center">
 	<h3>2021년</h3>
-		<c:forEach items="${memeSixthTimeline }" var="tSixthList">
-		<button>${tSixthList.memeName }</button>
+	<c:forEach items="${memeSixthTimeline }" var="tSixthList">
+		<button class="timelineBTN">${tSixthList.memeName }</button>
 	</c:forEach>
-	<br>
+	<br><br>
+	</div>
 
-	<script>
-
+ 	<script>
+/*  		function firstBtn() {
+			location.href = '/meme/detail?memeName=' + searchValue;
+		} */
 	</script>
 
 </body>

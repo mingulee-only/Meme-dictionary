@@ -7,15 +7,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	#quizBody {
+	body {
 		margin: 0 auto;
 		text-align: center;
 	}
+	#quizContents {
+/* 		border: 1px solid black; */
+		width: 500px;
+		text-align: left;
+		margin: auto;
+	}
+	
 	[id^='ch'] {
-		color: green;
+		color: #008F7C;
 	}
 	#type {
-		color: aqua;
+		color: #DB4000;
 	}
 </style>
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -29,7 +36,7 @@
     	var $quizCh2 = []; // 객관식 배열
     	var $quizCh3 = []; // 객관식 배열
     	var $quizCh4 = []; // 객관식 배열
-        var clock = 5; // 제한시간 설정
+        var clock = 30; // 제한시간 설정
         var nextNum = 0; // 퀴즈 인덱스
         var userAnswer = []; // 유저가 입력한 정답
         var score = 0; // 점수
@@ -141,26 +148,37 @@
     });
 </script>
 </head>
-<body id="quizBody">
+<body>
+	<p></p>
 	<h1>랜덤 퀴즈</h1>
-	<div id="type"></div>
-	제한시간 :
-	<B><span id="time"></span></B> 초
-	&nbsp;&nbsp;&nbsp;
-	<B><span id="whether"></span></B>
-	<br>
-	<div id="quest">
-		<b id="question"></b> <br>
-		<div id="ch1"></div>
-		<div id="ch2"></div>
-		<div id="ch3"></div>
-		<div id="ch4"></div>
-		<br> <br> <br> <input type="text" id="answer">
+	<div id="quizContents">
+		<div align="right">
+		<B>제한시간 :<span id="time"></span></B> 초</div>
+		<div id="type" style="font-weight:bolder;"></div>
+		
+		&nbsp;&nbsp;&nbsp;
+		<div align="right">
+			<B><span id="whether"></span></B>
+		</div>
+		<br>
+		<div id="quest">
+			<b id="question"></b> <br>
+			<div id="ch1"></div>
+			<div id="ch2"></div>
+			<div id="ch3"></div>
+			<div id="ch4"></div>
+			<br> <br> <br>
+			<div align="center">
+				<input type="text" id="answer">
+			</div>
+			
+		</div>
+		<form action="/quiz/result.me" method="post" id="postSubmit">
+			<input type="hidden" name="quizNo" id="quizNo_">
+			<input type="hidden" name="userAnswer" id="userAnswer_">
+			<input type="hidden" name="score" id="score_">
+		</form>
 	</div>
-	<form action="/quiz/result.me" method="post" id="postSubmit">
-		<input type="hidden" name="quizNo" id="quizNo_">
-		<input type="hidden" name="userAnswer" id="userAnswer_">
-		<input type="hidden" name="score" id="score_">
-	</form>
+	
 </body>
 </html>

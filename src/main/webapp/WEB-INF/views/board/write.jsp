@@ -10,14 +10,15 @@
 #boardWriteTable { 
 	width: 800px; 
 	height: 200px; 
-	background-color: #eeeeee; 
+	background-color: #F5A678 ; 
  	border: 1px solid black; 
 	text-align: center;
  	margin: auto; 
+ 	color: black;
 }
 
 #boardWriteTable th {
-	background-color: #eeeeee;
+	background-color: #F5A678;
 }
 
 .jb-th-1 {
@@ -56,8 +57,8 @@
 				<td align="left">&nbsp<input type="file" name="uploadFile"></td>
 			</tr>
 			</tr>
-			<tr style="text-align: center">
-				<td>
+			<tr style="text-align: center; width: 100%">
+				<td >
 					<input type="text" name="boardTitle" value="" placeholder="글 제목"
 						style="width: 99%">
 				</td>

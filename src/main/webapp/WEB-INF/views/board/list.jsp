@@ -10,9 +10,14 @@
 <style>
 	#boardTable{
 		border: 1px solid black;
-		width:800px;
+		width:700px;
 		text-align: center;
 		margin: auto;
+	}
+	#boardTable th{
+		height: 30px;
+		background-color:#EB755E  ;
+		color:  white;
 	}
 	
 	#boardTable th, td{
@@ -22,6 +27,7 @@
 </style>
 </head>
 <body>
+<p></p>
 	<h1 align="center">게시판</h1>
 	<p align="right">
 		<input type="button" value="글쓰기" onclick="boardWriteFunc();"/>
@@ -30,7 +36,7 @@
 		<tr>
 			<th>번호</th>
 			<th>분류</th>
-			<th width="400px">글제목</th>
+			<th width="300px">글제목</th>
 			<th>작성자</th>
 			<th>작성날짜</th>
 			<th>조회수</th>
@@ -51,7 +57,7 @@
 				<c:url var="bDetail" value="/board/detail">
 					<c:param name="boardNo" value="${boardAllList.boardNo }"></c:param>
 				</c:url>
-				<td width="400px"><a href="${bDetail}">${boardAllList.boardTitle }</a></td>
+				<td><a href="${bDetail}">${boardAllList.boardTitle }</a></td>
 				<td>${boardAllList.memberNickname }</td>
 				<td>${boardAllList.boardDate }</td>
 				<td>${boardAllList.boardCount }</td>

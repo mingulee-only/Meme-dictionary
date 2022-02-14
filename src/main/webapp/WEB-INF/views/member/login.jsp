@@ -13,9 +13,10 @@
 		top : 50%;
 		left : 50%;
  		margin-top : -100px; 
- 		margin-left : -150px; 
+ 		margin-left : -150px;
+ 		margin-bottom : 50px; 
 		text-align: center;
-		background-color : lightgray;
+		background-color : #EBB388;
 	}
  	.header {
  		height : 20%;
@@ -26,7 +27,19 @@
 		margin-top : 20px;
 	}
 
-
+	#loginButton {
+		background-color : #8F2B00;
+		color: white;
+		margin-top: 5px;
+	}
+	button {
+		color : #8F2B00;
+		font-weight: bold;
+		background-color: #EBB388;
+		margin-top: 5px;
+	}
+	
+	
 </style>
 </head>
 <body>
@@ -42,9 +55,10 @@
 					<tr>
 						<td colspan="2"><input type="password" name="memberPw" placeholder="비밀번호"></td>	
 					</tr>
+					<b></b>
 					<tr align="center">
-						<td><button type="submit">로그인</button></td>
-						<td><button type="button" onclick="location.href='/member/join.me'">회원가입</button>
+						<td><button id="loginButton" type="submit">로그인</button></td>
+						<td><button id="joinButton" type="button" onclick="location.href='/member/join.me'">회원가입</button>
 					</tr>
 					<tr align="center">
 						<td colspan="2"><button type="button" onclick="location.href='/member/findId.me'">아이디/비밀번호 찾기</button></td>

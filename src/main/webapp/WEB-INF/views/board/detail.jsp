@@ -13,8 +13,9 @@
 <style>
      #boardDetailTable {
      	height:70px;
-        width: 800px; 
-		background-color: #eeeeee; 
+        width: 700px;
+		background-color: #EB755E  ; 
+		color : black;
 		border: 1px solid black; 
 		text-align: center;
 		margin: auto; 
@@ -25,7 +26,7 @@
 	     }
 	
 	#boardDetailTable2 {
-		width: 800px; 
+		width: 700px;
 		background-color: white; 
 	 	border: 1px solid black; 
 		text-align: center;
@@ -39,7 +40,7 @@
 	    }
 	         
 	#boardCommentTable {
-		width: 800px; 
+		width: 700px;
 	 	border: 1px solid black; 
 		text-align: center;
 	 	margin: auto;
@@ -47,7 +48,7 @@
 	}
 	
 	#boardCommentTable2 {
-		width: 800px; 
+		width: 700px; 
 	 	border: 1px solid black; 
 		text-align: center;
 	 	margin: auto;
@@ -122,11 +123,11 @@
 				<form action='<c:url value="/board/detail_report">
 					<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>
 					</c:url>' method="post">
-					<input style="background-color:red; color:white" type="submit" id="boardReport" value="신고" onclick="reportFunc();">
+					<input style="background-color:#DB4000; color:white" type="submit" id="boardReport" value="신고" onclick="reportFunc();">
 <%-- 					<br><p id="boardReport">${oneBoard.boardReport }</p> --%>
 				</form>
 			</td>
-			<c:if test="${sessionScope.loginMember.memberNickname eq oneBoard.memberNickname}">
+			<c:if test="${sessionScope.loginMember.memberNickname eq oneBoard.memberNickname || sessionScope.loginMember.memberId eq 'admin'}">
 				<td align="right">
 					<form action='<c:url value="/board/detail_updateView">
 						<c:param name="boardNo" value="${oneBoard.boardNo }"></c:param>

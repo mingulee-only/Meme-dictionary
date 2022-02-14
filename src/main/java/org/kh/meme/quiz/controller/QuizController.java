@@ -175,8 +175,12 @@ public class QuizController {
 	
 	//퀴즈만들기 페이지
 	@RequestMapping(value = "/quiz/writeView.me", method = RequestMethod.GET)
-	public String quizWriteView(Model model) {
-
+	public String quizWriteView(Model model
+			,HttpSession session) {
+		
+		Member member = (Member) session.getAttribute("loginMember");
+		
+		
 		//랭킹
 		model.addAttribute("rankmain", "quiz");
 		List<MemeRank> memeRankList = rService.printMemeRank();
@@ -191,8 +195,11 @@ public class QuizController {
 		model.addAttribute("boardFreeRankList", boardFreeRankList);
 		model.addAttribute("quizRankList", quizRankList);
 		
-		
-		return ".tiles/quiz/write";
+		if(member== null) {
+			return ".tilesHead/member/login";
+		}else {
+			return ".tiles/quiz/write";
+		}
 	}
 	
 	// 퀴즈 만들기 DB에 넣기
@@ -231,7 +238,7 @@ public class QuizController {
 					return "common/errorPage";
 				}
 			} else {
-				return "member/login";
+				return ".tilesHead/member/login";
 			}
 		}catch (Exception e) {
 			model.addAttribute("msg", e.toString());
@@ -246,6 +253,21 @@ public class QuizController {
 			,Model model) {
 		Quiz quiz = qService.printOneByNo(quizNo);
 		model.addAttribute("quiz", quiz);
+		
+		//랭킹
+		model.addAttribute("rankmain", "quiz");
+		List<MemeRank> memeRankList = rService.printMemeRank();
+		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+		List<QuizRank> quizRankList = rService.printQuizRank();
+				
+
+		//랭킹
+		model.addAttribute("memeRankList", memeRankList);
+		model.addAttribute("boardPushRankList", boardPushRankList);
+		model.addAttribute("boardFreeRankList", boardFreeRankList);
+		model.addAttribute("quizRankList", quizRankList);
+		
 		return ".tiles/quiz/modify";
 	}
 	

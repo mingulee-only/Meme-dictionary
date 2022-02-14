@@ -20,7 +20,7 @@
 	#header {
 		height:20%;
 		width:100%;
-		background-color: grey;
+		background-color: #8F2B00;
 	}
 	#content {
 		height : 80%;
@@ -41,7 +41,7 @@
 
 	<div id= "container">
 		<div id="header">
-			<tiles:insertAttribute name="header" />
+			<jsp:include page="header.jsp"></jsp:include>
 		</div>
 		<div id="content">
 			<div id="body">

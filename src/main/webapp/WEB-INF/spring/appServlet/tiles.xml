@@ -19,18 +19,18 @@
 	
 	<definition name=".tiles/*/*" extends="layout-tiles">
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
-		<put-attribute name="title" value="게시판" />
+		<put-attribute name="title" value="MEME" />
 	</definition>
 	
 	<!-- 헤드만 붙이기 -->
 	<definition name=".tilesHead/*/*" extends="layout-tiles2">
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
-		<put-attribute name="title" value="게시판" />
+		<put-attribute name="title" value="MEME" />
 	</definition>
 
 		<definition name=".tilesHead/*/*/*" extends="layout-tiles2">
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
-		<put-attribute name="title" value="게시판" />
+		<put-attribute name="title" value="MEME" />
 	</definition>
 
 </tiles-definitions>
