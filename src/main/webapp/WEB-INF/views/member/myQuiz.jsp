@@ -64,15 +64,15 @@
 	}
 	
 	#part {
-		width: 35px;
+		width: 60px;
 	}
 	
 	#no {
-		width: 50px;
+		width: 250px;
 	}
 	
 	#title {
-		width: 150px;
+		width: 100px;
 	}
 	
 	#date {
@@ -147,7 +147,7 @@
 		    					객관식
 							</c:if>
 						</td>
-						<td width="200px"><a href="../quiz/modifyView.me?quizNo=${myQuizList.quizNo }">${myQuizList.quizQuest }</a></td>
+						<td><a href="../quiz/modifyView.me?quizNo=${myQuizList.quizNo }">${myQuizList.quizQuest }</a></td>
 						<td>${myQuizList.quizAnswer }</td>
 						<td>${myQuizList.quizDate }</td>
 					</tr>
