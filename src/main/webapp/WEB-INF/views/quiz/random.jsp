@@ -7,15 +7,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	#quizBody {
+	body {
 		margin: 0 auto;
 		text-align: center;
 	}
+	#quizContents {
+/* 		border: 1px solid black; */
+		width: 500px;
+		text-align: left;
+		margin: auto;
+	}
+	
 	[id^='ch'] {
-		color: green;
+		color: #008F7C;
 	}
 	#type {
-		color: #008F7C;
+		color: #DB4000;
 	}
 </style>
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -141,26 +148,37 @@
     });
 </script>
 </head>
-<body id="quizBody">
+<body>
+	<p></p>
 	<h1>랜덤 퀴즈</h1>
-	<div id="type"></div>
-	제한시간 :
-	<B><span id="time"></span></B> 초
-	&nbsp;&nbsp;&nbsp;
-	<B><span id="whether"></span></B>
-	<br>
-	<div id="quest">
-		<b id="question"></b> <br>
-		<div id="ch1"></div>
-		<div id="ch2"></div>
-		<div id="ch3"></div>
-		<div id="ch4"></div>
-		<br> <br> <br> <input type="text" id="answer">
+	<div id="quizContents">
+		<div align="right">
+		<B>제한시간 :<span id="time"></span></B> 초</div>
+		<div id="type" style="font-weight:bolder;"></div>
+		
+		&nbsp;&nbsp;&nbsp;
+		<div align="right">
+			<B><span id="whether"></span></B>
+		</div>
+		<br>
+		<div id="quest">
+			<b id="question"></b> <br>
+			<div id="ch1"></div>
+			<div id="ch2"></div>
+			<div id="ch3"></div>
+			<div id="ch4"></div>
+			<br> <br> <br>
+			<div align="center">
+				<input type="text" id="answer">
+			</div>
+			
+		</div>
+		<form action="/quiz/result.me" method="post" id="postSubmit">
+			<input type="hidden" name="quizNo" id="quizNo_">
+			<input type="hidden" name="userAnswer" id="userAnswer_">
+			<input type="hidden" name="score" id="score_">
+		</form>
 	</div>
-	<form action="/quiz/result.me" method="post" id="postSubmit">
-		<input type="hidden" name="quizNo" id="quizNo_">
-		<input type="hidden" name="userAnswer" id="userAnswer_">
-		<input type="hidden" name="score" id="score_">
-	</form>
+	
 </body>
 </html>

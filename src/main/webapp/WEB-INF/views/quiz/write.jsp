@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
 	#quizWriteForm {
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 		width:400px;
 		text-align: left;
 		margin: auto;
@@ -57,6 +57,7 @@
 </script>
 </head>
 <body>
+	<p></p>
 	<h1 align="center">유행어 퀴즈 등록</h1>
 	<form action="/quiz/write.me" method="post" id="quizWriteForm" enctype="multipart/form-data">
 	    <select name="quizType" id="type">
@@ -79,8 +80,12 @@
 			<input type="text" name="quizCh4" id="quizCh4" placeholder="보기를 입력 해주세요" style="display: none">
 		</div>
 		첨부파일 <input type="file" name="uploadFile"><br>
-	    <input type="submit" value="등록하기">
-	    <input type="button" value="취소">
+		<div align="right">
+			<input type="button" value="취소">
+		    <input type="submit" value="등록하기">
+		</div>
+		
+	   
     </form>
 </body>
 </html>
