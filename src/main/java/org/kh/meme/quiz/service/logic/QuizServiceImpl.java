@@ -72,6 +72,12 @@ public class QuizServiceImpl implements QuizService {
 		return result;
 	}
 
+	@Override
+	public int deleteOneByNo(int quizNo) {
+		int result = qStore.deleteQuiz(sqlSession, quizNo);
+		return result;
+	}
+
 
 
 

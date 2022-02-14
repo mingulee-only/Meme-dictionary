@@ -136,7 +136,8 @@
 					<td id="date">작성일</td>
 					<td id="like">추천수</td>
 					<td id="comment">댓글수</td>
-<!-- 					<td id="delete">삭제</td> -->
+					<td id="modify">수정</td>
+					<td id="delete">삭제</td>
 				</tr>
 				
 				<c:forEach items="${myBoardList }" var="myBoardList">
@@ -158,6 +159,20 @@
 						<td>${myBoardList.boardDate }</td>
 						<td>${myBoardList.boardCount }</td>
 						<td>${myBoardList.boardLike }</td>
+						<td>
+							<form action='<c:url value="/board/detail_updateView">
+								<c:param name="boardNo" value="${myBoardList.boardNo }"></c:param>
+								</c:url>' method="post">
+								<button type="submit">수정</button>
+							</form>
+						</td>
+						<td>
+							<form action='<c:url value="/board/detail_delete_mypage">
+								<c:param name="boardNo" value="${myBoardList.boardNo }"></c:param>
+								</c:url>' method="post">
+								<button type="submit">삭제</button>
+							</form>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
