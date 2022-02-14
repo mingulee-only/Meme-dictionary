@@ -77,6 +77,18 @@
         	width: 350px;
             height: 200px;
         }
+        
+        #choice{
+        	color: darkgreen
+        }
+        
+        #answer{
+            color: red;
+        }
+        
+        #userAnswer{
+            color: blue;
+        }
     </style>
 <script>
 window.onload = function(){
@@ -149,18 +161,20 @@ window.onload = function(){
 	<h1>퀴즈 결과</h1>
 	
 	<c:forEach var="i" items="${qList}" varStatus="vs">
-		문제 : ${i.quizQuest} <br>
+		<b>문제 : ${i.quizQuest} <br></b>
     	<c:if test="${not empty i.quizCh1}">
-    	보기 <br>
+    		<div id="choice">
+    		보기 <br>
 	    	(1) ${i.quizCh1} <br>
 	    	(2) ${i.quizCh2} <br>
 	    	(3) ${i.quizCh3} <br>
 	    	(4) ${i.quizCh4} <br>
+	    	</div>
     	</c:if>
-    	정답 : ${i.quizAnswer} <br>
-    	나의 답 : ${userAnswer[vs.index] } <br>
-        <button class="btn-modal" id="${i.quizNo}">신고</button>
-    	<br><br><br>
+	    	<div id="answer">정답 : ${i.quizAnswer} <br></div>
+	    	<div id="userAnswer">나의 답 : ${userAnswer[vs.index] } <br></div>
+	        <button class="btn-modal" id="${i.quizNo}">신고</button>
+	    	<br><br><br>
 	</c:forEach>
 	정답 갯수 : ${score }
 	

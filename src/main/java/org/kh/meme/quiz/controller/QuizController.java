@@ -91,7 +91,7 @@ public class QuizController {
 			,HttpSession session) {
 		
 		ArrayList<Quiz> qList = new ArrayList<Quiz>();
-		for(int i = 0; i<quizNo.length-1; i++) {
+		for(int i = 0; i<quizNo.length; i++) {
 			Quiz quiz = new Quiz();
 			quiz = qService.printOneByNo(quizNo[i]);
 			qList.add(quiz);

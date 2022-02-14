@@ -11,6 +11,12 @@
 		margin: 0 auto;
 		text-align: center;
 	}
+	[id^='ch'] {
+		color: green;
+	}
+	#type {
+		color: aqua;
+	}
 </style>
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -85,7 +91,7 @@
 							$('#ch2').html(data.quizCh2);
 							$('#ch3').html(data.quizCh3);
 							$('#ch4').html(data.quizCh4);
-							
+							$answer[nextNum] = data.quizAnswer;
 							if(data.quizType == "O") {
 								$('#type').html("OX 퀴즈");
 								$('#answer').attr("placeholder", "O, X 입력후 엔터");
@@ -114,10 +120,12 @@
         function nextQuiz() {
         	if($('#answer').val() == $answer[nextNum]) {
         		$('#whether').html("정답");
+				$('#whether').css("color", "blue");
         		userAnswer[nextNum] =  $('#answer').val();
         		score++;
         	} else {
         		$('#whether').html("오답");
+				$('#whether').css("color", "red");
         		userAnswer[nextNum] =  $('#answer').val();
         	}
 			nextNum++;
