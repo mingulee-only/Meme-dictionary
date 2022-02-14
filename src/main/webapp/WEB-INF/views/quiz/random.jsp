@@ -36,7 +36,7 @@
     	var $quizCh2 = []; // 객관식 배열
     	var $quizCh3 = []; // 객관식 배열
     	var $quizCh4 = []; // 객관식 배열
-        var clock = 5; // 제한시간 설정
+        var clock = 30; // 제한시간 설정
         var nextNum = 0; // 퀴즈 인덱스
         var userAnswer = []; // 유저가 입력한 정답
         var score = 0; // 점수
