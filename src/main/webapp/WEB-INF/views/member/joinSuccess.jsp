@@ -20,6 +20,10 @@
 		color : #8F2B00;
 		font-weight: bold;
 		background-color: lightgray;
+		
+	}
+	#successTable {
+		margin-top: -10px;
 	}
 </style>
 </head>
@@ -31,7 +35,7 @@
 		</div>
 		
 		<br><br>
-		<table align="center" >
+		<table id="successTable" align="center" >
 			<tr align="center">
 				<td colspan="2"><button type="button" onclick="location.href='/login.me'">로그인 화면으로 돌아가기</button></td>
 			</tr>
