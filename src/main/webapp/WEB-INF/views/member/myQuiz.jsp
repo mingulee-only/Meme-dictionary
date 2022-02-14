@@ -92,7 +92,7 @@
 	
 	.header {
 		color: white;
-		background-color: #75582F;
+		background-color: #A64E08 ;
 		height: 30px;
 	}
 	
@@ -150,6 +150,20 @@
 						<td><a href="../quiz/modifyView.me?quizNo=${myQuizList.quizNo }">${myQuizList.quizQuest }</a></td>
 						<td>${myQuizList.quizAnswer }</td>
 						<td>${myQuizList.quizDate }</td>
+						<td>
+							<form action='<c:url value="/quiz/modifyView.me">
+								<c:param name="quizNo" value="${myQuizList.quizNo }"></c:param>
+								</c:url>' method="post">
+								<button type="submit">수정</button>
+							</form>
+						</td>
+						<td>
+							<form action='<c:url value="/quiz/delete.me">
+								<c:param name="quizNo" value="${myQuizList.quizNo }"></c:param>
+								</c:url>' method="post">
+								<button type="submit">삭제</button>
+							</form>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>

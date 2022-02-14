@@ -172,6 +172,8 @@ public class BoardController {
 //		return ".tiles/board/update";
 	}
 	
+	
+	
 	@RequestMapping(value="/board/detail_update", method=RequestMethod.POST)
 	public String boardDetailUpdate(
 			Model model
@@ -277,6 +279,30 @@ public class BoardController {
 //		}
 		
 	}
+	
+	@RequestMapping(value="/board/detail_delete_mypage", method=RequestMethod.POST)
+	public String boardDetailDeleteMyPage(
+			Model model
+			, @RequestParam("boardNo") Integer boardNo
+			, HttpServletRequest request) {
+		
+
+		int result = bService.deleteBoard(boardNo);
+		
+		return "redirect:/myPage.me";
+	}
+	
+	@RequestMapping(value="/board/detail_delete_admin", method=RequestMethod.POST)
+	public String boardDetailDeleteAdmin(
+			Model model
+			, @RequestParam("boardNo") Integer boardNo
+			, HttpServletRequest request) {
+		
+
+		int result = bService.deleteBoard(boardNo);
+		
+		return "redirect:/admin/manageBoard.me";
+	}
 
 	@RequestMapping(value="/board/detail_report", method=RequestMethod.POST
 			, produces="application/json;charset=utf-8")
@@ -301,6 +327,54 @@ public class BoardController {
 			return "redirect:"+referer;
 		}
 
+	}
+	
+	@RequestMapping(value="/board/detail_reportAdminToN", method=RequestMethod.POST
+			, produces="application/json;charset=utf-8")
+	public String boardDetailReportManager1(
+			HttpServletRequest request
+			, @RequestParam("boardNo") int boardNo) {
+		System.out.println(boardNo);
+
+		String referer = request.getHeader("Referer");
+		
+		int boardReportManager = bService.boardReportManagerToN(boardNo);
+		if(boardReportManager > 0) {
+			//게시물 추천수
+			//board_tbl boardLike update
+			
+			System.out.println("board 숨기기");
+			return "redirect:/admin/manageBoardReported.me";
+//				return "redirect:"+referer;
+		} else {
+			System.out.println("board 숨기기 실패");
+			return "redirect:"+referer;
+		}
+		
+	}
+	
+	@RequestMapping(value="/board/detail_reportAdminToY", method=RequestMethod.POST
+			, produces="application/json;charset=utf-8")
+	public String boardDetailReportManager2(
+			HttpServletRequest request
+			, @RequestParam("boardNo") int boardNo) {
+		System.out.println(boardNo);
+
+		String referer = request.getHeader("Referer");
+		
+		int boardReportManager = bService.boardReportManagerToY(boardNo);
+		if(boardReportManager > 0) {
+			//게시물 추천수
+			//board_tbl boardLike update
+			
+			System.out.println("board 보이기");
+			return "redirect:/admin/manageBoardReported.me";
+//				return "redirect:"+referer;
+		} else {
+			System.out.println("board 보이기 실패");
+			return "redirect:"+referer;
+		}
+		
 	}
 	
 	@RequestMapping(value="/board/detail_like", method=RequestMethod.POST)

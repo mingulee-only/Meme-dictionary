@@ -247,9 +247,9 @@ public class QuizController {
 	}
 	
 	// 퀴즈 수정 페이지
-	@RequestMapping(value = "/quiz/modifyView.me", method = RequestMethod.GET)
-	public String quizModifyForm(
-			@RequestParam("quizNo") int quizNo
+	@RequestMapping(value = "/quiz/modifyView.me", method = RequestMethod.POST)
+	public String quizModifyForm(HttpServletRequest request
+			,@RequestParam("quizNo") Integer quizNo
 			,Model model) {
 		Quiz quiz = qService.printOneByNo(quizNo);
 		model.addAttribute("quiz", quiz);
@@ -278,9 +278,23 @@ public class QuizController {
 			,@ModelAttribute QuizCh quizCh) {
 		int result = qService.modifyQuiz(quiz);
 		if(result>0) {
-			return "member/myPage";
+			return "redirect:/member/myQuiz.me";
 		}else {
 			model.addAttribute("msg", "퀴즈수정 실패");
+			return "common/errorPage";
+		}
+	}
+	
+	// 퀴즈 삭제
+	@RequestMapping(value = "/quiz/delete.me", method = RequestMethod.POST)
+	public String quizDelete(
+			@RequestParam("quizNo") int quizNo
+			,Model model) {
+		int result = qService.deleteOneByNo(quizNo);
+		if(result > 0) {
+			return "redirect:/member/myQuiz.me";			
+		}else {
+			model.addAttribute("msg", "퀴즈삭제 실패");
 			return "common/errorPage";
 		}
 	}

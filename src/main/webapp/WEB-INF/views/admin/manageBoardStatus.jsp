@@ -81,33 +81,39 @@
 		width: 50px;
 	}
 	
-	#memeno {
+	#title {
 		text-align: center;
 		font-size: smaller;
 		width: 200px;
 	}
 	
-	#type {
+	#writer {
 		text-align: center;
 		font-size: smaller;
 		width: 80px;
 	}
 	
-	#contents {
+	#date {
 		text-align: center;
 		font-size: smaller;
 		width: 100px;
+	}
+	
+	#views {
+		text-align: center;
+		font-size: smaller;
+		width: 50px;
+	}
+	#delete {
+		text-align: center;
+		font-size: smaller;
+		width: 35px;
 	}
 	
 	.header {
 		color: white;
 		background-color: #A64E08  ;
 		height: 30px;
-	}
-	
-	
-	.content table td{
-		font-size: smaller;
 	}
 	
 	.sub {
@@ -128,14 +134,15 @@
 			<div id="mypageNavi">
 				<ul>
 					<li><a href="/admin/manageMember.me">회원 관리</a></li>
-					<li>유행어 사전 관리</li>
-					<li><a href="/admin/manageBoard.me">추진/자유게시판 관리</a></li>
+					<li><a href="/admin/manageMeme.me">유행어 사전 관리</a></li>
+					<li>추진/자유게시판 관리</li>
 					<li><a href="/admin/manageQuiz.me">퀴즈 관리</a></li>
 				</ul>
 				<br>
 				<ul class="sub">
-					<li><a href="/admin/manageMeme.me">전체 유행어 목록</a></li>
-					<li>사전 요청 목록</li>
+					<li><a href="/admin/manageBoard.me">전체 글 목록</a></li>
+					<li><a href="/admin/manageBoardReported.me">신고된 글 목록</a></li>
+					<li>숨겨진 글 목록</li>
 				</ul>
 			</div>
 			
@@ -143,31 +150,31 @@
 			<div class="content">
 				<table align="center" border="1">
 					<tr class="header">
-						<th id="no">번호</th>
-						<th id="memeno">사전 번호</th>
-						<th id="type">유형</th>
-						<th id="contents">내용</th>
+						<th id="part">구분</th>
+						<th id="no">글번호</th>
+						<th id="title">글제목</th>
+						<th id="writer">작성자</th>
+						<th id="date">작성일</th>
+						<th id="views">조회수</th>
 					</tr>
-					<c:forEach items="${allMemeRequestList }" var="allMemeRequestList">
+					<c:forEach items="${statusNBoardList }" var="statusNBoardList">
 						<tr>
-							<td>${allMemeRequestList.memeReqNo }</td>
-							<td>
-								<c:if test="${empty allMemeRequestList.memeNo}">
-								##
+							<td id="part">
+								<c:if test="${statusNBoardList.boardType eq 'P'}">
+			    					추진
 								</c:if>
-								<c:if test="${not empty allMemeRequestList.memeNo}">
-								${allMemeRequestList.memeNo }
-								</c:if>
-							</td>
-							<td>
-								<c:if test="${allMemeRequestList.memeRequestType eq 'M'}">
-								수정
-								</c:if>
-								<c:if test="${allMemeRequestList.memeRequestType eq 'D'}">
-								삭제
+								<c:if test="${statusNBoardList.boardType eq 'F'}">
+			    					자유
 								</c:if>
 							</td>
-							<td>${allMemeRequestList.memeRequestContents }</td>
+							<td id="no">${statusNBoardList.boardNo }</td>
+							<c:url var="bDetail" value="/board/detail">
+								<c:param name="boardNo" value="${statusNBoardList.boardNo }"></c:param>
+							</c:url>
+							<td id="title"><a href="${bDetail }">${statusNBoardList.boardTitle }</a></td>
+							<td id="writer">${statusNBoardList.memberNickname }</td>
+							<td id="date">${statusNBoardList.boardDate }</td>
+							<td id="views">${statusNBoardList.boardCount }</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -178,7 +185,7 @@
 					<button style="height:25px; width:55px">이전</button>
 				</c:if>
 				<c:forEach var="p" begin="${pi.startNavi }" end="${pi.endNavi }">
-					<c:url var="pagination" value="/admin/manageMemeRequest.me">
+					<c:url var="pagination" value="/admin/manageBoard.me">
 						<c:param name="page" value="${p }"></c:param>
 					</c:url>
 					<a href="${pagination }">${p }</a>&nbsp;
@@ -193,7 +200,6 @@
 			<button type="button" onclick="location.href='/'">홈으로</button>
 			<button type="button" onclick="location.href='/member/logout.me'">로그아웃</button>		
 		</div>
-		<p></p>
 	</div>
 </body>
 </html>

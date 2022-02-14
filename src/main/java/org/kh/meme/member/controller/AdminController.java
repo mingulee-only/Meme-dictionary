@@ -135,7 +135,36 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/manageBoardReported.me", method=RequestMethod.GET)
-	public String manageBoardReported(HttpServletRequest request) {
+	public String manageBoardReported(
+			Model model
+			, HttpServletRequest request
+			, @RequestParam(value="page", required=false) Integer page) {
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		if(member == null) {
+			return "redirect:/login.me";
+		}else if(member.getmGrade().equals("M")) {
+			return ".tilesHead/admin/error";
+			
+		}
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = aService.getReportBoardListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+		model.addAttribute("pi", pi);
+		
+		
+		List<Board> reportBoardList = aService.printAllReportBoard(pi);
+		model.addAttribute("reportBoardList", reportBoardList);
+		
+		return ".tilesHead/admin/manageBoardReported";
+	}
+	
+
+	@RequestMapping(value="/admin/manageBoardStatus.me", method=RequestMethod.GET)
+	public String manageBoardStatus(HttpServletRequest request
+			, Model model
+			, @RequestParam(value="page", required=false) Integer page)
+	{
 		HttpSession session = request.getSession();
 		Member member = (Member)session.getAttribute("loginMember");
 		if(member == null) {
@@ -143,8 +172,18 @@ public class AdminController {
 		}else if(member.getmGrade().equals("M")) {
 			return ".tilesHead/admin/error";
 		}
-		return ".tilesHead/admin/manageBoardReported";
+		
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = aService.getStatusNBoardListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, totalCount);
+		model.addAttribute("pi", pi);
+		
+		
+		List<Board> statusNBoardList = aService.printStatusNBoard(pi);
+		model.addAttribute("statusNBoardList", statusNBoardList);
+		return ".tilesHead/admin/manageBoardStatus";
 	}
+	
 	
 	@RequestMapping(value="/admin/manageQuiz.me", method=RequestMethod.GET)
 	public String manageQuiz(HttpServletRequest request

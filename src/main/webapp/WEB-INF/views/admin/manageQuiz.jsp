@@ -7,96 +7,127 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 <style>
-.inner {
-	position: absolute;
-	width: 700px;
-	height: 600px;
-	top: 50%;
-	left: 50%;
-	margin-top: -250px;
-	margin-left: -350px;
-	background-color: lightgray;
-}
+	.inner {
+/* 		position: absolute; */
+		width: 700px;
+		top: 50%;
+		left: 50%;
+		text-align: center;
+		margin: auto;
+/* 		border: 1px solid black; */
+	/* 	margin-top: -250px; */
+	/* 	margin-left: -350px; */
+		background-color: #f9f9f9;
+	}
+	
+	.body {
+/* 		height: 80%; */
+	}
+	.content {
+		height : 60%;
+		width : 100%;
+		margin: auto;
+		text-align: center;
+	}
+	.pi {
+		height : 10%;
+	}
+	.footer {
+		height : 10%;
+	}
 
-.body {
-	height: 80%;
-}
-.content {
-	height : 80%;
-	width : 80%;
-}
-.pi {
-	height : 10%;
-}
-.footer {
-	height : 10%;
-}
-
-.body ul {
-	list-style-type: none;
-	padding-left: 130px;
-}
-
-.body li {
-	color: white;
-	float: left;
-	background-color: #4A4646;
-	padding-right: 10px;
-	text-align: center;
-}
-
-.body li a {
-	color: white;
-	display: block;
-	background-color: darkgray;
-	text-decoration: none;
-	text-align: center;
-}
-
-.body li a.current {
-	color: white;
-}
-
-#part {
-	width: 40px;
-	text-align: center;
+	#mypageNavi {
+	/* 	background-color : #75582F; */
+		font-weight: bold;
+		width: 500px;
+		height: 50px;
+		text-align: center;
+		margin: auto;
+	}
+	
+	#mypageNavi ul {
+		list-style-type : none;
+		padding-left : 50px;
+	}
+	
+	#mypageNavi li {
+		color : #DB4000;
+		float : left;
+	/* 	background-color : white; */
+		padding-right : 10px;
+		text-align : center;
+	}
+	#mypageNavi li a {
+		color : black;
+		display : block;
+		text-decoration : none;
+		text-align : center;
+	}
+	#mypageNavi li a.current {
+		color : white;
+		background-color : #DB4000;
+	}
+	
+	#part {
+		text-align: center;
 	font-size: smaller;
-}
-
-#no {
-	width: 35px;
-	text-align: center;
+		width: 150px;
+	}
+	
+	#no {
+		text-align: center;
 	font-size: smaller;
-}
-
-#question {
-	width: 250px;
-	text-align: center;
+		width: 50px;
+	}
+	
+	#question {
+		text-align: center;
 	font-size: smaller;
-}
+		width: 500px;
+	}
+	
+	#answer {
+		text-align: center;
+		font-size: smaller;
+		width: 200px;
+	}
+	
+	#writer {
+		text-align: center;
+		font-size: smaller;
+		width: 100px;
+	}
+	
+	#date {
+		text-align: center;
+		font-size: smaller;
+		width: 200px;
+	}
+	
+	#views {
+		text-align: center;
+ 		font-size: smaller; 
+		width: 50px;
+	}
+	#delete {
+		text-align: center;
+		font-size: smaller;
+		width: 40px;
+	}
+	
 
-#writer {
-	width: 100px;
-	text-align: center;
-	font-size: smaller;
-}
-
-#date {
-	width: 50px;
-	text-align: center;
-	font-size: smaller;
-}
-
-
-.header {
-	color: white;
-	background-color: #4A4646;
-	height: 30px;
-}
-
-.sub {
-	font-size: smaller;
-}
+	.header {
+		color: white;
+		background-color: #A64E08  ;
+		height: 30px;
+	}
+	
+	.sub {
+		font-size: smaller;
+	}
+	button {
+		color : #8F2B00;
+	}
 </style>
 </head>
 <body>
@@ -106,28 +137,31 @@
 		<div class="body">
 
 			<br>
-			<br>
-			<ul>
-				<li><a href="/admin/manageMember.me">회원 관리</a></li>
-				<li><a href="/admin/manageMeme.me">유행어 사전 관리</a></li>
-				<li><a href="/admin/manageBoard.me">추진/자유게시판 관리</a></li>
-				<li>퀴즈 관리</li>
-			</ul>
-			<br>
-			<ul class="sub">
-				<li>전체 퀴즈 목록</li>
-				<li><a href="/admin/manageQuizReported.me">신고된 퀴즈 목록</a></li>
-			</ul>
+			<div id="mypageNavi">
+				<ul>
+					<li><a href="/admin/manageMember.me">회원 관리</a></li>
+					<li><a href="/admin/manageMeme.me">유행어 사전 관리</a></li>
+					<li><a href="/admin/manageBoard.me">추진/자유게시판 관리</a></li>
+					<li>퀴즈 관리</li>
+				</ul>
+				<br>
+				<ul class="sub">
+					<li>전체 퀴즈 목록</li>
+					<li><a href="/admin/manageQuizReported.me">신고된 퀴즈 목록</a></li>
+				</ul>
+			</div>
+			
 			<br>
 			<div class="content">
 				<table align="center" border="1">
 					<tr class="header">
-						<td id="part">유형</td>
-						<td id="no">번호</td>
-						<td id="question">퀴즈내용</td>
-						<td id="answer">정답</td>
-						<td id="writer">출제자</td>
-						<td id="date">작성일</td>
+						<th id="part">유형</th>
+						<th id="no">번호</th>
+						<th id="question">퀴즈내용</th>
+						<th id="answer">정답</th>
+						<th id="writer">출제자</th>
+						<th id="date">작성일</th>
+						<th id="delete">&nbsp</th>
 					</tr>
 					<c:forEach items="${allQuizList }" var="allQuizList">
 						<tr>
@@ -147,10 +181,18 @@
 							<td id="answer">${allQuizList.quizAnswer }</td>
 							<td id="writer">${allQuizList.memberId }</td>
 							<td id="date">${allQuizList.quizDate }</td>
+							<td id="delete">
+							<form action='<c:url value="/quiz/delete.me">
+								<c:param name="quizNo" value="${allQuizList.quizNo }"></c:param>
+								</c:url>' method="post">
+								<button type="submit">삭제</button>
+							</form>
+						</td>
 						</tr>
 					</c:forEach>
 				</table>
 			</div>
+			<p></p>
 			<div style="text-align:center" class="pi">
 				<c:if test="${pi.startNavi gt 1 }">
 					<button style="height:25px; width:55px">이전</button>
@@ -166,11 +208,12 @@
 				</c:if>
 			</div>
 		</div>
-		
+		<p></p>
 		<div class="footer">
 			<button type="button" onclick="location.href='/'">홈으로</button>
 			<button type="button" onclick="location.href='/member/logout.me'">로그아웃</button>		
 		</div>
+		<p></p>
 	</div>
 </body>
 </html>

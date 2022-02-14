@@ -78,6 +78,12 @@ public class QuizStoreLogic implements QuizStore {
 		return result;
 	}
 
+	@Override
+	public int deleteQuiz(SqlSession sqlSession, int quizNo) {
+		int result = sqlSession.delete("QuizMapper.deleteQuizByNo", quizNo);
+		return result;
+	}
+
 
 
 

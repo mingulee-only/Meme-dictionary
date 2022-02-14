@@ -106,6 +106,9 @@ public class MemberController {
 		if(member == null) {
 			return "redirect:/login.me";
 		}
+		if(member.getmGrade().equals("A")) {
+			return "redirect:/admin/manageQuiz.me";
+		}
 		
 		int currentPage = (page != null) ? page : 1;
 		int totalCount = mService.getMyQuizListCount(member.getMemberId());

@@ -28,13 +28,13 @@
 	}
 	
 	#joinButton {
-		background-color : #75582F;
+		background-color : #8F2B00 ;
 		color: white;
 		margin-top: 10px;
 		
 	}
 	button {
-		color : #8F2B00;
+		color : #8F2B00 ;
 		font-weight: bold;
 		background-color: #EBB388;
 		margin-top: 10px;

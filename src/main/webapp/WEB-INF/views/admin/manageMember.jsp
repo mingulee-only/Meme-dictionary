@@ -7,106 +7,143 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 <style>
-.inner {
-	position: absolute;
-	width: 700px;
-	height: 600px;
-	top: 50%;
-	left: 50%;
-	margin-top: -250px;
-	margin-left: -350px;
-	background-color: lightgray;
-}
+	.inner {
+/* 		position: absolute; */
+		width: 700px;
+/* 		height: 600px; */
+		top: 50%;
+		left: 50%;
+		text-align: center;
+		margin: auto;
+	/* 	margin-top: -250px; */
+	/* 	margin-left: -350px; */
+		background-color: #f9f9f9;
+	}
+	
+	.body {
+/* 		height: 80%; */
+	}
+	.content {
+		height : 60%;
+		width : 80%;
+		margin: auto;
+		text-align: center;
+	}
+	.pi {
+		height : 10%;
+	}
+	.footer {
+		height : 10%;
+	}
 
-.body {
-	height: 80%;
-}
-.content {
-	height : 80%;
-	width : 80%;
-}
-.pi {
-	height : 10%;
-}
-.footer {
-	height : 10%;
-}
-
-.body ul {
-	list-style-type: none;
-	padding-left: 130px;
-}
-
-.body li {
-	color: white;
-	float: left;
-	background-color: #4A4646;
-	padding-right: 10px;
-	text-align: center;
-}
-
-.body li a {
-	color: white;
-	display: block;
-	background-color: darkgray;
-	text-decoration: none;
-	text-align: center;
-}
-
-.body li a.current {
-	color: white;
-}
-
-#member-id {
-	width: 35px;
-}
-
-#nickname {
-	width: 50px;
-}
-
-#name {
-	width: 150px;
-}
-
-#email {
-	width: 100px;
-}
-
-.header {
-	color: white;
-	background-color: #4A4646;
-	height: 30px;
-}
-
-.sub {
-	font-size: smaller;
-}
+	#mypageNavi {
+	/* 	background-color : #75582F; */
+		font-weight: bold;
+		width: 500px;
+		height: 50px;
+		text-align: center;
+		margin: auto;
+	}
+	
+	#mypageNavi ul {
+		list-style-type : none;
+		padding-left : 50px;
+	}
+	
+	#mypageNavi li {
+		color : #DB4000;
+		float : left;
+	/* 	background-color : white; */
+		padding-right : 10px;
+		text-align : center;
+	}
+	#mypageNavi li a {
+		color : black;
+		display : block;
+		text-decoration : none;
+		text-align : center;
+	}
+	#mypageNavi li a.current {
+		color : white;
+		background-color : #DB4000;
+	}
+	
+	#member-id {
+		text-align: center;
+		font-size: smaller;
+		width: 100px;
+		
+	}
+	
+	#nickname {
+		text-align: center;
+		font-size: smaller;
+		width: 100px;
+	}
+	
+	#name {
+		text-align: center;
+		font-size: smaller;
+		width: 100px;
+	}
+	
+	#email {
+		text-align: center;
+		font-size: smaller;
+		width: 400px;
+	}
+	
+	#date {
+		text-align: center;
+		font-size: smaller;
+		width: 200px;
+	}
+	#delete {
+		text-align: center;
+		font-size: smaller;
+		width: 50px;
+	}
+	.header {
+		color: white;
+		background-color: #A64E08  ;
+		height: 30px;
+	}
+	
+	
+	.content table td{
+		font-size: smaller;
+	}
+	
+	.sub {
+		font-size: smaller;
+	}
+	button {
+		color : #8F2B00;
+	}
 </style>
 </head>
 <body>
 
-
 	<div class="inner" align="center">
 		<div class="body">
-
+	
 			<br>
-			<br>
-			<ul>
-				<li>회원 관리</li>
-				<li><a href="/admin/manageMeme.me">유행어 사전 관리</a></li>
-				<li><a href="/admin/manageBoard.me">추진/자유게시판 관리</a></li>
-				<li><a href="/admin/manageQuiz.me">퀴즈 관리</a></li>
-			</ul>
-			<br>
-			<br>
+			<div id="mypageNavi">
+				<ul>
+					<li>회원 관리</li>
+					<li><a href="/admin/manageMeme.me">유행어 사전 관리</a></li>
+					<li><a href="/admin/manageBoard.me">추진/자유게시판 관리</a></li>
+					<li><a href="/admin/manageQuiz.me">퀴즈 관리</a></li>
+				</ul>
+			</div>
+			
 			<div class="content">
 				<table align="center" border="1">
 					<tr class="header">
-						<td id="member-id">아이디</td>
-						<td id="nickname">닉네임</td>
-						<td id="name">이름</td>
-						<td id="email" colspan="2">이메일</td>
+						<th id="member-id">아이디</th>
+						<th id="nickname">닉네임</th>
+						<th id="name">이름</th>
+						<th id="email" colspan="2">이메일</th>
 					</tr>
 					<c:forEach items="${allMemberList }" var="allMemberList">
 						<tr>
@@ -114,11 +151,12 @@
 							<td>${allMemberList.memberNickname }</td>
 							<td>${allMemberList.memberName }</td>
 							<td>${allMemberList.memberEmail }</td>
-							<td>삭제</td>
+							<td id="delete">삭제</td>
 						</tr>
 					</c:forEach>
 				</table>
 			</div>
+			<p></p>
 			<div style="text-align:center" class="pi">
 				<c:if test="${pi.startNavi gt 1 }">
 					<button style="height:25px; width:55px">이전</button>
@@ -136,11 +174,12 @@
 		</div>
 		<div style="text-align:center" class="pi">
 		</div>
-		
+		<p></p>
 		<div class="footer">
 			<button type="button" onclick="location.href='/'">홈으로</button>
 			<button type="button" onclick="location.href='/member/logout.me'">로그아웃</button>		
 		</div>
+		<p></p>
 	</div>
 </body>
 </html>

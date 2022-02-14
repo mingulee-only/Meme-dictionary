@@ -10,6 +10,7 @@ import org.kh.meme.meme.domain.Meme;
 import org.kh.meme.meme.domain.MemeRequest;
 import org.kh.meme.quiz.domain.Quiz;
 import org.kh.meme.quiz.domain.QuizReport;
+import org.mybatis.spring.SqlSessionTemplate;
 
 public interface AdminStore {
 
@@ -26,6 +27,12 @@ public interface AdminStore {
 	List<Quiz> selectAllQuiz(SqlSession sqlSession, PageInfo pi);
 	List<QuizReport> selectAllQuizReport(SqlSession sqlSession, PageInfo pi);
 	List<Board> selectAllBoard(SqlSession sqlSession, PageInfo pi);
+	//게시글 신고목록
+	int selectReportBoardListCount(SqlSessionTemplate sqlSession);
+	List<Board> selectReportBoardList(SqlSessionTemplate sqlSession, PageInfo pi);
+	//게시글 보이기
+	int selectStatusNBoardListCount(SqlSessionTemplate sqlSession);
+	List<Board> selectStatusNBoardList(SqlSessionTemplate sqlSession, PageInfo pi);
 
 
 

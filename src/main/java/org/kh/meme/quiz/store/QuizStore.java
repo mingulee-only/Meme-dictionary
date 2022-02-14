@@ -23,5 +23,6 @@ public interface QuizStore {
 	public int selectScore(SqlSession sqlSession, String memberId);
 	public int updateScore(SqlSession sqlSession, QuizBest qBest);
 	public int insertReport(SqlSession sqlSession, QuizReport qReport);
+	public int deleteQuiz(SqlSession sqlSession, int quizNo);
 
 }

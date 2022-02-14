@@ -54,7 +54,12 @@ public interface BoardService {
 
 	public int removeComment(int commentNo);	//댓글 삭제
 
+	
+	
+	//게시글 숨기기(관리자)
+	public int boardReportManagerToN(int boardNo);
 
+	public int boardReportManagerToY(int boardNo);
 
 
 	
