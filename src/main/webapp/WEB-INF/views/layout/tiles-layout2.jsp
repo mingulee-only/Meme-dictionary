@@ -41,7 +41,7 @@
 
 	<div id= "container">
 		<div id="header">
-			<tiles:insertAttribute name="header" />
+			<jsp:include page="header.jsp"></jsp:include>
 		</div>
 		<div id="content">
 			<div id="body">
