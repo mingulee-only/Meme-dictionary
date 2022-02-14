@@ -26,7 +26,13 @@
 		margin-top : 20px;
 	}
 
-
+	#loginButton {
+		background-color : #8F2B00;
+		color: white;
+	}
+	button {
+		color : #8F2B00;
+	}
 </style>
 </head>
 <body>
@@ -42,8 +48,9 @@
 					<tr>
 						<td colspan="2"><input type="password" name="memberPw" placeholder="비밀번호"></td>	
 					</tr>
+					<b></b>
 					<tr align="center">
-						<td><button type="submit">로그인</button></td>
+						<td><button id="loginButton" type="submit">로그인</button></td>
 						<td><button type="button" onclick="location.href='/member/join.me'">회원가입</button>
 					</tr>
 					<tr align="center">
