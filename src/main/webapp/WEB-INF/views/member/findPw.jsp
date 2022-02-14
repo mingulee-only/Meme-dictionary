@@ -14,28 +14,42 @@
 	left : 50%;
 	margin-top : -140px;
 	margin-left : -150px;
-	background-color : lightgray;
+	background-color : #EBB388;
 	}
-	.header ul {
-	list-style-type : none;
-	padding-left : 50px;
+	
+	#mypageNavi {
+	/* 	background-color : #75582F; */
+		font-weight: bold;
+		width: 500px;
+		height: 50px;
+		text-align: center;
+		align: center;
+		margin: auto;
 	}
-	.header li {
-	color : white;
-	float : left;
-	background-color : #4A4646;
-	text-align : center;
+	
+	#mypageNavi ul {
+		list-style-type : none;
+		padding-left : 60px;
 	}
-	.header li a {
-	color : white;
-	display : block;
-	background-color : darkgray;
-	text-decoration : none;
-	text-align : center;
+	
+	#mypageNavi li {
+		color : #DB4000;
+		float : left;
+	/* 	background-color : white; */
+		padding-right : 10px;
+		text-align : center;
 	}
-	.header li a.current {
+	#mypageNavi li a {
+		color : black;
+		display : block;
+		text-decoration : none;
+		text-align : center;
+	}
+	#mypageNavi li a.current {
 		color : white;
+		background-color : #DB4000;
 	}
+	
 	.header {
 	height : 20%;
 	margin-left : 20px;
@@ -44,17 +58,30 @@
 	height : 80%;
 	margin-top : 5px;
 	}
+	
+	#findButton {
+		background-color : #75582F;
+		color: white;
+		margin-top: 10px;
+	}
+	button {
+		color : #8F2B00;
+		font-weight: bold;
+		background-color: #EBB388;
+		margin-top: 10px;
+	}
 </style>
 </head>
 <body>
 	<div class="inner">
 	<br><br>
-		<div class="header">
+		<div id="mypageNavi">
 			<ul>
 				<li><a href="/member/findId.me">아이디 찾기</a></li>
 				<li>비밀번호 찾기</li>
 			</ul>
 		</div>
+		
 		<div class="body">
 			<form action="/member/findPw.me" method="post">
 				<table align="center">
@@ -69,7 +96,7 @@
 					</tr>
 					<tr align="center">
 						<td>
-							<button type="submit">비밀번호 찾기</button>
+							<button id="findButton" type="submit">비밀번호 찾기</button>
 						</td>
 						<td><button type="button" onclick="location.href='/login.me'">돌아가기</button>
 					</tr>

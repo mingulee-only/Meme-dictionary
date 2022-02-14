@@ -14,14 +14,20 @@
 		left : 50%;
 		margin-top : -90px;
 		margin-left : -150px;
-		background-color : lightgray;
-		}
+		background-color : #EBB388;
+	}
+	button {
+		color : #8F2B00;
+		font-weight: bold;
+		background-color: #EBB388;
+		margin-top: 10px;
+	}
 </style>
 </head>
 <body>
 	<div class="inner">
+		<br>
 		<h3 align="center">아이디 찾기 결과</h3>
-		<br><br>
 		<table align="center">
 			<tr align="center">
 				<td><input type="text" name="memberId" value="${member.memberId }" readonly></td>

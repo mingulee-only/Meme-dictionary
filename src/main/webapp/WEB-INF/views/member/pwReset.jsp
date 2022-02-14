@@ -7,19 +7,27 @@
 <title>비밀번호 재설정</title>
 <style>
 	.inner {
-	position : absolute;
-	width : 300px;
-	height : 200px;
-	top : 50%;
-	left : 50%;
-	margin-top : -100px;
-	margin-left : -150px;
-	background-color : lightgray;
+		position : absolute;
+		width : 300px;
+		height : 200px;
+		top : 50%;
+		left : 50%;
+		margin-top : -100px;
+		margin-left : -150px;
+		background-color : #EBB388;
+	}
+	
+	button {
+		color : #8F2B00;
+		font-weight: bold;
+		background-color: #EBB388;
+		margin-top: 10px;
 	}
 </style>
 </head>
 <body>
 	<div class="inner">
+	<br>
 		<h3 align="center">비밀번호 재설정</h3>
 		<form action="/member/pwReset.me" method="post">
 			<table align="center">

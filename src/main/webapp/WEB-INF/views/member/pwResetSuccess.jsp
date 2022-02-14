@@ -14,15 +14,24 @@
 		left : 50%;
 		margin-top : -90px;
 		margin-left : -150px;
-		background-color : lightgray;
-		}
+		background-color : #EBB388;
+	}
+	button {
+		color : #8F2B00;
+		font-weight: bold;
+		background-color: #EBB388;
+	}
+	#successTable {
+		margin-top: -10px;
+	}
 </style>
 </head>
 <body>
 	<div class="inner">
+		<br>
 		<h3 align="center">비밀번호 재설정 성공!</h3>
 		<br><br>
-		<table align="center">
+		<table id="successTable" align="center">
 			<tr align="center">
 				<td colspan="2"><button type="button" onclick="location.href='/login.me'">로그인 화면으로 돌아가기</button></td>
 			</tr>

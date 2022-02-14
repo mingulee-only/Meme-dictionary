@@ -9,7 +9,7 @@
 <title>사전 상세 페이지</title>
 <style>
 #memeDetailTable {
-	width: 800px;
+	width: 700px;
 	background-color: #eeeeee;
 	border: 1px solid black;
 	text-align: center;
@@ -35,7 +35,7 @@
 		</tr>
 		<tr>
 			<td height="300">유행어 설명</td>
-			<td width="700">${meme.memeContents}</td>
+			<td width="600" align="left">${meme.memeContents}</td>
 		</tr>
 		<tr>
 			<td>첨부파일</td>
