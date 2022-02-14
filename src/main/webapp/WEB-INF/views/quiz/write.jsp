@@ -81,8 +81,8 @@
 		</div>
 		첨부파일 <input type="file" name="uploadFile"><br>
 		<div align="right">
-			<input type="button" value="취소">
-		    <input type="submit" value="등록하기">
+		    <input type="submit" value="등록">
+		    <input type="button" value="취소">
 		</div>
 		
 	   
