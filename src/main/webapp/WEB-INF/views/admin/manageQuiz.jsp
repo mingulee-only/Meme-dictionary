@@ -143,7 +143,7 @@
 								</c:if>
 							</td>
 							<td id="no">${allQuizList.quizNo }</td>
-							<td id="question">${allQuizList.quizQuest }</td>
+							<td id="question"><a href="../quiz/modifyView.me?quizNo=${allQuizList.quizNo }">${allQuizList.quizQuest }</a></td>
 							<td id="answer">${allQuizList.quizAnswer }</td>
 							<td id="writer">${allQuizList.memberId }</td>
 							<td id="date">${allQuizList.quizDate }</td>

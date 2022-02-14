@@ -122,7 +122,7 @@
 						<tr>
 							<td>${allQuizReportList.reportNo }</td>
 							<td>${allQuizReportList.reportId }</td>
-							<td>${allQuizReportList.reportContents }</td>
+							<td><a href="../quiz/modifyView.me?quizNo=${allQuizReportList.quizNo }">${allQuizReportList.reportContents }</a></td>
 							<td>${allQuizReportList.reportDate }</td>
 							<td>${allQuizReportList.quizNo }</td>
 						</tr>

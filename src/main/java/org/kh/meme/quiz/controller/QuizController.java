@@ -246,6 +246,21 @@ public class QuizController {
 			,Model model) {
 		Quiz quiz = qService.printOneByNo(quizNo);
 		model.addAttribute("quiz", quiz);
+		
+		//랭킹
+		model.addAttribute("rankmain", "quiz");
+		List<MemeRank> memeRankList = rService.printMemeRank();
+		List<BoardRank> boardPushRankList = rService.printBoardPushRank();
+		List<BoardRank> boardFreeRankList = rService.printBoardFreeRank();
+		List<QuizRank> quizRankList = rService.printQuizRank();
+				
+
+		//랭킹
+		model.addAttribute("memeRankList", memeRankList);
+		model.addAttribute("boardPushRankList", boardPushRankList);
+		model.addAttribute("boardFreeRankList", boardFreeRankList);
+		model.addAttribute("quizRankList", quizRankList);
+		
 		return ".tiles/quiz/modify";
 	}
 	
