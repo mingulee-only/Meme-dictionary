@@ -144,7 +144,7 @@
 				<ul class="sub">
 					<li><a href="/admin/manageBoard.me">전체 글 목록</a></li>
 					<li>신고된 글 목록</li>
-					<li><a href="/admin/manageBoardStatus.me">숨겨진 글 목록</a></li>
+<!-- 					<li><a href="/admin/manageBoardStatus.me">숨겨진 글 목록</a></li> -->
 				</ul>
 			</div>
 			

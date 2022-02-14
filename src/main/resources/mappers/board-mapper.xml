@@ -56,6 +56,14 @@
 	
 	<!-- 관리자 페이지 -->
 	<!-- 신고 게시글 -->
+	<select id="selectAllBoardListCount_admin" resultType="_int">
+		SELECT COUNT(*) FROM BOARD_TBL
+	</select>
+  	
+	<select id="selectAllBoardList_admin" resultMap="boardResultMap">
+		SELECT * FROM BOARD_TBL ORDER BY BOARD_NO DESC
+	</select>
+	
 	<select id="selectReportBoardListCount" resultType="_int">
 		SELECT COUNT(*) FROM BOARD_TBL WHERE BOARD_STATUS = 'Y' AND BOARD_REPORT > 0
 	</select>
@@ -63,6 +71,15 @@
 	<select id="selectReportBoardList" resultMap="boardResultMap">
 		SELECT * FROM BOARD_TBL WHERE BOARD_STATUS = 'Y' AND BOARD_REPORT > 0 ORDER BY BOARD_NO DESC
 	</select>
+	
+	<select id="selectStatusNBoardListCount" resultMap="boardResultMap">
+		SELECT COUNT(*) FROM BOARD_TBL WHERE BOARD_STATUS = 'N'
+	</select>
+	
+	<select id="selectStatusNBoardList" resultMap="boardResultMap">
+		SELECT * FROM BOARD_TBL WHERE BOARD_STATUS = 'N' ORDER BY BOARD_NO DESC
+	</select>
+	
 	
 	<update id="updateBoardReportManagerToN" parameterType="Board">
 		UPDATE BOARD_TBL SET BOARD_STATUS = 'N' WHERE BOARD_NO = #{boardNo }

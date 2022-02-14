@@ -30,6 +30,9 @@ public interface AdminStore {
 	//게시글 신고목록
 	int selectReportBoardListCount(SqlSessionTemplate sqlSession);
 	List<Board> selectReportBoardList(SqlSessionTemplate sqlSession, PageInfo pi);
+	//게시글 보이기
+	int selectStatusNBoardListCount(SqlSessionTemplate sqlSession);
+	List<Board> selectStatusNBoardList(SqlSessionTemplate sqlSession, PageInfo pi);
 
 
 

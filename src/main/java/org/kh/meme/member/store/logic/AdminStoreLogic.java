@@ -38,7 +38,7 @@ public class AdminStoreLogic implements AdminStore{
 	
 	@Override
 	public int allBoardListCount(SqlSession sqlSession) {
-		int totalCount = sqlSession.selectOne("BoardMapper.selectListCount");
+		int totalCount = sqlSession.selectOne("BoardMapper.selectAllBoardListCount_admin");
 		return totalCount;
 	}
 	
@@ -99,7 +99,7 @@ public class AdminStoreLogic implements AdminStore{
 		int offset = (currentPage - 1 ) * limit;
 
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		List<Board> allBoardList = sqlSession.selectList("BoardMapper.selectBoardAllList", pi, rowBounds);
+		List<Board> allBoardList = sqlSession.selectList("BoardMapper.selectAllBoardList_admin", pi, rowBounds);
 		return allBoardList;
 	}
 
@@ -147,6 +147,30 @@ public class AdminStoreLogic implements AdminStore{
 		
 		List<Board> reportBoardList = sqlSession.selectList("BoardMapper.selectReportBoardList", pi, rowBounds);
 		return reportBoardList;
+	}
+
+	//게시글 보이기
+	@Override
+	public int selectStatusNBoardListCount(SqlSessionTemplate sqlSession) {
+		int statusNBoardListCount = sqlSession.selectOne("BoardMapper.selectStatusNBoardListCount");
+		return statusNBoardListCount;
+	}
+
+	@Override
+	public List<Board> selectStatusNBoardList(SqlSessionTemplate sqlSession, PageInfo pi) {
+
+		int limit = pi.getBoardLimit();
+		int currentPage = pi.getCurrentPage();
+		int offset = (currentPage - 1 ) * limit;
+		//currentpage에 따라 달라짐.
+		
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		//sql문 수정하지 않고 페이징 처리 해서 게시물 나누어 가져올 수 있음.
+		
+		
+		List<Board> statusNBoardList = sqlSession.selectList("BoardMapper.selectStatusNBoardList", pi, rowBounds);
+		return statusNBoardList;
 	}
 
 

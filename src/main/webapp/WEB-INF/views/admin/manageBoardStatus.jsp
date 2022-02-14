@@ -157,24 +157,24 @@
 						<th id="date">작성일</th>
 						<th id="views">조회수</th>
 					</tr>
-					<c:forEach items="${allBoardList }" var="allBoardList">
+					<c:forEach items="${statusNBoardList }" var="statusNBoardList">
 						<tr>
 							<td id="part">
-								<c:if test="${allBoardList.boardType eq 'P'}">
+								<c:if test="${statusNBoardList.boardType eq 'P'}">
 			    					추진
 								</c:if>
-								<c:if test="${allBoardList.boardType eq 'F'}">
+								<c:if test="${statusNBoardList.boardType eq 'F'}">
 			    					자유
 								</c:if>
 							</td>
-							<td id="no">${allBoardList.boardNo }</td>
+							<td id="no">${statusNBoardList.boardNo }</td>
 							<c:url var="bDetail" value="/board/detail">
-								<c:param name="boardNo" value="${allBoardList.boardNo }"></c:param>
+								<c:param name="boardNo" value="${statusNBoardList.boardNo }"></c:param>
 							</c:url>
-							<td id="title"><a href="${bDetail }">${allBoardList.boardTitle }</a></td>
-							<td id="writer">${allBoardList.memberNickname }</td>
-							<td id="date">${allBoardList.boardDate }</td>
-							<td id="views">${allBoardList.boardCount }</td>
+							<td id="title"><a href="${bDetail }">${statusNBoardList.boardTitle }</a></td>
+							<td id="writer">${statusNBoardList.memberNickname }</td>
+							<td id="date">${statusNBoardList.boardDate }</td>
+							<td id="views">${statusNBoardList.boardCount }</td>
 						</tr>
 					</c:forEach>
 				</table>
