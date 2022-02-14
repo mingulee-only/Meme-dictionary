@@ -27,7 +27,7 @@
 	}
 
 	#loginButton {
-		background-color : #8F2B00;
+		background-color : #75582F;
 		color: white;
 	}
 	button {
