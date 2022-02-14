@@ -158,6 +158,13 @@
 							<td id="writer">${allBoardList.memberNickname }</td>
 							<td id="date">${allBoardList.boardDate }</td>
 							<td id="views">${allBoardList.boardCount }</td>
+							<td id="delete">
+								<form action='<c:url value="/board/detail_delete_mypage">
+									<c:param name="boardNo" value="${allBoardList.boardNo }"></c:param>
+									</c:url>' method="post">
+									<button type="submit">삭제</button>
+								</form>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>

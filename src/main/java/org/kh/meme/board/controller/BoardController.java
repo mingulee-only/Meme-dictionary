@@ -172,6 +172,8 @@ public class BoardController {
 //		return ".tiles/board/update";
 	}
 	
+	
+	
 	@RequestMapping(value="/board/detail_update", method=RequestMethod.POST)
 	public String boardDetailUpdate(
 			Model model
@@ -276,6 +278,30 @@ public class BoardController {
 //			return "error";
 //		}
 		
+	}
+	
+	@RequestMapping(value="/board/detail_delete_mypage", method=RequestMethod.POST)
+	public String boardDetailDeleteMyPage(
+			Model model
+			, @RequestParam("boardNo") Integer boardNo
+			, HttpServletRequest request) {
+		
+
+		int result = bService.deleteBoard(boardNo);
+		
+		return "redirect:/myPage.me";
+	}
+	
+	@RequestMapping(value="/board/detail_delete_admin", method=RequestMethod.POST)
+	public String boardDetailDeleteAdmin(
+			Model model
+			, @RequestParam("boardNo") Integer boardNo
+			, HttpServletRequest request) {
+		
+
+		int result = bService.deleteBoard(boardNo);
+		
+		return "redirect:/admin/manageBoard.me";
 	}
 
 	@RequestMapping(value="/board/detail_report", method=RequestMethod.POST

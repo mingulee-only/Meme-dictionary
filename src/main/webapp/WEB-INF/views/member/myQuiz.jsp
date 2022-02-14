@@ -103,6 +103,20 @@
 						<td width="200px">${myQuizList.quizQuest }</td>
 						<td>${myQuizList.quizAnswer }</td>
 						<td>${myQuizList.quizDate }</td>
+						<td>
+							<form action='<c:url value="/quiz/modifyView.me">
+								<c:param name="quizNo" value="${myQuizList.quizNo }"></c:param>
+								</c:url>' method="post">
+								<button type="submit">수정</button>
+							</form>
+						</td>
+						<td>
+							<form action='<c:url value="/quiz/delete.me">
+								<c:param name="quizNo" value="${myQuizList.quizNo }"></c:param>
+								</c:url>' method="post">
+								<button type="submit">삭제</button>
+							</form>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>

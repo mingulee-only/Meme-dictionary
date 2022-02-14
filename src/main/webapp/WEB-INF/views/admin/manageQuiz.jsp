@@ -10,7 +10,7 @@
 .inner {
 	position: absolute;
 	width: 700px;
-	height: 600px;
+	height: 800px;
 	top: 50%;
 	left: 50%;
 	margin-top: -250px;
@@ -87,6 +87,11 @@
 	font-size: smaller;
 }
 
+#delete {
+	width: 35px;
+	font-size: smaller;
+}
+
 
 .header {
 	color: white;
@@ -147,6 +152,13 @@
 							<td id="answer">${allQuizList.quizAnswer }</td>
 							<td id="writer">${allQuizList.memberId }</td>
 							<td id="date">${allQuizList.quizDate }</td>
+							<td id="delete">
+							<form action='<c:url value="/quiz/delete.me">
+								<c:param name="quizNo" value="${allQuizList.quizNo }"></c:param>
+								</c:url>' method="post">
+								<button type="submit">삭제</button>
+							</form>
+						</td>
 						</tr>
 					</c:forEach>
 				</table>

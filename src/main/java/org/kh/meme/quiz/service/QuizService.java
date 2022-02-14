@@ -21,6 +21,7 @@ public interface QuizService {
 	public int updateScore(QuizBest qBest);
 	
 	public int registerReport(QuizReport qReport);
+	public int deleteOneByNo(int quizNo);
 	
 
 }

@@ -91,4 +91,7 @@
   	<insert id="insertQuizReport" parameterType="QuizReport">
   		INSERT INTO QUIZ_REPORT VALUES(QUIZ_SEQ_REPORTNO.NEXTVAL, #{reportId}, #{reportContents}, DEFAULT, #{quizNo})
   	</insert>
+  	<delete id="deleteQuizByNo" parameterType="_int">
+  		DELETE FROM QUIZ_TBL WHERE QUIZ_NO = #{quizNo }
+  	</delete>
   </mapper>
