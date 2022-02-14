@@ -144,6 +144,12 @@ public class BoardStoreLogic implements BoardStore{
 	}
 	
 
+	@Override
+	public void deleteCommentBoardNo(SqlSession sqlSession, Integer boardNo) {
+		sqlSession.delete("BoardMapper.deleteCommentByBoardNo", boardNo);
+	}
+	
+
 	//댓글
 	@Override
 	public int insertComment(SqlSession sqlSession, Comment comment) {
@@ -181,6 +187,7 @@ public class BoardStoreLogic implements BoardStore{
 		int result = sqlSession.update("BoardMapper.updateBoardReportManagerToY", boardNo);
 		return result;
 	}
+
 
 
 

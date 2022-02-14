@@ -130,16 +130,16 @@
 					<td id="title">댓글 내용</td>
 					<td id="date">작성일</td>
 				</tr>
-				<c:forEach items="${myCommentList }" var="myCommentList">
+				<c:forEach items="${myCommentList }" var="myComment">
 					<tr>
-						<td>${myCommentList.commentNo }</td>
+						<td>${myComment.commentNo }</td>
 						<c:url var="bDetail" value="/board/detail">
-							<c:param name="boardNo" value="${myCommentList.boardNo }"></c:param>
+							<c:param name="boardNo" value="${myComment.boardNo }"></c:param>
 						</c:url>
-						<td><a href="${bDetail}">${myCommentList.boardNo }</a></td>
+						<td><a href="${bDetail}">${myComment.boardNo }</a></td>
 						
-						<td>${myCommentList.commentContents }</td>
-						<td>${myCommentList.commentDate }</td>
+						<td>${myComment.commentContents }</td>
+						<td>${myComment.commentDate }</td>
 					</tr>
 				</c:forEach>
 			</table>

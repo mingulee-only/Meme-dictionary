@@ -140,6 +140,7 @@ public class MemberController {
 
 		List<Comment> myCommentList = mService.printMyComment(pi, member.getMemberId());
 		model.addAttribute("myCommentList", myCommentList);
+		System.out.println(myCommentList);
 		return ".tilesHead/member/myComment";
 	}
 	

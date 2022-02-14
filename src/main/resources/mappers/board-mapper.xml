@@ -140,6 +140,10 @@
 		DELETE FROM BOARD_FILE WHERE BOARD_NO = #{boardNo}
 	</delete>
 	
+	<delete id="deleteCommentByBoardNo">
+		DELETE FROM COMMENT_TBL WHERE BOARD_NO = #{boardNo}
+	</delete>
+	
 	
 	<!-- 조회 수 -->
 	<update id="updateBoardCount" parameterType="_int">

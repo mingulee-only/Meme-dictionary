@@ -422,7 +422,7 @@ public class BoardController {
 		
 		//게시글 보기
 		Board oneBoard = bService.printBoardOneByNo(boardNo);
-		BoardFile boardFile = bService.printBoardFileOneByNo(oneBoard.getBoardNo());
+		BoardFile boardFile = bService.printBoardFileOneByNo(boardNo);
 		
 		//랭킹
 		model.addAttribute("rankmain", "board");
