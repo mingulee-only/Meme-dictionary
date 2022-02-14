@@ -8,59 +8,102 @@
 <title>마이페이지</title>
 <style>
 	.inner {
-		position: absolute;
+	/* 	position: absolute; */
 		width: 700px;
 		height: 600px;
 		top: 50%;
 		left: 50%;
-		margin-top: -250px;
-		margin-left: -350px;
-		background-color: lightgray;
+		text-align: center;
+		margin: auto;
+	/* 	margin-top: -250px; */
+	/* 	margin-left: -350px; */
+		background-color: #f9f9f9;
 	}
 	
 	.body {
-		height: 80%;
+	/* 	height: 75%; */
 	}
 	.pi {
-		height : 10%;
+		height : 8%;
 	}
 	.footer {
 		height : 10%;
 	}
-	.body ul {
-	list-style-type : none;
-	padding-left : 150px;
-	}
-	.body li {
-	color : white;
-	float : left;
-	background-color : #4A4646;
-	padding-right : 10px;
-	text-align : center;
-	}
-	.body li a {
-	color : white;
-	display : block;
-	background-color : darkgray;
-	text-decoration : none;
-	text-align : center;
-	}
-	.body li a.current {
-		color : white;
+	
+	
+	#mypageNavi {
+	/* 	background-color : #75582F; */
+		font-weight: bold;
+		width: 500px;
+		height: 50px;
+		text-align: center;
+		margin: auto;
 	}
 	
+	#mypageNavi ul {
+		list-style-type : none;
+		padding-left : 50px;
+	}
+	
+	#mypageNavi li {
+		color : #DB4000;
+		float : left;
+	/* 	background-color : white; */
+		padding-right : 10px;
+		text-align : center;
+	}
+	#mypageNavi li a {
+		color : black;
+		display : block;
+		text-decoration : none;
+		text-align : center;
+	}
+	#mypageNavi li a.current {
+		color : white;
+		background-color : #DB4000;
+	}
+	
+	#part {
+		width: 35px;
+	}
+	
+	#no {
+		width: 50px;
+	}
+	
+	#title {
+		width: 150px;
+	}
+	
+	#date {
+		width: 100px;
+	}
+	
+	#like {
+		width: 50px;
+	}
+	
+	#comment {
+		width: 50px;
+	}
+	#delete {
+		width: 35px;
+	}
 	
 	.header {
-	color : white;
-	background-color : #4A4646;
-	height : 30px;
+		color: white;
+		background-color: #75582F;
+		height: 30px;
 	}
 	
 	.sub {
-	font-size : smaller;
-	
+		font-size: smaller;
 	}
 	
+	button {
+		color : #8F2B00;
+	}
+		
 </style>
 </head>
 <body>
@@ -68,6 +111,7 @@
 	<div class="inner" align="center">
 		<div class="body">
 			<br><br>
+			<div id="mypageNavi">
 			<ul>
 				<li>내가 쓴 글</li>
 				<li><a href="/member/myComment.me">내가 쓴 댓글</a></li>
@@ -79,8 +123,11 @@
 				<li><a href="/myPage.me">유행어추진/자유게시판</a></li>
 				<li>퀴즈</li>
 			</ul>
+			</div>
+			
 			<br>
-			<table align="center" border="1" text-align="center">
+			
+			<table align="center" border="1" text-align="center" style="background-color:white">
 				<tr class="header">
 					<td id="part">유형</td>
 					<td id="no">문제</td>
@@ -107,6 +154,7 @@
 				</c:forEach>
 			</table>
 		</div>
+		<p></p>
 		<div style="text-align:center" class="pi">
 			<c:if test="${pi.startNavi gt 1 }">
 				<button style="height:25px; width:55px">이전</button>

@@ -7,92 +7,123 @@
 <meta charset="UTF-8">
 <title>마이페이지</title>
 <style>
-.inner {
-	position: absolute;
-	width: 700px;
-	height: 500px;
-	top: 50%;
-	left: 50%;
-	margin-top: -250px;
-	margin-left: -350px;
-	background-color: lightgray;
-}
-
-.body {
-	height: 90%;
-}
-
-.body ul {
-	list-style-type : none;
-	padding-left : 150px;
-}
-.body li {
-	color : white;
-	float : left;
-	background-color : #4A4646;
-	padding-right : 10px;
-	text-align : center;
-}
-.body li a {
-	color : white;
-	display : block;
-	background-color : darkgray;
-	text-decoration : none;
-	text-align : center;
-}
-.body li a.current {
+	.inner {
+	/* 	position: absolute; */
+		width: 700px;
+		height: 600px;
+		top: 50%;
+		left: 50%;
+		text-align: center;
+		margin: auto;
+	/* 	margin-top: -250px; */
+	/* 	margin-left: -350px; */
+		background-color: #f9f9f9;
+	}
+	
+	.body {
+	/* 	height: 75%; */
+	}
+	.pi {
+		height : 8%;
+	}
+	.footer {
+		height : 10%;
+	}
+	
+	
+	#mypageNavi {
+	/* 	background-color : #75582F; */
+		font-weight: bold;
+		width: 500px;
+		height: 25px;
+		text-align: center;
+		margin: auto;
+	}
+	
+	#mypageNavi ul {
+		list-style-type : none;
+		padding-left : 50px;
+	}
+	
+	#mypageNavi li {
+		color : #DB4000;
+		float : left;
+	/* 	background-color : white; */
+		padding-right : 10px;
+		text-align : center;
+	}
+	#mypageNavi li a {
+		color : black;
+		display : block;
+		text-decoration : none;
+		text-align : center;
+	}
+	#mypageNavi li a.current {
 		color : white;
-}
-
-#part {
-	width: 70px;
-}
-
-#no {
-	width: 50px;
-}
-
-#title {
-	width: 150px;
-}
-
-#date {
-	width: 100px;
-}
-
-#like {
-	width: 50px;
-}
-
-#comment {
-	width: 50px;
-}
-
-.header {
-	color: white;
-	background-color: #4A4646;
-	height: 30px;
-}
-
-.sub {
-	font-size: smaller;
-}
+		background-color : #DB4000;
+	}
+	
+	
+	.header {
+		color: white;
+		background-color: #75582F;
+		height: 30px;
+	}
+	
+	
+		#part {
+			width: 60px;
+		}
+		
+		#no {
+			width: 50px;
+		}
+		
+		#title {
+			width: 200px;
+		}
+		
+		#date {
+			width: 100px;
+		}
+		
+		#like {
+			width: 50px;
+		}
+		
+		#comment {
+			width: 50px;
+		}
+		#delete {
+			width: 35px;
+		}	
+		
+	.sub {
+		font-size: smaller;
+	}
+	
+	button {
+		color : #8F2B00;
+	}
 </style>
 </head>
 <body>
 
-	<div class="inner" align="center">
+	<div class="inner" align="center" >
 		<div class="body">
 			<br>
 			<br>
-			<ul>
-				<li><a href="/myPage.me">내가 쓴 글</a></li>
-				<li>내가 쓴 댓글</li>
-				<li><a href="/member/modifyMember.me">회원정보 수정</a></li>
-				<li><a href="/member/deleteMember.me">회원 탈퇴</a></li>
-			</ul>
-			<br> <br>
-			<table align="center" border="1">
+			<div id="mypageNavi">
+				<ul>
+					<li><a href="/myPage.me">내가 쓴 글</a></li>
+					<li>내가 쓴 댓글</li>
+					<li><a href="/member/modifyMember.me">회원정보 수정</a></li>
+					<li><a href="/member/deleteMember.me">회원 탈퇴</a></li>
+				</ul>
+			</div>
+			
+			<br>
+			<table align="center" border="1" style="background-color:white">
 				<tr class="header">
 					<td id="part">댓글번호</td>
 					<td id="no">글번호</td>
@@ -109,6 +140,7 @@
 				</c:forEach>
 			</table>
 		</div>
+		<p></p>
 		<div style="text-align:center" class="pi">
 			<c:if test="${pi.startNavi gt 1 }">
 				<button style="height:25px; width:55px">이전</button>
