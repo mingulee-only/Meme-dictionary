@@ -7,102 +7,102 @@
 <meta charset="UTF-8">
 <title>마이페이지</title>
 <style>
-.inner {
-/* 	position: absolute; */
-	width: 700px;
-	height: 600px;
-	top: 50%;
-	left: 50%;
-	text-align: center;
-	margin: auto;
-/* 	margin-top: -250px; */
-/* 	margin-left: -350px; */
-	background-color: #f9f9f9;
-}
-
-.body {
-/* 	height: 75%; */
-}
-.pi {
-	height : 8%;
-}
-.footer {
-	height : 10%;
-}
-
-
-#mypageNavi {
-/* 	background-color : #75582F; */
-	font-weight: bold;
-	width: 500px;
-	height: 50px;
-	text-align: center;
-	margin: auto;
-}
-
-#mypageNavi ul {
-	list-style-type : none;
-	padding-left : 50px;
-}
-
-#mypageNavi li {
-	color : #DB4000;
-	float : left;
-/* 	background-color : white; */
-	padding-right : 10px;
-	text-align : center;
-}
-#mypageNavi li a {
-	color : black;
-	display : block;
-	text-decoration : none;
-	text-align : center;
-}
-#mypageNavi li a.current {
-	color : white;
-	background-color : #DB4000;
-}
-
-#part {
-	width: 35px;
-}
-
-#no {
-	width: 50px;
-}
-
-#title {
-	width: 150px;
-}
-
-#date {
-	width: 100px;
-}
-
-#like {
-	width: 50px;
-}
-
-#comment {
-	width: 50px;
-}
-#delete {
-	width: 35px;
-}
-
-.header {
-	color: white;
-	background-color: #75582F;
-	height: 30px;
-}
-
-.sub {
-	font-size: smaller;
-}
-
-button {
-	color : #8F2B00;
-}
+	.inner {
+	/* 	position: absolute; */
+		width: 700px;
+		height: 600px;
+		top: 50%;
+		left: 50%;
+		text-align: center;
+		margin: auto;
+	/* 	margin-top: -250px; */
+	/* 	margin-left: -350px; */
+		background-color: #f9f9f9;
+	}
+	
+	.body {
+	/* 	height: 75%; */
+	}
+	.pi {
+		height : 8%;
+	}
+	.footer {
+		height : 10%;
+	}
+	
+	
+	#mypageNavi {
+	/* 	background-color : #75582F; */
+		font-weight: bold;
+		width: 500px;
+		height: 50px;
+		text-align: center;
+		margin: auto;
+	}
+	
+	#mypageNavi ul {
+		list-style-type : none;
+		padding-left : 50px;
+	}
+	
+	#mypageNavi li {
+		color : #DB4000;
+		float : left;
+	/* 	background-color : white; */
+		padding-right : 10px;
+		text-align : center;
+	}
+	#mypageNavi li a {
+		color : black;
+		display : block;
+		text-decoration : none;
+		text-align : center;
+	}
+	#mypageNavi li a.current {
+		color : white;
+		background-color : #DB4000;
+	}
+	
+	#part {
+		width: 35px;
+	}
+	
+	#no {
+		width: 50px;
+	}
+	
+	#title {
+		width: 150px;
+	}
+	
+	#date {
+		width: 100px;
+	}
+	
+	#like {
+		width: 50px;
+	}
+	
+	#comment {
+		width: 50px;
+	}
+	#delete {
+		width: 35px;
+	}
+	
+	.header {
+		color: white;
+		background-color: #75582F;
+		height: 30px;
+	}
+	
+	.sub {
+		font-size: smaller;
+	}
+	
+	button {
+		color : #8F2B00;
+	}
 </style>
 </head>
 <body>
@@ -128,7 +128,7 @@ button {
 			</div>
 			
 			<br>
-			<table align="center" border="1">
+			<table align="center" border="1" style="background-color:white">
 				<tr class="header">
 					<td id="part">구분</td>
 					<td id="no">글번호</td>
