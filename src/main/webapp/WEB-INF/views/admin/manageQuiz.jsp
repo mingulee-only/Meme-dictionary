@@ -161,6 +161,7 @@
 						<th id="answer">정답</th>
 						<th id="writer">출제자</th>
 						<th id="date">작성일</th>
+						<th id="delete">&nbsp</th>
 					</tr>
 					<c:forEach items="${allQuizList }" var="allQuizList">
 						<tr>
