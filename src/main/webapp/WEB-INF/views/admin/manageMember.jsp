@@ -162,7 +162,7 @@
 					<button style="height:25px; width:55px">이전</button>
 				</c:if>
 				<c:forEach var="p" begin="${pi.startNavi }" end="${pi.endNavi }">
-					<c:url var="pagination" value="/myPage.me">
+					<c:url var="pagination" value="/admin/manageMember.me">
 						<c:param name="page" value="${p }"></c:param>
 					</c:url>
 					<a href="${pagination }">${p }</a>&nbsp;
