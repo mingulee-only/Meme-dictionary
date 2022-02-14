@@ -15,14 +15,23 @@
 		margin-top : -90px;
 		margin-left : -150px;
 		background-color : lightgray;
-		}
+	}
+	button {
+		color : #8F2B00;
+		font-weight: bold;
+		background-color: lightgray;
+	}
 </style>
 </head>
 <body>
 	<div class="inner">
-		<h3 align="center">회원가입 성공!</h3>
+		<b></b>
+		<div style="margin-top:20px">
+			<h3 align="center">회원가입 성공!</h3>
+		</div>
+		
 		<br><br>
-		<table align="center">
+		<table align="center" >
 			<tr align="center">
 				<td colspan="2"><button type="button" onclick="location.href='/login.me'">로그인 화면으로 돌아가기</button></td>
 			</tr>
