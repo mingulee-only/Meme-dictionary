@@ -67,6 +67,9 @@
 /*  		function firstBtn() {
 			location.href = '/meme/detail?memeName=' + searchValue;
 		} */
+		button{
+			
+		}
 	</script>
 
 </body>
