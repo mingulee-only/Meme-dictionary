@@ -215,7 +215,8 @@ button {
     width: 100%;
     float: left;
     background-image: url(../images/tablet-search.jpg);
-/* 	background-color : blue; */
+/* 	background-image: url(../images/banner-bg.png); */
+	background-color : #008F7C;
     height: 100%;
     background-size: 100%;
     background-repeat: no-repeat;

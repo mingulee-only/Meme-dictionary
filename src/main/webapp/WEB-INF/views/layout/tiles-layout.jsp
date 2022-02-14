@@ -25,7 +25,7 @@
 	#content {
 		height : 80%;
 		width: 100%;
-		background-color: pink;
+		background-color: #f9f9f9;
 	}
 	#body {
 		margin-top: -10px
