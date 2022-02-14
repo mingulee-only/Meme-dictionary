@@ -11,10 +11,11 @@
 #boardWriteTable { 
 	width: 800px; 
 	height: 200px; 
-	background-color: #eeeeee; 
+	background-color: #F5A678 ; 
  	border: 1px solid black; 
 	text-align: center;
  	margin: auto; 
+ 	color: black;
 }
 
 #boardWriteTable th {

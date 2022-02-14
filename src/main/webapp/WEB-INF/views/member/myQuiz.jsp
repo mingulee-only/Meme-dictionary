@@ -147,7 +147,7 @@
 		    					객관식
 							</c:if>
 						</td>
-						<td><a href="../quiz/modifyView.me?quizNo=${myQuizList.quizNo }">${myQuizList.quizQuest }</a></td>
+						<td>${myQuizList.quizQuest }</td>
 						<td>${myQuizList.quizAnswer }</td>
 						<td>${myQuizList.quizDate }</td>
 						<td>
