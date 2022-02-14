@@ -17,6 +17,7 @@
 	<h3>2000년 이전</h3>
 	<c:forEach items="${memeTimeline }" var="tFirstList">
 		<button>${tFirstList.memeName }</button>
+		<%-- 		<button onclick="firstBtn(${tFirstList.index})" href='/meme/detail?memeName='+${tFirstList.memeName }>${tFirstList.memeName }</button> --%>
 	</c:forEach>
 	<br>
 
@@ -37,21 +38,23 @@
 		<button>${tFourthList.memeName }</button>
 	</c:forEach>
 	<br>
-	
+
 	<h3>2016년 - 2020년</h3>
 	<c:forEach items="${memeFifthTimeline }" var="tFifthList">
 		<button>${tFifthList.memeName }</button>
 	</c:forEach>
 	<br>
-	
+
 	<h3>2021년</h3>
-		<c:forEach items="${memeSixthTimeline }" var="tSixthList">
+	<c:forEach items="${memeSixthTimeline }" var="tSixthList">
 		<button>${tSixthList.memeName }</button>
 	</c:forEach>
 	<br>
 
 	<script>
-
+		function firstBtn() {
+			location.href = '/meme/detail?memeName=' + searchValue;
+		}
 	</script>
 
 </body>
