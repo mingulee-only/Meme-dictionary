@@ -16,7 +16,7 @@
  		margin-left : -150px;
  		margin-bottom : 50px; 
 		text-align: center;
-		background-color : lightgray;
+		background-color : #EBB388;
 	}
  	.header {
  		height : 20%;
@@ -35,7 +35,7 @@
 	button {
 		color : #8F2B00;
 		font-weight: bold;
-		background-color: lightgray;
+		background-color: #EBB388;
 		margin-top: 5px;
 	}
 	

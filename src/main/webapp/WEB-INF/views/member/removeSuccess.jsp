@@ -14,13 +14,13 @@
 		left : 50%;
 		margin-top : -90px;
 		margin-left : -150px;
-		background-color : lightgray;
+		background-color : #EBB388;
 	}
 	
 	button {
 		color : #8F2B00;
 		font-weight: bold;
-		background-color: lightgray;
+		background-color: #EBB388;
 	}
 	#successTable {
 		margin-top: -10px;
