@@ -15,7 +15,7 @@
 		color: green;
 	}
 	#type {
-		color: aqua;
+		color: #008F7C;
 	}
 </style>
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
