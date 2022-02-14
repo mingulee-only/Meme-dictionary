@@ -10,11 +10,12 @@
 	.inner {
 	position : absolute;
 	width : 300px;
-	height : 260px;
+	height : 300px;
 	top : 50%;
 	left : 50%;
 	margin-top : -130px;
 	margin-left : -150px;
+	padding-bottom : 50px;
 	background-color : lightgray;
 	}
 	.header {
@@ -25,6 +26,20 @@
 	height : 80%;
 	margin-top : 5px;
 	}
+	
+	#joinButton {
+		background-color : #75582F;
+		color: white;
+		margin-top: 10px;
+		
+	}
+	button {
+		color : #8F2B00;
+		font-weight: bold;
+		background-color: lightgray;
+		margin-top: 10px;
+	}
+	
 </style>
 </head>
 <body>
@@ -50,10 +65,9 @@
 					<tr align="center">
 						<td colspan="2"><input type="text" name="memberEmail" placeholder="이메일"></td>
 					</tr>
-					<tr></tr>
 					<tr align="center">
 						<td id="join-button">
-							<input type="submit" value="회원가입">
+							<input id="joinButton" type="submit" value="회원가입">
 						</td>
 						<td><button type="button" onclick="location.href='/login.me'">돌아가기</button>
 					</tr>
