@@ -49,7 +49,7 @@ public class MemeController {
 		// 로그인 후 등재 요청시 작성자에 닉네임 출력
 		Member member = (Member) session.getAttribute("loginMember");
 		model.addAttribute("memberNickname", member.getMemberNickname());
-		return "meme/memeRegisterForm";
+		return ".tilesHead/meme/memeRegisterForm";
 	}
 
 	@RequestMapping(value = "/meme/register", method = RequestMethod.POST)
@@ -184,7 +184,7 @@ public class MemeController {
 	@RequestMapping(value = "/meme/requestView", method = RequestMethod.GET)
 	public String memeRequestView(@RequestParam(value = "memeNo") int memeNo) {
 
-		return "meme/memeRequestForm";
+		return ".tiles/meme/memeRequestForm";
 	}
 
 	// 사전 수정삭제 요청 등록
@@ -255,7 +255,7 @@ public class MemeController {
 		
 		
 		
-		return"meme/memeTimeline";
+		return".tilesHead/meme/memeTimeline";
 	}
 	
 	
