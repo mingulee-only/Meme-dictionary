@@ -31,11 +31,6 @@
     	var $answer = []; // 정답 배열
     	var $quizNo = []; // 퀴즈번호 배열
     	var $quizType = []; // 퀴즈 유형
-    	var $quizQuest = []; // 문제 배열
-    	var $quizCh1 = []; // 객관식 배열
-    	var $quizCh2 = []; // 객관식 배열
-    	var $quizCh3 = []; // 객관식 배열
-    	var $quizCh4 = []; // 객관식 배열
         var clock = 30; // 제한시간 설정
         var nextNum = 0; // 퀴즈 인덱스
         var userAnswer = []; // 유저가 입력한 정답
