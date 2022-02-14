@@ -21,29 +21,26 @@
 	height: 90%;
 }
 
-ul {
-	list-style-type: none;
-	padding-left: 150px;
+.body ul {
+	list-style-type : none;
+	padding-left : 150px;
 }
-
-li {
-	color: white;
-	float: left;
-	background-color: #4A4646;
-	padding-right: 10px;
-	text-align: center;
+.body li {
+	color : white;
+	float : left;
+	background-color : #4A4646;
+	padding-right : 10px;
+	text-align : center;
 }
-
-li a {
-	color: white;
-	display: block;
-	background-color: darkgray;
-	text-decoration: none;
-	text-align: center;
+.body li a {
+	color : white;
+	display : block;
+	background-color : darkgray;
+	text-decoration : none;
+	text-align : center;
 }
-
-li a.current {
-	color: white;
+.body li a.current {
+		color : white;
 }
 
 #part {
@@ -100,7 +97,7 @@ li a.current {
 						<td>아이디 <input type="text" name="memberId" readonly value="${member.memberId }"></td>
 					</tr>
 					<tr>
-						<td>비밀번호 <input type="password" name="memberPw"></td>
+						<td>비밀번호 <input type="password" name="memberPw" required></td>
 					</tr>
 					<tr>
 						<td>이름 <input type="text" name="memberName" readonly value="${member.memberName }"></td>
@@ -109,12 +106,10 @@ li a.current {
 						<td>닉네임 <input type="text" name="memberNickname" readonly value="${member.memberNickname }"></td>
 					</tr>
 					<tr>
-						<td>이메일 <input type="text" name="memberEmail" value="${member.memberEmail }"></td>
-					</tr>
-					<tr>
-						<td><button type="submit">정보수정</button></td>
+						<td>이메일 <input type="text" name="memberEmail" value="${member.memberEmail }" required></td>
 					</tr>
 				</table>
+				<button type="submit">정보수정</button>
 			</form>
 
 		</div>

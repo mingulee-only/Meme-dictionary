@@ -19,12 +19,11 @@
 }
 
 .body {
-	height: 90%;
+	height: 80%;
 }
 .content {
-	height : 75%;
-	width : 100%;
-	float : left;
+	height : 80%;
+	width : 80%;
 }
 .pi {
 	height : 10%;
@@ -62,25 +61,21 @@
 	width: 35px;
 }
 
-#title {
-	width: 250px;
+#memeno {
+	width: 70px;
 }
 
-#writer {
-	width: 100px;
-}
-
-#date {
-	width: 100px;
-}
-
-#update {
+#type {
 	width: 50px;
 }
 
-#views {
-	width: 50px;
+#contents {
+	width: 300px;
 }
+#delete {
+	width: 35px;
+}
+
 
 
 .header {
@@ -92,51 +87,56 @@
 .sub {
 	font-size: smaller;
 }
-.inner-header {
-	height: 15%;
-}
 </style>
 </head>
 <body>
 
 
 	<div class="inner" align="center">
-		<div class="body" align="center">
-			<div class="inner-header">
-				<br>
-				<br>
-				<ul>
-					<li><a href="/admin/manageMember.me">회원 관리</a></li>
-					<li>유행어 사전 관리</li>
-					<li><a href="/admin/manageBoard.me">추진/자유게시판 관리</a></li>
-					<li><a href="/admin/manageQuiz.me">퀴즈 관리</a></li>
-				</ul>
-				<br>
-				<ul class="sub">
-					<li>전체 유행어 목록</li>
-					<li><a href="/admin/manageMemeRequest.me">사전 요청 목록</a></li>
-				</ul>
-				<br>
-			</div>
-			<div class="content">
+		<div class="body">
+
 			<br>
+			<br>
+			<ul>
+				<li><a href="/admin/manageMember.me">회원 관리</a></li>
+				<li>유행어 사전 관리</li>
+				<li><a href="/admin/manageBoard.me">추진/자유게시판 관리</a></li>
+				<li><a href="/admin/manageQuiz.me">퀴즈 관리</a></li>
+			</ul>
+			<br>
+			<ul class="sub">
+				<li><a href="/admin/manageMeme.me">전체 유행어 목록</a></li>
+				<li>사전 요청 목록</li>
+			</ul>
+			<br>
+			<div class="content">
 				<table align="center" border="1">
 					<tr class="header">
 						<td id="no">번호</td>
-						<td id="title">유행어</td>
-						<td id="writer">출처</td>
-						<td id="date" colspan="2">등재일</td>
+						<td id="memeno">사전 번호</td>
+						<td id="type">유형</td>
+						<td id="contents">내용</td>
 					</tr>
-					<c:forEach items="${allMemeList }" var="allMemeList">
+					<c:forEach items="${allMemeRequestList }" var="allMemeRequestList">
 						<tr>
-							<td>${allMemeList.memeNo }</td>
-							<c:url var="mDetail" value="/meme/detail">
-								<c:param name="memeName" value="${allMemeList.memeName }"></c:param>
-							</c:url>
-							<td><a href="${mDetail }">${allMemeList.memeName }</a></td>
-							<td>${allMemeList.memberNickname }</td>
-							<td>${allMemeList.memeDate }</td>
-							<td>삭제</td>
+							<td>${allMemeRequestList.memeReqNo }</td>
+							<td>
+								<c:if test="${empty allMemeRequestList.memeNo}">
+								##
+								</c:if>
+								<c:if test="${not empty allMemeRequestList.memeNo}">
+								${allMemeRequestList.memeNo }
+								</c:if>
+							</td>
+							<td>
+								<c:if test="${allMemeRequestList.memeRequestType eq 'M'}">
+								수정
+								</c:if>
+								<c:if test="${allMemeRequestList.memeRequestType eq 'D'}">
+								삭제
+								</c:if>
+							</td>
+							<td>${allMemeRequestList.memeRequestContents }</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -146,7 +146,7 @@
 					<button style="height:25px; width:55px">이전</button>
 				</c:if>
 				<c:forEach var="p" begin="${pi.startNavi }" end="${pi.endNavi }">
-					<c:url var="pagination" value="/admin/manageMeme.me">
+					<c:url var="pagination" value="/admin/manageMemeRequest.me">
 						<c:param name="page" value="${p }"></c:param>
 					</c:url>
 					<a href="${pagination }">${p }</a>&nbsp;

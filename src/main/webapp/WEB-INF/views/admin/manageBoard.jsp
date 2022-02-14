@@ -32,12 +32,12 @@
 	height : 10%;
 }
 
-ul {
+.body ul {
 	list-style-type: none;
 	padding-left: 130px;
 }
 
-li {
+.body li {
 	color: white;
 	float: left;
 	background-color: #4A4646;
@@ -45,7 +45,7 @@ li {
 	text-align: center;
 }
 
-li a {
+.body li a {
 	color: white;
 	display: block;
 	background-color: darkgray;
@@ -53,34 +53,49 @@ li a {
 	text-align: center;
 }
 
-li a.current {
+.body li a.current {
 	color: white;
 }
 
 #part {
+	text-align: center;
+	font-size: smaller;
 	width: 35px;
+	
 }
 
 #no {
+	text-align: center;
+	font-size: smaller;
 	width: 50px;
 }
 
 #title {
+	text-align: center;
+	font-size: smaller;
 	width: 150px;
 }
 
 #writer {
-	width: 100px;
+	text-align: center;
+	font-size: smaller;
+	width: 70px;
 }
 
 #date {
-	width: 50px;
+	text-align: center;
+	font-size: smaller;
+	width: 80px;
 }
 
 #views {
-	width: 50px;
+	text-align: center;
+	font-size: smaller;
+	width: 35px;
 }
 #delete {
+	text-align: center;
+	font-size: smaller;
 	width: 35px;
 }
 
@@ -125,10 +140,42 @@ li a.current {
 						<td id="date">작성일</td>
 						<td id="views">조회수</td>
 					</tr>
+					<c:forEach items="${allBoardList }" var="allBoardList">
+						<tr>
+							<td id="part">
+								<c:if test="${allBoardList.boardType eq 'P'}">
+			    					추진
+								</c:if>
+								<c:if test="${allBoardList.boardType eq 'F'}">
+			    					자유
+								</c:if>
+							</td>
+							<td id="no">${allBoardList.boardNo }</td>
+							<c:url var="bDetail" value="/board/detail">
+								<c:param name="boardNo" value="${allBoardList.boardNo }"></c:param>
+							</c:url>
+							<td id="title"><a href="${bDetail }">${allBoardList.boardTitle }</a></td>
+							<td id="writer">${allBoardList.memberNickname }</td>
+							<td id="date">${allBoardList.boardDate }</td>
+							<td id="views">${allBoardList.boardCount }</td>
+						</tr>
+					</c:forEach>
 				</table>
 			</div>
-		</div>
-		<div style="text-align:center" class="pi">
+			<div style="text-align:center" class="pi">
+				<c:if test="${pi.startNavi gt 1 }">
+					<button style="height:25px; width:55px">이전</button>
+				</c:if>
+				<c:forEach var="p" begin="${pi.startNavi }" end="${pi.endNavi }">
+					<c:url var="pagination" value="/admin/manageBoard.me">
+						<c:param name="page" value="${p }"></c:param>
+					</c:url>
+					<a href="${pagination }">${p }</a>&nbsp;
+				</c:forEach>
+				<c:if test="${pi.endNavi lt maxPage }">
+					<button style="height:25px; width:55px">다음</button>
+				</c:if>
+			</div>
 		</div>
 		
 		<div class="footer">

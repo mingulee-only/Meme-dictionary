@@ -23,6 +23,15 @@
 			column="MEME_FILEEXTENSION" />
 		<result property="memeFileRename" column="MEME_FILERENAME" />
 	</resultMap>
+	
+	<resultMap type="org.kh.meme.meme.domain.MemeRequest"
+		id="memeRequestResultMap">
+		<id property="memeReqNo" column="MEMEREQ_NO" />
+		<result property="memeNo" column="MEME_NO" />
+		<result property="memeRequestType" column="MEMEREQUEST_TYPE" />
+		<result property="memeRequestContents" column="MEMEREQUEST_CONTENTS" />
+		<result property="memeRequestStatus" column="MEMEREQUEST_STATUS" />
+	</resultMap>
 
 	<!-- 유행어 검색가능한 페이지 수 -->
 	<select id="selectListCount" resultType="_int">
@@ -41,6 +50,14 @@
 	<select id="selectOneByMemeFile" resultMap="memeFileResultMap">
 		SELECT * FROM
 		MEME_FILE WHERE MEME_NO = #{memeNo}
+	</select>
+	<select id="selectMemeRequestListCount" resultType="_int">
+		SELECT COUNT(*) FROM
+		MEME_REQUEST WHERE MEMEREQUEST_STATUS='Y'
+	</select>
+	<select id="selectAllMemeRequestList" resultMap="memeRequestResultMap">
+		SELECT * FROM
+		MEME_REQUEST WHERE MEMEREQUEST_STATUS='N' ORDER BY MEMEREQ_NO DESC
 	</select>
 
 	<!-- 유행어 등록 요청 -->
@@ -69,7 +86,7 @@
 		INSERT INTO MEME_REQUEST VALUES(SEQ_MEMEREQ_NO.NEXTVAL,
 		#{memeNo},
 		#{memeRequestType}, #{memeRequestContents},
-		#{memeRequestStatus})
+		'N')
 	</insert>
 
 

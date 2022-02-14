@@ -10,19 +10,19 @@
 	.inner {
 	position : absolute;
 	width : 300px;
-	height : 250px;
+	height : 260px;
 	top : 50%;
 	left : 50%;
-	margin-top : -125px;
+	margin-top : -130px;
 	margin-left : -150px;
 	background-color : lightgray;
 	}
 	.header {
 	height : 20%;
+	padding-top : 15px;
 	}
 	.body {
 	height : 80%;
-	padding-left : 50px;
 	margin-top : 5px;
 	}
 </style>
